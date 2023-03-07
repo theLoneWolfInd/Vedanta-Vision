@@ -32,21 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // google
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
-                // Show the app's signed-out state.
-                print("app signed out")
+              // Show the app's signed-out state.
             } else {
-                // Show the app's signed-in state.
-                print("app signed in")
+              // Show the app's signed-in state.
             }
-        }
-        
-        
-        
-        //        let signInConfig = GIDConfiguration.init(clientID: "667327318779-tkfbdk516uo8reigb3pcen1bsfgbmi6h.apps.googleusercontent.com")
-        //        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self)
-        
-        // google
-        // GIDSignIn.sharedInstance.clientID = "995626688633-npat1k40q8mrroia4b3vg5rs4t22pf4o.apps.googleusercontent.com"
+          }
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -153,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func application(
+    /*func application(
         _ app: UIApplication,
         open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
     ) -> Bool {
@@ -178,80 +168,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // If not handled by this app, return false.
         return false
-    }
-    
-    /*func sign(_ signIn: GIDSignIn!,
-     didSignInFor user: GIDGoogleUser!,
-     withError error: Error!) {
-     
-     // Check for sign in error
-     if let error = error {
-     if (error as NSError).code == GIDSignInError.hasNoAuthInKeychain.rawValue {
-     print("The user has not signed in before or they have since signed out.")
-     } else {
-     print("\(error.localizedDescription)")
-     }
-     return
-     }
-     
-     // Post notification after user successfully sign in
-     NotificationCenter.default.post(name: .signInGoogleCompleted, object: nil)
-     }*/
-    
-    /*
-     func application(_ app: UIApplication,
-     open url: URL,
-     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-     
-     return GIDSignIn.sharedInstance.handle(url)
-     }
-     */
-    
-    /*func application(
-        _ app: UIApplication,
-        open url: URL,
-        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-    ) -> Bool {
-        ApplicationDelegate.shared.application(
-            app,
-            open: url,
-            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-        )
     }*/
     
+    
+    // new
+    func application(
+      _ app: UIApplication,
+      open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+
+        if (GIDSignIn.sharedInstance.handle(url)) {
+            return true
+        } else if (ApplicationDelegate.shared.application(app, open: url, options: options)) {
+            return true
+        }
+
+      return false
+    }
+   
 }
 
-
-//extension AppDelegate: GIDSignInDelegate {
-//    
-//    
-//}
-
-
-/*// MARK:- Notification names
- extension Notification.Name {
- 
- /// Notification when user successfully sign in using Google
- static var signInGoogleCompleted: Notification.Name {
- return .init(rawValue: #function)
- }
- }*/
-
-/*// MARK: - Custom URL Schemes -
- extension AppDelegate {
- 
- func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
- if GIDSignIn.sharedInstance.handle(url) ||
- ApplicationDelegate.shared.application(app, open: url, options: options) {
- return true
- }
- return false
- }
- 
- 
- func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
- return ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions as? [UIApplication.LaunchOptionsKey : Any])
- }
- }*/
 

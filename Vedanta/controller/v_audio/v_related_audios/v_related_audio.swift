@@ -256,11 +256,13 @@ class v_related_audio: UIViewController {
                              videoId = 10;
                              */
                             
+//                             print(self.dict_get_audio_data);
                             for indexx in 0...2 {
                                 
                                 if indexx == 0 {
                                     print(self.dict_get_audio_data as Any)
                                     let custom_array = ["status"    : "header",
+                                                        "Type":"",
                                                         "audioFile"      : (self.dict_get_audio_data["audioFile"] as! String),
                                                         "created"   : (self.dict_get_audio_data["created"] as! String),
                                                         "image"     : (self.dict_get_audio_data["image"] as! String),
@@ -273,6 +275,7 @@ class v_related_audio: UIViewController {
                                     
                                     let custom_array = ["status"    : "title",
                                                         "audioFile"      : "",
+                                                        "Type":"",
                                                         "created"   : "",
                                                         "image"     : "",
                                                         "title"     : "",
@@ -289,8 +292,9 @@ class v_related_audio: UIViewController {
                                 self.str_check_related_auidos = "1"
                                 
                                 let item = ar[indexx] as? [String:Any]
-                                
+//                                print(item)
                                 let custom_array = ["status"    : "list",
+                                                    "Type":"\(item!["Type"]!)",
                                                     "audioFile"      : (item!["audioFile"] as! String),
                                                     "created"   : (item!["created"] as! String),
                                                     "image"     : (item!["image"] as! String),
@@ -708,7 +712,108 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
             cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
             
-            cell.lbl_list_description.text = (item!["description"] as! String)
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
+            
+            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+            
+            let combination = NSMutableAttributedString()
+            
+            combination.append(partOne)
+            combination.append(partTwo)
+            
+            cell.lbl_list_description.attributedText = combination
+            
+            if (item!["Type"] as! String) == "2" {
+                
+                if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                    // let str:String = person["role"] as! String
+                    print(person as Any)
+                    
+                    if (person["expiryDate"] as! String) != "" {
+                        
+                        // cell.btn_subscribe.isHidden = true
+                        // cell.btn_login.isHidden = true
+                        
+                        let start = (person["expiryDate"] as! String)
+                        let end = "2017-11-12"
+                        let dateFormat = "yyyy-MM-dd"
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = dateFormat
+                        
+                        let startDate = dateFormatter.date(from: start)
+                        let endDate = dateFormatter.date(from: end)
+                        
+                        let currentDate = Date()
+                        
+                        guard let startDate = startDate, let endDate = endDate else {
+                            fatalError("Date Format does not match ⚠️")
+                        }
+                        
+                        print(startDate)
+                        print(currentDate)
+                        print(endDate)
+                        
+                        if startDate > currentDate {
+                            print("✅")
+                            
+                            cell.btn_play.tintColor = .white
+                            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                            
+                        } else {
+                            
+                            print("❌")
+                            if (item!["Type"] as! String) == "1" {
+                                
+                                cell.btn_play.tintColor = .white
+                                cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                                
+                            } else {
+                                
+                                cell.btn_play.tintColor = .systemRed
+                                cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                                
+                            }
+                            
+                        }
+                        
+                    } else {
+                        
+                        if (item!["Type"] as! String) == "1" {
+                            
+                            cell.btn_play.tintColor = .white
+                            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                            
+                        } else {
+                            
+                            cell.btn_play.tintColor = .systemRed
+                            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+    //            cell.btn_play.isHidden = false
+    //            cell.btn_play.tintColor = .systemRed
+    //            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                
+            } else {
+                
+                cell.btn_play.tintColor = .white
+                cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                
+            }
             
             return cell
             
@@ -721,41 +826,119 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.player?.replaceCurrentItem(with: nil)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-            
-            self.tble_view.frame =  CGRect(x: 0, y: 120, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-114)
-            
-            //self.view_music_player.isHidden = false
-            
-        }, completion: nil)
-        
-        
-        self.view_full_view.addSubview(self.tble_view)
-        
-        
-        self.clear_audio_player_controller()
-        
-        
         let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
-        print(item as Any)
         
-        self.img_music_thumbnail.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        self.img_music_thumbnail.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
-        
-        self.lbl_music_title.text = (item!["title"] as! String)
-        
-        
-        
-        DispatchQueue.main.async(execute: {
+        if (item!["Type"] as! String) == "2"
+        {
             
-            let url = URL(string: (item!["audioFile"] as! String))
-            print(url as Any)
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                
+                if (person["subscriptionDate"] as! String) == "" {
+                    
+                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                    
+                    
+                    let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
+                        _ in
+                    }
+                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    
+                    yes_subscribe.setDynamicColor(.pink)
+                    
+                    alert.addButtons([yes_subscribe,cancel])
+                    self.present(alert, animated: true)
+                    
+                } else {
+                    
+                    // Subscribe DONE , Play Video
+                    self.player?.replaceCurrentItem(with: nil)
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                        
+                        self.tble_view.frame =  CGRect(x: 0, y: 120, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-114)
+                        
+                        self.view_music_player.isHidden = false
+                        
+                    }, completion: nil)
+                    
+                    
+                    self.view_full_view.addSubview(self.tble_view)
+                    
+                    
+                    
+                    
+                    
+                    
+                    self.img_music_thumbnail.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                    self.img_music_thumbnail.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                    
+                    self.lbl_music_title.text = (item!["title"] as! String)
+                    
+                    
+                    self.clear_audio_player_controller()
+                    
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        let url = URL(string: (item!["audioFile"] as! String))
+                        print(url as Any)
+                        
+                        self.setup_voice_functionality(get_url: url! as NSURL)
+                        
+                    })
+                    
+                }
+                
+            } else {
+                
+                self.please_login_to_continue()
+                
+            }
             
-            self.setup_voice_functionality(get_url: url! as NSURL)
             
-        })
+            
+        }
+        
+        else {
+            
+            self.player?.replaceCurrentItem(with: nil)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                
+                self.tble_view.frame =  CGRect(x: 0, y: 120, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-114)
+                
+                self.view_music_player.isHidden = false
+                
+            }, completion: nil)
+            
+            
+            self.view_full_view.addSubview(self.tble_view)
+            
+            
+            
+            
+            
+            
+            self.img_music_thumbnail.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            self.img_music_thumbnail.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            
+            self.lbl_music_title.text = (item!["title"] as! String)
+            
+            
+            self.clear_audio_player_controller()
+            
+            
+            DispatchQueue.main.async(execute: {
+                
+                let url = URL(string: (item!["audioFile"] as! String))
+                print(url as Any)
+                
+                self.setup_voice_functionality(get_url: url! as NSURL)
+                
+            })
+            
+            
+        }
         
     }
     
@@ -822,5 +1005,15 @@ class v_related_audio_table_cell:UITableViewCell {
     
     
     @IBOutlet weak var btn_see_more_audio:UIButton!
+    
+    @IBOutlet weak var btn_play:UIButton! {
+        didSet {
+            btn_play.isUserInteractionEnabled = false
+            btn_play.backgroundColor = .lightGray
+            btn_play.tintColor = .white
+            btn_play.layer.cornerRadius = 15
+            btn_play.clipsToBounds = true
+        }
+    }
     
 }

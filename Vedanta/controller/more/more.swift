@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import GoogleSignIn
 
 class more: UIViewController {
     
@@ -328,12 +329,7 @@ class more: UIViewController {
         let yes_logout = NewYorkButton(title: "yes, logout", style: .default) {
             _ in
             
-            let defaults = UserDefaults.standard
-            defaults.setValue("", forKey: str_save_login_user_data)
-            defaults.setValue(nil, forKey: str_save_login_user_data)
-            
-            self.btn_sign_out.isHidden = true
-            self.tble_view.reloadData()
+            self.check_login_status()
             
         }
         let cancel = NewYorkButton(title: "dismiss", style: .cancel)
@@ -341,6 +337,42 @@ class more: UIViewController {
         alert.addButtons([yes_logout , cancel])
         self.present(alert, animated: true)
         
+    }
+    
+    func check_login_status() {
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            // let str:String = person["role"] as! String
+            print(person as Any)
+            
+            if (person["socialType"] as! String) == "G" {
+                
+                // sign out via google
+                GIDSignIn.sharedInstance.signOut()
+                
+                // clear all default values
+                let defaults = UserDefaults.standard
+                defaults.setValue("", forKey: str_save_login_user_data)
+                defaults.setValue(nil, forKey: str_save_login_user_data)
+                
+                // adjust local UI
+                self.btn_sign_out.isHidden = true
+                self.tble_view.reloadData()
+                
+            } else {
+                
+                // clear all default values
+                let defaults = UserDefaults.standard
+                defaults.setValue("", forKey: str_save_login_user_data)
+                defaults.setValue(nil, forKey: str_save_login_user_data)
+                
+                // adjust local UI
+                self.btn_sign_out.isHidden = true
+                self.tble_view.reloadData()
+                
+            }
+            
+        }
+       
     }
     
 }

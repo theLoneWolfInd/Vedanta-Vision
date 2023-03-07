@@ -747,14 +747,6 @@ extension v_wisdom : UITableViewDelegate , UITableViewDataSource {
             self.view_music_player.isHidden = true
             
             
-//            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
-//            push!.hidesBottomBarWhenPushed = false
-//
-//            push!.dict_get_video_data = item as NSDictionary?
-//            self.navigationController?.pushViewController(push!, animated: true)
-            
-            
-            
             
             
             

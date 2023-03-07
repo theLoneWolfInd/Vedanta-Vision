@@ -12,9 +12,28 @@ import GoogleSignIn
 import RxSwift
 import RxCocoa
 
-// let signInConfig = GIDConfiguration(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
-
+import FBSDKLoginKit
+ 
 class login: UIViewController , UITextFieldDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
+        print("logout")
+    }
+    
+    
+//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+//        if let error = error {
+//          print("Facebook login with error: \(error.localizedDescription)")
+//        } else if let result = result {
+//          let declinedPermissionSet = result.declinedPermissions
+//          let grantedPermissionSet = result.grantedPermissions
+//          let isCancelled = result.isCancelled
+//          let facebookToken = result.token?.tokenString ?? ""
+//        }
+//      }
+//
+//      func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+//        print("User has logged out Facebook")
+//      }
     
     var str_user_device_token:String!
     
@@ -132,7 +151,7 @@ class login: UIViewController , UITextFieldDelegate {
         // self.sign_up_with_google_init()
         
         // google call
-        googleLogin()
+//        googleLogin()
         
         // facebook call
         facebookLogin()
@@ -144,11 +163,234 @@ class login: UIViewController , UITextFieldDelegate {
             RRFBLogin.shared.fbLogin(viewController: strongSelf)
         }.disposed(by: rxbag)
         
-        btn_continue_with_google.rx.tap.bind{ [weak self] _ in
-            guard let strongSelf = self else {return}
-            RRGoogleLogin.shared.googleSignIn(viewController: strongSelf)
-        }.disposed(by: rxbag)
+        // google old
+//        btn_continue_with_google.rx.tap.bind{ [weak self] _ in
+//            guard let strongSelf = self else {return}
+//            RRGoogleLogin.shared.googleSignIn(viewController: strongSelf)
+//        }.disposed(by: rxbag)
         
+        
+//        let loginButton = FBLoginButton()
+//                loginButton.center = view.center
+//                view.addSubview(loginButton)
+
+        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
+
+            debugPrint("Facebook Access Token: \(String(describing: AccessToken.current?.tokenString))")
+        }
+        
+        
+        // facebook
+//        btn_continue_with_facebook.delegate = self
+//        btn_continue_with_facebook.permissions = ["public_profile", "email"]
+//        btn_continue_with_facebook.addTarget(self, action: #selector(continue_with_facebook_click_method), for: .touchUpInside)
+        
+        // google
+        btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
+        
+//        let loginButton = FBLoginButton()
+//        loginButton.delegate = self
+//        loginButton.center = view.center
+//                        view.addSubview(loginButton)
+        
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton!, didCompleteWith result: LoginManagerLoginResult!, error: Error!) {
+
+        if(AccessToken.current != nil)
+        {
+            //print permissions, such as public_profile
+            print(AccessToken.current!.permissions)
+            let graphRequest = GraphRequest(graphPath: "me", parameters: ["fields" : "id, name, email"])
+            let connection = GraphRequestConnection()
+
+            connection.add(graphRequest, completion: { (connection, result, error) -> Void in
+
+                let data = result as! [String : AnyObject]
+
+//                self.lbluser.text = data["name"] as? String
+
+                let FBid = data["id"] as? String
+//                self.lblEmail.text = data["email"] as? String
+
+                let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
+//                self.imageView.image = UIImage(data: NSData(contentsOf: url! as URL)! as Data)
+            })
+            connection.start()
+        }
+    }
+    
+    @objc(loginButton:didCompleteWithResult:error:) func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+      if let error = error {
+        print(error.localizedDescription)
+        return
+      }
+      // ...
+    }
+    
+    // facebook
+    @objc func continue_with_facebook_click_method() {
+        let fbLoginManager : LoginManager = LoginManager()
+                                                                                                   
+                                     fbLoginManager.logIn(permissions:["email","public_profile"], from: self, handler: {(result, error) -> Void in
+                                         
+                                         print("\n\n result: \(String(describing: result))")
+                                         print("\n\n Error: \(String(describing: error))")
+                                         
+                                         if (error == nil)
+                                         {
+                                             if let fbloginresult = result
+                                             {
+                                                 if(fbloginresult.isCancelled)
+                                                                {
+                                                                    //Show Cancel alert to the user
+                                                                  let alert = UIAlertController(title: "Facebook login", message: "User pressed cancel button", preferredStyle: UIAlertController.Style.alert)
+                                                                  alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {    (action:UIAlertAction!) in
+                                                                      //print("you have pressed the ok button")
+                                                                      
+                                                                  }))
+                                                                  
+                                                                  self.present(alert, animated: true, completion: nil)
+                                                                }
+                                                                else
+                                                                
+                                                                {
+                                                                 print("going to getFBLoggedInUserData.. ")
+                                                                    
+                                                                    
+//                                                                    self.getFBLoggedInUserData()
+                                                                    
+                                                                }
+                                             }
+                                            
+                                         }
+                                     })
+    }
+    
+    @objc func continue_with_google_click_method() {
+        GIDSignIn.sharedInstance.signIn(with: GIDConfiguration(clientID: "857008698478-6bhro43tnihn0n9i80g012o3712fohfd.apps.googleusercontent.com"), presenting: self) { signInResult, error in
+            guard error == nil else { return }
+
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+            
+            print("success google sign in")
+//            print(signInResult?.userID)
+//            print(signInResult?.profile?.email)
+//            print(signInResult?.profile?.name)
+//            print(signInResult?.profile?.givenName)
+//            print(signInResult?.profile?.familyName)
+//            print(signInResult?.profile?.hasImage)
+            let googleProfilePicURL = signInResult?.profile?.imageURL(withDimension: 150)?.absoluteString ?? ""
+            print("Google Profile Avatar URL: \(googleProfilePicURL)")
+            // If sign in succeeded, display the app's main content View.
+            
+            
+            self.social_login_in_vedanta_WB(str_email: (signInResult?.profile!.email)!,
+                                            str_full_name: (signInResult?.profile?.name)!,
+                                            str_image: "\(googleProfilePicURL)", str_social_id: (signInResult?.userID)!)
+          }
+    }
+    
+    // MARK: - WEBSERVICE ( LOGIN ) -
+    @objc func social_login_in_vedanta_WB(
+        str_email:String,str_full_name:String,str_image:String,str_social_id:String) {
+        self.view.endEditing(true)
+        
+        
+        
+        if IsInternetAvailable() == false {
+            self.please_check_your_internet_connection()
+            return
+        }
+        
+        var device_token:String!
+        if self.str_user_device_token == nil {
+            device_token = ""
+        } else {
+            device_token = String(self.str_user_device_token)
+        }
+        
+//        [action] => socialLoginAction
+//            [email] => satishdhakar17@gmail.com
+//            [fullName] => Satish Dhakar
+//            [image] => https://lh3.googleusercontent.com/a/ALm5wu0sBOwD-nhr4RqpE9LUIRo9NrXpzVqFroF7ersz
+//            [socialId] => 118029733234090846820
+//            [socialType] => G
+//            [device] => Android
+//            [deviceToken] =>
+        
+        let parameters = [
+            "action"        : "socialLoginAction",
+            "email"         : String(str_email),
+            "fullName"      : String(str_full_name),
+            "image"         : String(str_image),
+            "socialId"      : String(str_social_id),
+            "socialType"    : "G",
+            "device"        : "iOS",
+            "deviceToken"   : String(device_token),
+            
+        ]
+        
+        print(parameters as Any)
+        
+        AF.request(application_base_url, method: .post, parameters: parameters)
+        
+            .response { response in
+                
+                do {
+                    if response.error != nil{
+                        print(response.error as Any, terminator: "")
+                    }
+                    
+                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                        
+                        print(jsonDict as Any, terminator: "")
+                        
+                        // for status alert
+                        var status_alert : String!
+                        status_alert = (jsonDict["status"] as? String)
+                        
+                        // for message alert
+                        var str_data_message : String!
+                        str_data_message = jsonDict["msg"] as? String
+                        
+                        if status_alert.lowercased() == "success" {
+                            
+                            print("=====> yes")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            var dict: Dictionary<AnyHashable, Any>
+                            dict = jsonDict["data"] as! Dictionary<AnyHashable, Any>
+                            
+                            let defaults = UserDefaults.standard
+                            defaults.setValue(dict, forKey: str_save_login_user_data)
+                            
+                            self.navigationController?.popToRootViewController(animated: true)
+                            // self.navigationController?.popViewController(animated: true)
+                            
+                        } else {
+                            
+                            print("=====> no")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
+                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            alert.addButtons([cancel])
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                    } else {
+                        
+                        self.please_check_your_internet_connection()
+                        
+                        return
+                    }
+                    
+                } catch _ {
+                    print("Exception!")
+                }
+            }
     }
     
     @objc func facebook_login_setup() {

@@ -20,6 +20,16 @@ class tab_bar: UITabBarController {
         
         tabBar.tintColor = .red
         
+        let myTabBarItem2 = (self.tabBar.items?[2])! as UITabBarItem
+        myTabBarItem2.image = UIImage(named: "red_color_bg")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        myTabBarItem2.selectedImage = UIImage(named: "blue_color_bg")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        
+        myTabBarItem2.title = ""
+        
+        myTabBarItem2.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0)
+        
 //        UITabBar.appearance().barTintColor = UIColor.black // your color
         
 //        tabBar.items?.index(before: 2)

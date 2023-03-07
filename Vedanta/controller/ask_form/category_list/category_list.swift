@@ -41,7 +41,7 @@ class category_list: UIViewController , UITextViewDelegate {
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
-        self.tble_view.separatorColor = .clear
+        self.tble_view.separatorColor = .black
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
@@ -275,9 +275,7 @@ extension category_list : UITableViewDelegate , UITableViewDataSource {
         cell.selectedBackgroundView = backgroundView
         
         let item = self.arr_mut_add_all_categories[indexPath.row] as? [String:Any]
-        cell.lbl_category.text = (item!["name"] as! String)
-
-        cell.btn_img_category.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
+        cell.lbl_category.text = "\(indexPath.row+1). "+(item!["name"] as! String)
 
         return cell
         
@@ -301,18 +299,13 @@ extension category_list : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        
-        return 80
+        return UITableView.automaticDimension
         
     }
     
 }
 
 class category_list_table_cell:UITableViewCell, UITextViewDelegate {
-    
-    
-    
-    @IBOutlet weak var btn_img_category:UIButton!
     
     @IBOutlet weak var lbl_category:UILabel!
     

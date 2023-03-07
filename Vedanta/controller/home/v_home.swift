@@ -81,7 +81,7 @@ class v_home: UIViewController {
     
     @IBOutlet weak var btn_search:UIButton! {
         didSet {
-            btn_search.isUserInteractionEnabled = false
+            btn_search.isUserInteractionEnabled = true
         }
     }
     
@@ -96,13 +96,20 @@ class v_home: UIViewController {
         self.screenWidth = screenSize.width
         self.screenHeight = screenSize.height
         
-        self.btn_search.addTarget(self, action: #selector(search_v_home_click_method), for: .touchUpInside)
+        self.btn_search.addTarget(self, action: #selector(search_v_home_click_method_2), for: .touchUpInside)
         self.btn_notification.addTarget(self, action: #selector(notification_v_home_click_method), for: .touchUpInside)
         
         self.create_custom_dict()
         
         // self.subscribe_click_method()
         
+    }
+    
+    @objc func search_v_home_click_method_2() {
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tab_bar_id") as? tab_bar
+        push!.hidesBottomBarWhenPushed = true
+        push!.selectedIndex = 1
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,7 +10,6 @@
 		9948C998B7BF2B8B46AC2D7B /* Pods_Vedanta_VedantaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2847757ED6060690524FD7 /* Pods_Vedanta_VedantaUITests.framework */; };
 		B904DAC128F98DD400940506 /* category_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B904DAC028F98DD400940506 /* category_list.swift */; };
 		B90AF80E28F582840012333D /* read_article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90AF80D28F582840012333D /* read_article.swift */; };
-		B911F6FB29000C5B00348449 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B911F6FA29000C5B00348449 /* GoogleService-Info.plist */; };
 		B91E63E028F6A6D30026C7F7 /* related_article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E63DF28F6A6D30026C7F7 /* related_article.swift */; };
 		B91E63E328F6AEE90026C7F7 /* v_advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E63E228F6AEE90026C7F7 /* v_advertisement.swift */; };
 		B922D45B2902A7B8000CDFB5 /* reset_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B922D45A2902A7B7000CDFB5 /* reset_password.swift */; };
@@ -35,6 +34,7 @@
 		B93A3A7428D200E0008CD1AC /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A3A7328D200E0008CD1AC /* CustomSegmentedControl.swift */; };
 		B940497129027F5B00D80C6F /* show_paid_category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B940497029027F5B00D80C6F /* show_paid_category.swift */; };
 		B94049742902875B00D80C6F /* explore_more.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94049732902875B00D80C6F /* explore_more.swift */; };
+		B9407C2B29B706DB00F2F886 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9407C2A29B706DB00F2F886 /* GoogleService-Info.plist */; };
 		B941A55628D46D8C00412E9C /* vedanta_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B941A55528D46D8C00412E9C /* vedanta_profile.swift */; };
 		B946FC7328F7ED71000CEFDC /* favourite_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B946FC7228F7ED71000CEFDC /* favourite_list.swift */; };
 		B94A1E9228D2F39A00AB3457 /* v_videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94A1E9128D2F39A00AB3457 /* v_videos.swift */; };
@@ -121,7 +121,6 @@
 		97A1D54A6C0F84FCDC0D13F3 /* Pods-Vedanta-VedantaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vedanta-VedantaUITests.release.xcconfig"; path = "Target Support Files/Pods-Vedanta-VedantaUITests/Pods-Vedanta-VedantaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B904DAC028F98DD400940506 /* category_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = category_list.swift; sourceTree = "<group>"; };
 		B90AF80D28F582840012333D /* read_article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = read_article.swift; sourceTree = "<group>"; };
-		B911F6FA29000C5B00348449 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B911F73329000D9900348449 /* Vedanta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vedanta.entitlements; sourceTree = "<group>"; };
 		B91E63DF28F6A6D30026C7F7 /* related_article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = related_article.swift; sourceTree = "<group>"; };
 		B91E63E228F6AEE90026C7F7 /* v_advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = v_advertisement.swift; sourceTree = "<group>"; };
@@ -147,6 +146,7 @@
 		B93A3A7328D200E0008CD1AC /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		B940497029027F5B00D80C6F /* show_paid_category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = show_paid_category.swift; sourceTree = "<group>"; };
 		B94049732902875B00D80C6F /* explore_more.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = explore_more.swift; sourceTree = "<group>"; };
+		B9407C2A29B706DB00F2F886 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B941A55528D46D8C00412E9C /* vedanta_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vedanta_profile.swift; sourceTree = "<group>"; };
 		B946FC7228F7ED71000CEFDC /* favourite_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favourite_list.swift; sourceTree = "<group>"; };
 		B94A1E9128D2F39A00AB3457 /* v_videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = v_videos.swift; sourceTree = "<group>"; };
@@ -638,7 +638,7 @@
 				B9DF1D0328D05D45000425F4 /* Assets.xcassets */,
 				B9DF1D0528D05D45000425F4 /* LaunchScreen.storyboard */,
 				B9DF1D0828D05D45000425F4 /* Info.plist */,
-				B911F6FA29000C5B00348449 /* GoogleService-Info.plist */,
+				B9407C2A29B706DB00F2F886 /* GoogleService-Info.plist */,
 			);
 			path = Vedanta;
 			sourceTree = "<group>";
@@ -906,11 +906,11 @@
 				B9DF1D0728D05D45000425F4 /* LaunchScreen.storyboard in Resources */,
 				B9DF1D0428D05D45000425F4 /* Assets.xcassets in Resources */,
 				B94EB1CD298A8A2C009D2FE2 /* Poppins-Bold.ttf in Resources */,
-				B911F6FB29000C5B00348449 /* GoogleService-Info.plist in Resources */,
 				B94EB1CB298A8A2C009D2FE2 /* Poppins-SemiBold.ttf in Resources */,
 				B9DF1D0228D05D42000425F4 /* Main.storyboard in Resources */,
 				B94EB1D7298A8A2C009D2FE2 /* Poppins-Light.ttf in Resources */,
 				B94EB1D3298A8A2C009D2FE2 /* Poppins-ThinItalic.ttf in Resources */,
+				B9407C2B29B706DB00F2F886 /* GoogleService-Info.plist in Resources */,
 				B94EB1D1298A8A2C009D2FE2 /* Poppins-BlackItalic.ttf in Resources */,
 				B94EB1D4298A8A2C009D2FE2 /* Poppins-MediumItalic.ttf in Resources */,
 				B94EB1CA298A8A2C009D2FE2 /* Poppins-LightItalic.ttf in Resources */,
@@ -1288,7 +1288,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1327,7 +1326,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

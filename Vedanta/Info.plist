@@ -7,7 +7,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb664947488655601</string>
+				<string>fb495865459158427</string>
 				<string>fbauth2</string>
 			</array>
 		</dict>
@@ -16,21 +16,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu</string>
+				<string>com.googleusercontent.apps.857008698478-6bhro43tnihn0n9i80g012o3712fohfd</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>664947488655601</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Poppins-Regular.ttf</string>
-		<string>Poppins-Bold.ttf</string>
-	</array>
+	<string>495865459158427</string>
+	<key>FacebookClientToken</key>
+	<string>de8553b1a99ec3ca10ec19f2bf342830</string>
 	<key>FacebookDisplayName</key>
 	<string>Vedanta Vision</string>
-	<key>FacebookClientToken</key>
-	<string>897c7b48aa8d82031473faef44080d06</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -44,6 +39,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -1103,6 +1103,21 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.lineBreakMode = .byWordWrapping
             cell.lbl_header_description.sizeToFit()
             
+            
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
+            
+//            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+            
+            let combination = NSMutableAttributedString()
+            
+//            combination.append(partOne)
+            combination.append(partTwo)
+            
+            cell.lbl_header_description.attributedText = combination
+            
+            
             // date
             cell.lbl_header_date.text = (item!["created"] as! String)
             
@@ -1195,7 +1210,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             
             
             let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 12.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
             
             let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
             let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)

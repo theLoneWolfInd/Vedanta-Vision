@@ -9,6 +9,12 @@ import UIKit
 import Alamofire
 import SDWebImage
 import AVFoundation
+//"action"    : "videodetails",
+//"videoId"   : String(self.str_and_my_id_is)
+struct video_list: Encodable {
+    let action: String
+    let videoId:String
+}
 
 class v_related_videos: UIViewController {
     
@@ -128,6 +134,186 @@ class v_related_videos: UIViewController {
     @objc func video_list_WB(page_number:Int) {
         self.view.endEditing(true)
         
+         
+            
+            self.view.endEditing(true)
+                   
+            self.arr_mut_video_list.removeAllObjects()
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+
+            if IsInternetAvailable() == false {
+                self.please_check_your_internet_connection()
+                return
+            }
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+    //        self.arrListOfAllMyOrders.removeAllObjects()
+            
+            self.view.endEditing(true)
+            
+            
+            /*let x : Int = (dictGetCanabbiesItemDetails["id"] as! Int)
+            let myString = String(x)*/
+            
+            let parameters = video_list(action: "videodetails", videoId: String(self.str_and_my_id_is)
+            )
+            
+            print(parameters as Any)
+            
+            AF.request(application_base_url,
+                       method: .post,
+                       parameters: parameters,
+                       encoder: JSONParameterEncoder.default).responseJSON { response in
+                        // debugPrint(response.result)
+                        
+                        switch response.result {
+                        case let .success(value):
+                            
+                            let JSON = value as! NSDictionary
+                            print(JSON as Any)
+                            
+                            var strSuccess : String!
+                            strSuccess = JSON["status"]as Any as? String
+                            
+                            // var strSuccess2 : String!
+                            // strSuccess2 = JSON["msg"]as Any as? String
+                            
+                            if strSuccess == String("success") {
+                                
+                                print("=====> yes")
+                                ERProgressHud.sharedInstance.hide()
+                                
+                                var ar : NSArray!
+                                ar = (JSON["relatedData"] as! Array<Any>) as NSArray
+//                                print(ar as Any)
+                                // self.related_arr_mut_video_list.addObjects(from: ar as! [Any])
+                                
+                                /*
+                                 Link = "https://youtu.be/IpDC8ujskPM";
+                                 Type = 1;
+                                 categoryId = 36;
+                                 created = "Oct 7th, 2022, 7:38 pm";
+                                 description = "Is Lord Krishna's Message Relevant in Modern Times?";
+                                 homePage = 0;
+                                 image = "";
+                                 title = "Is Lord Krishna's Message Relevant in Modern Times?";
+                                 videoFile = "";
+                                 videoId = 10;
+                                 */
+                                
+                                print(self.dict_get_video_data as Any)
+                                
+                                var get_link:String!
+                                
+                                if (self.dict_get_video_data["Link"]) == nil {
+                                    
+                                    get_link = (self.dict_get_video_data["link"] as! String)
+                                    
+                                } else {
+                                    
+                                    get_link = (self.dict_get_video_data["Link"] as! String)
+                                    
+                                }
+                                
+                                if (self.dict_get_video_data["videoFile"]==nil) {
+                                    get_link = (self.dict_get_video_data["link"] as! String)
+                                } else {
+                                    print(self.dict_get_video_data["videoFile"] as! String)
+                                    get_link = (self.dict_get_video_data["videoFile"] as! String)
+                                }
+                                
+                                
+                                print(get_link as Any)
+                                    
+                                
+                                
+                                
+                                
+                                
+                                
+                                for indexx in 0...2 {
+                                    
+                                    if indexx == 0 {
+                                        
+                                        let custom_array = [
+                                            "status"    : "header",
+                                            "Type":"",
+                                            "link"      : String(get_link),//String(get_link),
+                                            "created"   : (self.dict_get_video_data["created"] as! String),
+                                            "image"     : (self.dict_get_video_data["image"] as! String),
+                                            "title"     : (self.dict_get_video_data["title"] as! String),
+                                            "description"   : (self.dict_get_video_data["description"] as! String),
+                                            "videoId"   : String(self.str_and_my_id_is),
+                                            
+                                        ]
+                                        self.arr_mut_video_list.add(custom_array)
+                                        
+                                    } else if indexx == 1 {
+                                        
+                                        let custom_array = ["status"    : "title",
+                                                            "Type":"",
+                                                            "link"      : "",
+                                                            "created"   : "",
+                                                            "image"     : "",
+                                                            "title"     : "",
+                                                            "description"   : "",
+                                                            "videoId"   : "",
+                                        ]
+                                        self.arr_mut_video_list.add(custom_array)
+                                        
+                                    }
+                                    
+                                }
+                                
+                                for indexx in 0..<ar.count {
+                                    
+                                    self.str_check_related_videos = "1"
+                                    
+                                    let item = ar[indexx] as? [String:Any]
+                                    
+                                    let custom_array = ["status"    : "list",
+                                                        "Type":"\(item!["Type"]!)",
+                                                        "link"      : (item!["Link"] as! String),
+                                                        "created"   : (item!["created"] as! String),
+                                                        "image"     : (item!["image"] as! String),
+                                                        "title"     : (item!["title"] as! String),
+                                                        "description"   : (item!["description"] as! String),
+                                                        "videoId"   : String(self.str_and_my_id_is),
+                                    ]
+                                    self.arr_mut_video_list.add(custom_array)
+                                    
+                                    
+                                }
+                                
+                                 print(self.arr_mut_video_list as Any)
+                                
+                                self.tble_view.delegate = self
+                                self.tble_view.dataSource = self
+                                self.tble_view.reloadData()
+                                self.loadMore = 1
+                                
+                            } else {
+                                print("no")
+                                ERProgressHud.sharedInstance.hide()
+                                
+    //                            var strSuccess2 : String!
+    //                            strSuccess2 = JSON["msg"]as Any as? String
+                                
+    //                            Utils.showAlert(alerttitle: String(strSuccess), alertmessage: String(strSuccess2), ButtonTitle: "Ok", viewController: self)
+                                
+                            }
+                            
+                        case let .failure(error):
+                            print(error)
+                            ERProgressHud.sharedInstance.hide()
+                            
+    //                        Utils.showAlert(alerttitle: SERVER_ISSUE_TITLE, alertmessage: SERVER_ISSUE_MESSAGE, ButtonTitle: "Ok", viewController: self)
+                        }
+                       }
+            
+        
+        /*
         if page_number == 1 {
             ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         }
@@ -287,7 +473,7 @@ class v_related_videos: UIViewController {
                     ERProgressHud.sharedInstance.hide()
                     print(response.error as Any, terminator: "")
                 }
-            }
+            }*/
     }
     
     
@@ -505,7 +691,108 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
             
-            cell.lbl_list_description.text = (item!["description"] as! String)
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
+            
+            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+            
+            let combination = NSMutableAttributedString()
+            
+            combination.append(partOne)
+            combination.append(partTwo)
+            
+            cell.lbl_list_description.attributedText = combination
+            
+            if (item!["Type"] as! String) == "2" {
+                
+                if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                    // let str:String = person["role"] as! String
+                    print(person as Any)
+                    
+                    if (person["expiryDate"] as! String) != "" {
+                        
+                        // cell.btn_subscribe.isHidden = true
+                        // cell.btn_login.isHidden = true
+                        
+                        let start = (person["expiryDate"] as! String)
+                        let end = "2017-11-12"
+                        let dateFormat = "yyyy-MM-dd"
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = dateFormat
+                        
+                        let startDate = dateFormatter.date(from: start)
+                        let endDate = dateFormatter.date(from: end)
+                        
+                        let currentDate = Date()
+                        
+                        guard let startDate = startDate, let endDate = endDate else {
+                            fatalError("Date Format does not match ⚠️")
+                        }
+                        
+                        print(startDate)
+                        print(currentDate)
+                        print(endDate)
+                        
+                        if startDate > currentDate {
+                            print("✅")
+                            
+                            cell.btn_play.tintColor = .white
+                            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                            
+                        } else {
+                            
+                            print("❌")
+                            if (item!["Type"] as! String) == "1" {
+                                
+                                cell.btn_play.tintColor = .white
+                                cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                                
+                            } else {
+                                
+                                cell.btn_play.tintColor = .systemRed
+                                cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                                
+                            }
+                            
+                        }
+                        
+                    } else {
+                        
+                        if (item!["Type"] as! String) == "1" {
+                            
+                            cell.btn_play.tintColor = .white
+                            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                            
+                        } else {
+                            
+                            cell.btn_play.tintColor = .systemRed
+                            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+    //            cell.btn_play.isHidden = false
+    //            cell.btn_play.tintColor = .systemRed
+    //            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                
+            } else {
+                
+                cell.btn_play.tintColor = .white
+                cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                
+            }
             
             return cell
             
@@ -516,32 +803,84 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        
         let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
-        if (item!["status"] as! String) == "list" {
+        
+        if (item!["Type"] as! String) == "2" {
             
-             print(item as Any)
             
-            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
-            push!.hidesBottomBarWhenPushed = false
             
-            push!.dict_get_video_data = item as NSDictionary?
-            self.navigationController?.pushViewController(push!, animated: true)
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                
+                if (person["subscriptionDate"] as! String) == "" {
+                    
+                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                    
+                    
+                    let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
+                        _ in
+                    }
+                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    
+                    yes_subscribe.setDynamicColor(.pink)
+                    
+                    alert.addButtons([yes_subscribe,cancel])
+                    self.present(alert, animated: true)
+                    
+                } else {
+                    
+//                    print(item)
+                    
+                    if (item!["Link"]) == nil {
+                        self.push_to_video_screen(str_video_file_link: (item!["link"] as! String),
+                                                  str_video_title: (item!["title"] as! String))
+                    } else {
+                        self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
+                                                  str_video_title: (item!["title"] as! String))
+                    }
+                    // Subscribe DONE , Play Video
+                    
+                    
+                }
+                
+            } else {
+                
+                self.please_login_to_continue()
+                
+            }
             
-            /*let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
-            pushVC.str_video_link = (item!["link"] as! String)
-            pushVC.str_video_header = (item!["title"] as! String)
-            self.navigationController?.pushViewController(pushVC, animated: true)*/
             
-        } else  if (item!["status"] as! String) == "header" {
+            
+        }
+        
+        else {
             
             print(item as Any)
             
-            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
-            pushVC.str_video_link = (item!["link"] as! String)
-            pushVC.str_video_header = (item!["title"] as! String)
-            self.navigationController?.pushViewController(pushVC, animated: true)
+            
+                
+                if (item!["link"] as! String) == "" {
+                    
+                    self.push_to_video_screen(str_video_file_link: (item!["videoFile"] as! String),
+                                              str_video_title: (item!["title"] as! String))
+                    
+                } else {
+                    
+    
+                    self.push_to_video_screen(str_video_file_link: (item!["link"] as! String),
+                                              str_video_title: (item!["title"] as! String))
+                    
+                }
+                
+            
+            
+            
             
         }
+        
+        
+        
+        
         
         
     }
@@ -611,5 +950,14 @@ class v_related_videos_table_cell:UITableViewCell {
     
     @IBOutlet weak var btn_see_more:UIButton!
     
+    @IBOutlet weak var btn_play:UIButton! {
+        didSet {
+            btn_play.isUserInteractionEnabled = false
+            btn_play.backgroundColor = .lightGray
+            btn_play.tintColor = .white
+            btn_play.layer.cornerRadius = 15
+            btn_play.clipsToBounds = true
+        }
+    }
     
 }

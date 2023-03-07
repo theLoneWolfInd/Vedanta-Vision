@@ -804,7 +804,7 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
         }
         
         
-        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+        /*if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             // let str:String = person["role"] as! String
             print(person as Any)
             
@@ -872,6 +872,96 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
                 cell.btn_play_2.setImage(UIImage(systemName: "lock"), for: .normal)
                 
             }
+            
+        }*/
+        
+        if (item!["Type"] as! String) == "1" {
+            
+            cell.btn_play_2.tintColor = .white
+            cell.btn_play_2.setImage(UIImage(systemName: "play"), for: .normal)
+            
+        } else {
+            
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                // let str:String = person["role"] as! String
+                print(person as Any)
+                
+                if (person["expiryDate"] as! String) != "" {
+                    
+                    // cell.btn_subscribe.isHidden = true
+                    // cell.btn_login.isHidden = true
+                    
+                    let start = (person["expiryDate"] as! String)
+                    let end = "2017-11-12"
+                    let dateFormat = "yyyy-MM-dd"
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = dateFormat
+                    
+                    let startDate = dateFormatter.date(from: start)
+                    let endDate = dateFormatter.date(from: end)
+                    
+                    let currentDate = Date()
+                    
+                    guard let startDate = startDate, let endDate = endDate else {
+                        fatalError("Date Format does not match ⚠️")
+                    }
+                    
+                    print(startDate)
+                    print(currentDate)
+                    print(endDate)
+                    
+                    if startDate > currentDate {
+                        print("✅")
+                        
+                        cell.btn_play.tintColor = .white
+                        cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                        
+                    } else {
+                        
+                        print("❌")
+                        if (item!["Type"] as! String) == "1" {
+                            
+                            cell.btn_play.tintColor = .white
+                            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                            
+                        } else {
+                            
+                            cell.btn_play.tintColor = .systemRed
+                            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                            
+                        }
+                        
+                    }
+                    
+                } else {
+                    
+                    if (item!["Type"] as! String) == "1" {
+                        
+                        cell.btn_play.tintColor = .white
+                        cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                        
+                    } else {
+                        
+                        cell.btn_play.tintColor = .systemRed
+                        cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+//            cell.btn_play.isHidden = false
+//            cell.btn_play.tintColor = .systemRed
+//            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
             
         }
         

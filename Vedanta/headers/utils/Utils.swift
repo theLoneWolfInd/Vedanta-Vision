@@ -97,9 +97,9 @@ extension UIViewController {
     
     @objc func search_v_home_click_method() {
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_home_search_id")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_wisdom_id")
         self.navigationController?.pushViewController(push, animated: true)
-        
+//        as
     }
     
     // push : - LIST OF ALL VIDEOS -
@@ -131,6 +131,22 @@ extension UIViewController {
     
     @objc func explore_click_method() {
         
+//        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+//
+//
+//        let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
+//            _ in
+//
+//            self.subscribe_click_method()
+//
+//        }
+//        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+//
+//        yes_subscribe.setDynamicColor(.pink)
+//
+//        alert.addButtons([yes_subscribe,cancel])
+//        self.present(alert, animated: true)
+        
         if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
             print(person as Any)
             
@@ -141,6 +157,9 @@ extension UIViewController {
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
                     _ in
+                    
+                    self.subscribe_click_method()
+                    
                 }
                 
                 let cancel = NewYorkButton(title: "dismiss", style: .cancel)

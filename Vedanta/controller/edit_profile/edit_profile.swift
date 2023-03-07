@@ -56,6 +56,7 @@ class edit_profile: UIViewController , UITextFieldDelegate {
             txt_phone.layer.cornerRadius = 8
             txt_phone.clipsToBounds = true
             txt_phone.delegate = self
+            txt_phone.keyboardType = .phonePad
              
         }
     }
@@ -104,7 +105,7 @@ class edit_profile: UIViewController , UITextFieldDelegate {
         self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = .white
         
-        self.btn_change_password.addTarget(self, action: #selector(change_password_click_method), for: .touchUpInside)
+        
         
         self.btnUpdatePassword.addTarget(self, action: #selector(validationBeforeChangePassword), for: .touchUpInside)
         
@@ -124,6 +125,13 @@ class edit_profile: UIViewController , UITextFieldDelegate {
             self.txt_phone.text         = (person["contactNumber"] as! String)
             self.txt_full_name.text     = (person["fullName"] as! String)
             self.txt_email_address.text = (person["email"] as! String)
+            
+            if (person["socialType"] as! String) == "G" {
+                self.btn_change_password.backgroundColor = .darkGray
+            } else {
+                self.btn_change_password.isHidden = false
+                self.btn_change_password.addTarget(self, action: #selector(change_password_click_method), for: .touchUpInside)
+            }
             
         }
         

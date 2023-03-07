@@ -100,8 +100,140 @@ class sign_up: UIViewController {
         // let signInConfig = GIDConfiguration.init(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
         // GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self)
         
-        let signInConfig = GIDConfiguration(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
+//        let signInConfig = GIDConfiguration(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
         
+        
+        // google
+        btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
+        
+        
+    }
+    
+    @objc func continue_with_google_click_method() {
+        GIDSignIn.sharedInstance.signIn(with: GIDConfiguration(clientID: "857008698478-6bhro43tnihn0n9i80g012o3712fohfd.apps.googleusercontent.com"), presenting: self) { signInResult, error in
+            guard error == nil else { return }
+
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+            
+            print("success google sign in")
+//            print(signInResult?.userID)
+//            print(signInResult?.profile?.email)
+//            print(signInResult?.profile?.name)
+//            print(signInResult?.profile?.givenName)
+//            print(signInResult?.profile?.familyName)
+//            print(signInResult?.profile?.hasImage)
+            let googleProfilePicURL = signInResult?.profile?.imageURL(withDimension: 150)?.absoluteString ?? ""
+            print("Google Profile Avatar URL: \(googleProfilePicURL)")
+            // If sign in succeeded, display the app's main content View.
+            
+            
+            self.social_login_in_vedanta_WB(str_email: (signInResult?.profile!.email)!,
+                                            str_full_name: (signInResult?.profile?.name)!,
+                                            str_image: "\(googleProfilePicURL)", str_social_id: (signInResult?.userID)!)
+          }
+    }
+    
+    // MARK: - WEBSERVICE ( LOGIN ) -
+    @objc func social_login_in_vedanta_WB(
+        str_email:String,str_full_name:String,str_image:String,str_social_id:String)
+    {
+        self.view.endEditing(true)
+        
+        
+        
+        if IsInternetAvailable() == false {
+            self.please_check_your_internet_connection()
+            return
+        }
+        
+        var device_token:String!
+        if self.str_user_device_token == nil {
+            device_token = ""
+        } else {
+            device_token = String(self.str_user_device_token)
+        }
+        
+//        [action] => socialLoginAction
+//            [email] => satishdhakar17@gmail.com
+//            [fullName] => Satish Dhakar
+//            [image] => https://lh3.googleusercontent.com/a/ALm5wu0sBOwD-nhr4RqpE9LUIRo9NrXpzVqFroF7ersz
+//            [socialId] => 118029733234090846820
+//            [socialType] => G
+//            [device] => Android
+//            [deviceToken] =>
+        
+        let parameters = [
+            "action"        : "socialLoginAction",
+            "email"         : String(str_email),
+            "fullName"      : String(str_full_name),
+            "image"         : String(str_image),
+            "socialId"      : String(str_social_id),
+            "socialType"    : "G",
+            "device"        : "iOS",
+            "deviceToken"   : String(device_token),
+            
+        ]
+        
+        print(parameters as Any)
+        
+        AF.request(application_base_url, method: .post, parameters: parameters)
+        
+            .response { response in
+                
+                do {
+                    if response.error != nil{
+                        print(response.error as Any, terminator: "")
+                    }
+                    
+                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                        
+                        print(jsonDict as Any, terminator: "")
+                        
+                        // for status alert
+                        var status_alert : String!
+                        status_alert = (jsonDict["status"] as? String)
+                        
+                        // for message alert
+                        var str_data_message : String!
+                        str_data_message = jsonDict["msg"] as? String
+                        
+                        if status_alert.lowercased() == "success" {
+                            
+                            print("=====> yes")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            var dict: Dictionary<AnyHashable, Any>
+                            dict = jsonDict["data"] as! Dictionary<AnyHashable, Any>
+                            
+                            let defaults = UserDefaults.standard
+                            defaults.setValue(dict, forKey: str_save_login_user_data)
+                            
+                            self.navigationController?.popToRootViewController(animated: true)
+                            // self.navigationController?.popViewController(animated: true)
+                            
+                        } else {
+                            
+                            print("=====> no")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
+                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            alert.addButtons([cancel])
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                    } else {
+                        
+                        self.please_check_your_internet_connection()
+                        
+                        return
+                    }
+                    
+                } catch _ {
+                    print("Exception!")
+                }
+            }
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {

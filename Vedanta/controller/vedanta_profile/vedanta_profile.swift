@@ -48,7 +48,7 @@ class vedanta_profile: UIViewController {
     
     @IBOutlet weak var btn_subscribe:UIButton! {
         didSet {
-            btn_subscribe.setTitle("Subscribe", for: .normal)
+            btn_subscribe.setTitle("Subscribe Now", for: .normal)
             btn_subscribe.setTitleColor(.white, for: .normal)
             
             btn_subscribe.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -146,6 +146,235 @@ class vedanta_profile: UIViewController {
         }
     
     @objc func home_bhagwat_gita_categories_WB() {
+        self.view.endEditing(true)
+
+        if IsInternetAvailable() == false {
+            self.please_check_your_internet_connection()
+            return
+        }
+        
+//        var device_token:String!
+//        if self.str_user_device_token == nil {
+//            device_token = ""
+//        } else {
+//            device_token = String(self.str_user_device_token)
+//        }
+        
+//        [action] => socialLoginAction
+//            [email] => satishdhakar17@gmail.com
+//            [fullName] => Satish Dhakar
+//            [image] => https://lh3.googleusercontent.com/a/ALm5wu0sBOwD-nhr4RqpE9LUIRo9NrXpzVqFroF7ersz
+//            [socialId] => 118029733234090846820
+//            [socialType] => G
+//            [device] => Android
+//            [deviceToken] =>
+        
+        let parameters = [
+//            "action"        : "socialLoginAction",
+//            "email"         : String(str_email),
+//            "fullName"      : String(str_full_name),
+//            "image"         : String(str_image),
+//            "socialId"      : String(str_social_id),
+//            "socialType"    : "G",
+//            "device"        : "iOS",
+//            "deviceToken"   : String(device_token),
+            
+            "action"            : "unlimited",
+            "videoCategoryId"   : "36,24,6,8",
+            "articleCategoryId" : "",
+            "audioCategoryId"   : "",
+            
+        ]
+        
+        print(parameters as Any)
+        
+        AF.request(application_base_url, method: .post, parameters: parameters)
+        
+            .response { response in
+                
+                do {
+                    if response.error != nil{
+                        print(response.error as Any, terminator: "")
+                    }
+                    
+                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                        
+                        print(jsonDict as Any, terminator: "")
+                        
+                        // for status alert
+                        var status_alert : String!
+                        status_alert = (jsonDict["status"] as? String)
+                        
+                        // for message alert
+                        var str_data_message : String!
+                        str_data_message = jsonDict["msg"] as? String
+                        
+                        if status_alert.lowercased() == "success" {
+                            
+                            // print("=====> yes")
+                            //
+                            
+                            var dict: Dictionary<AnyHashable, Any>
+                            dict = jsonDict["data"] as! Dictionary<AnyHashable, Any>
+                            // print(dict as Any)
+                            
+                            
+                            
+                            var ar_video_main : NSArray!
+                            ar_video_main = (dict["VIDEO"] as! Array<Any>) as NSArray
+                            
+                            // print(ar_video_main as Any)
+                            // print(ar_video_main.count as Any)
+                            
+                            for indexx in 0..<ar_video_main.count {
+                                
+                                let item_get_video_list = ar_video_main[indexx] as? [String:Any]
+                                // print(item_get_video_list as Any)
+                                
+                                var ar_video_data : NSArray!
+                                ar_video_data = (item_get_video_list!["VIDEO_Data"] as! Array<Any>) as NSArray
+                                // print(ar_video_data as Any)
+                                
+                                if indexx == 0 {
+                                    
+                                    for indexx_2 in 0..<ar_video_data.count {
+                                        
+                                        let item_get_video_list_2 = ar_video_data[indexx_2] as? [String:Any]
+                                        
+                                        let custom_dict_video_1 = [
+                                            "categoryId"    : "\(item_get_video_list_2!["categoryId"]!)",
+                                            "description"   : (item_get_video_list_2!["description"] as! String),
+                                            "file_link"     : (item_get_video_list_2!["file_link"] as! String),
+                                            "image"         : (item_get_video_list_2!["image"] as! String),
+                                            "title"         : (item_get_video_list_2!["title"] as! String),
+                                            "videoFile"     : (item_get_video_list_2!["videoFile"] as! String),
+                                        ]
+                                        
+                                        self.arr_show_1_video.add(custom_dict_video_1)
+                                        
+                                    }
+                                    // print(self.arr_show_1_video as Any)
+                                    
+                                } else if indexx == 1 {
+                                    
+                                    // print(ar_video_data as Any)
+                                    for indexx_2 in 0..<ar_video_data.count {
+                                        
+                                        let item_get_video_list_2 = ar_video_data[indexx_2] as? [String:Any]
+                                        // print(item_get_video_list_2)
+                                        let custom_dict_video_1 = [
+                                            "categoryId"    : "\(item_get_video_list_2!["categoryId"]!)",
+                                            "description"   : (item_get_video_list_2!["description"] as! String),
+                                            "file_link"     : (item_get_video_list_2!["file_link"] as! String),
+                                            "image"         : (item_get_video_list_2!["image"] as! String),
+                                            "title"         : (item_get_video_list_2!["title"] as! String),
+                                            "videoFile"     : (item_get_video_list_2!["videoFile"] as! String),
+                                        ]
+                                        
+                                        self.arr_show_2_video.add(custom_dict_video_1)
+                                        
+                                    }
+                                    
+                                } else if indexx == 2 {
+                                    
+                                    for indexx_2 in 0..<ar_video_data.count {
+                                        
+                                        let item_get_video_list_2 = ar_video_data[indexx_2] as? [String:Any]
+                                        
+                                        let custom_dict_video_1 = [
+                                            "categoryId"    : "\(item_get_video_list_2!["categoryId"]!)",
+                                            "description"   : (item_get_video_list_2!["description"] as! String),
+                                            "file_link"     : (item_get_video_list_2!["file_link"] as! String),
+                                            "image"         : (item_get_video_list_2!["image"] as! String),
+                                            "title"         : (item_get_video_list_2!["title"] as! String),
+                                            "videoFile"     : (item_get_video_list_2!["videoFile"] as! String),
+                                        ]
+                                        
+                                        self.arr_show_3_video.add(custom_dict_video_1)
+                                        
+                                    }
+                                    
+                                } else if indexx == 3 {
+                                    
+                                    for indexx_2 in 0..<ar_video_data.count {
+                                        
+                                        let item_get_video_list_2 = ar_video_data[indexx_2] as? [String:Any]
+                                        
+                                        let custom_dict_video_1 = [
+                                            "categoryId"    : "\(item_get_video_list_2!["categoryId"]!)",
+                                            "description"   : (item_get_video_list_2!["description"] as! String),
+                                            "file_link"     : (item_get_video_list_2!["file_link"] as! String),
+                                            "image"         : (item_get_video_list_2!["image"] as! String),
+                                            "title"         : (item_get_video_list_2!["title"] as! String),
+                                            "videoFile"     : (item_get_video_list_2!["videoFile"] as! String),
+                                        ]
+                                        
+                                        self.arr_show_4_video.add(custom_dict_video_1)
+                                        
+                                    }
+                                    
+                                } else if indexx == 4 {
+                                    
+                                    for indexx_2 in 0..<ar_video_data.count {
+                                        
+                                        let item_get_video_list_2 = ar_video_data[indexx_2] as? [String:Any]
+                                        
+                                        let custom_dict_video_1 = [
+                                            "categoryId"    : "\(item_get_video_list_2!["categoryId"]!)",
+                                            "description"   : (item_get_video_list_2!["description"] as! String),
+                                            "file_link"     : (item_get_video_list_2!["file_link"] as! String),
+                                            "image"         : (item_get_video_list_2!["image"] as! String),
+                                            "title"         : (item_get_video_list_2!["title"] as! String),
+                                            "videoFile"     : (item_get_video_list_2!["videoFile"] as! String),
+                                        ]
+                                        
+                                        self.arr_show_5_video.add(custom_dict_video_1)
+                                        
+                                    }
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                            /*print(self.arr_show_1_video as Any)
+                             print(self.arr_show_2_video as Any)
+                             print(self.arr_show_3_video as Any)
+                             print(self.arr_show_4_video as Any)
+                             print(self.arr_show_5_video as Any)*/
+                            
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            self.tble_view.delegate = self
+                            self.tble_view.dataSource = self
+                            self.tble_view.reloadData()
+                            
+                        } else {
+                            
+                            print("=====> no")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
+                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            alert.addButtons([cancel])
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                    } else {
+                        
+                        self.please_check_your_internet_connection()
+                        
+                        return
+                    }
+                    
+                } catch _ {
+                    print("Exception!")
+                }
+            }
+    }
+    
+    /*{
         self.view.endEditing(true)
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
@@ -355,8 +584,8 @@ class vedanta_profile: UIViewController {
                     self.something_went_wrong_with_WB()
                     
                 }
-            }
-    }
+            }*/
+    
     
     @objc func get_profile_data() {
         self.view.endEditing(true)
@@ -687,7 +916,7 @@ extension vedanta_profile : UITableViewDelegate , UITableViewDataSource {
         
         
         
-        self.btn_subscribe.addTarget(self, action: #selector(subscribe_click_method), for: .touchUpInside)
+        self.btn_subscribe.addTarget(self, action: #selector(subscribe_click_method_2), for: .touchUpInside)
             
         if UserDefaults.standard.value(forKey: str_save_login_user_data) is [String:Any] {
                 
@@ -727,7 +956,7 @@ extension vedanta_profile : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 1350
+        return 1300
     }
     
 }
@@ -1092,6 +1321,26 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
         }
         
         
+    }
+    
+    @objc func subscribe_click_method_2() {
+        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+        
+        
+        let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
+            _ in
+            
+            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "subscription_id") as? subscription
+            push!.hidesBottomBarWhenPushed = false
+            self.navigationController?.pushViewController(push!, animated: true)
+            
+        }
+        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        
+        yes_subscribe.setDynamicColor(.pink)
+        
+        alert.addButtons([yes_subscribe,cancel])
+        self.present(alert, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
