@@ -557,7 +557,7 @@ class subscription_table_cell:UITableViewCell {
     
     @IBOutlet weak var view_2_2:UIView! {
         didSet {
-            view_2_2.backgroundColor = UIColor.init(red: 200.0/255.0, green: 36.0/255.0, blue: 32.0/355.0, alpha: 1)
+            view_2_2.backgroundColor = UIColor.init(red: 230.0/255.0, green: 41.0/255.0, blue: 36.0/355.0, alpha: 1)
         }
     }
     
@@ -568,7 +568,7 @@ class subscription_table_cell:UITableViewCell {
     }
     @IBOutlet weak var view_3_2:UIView! {
         didSet {
-            view_3_2.backgroundColor = UIColor.init(red: 200.0/255.0, green: 36.0/255.0, blue: 32.0/355.0, alpha: 1)
+            view_3_2.backgroundColor = UIColor.init(red: 230.0/255.0, green: 41.0/255.0, blue: 36.0/355.0, alpha: 1)
         }
     }
     

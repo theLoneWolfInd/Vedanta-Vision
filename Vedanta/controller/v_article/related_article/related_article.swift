@@ -638,8 +638,7 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
                 
             }
             
-            
-            
+
         } else {
         
             let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article

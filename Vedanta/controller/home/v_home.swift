@@ -167,7 +167,7 @@ class v_home: UIViewController {
                 
                 self.arr_mut_home_page_data.add(custom_dict)
                 
-            }  else if indexx == 2 {
+            }  else if indexx == 4 {
                 
                 let custom_dict = ["status" : "knowledge"]
                 
@@ -179,7 +179,7 @@ class v_home: UIViewController {
                 
                 self.arr_mut_home_page_data.add(custom_dict)
                 
-            } else if indexx == 4 {
+            } else if indexx == 2 {
                 
                 let custom_dict = ["status" : "welcome_text"]
                 
@@ -1069,6 +1069,9 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.selectedBackgroundView = backgroundView
             
             //            let view = UIScrollView()
+            
+            // img_scroll_advertisement
+            // lbl_scroll_count
             let create_image_path = "banner"+String(self.str_image_suffix_id)
             cell.img_scroll_advertisement.image = UIImage(named: create_image_path)
             
@@ -1328,7 +1331,7 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             
         } else if (item!["status"] as! String) == "knowledge" {
             
-            return self.cell_height_knowledge
+            return 200 //self.cell_height_knowledge
             
         } else if (item!["status"] as! String) == "social_media" {
             
@@ -1657,10 +1660,7 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
 
             cell.img_bhagwat_gita_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_bhagwat_gita_list.sd_setImage(with: URL(string: String(urlString!)), placeholderImage: UIImage(named: "logo"))
-            
-           //  cell.img_bhagwat_gita_list.image = UIImage(named: String(self.dummy_bhagwat_gita_image[indexPath.row]))
-            // cell.lbl_bhagwat_gita_title.text = (self.dummy_bhagwat_title[indexPath.row])
-            
+             
             cell.layer.cornerRadius = 8
             
             return cell
@@ -1815,13 +1815,7 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        /* if collectionView.tag == 1000 {
-            
-            let item = self.arr_mut_category[indexPath.row] as? [String:Any]
-            print(item as Any)
-            
-        } else */
-        
+         
         if collectionView.tag == 1000 {
             
             let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tab_bar_id") as? tab_bar
@@ -1887,7 +1881,7 @@ extension v_home: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView.tag == 1000 {
-            return CGSize(width: 90,height: 125)
+            return CGSize(width: 90,height: 154)
         } else if collectionView.tag == 2000 {
             return CGSize(width: 50,height: 80)
         } else {
@@ -1903,8 +1897,10 @@ extension v_home: UICollectionViewDelegateFlowLayout {
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         
+         
+            return 10
+         
         
-        return 10
         
     }
     
@@ -1923,7 +1919,12 @@ extension v_home: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        if collectionView.tag == 1000 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        } else {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
+        
     }
     
 }
