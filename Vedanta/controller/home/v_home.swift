@@ -89,6 +89,7 @@ class v_home: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = app_BG_color
+        
         self.tble_view.separatorColor = .clear
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
         
@@ -1885,7 +1886,7 @@ extension v_home: UICollectionViewDelegateFlowLayout {
         } else if collectionView.tag == 2000 {
             return CGSize(width: 50,height: 80)
         } else {
-            return CGSize(width: 120,height: 130)
+            return CGSize(width: 160,height: 120)
         }
         
         
@@ -1922,7 +1923,7 @@ extension v_home: UICollectionViewDelegateFlowLayout {
         if collectionView.tag == 1000 {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         } else {
-            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         }
         
     }
@@ -1934,13 +1935,16 @@ class v_home_collection_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_bhagwat_gita_list:UIImageView! {
         didSet {
-            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
-            img_bhagwat_gita_list.layer.shadowRadius = 8
-            img_bhagwat_gita_list.layer.masksToBounds = false
+//            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
+//            img_bhagwat_gita_list.layer.shadowRadius = 8
+//            img_bhagwat_gita_list.layer.masksToBounds = false
+//            img_bhagwat_gita_list.layer.cornerRadius = 8
+//            img_bhagwat_gita_list.backgroundColor = .white
+            
             img_bhagwat_gita_list.layer.cornerRadius = 8
-            img_bhagwat_gita_list.backgroundColor = .white
+            img_bhagwat_gita_list.clipsToBounds = true
         }
     }
     
@@ -1986,6 +1990,17 @@ class v_home_collection_latest_audio_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_latest_audio:UIImageView! {
         didSet {
+//            img_latest_audio.layer.cornerRadius = 8
+//            img_latest_audio.clipsToBounds = true
+            
+            let path = UIBezierPath(roundedRect:img_latest_audio.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height:  8))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_latest_audio.layer.mask = maskLayer
             
         }
     }
@@ -2005,7 +2020,14 @@ class v_home_collection_latest_article_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_latest_article:UIImageView! {
         didSet {
-            
+            let path = UIBezierPath(roundedRect:img_latest_article.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height:  8))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_latest_article.layer.mask = maskLayer
         }
     }
     

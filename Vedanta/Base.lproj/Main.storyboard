@@ -353,7 +353,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dishant rajput rajput rajput " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxv-XF-EUW">
-                                                                        <rect key="frame" x="0.0" y="100" width="90" height="36"/>
+                                                                        <rect key="frame" x="0.0" y="90" width="90" height="64"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <nil key="textColor"/>
@@ -388,10 +388,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3000" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qf1-6Q-NKs">
-                                                    <rect key="frame" x="20" y="308" width="374" height="160"/>
+                                                    <rect key="frame" x="20" y="308" width="374" height="146"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="160" id="EwC-rr-ZcI"/>
+                                                        <constraint firstAttribute="height" constant="146" id="EwC-rr-ZcI"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oGD-2J-wMN">
                                                         <size key="itemSize" width="78" height="116"/>
@@ -401,25 +401,25 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="v_home_collection_latest_video_view_cell" id="ejj-XB-deX" customClass="v_home_collection_latest_video_view_cell" customModule="Vedanta" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="15" width="120" height="130"/>
+                                                            <rect key="frame" x="0.0" y="13" width="160" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hbo-hg-CZc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Cir-9o-ilu">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="90"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem Ipsum is simply dummy text " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fen-ZA-P8W">
-                                                                        <rect key="frame" x="0.0" y="90" width="120" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="90" width="160" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cl-oW-t5K">
-                                                                        <rect key="frame" x="48" y="38" width="24" height="24"/>
+                                                                        <rect key="frame" x="68" y="48" width="24" height="24"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -429,7 +429,7 @@
                                                                     </button>
                                                                 </subviews>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="120" height="130"/>
+                                                            <size key="customSize" width="160" height="120"/>
                                                             <connections>
                                                                 <outlet property="img_social_media" destination="Cir-9o-ilu" id="W7c-2w-xiQ"/>
                                                                 <outlet property="lbl_latest_video" destination="fen-ZA-P8W" id="TqI-Ot-gTb"/>
@@ -447,10 +447,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="4000" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qGz-hF-Cz1">
-                                                    <rect key="frame" x="20" y="496" width="374" height="160"/>
+                                                    <rect key="frame" x="20" y="496" width="374" height="146"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="160" id="yw3-1r-51k"/>
+                                                        <constraint firstAttribute="height" constant="146" id="yw3-1r-51k"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zW3-xX-gMN">
                                                         <size key="itemSize" width="78" height="116"/>
@@ -460,25 +460,25 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="v_home_collection_latest_audio_view_cell" id="h7o-WZ-upz" customClass="v_home_collection_latest_audio_view_cell" customModule="Vedanta" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="15" width="120" height="130"/>
+                                                            <rect key="frame" x="0.0" y="13" width="160" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aMq-TW-BFx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1024" translatesAutoresizingMaskIntoConstraints="NO" id="qOt-vH-3xb">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="banner1" translatesAutoresizingMaskIntoConstraints="NO" id="qOt-vH-3xb">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="90"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem Ipsum is simply dummy text " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkA-h6-QQ5">
-                                                                        <rect key="frame" x="0.0" y="89" width="120" height="41"/>
+                                                                        <rect key="frame" x="0.0" y="89" width="160" height="31"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4R-rQ-SJi">
-                                                                        <rect key="frame" x="48" y="38" width="24" height="24"/>
+                                                                        <rect key="frame" x="68" y="48" width="24" height="24"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -488,7 +488,7 @@
                                                                     </button>
                                                                 </subviews>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="120" height="130"/>
+                                                            <size key="customSize" width="160" height="120"/>
                                                             <connections>
                                                                 <outlet property="img_latest_audio" destination="qOt-vH-3xb" id="1T6-6u-In6"/>
                                                                 <outlet property="lbl_latest_audio" destination="ZkA-h6-QQ5" id="Bkh-fO-5fV"/>
@@ -531,26 +531,26 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="v_home_collection_latest_article_view_cell" id="Aex-Ar-0Ke" customClass="v_home_collection_latest_article_view_cell" customModule="Vedanta" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="15" width="120" height="130"/>
+                                                            <rect key="frame" x="0.0" y="20" width="160" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ZLp-e4-bIa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem Ipsum is simply dummy text " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-px-isx">
-                                                                        <rect key="frame" x="0.0" y="90" width="120" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="90" width="160" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="article" translatesAutoresizingMaskIntoConstraints="NO" id="s0D-Gr-xWK">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="90"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="120" height="130"/>
+                                                            <size key="customSize" width="160" height="120"/>
                                                             <connections>
                                                                 <outlet property="img_latest_article" destination="s0D-Gr-xWK" id="MO8-pC-9oM"/>
                                                                 <outlet property="lbl_latest_article" destination="Slf-px-isx" id="9MG-U7-lbC"/>
@@ -686,23 +686,23 @@
                                                 <constraint firstItem="Z7c-Ia-KXP" firstAttribute="trailing" secondItem="4av-T3-MzP" secondAttribute="trailingMargin" id="5hY-MK-phe"/>
                                                 <constraint firstItem="3cO-CV-V7J" firstAttribute="top" secondItem="F4R-D7-aAn" secondAttribute="bottom" constant="10" id="5yo-Dd-HmV"/>
                                                 <constraint firstItem="czV-Sr-0Jh" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leading" constant="21" id="AJg-K1-lVH"/>
-                                                <constraint firstItem="3Q4-vC-WKy" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="10" id="Dj5-UK-9Cg"/>
-                                                <constraint firstItem="d3C-gZ-j1G" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="10" id="EGl-zv-FXa"/>
-                                                <constraint firstItem="1ea-C5-9lQ" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="12" id="IWd-7i-aWt"/>
+                                                <constraint firstItem="3Q4-vC-WKy" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="24" id="Dj5-UK-9Cg"/>
+                                                <constraint firstItem="d3C-gZ-j1G" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="24" id="EGl-zv-FXa"/>
+                                                <constraint firstItem="1ea-C5-9lQ" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="26" id="IWd-7i-aWt"/>
                                                 <constraint firstItem="rP9-0d-T4m" firstAttribute="top" secondItem="7eG-MZ-aiv" secondAttribute="bottom" constant="1" id="IYh-ZU-Ma6"/>
                                                 <constraint firstItem="x4m-WH-XKe" firstAttribute="top" secondItem="F4R-D7-aAn" secondAttribute="bottom" constant="7" id="Jyg-R6-lDT"/>
                                                 <constraint firstItem="Qf1-6Q-NKs" firstAttribute="trailing" secondItem="4av-T3-MzP" secondAttribute="trailingMargin" id="M1y-zD-Yx6"/>
                                                 <constraint firstItem="3cO-CV-V7J" firstAttribute="trailing" secondItem="4av-T3-MzP" secondAttribute="trailingMargin" id="M2a-J9-JnB"/>
-                                                <constraint firstItem="Z7c-Ia-KXP" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="13" id="Mp6-Rg-Jg2"/>
+                                                <constraint firstItem="Z7c-Ia-KXP" firstAttribute="top" secondItem="Qf1-6Q-NKs" secondAttribute="bottom" constant="27" id="Mp6-Rg-Jg2"/>
                                                 <constraint firstItem="rP9-0d-T4m" firstAttribute="trailing" secondItem="4av-T3-MzP" secondAttribute="trailingMargin" id="SgW-oU-YmS"/>
                                                 <constraint firstItem="Qf1-6Q-NKs" firstAttribute="top" secondItem="bPo-H3-aTt" secondAttribute="bottom" id="Wbb-iL-vG1"/>
-                                                <constraint firstItem="7eG-MZ-aiv" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="7" id="XKH-qo-aUc"/>
+                                                <constraint firstItem="7eG-MZ-aiv" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="21" id="XKH-qo-aUc"/>
                                                 <constraint firstItem="Qf1-6Q-NKs" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leadingMargin" id="dmY-QZ-a7f"/>
                                                 <constraint firstItem="rP9-0d-T4m" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leadingMargin" id="hlJ-hN-A9C"/>
                                                 <constraint firstItem="3Q4-vC-WKy" firstAttribute="leading" secondItem="7eG-MZ-aiv" secondAttribute="trailing" constant="4" id="iIE-z6-qhl"/>
                                                 <constraint firstItem="F4R-D7-aAn" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leading" constant="20" symbolic="YES" id="jkk-Ra-iUP"/>
                                                 <constraint firstItem="Pom-Ld-4RT" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leadingMargin" id="kvw-Ac-24g"/>
-                                                <constraint firstItem="Pom-Ld-4RT" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="7" id="lUK-b4-U4H"/>
+                                                <constraint firstItem="Pom-Ld-4RT" firstAttribute="top" secondItem="qGz-hF-Cz1" secondAttribute="bottom" constant="21" id="lUK-b4-U4H"/>
                                                 <constraint firstItem="F4R-D7-aAn" firstAttribute="top" secondItem="4av-T3-MzP" secondAttribute="top" constant="11" id="lYJ-WC-38f"/>
                                                 <constraint firstAttribute="trailing" secondItem="F4R-D7-aAn" secondAttribute="trailing" constant="18" id="oQm-Sr-4E3"/>
                                                 <constraint firstItem="1ea-C5-9lQ" firstAttribute="leading" secondItem="4av-T3-MzP" secondAttribute="leadingMargin" id="oZb-pZ-Q0K"/>
@@ -3434,7 +3434,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5T-of-Mw3">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5T-of-Mw3">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             </imageView>
@@ -3500,7 +3500,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QeO-7N-JLE">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QeO-7N-JLE">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3561,7 +3561,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-6j-CZb">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-6j-CZb">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3613,7 +3613,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="130"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2g-19-IrU">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2g-19-IrU">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -10007,8 +10007,8 @@
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="donate" width="64" height="64"/>
         <image name="envelope" catalog="system" width="128" height="93"/>
-        <image name="eye" width="64" height="64"/>
         <image name="eye" catalog="system" width="128" height="79"/>
+        <image name="eye" width="64" height="64"/>
         <image name="facebook" width="64" height="64"/>
         <image name="facebook1" width="24" height="24"/>
         <image name="forward" width="24" height="24"/>

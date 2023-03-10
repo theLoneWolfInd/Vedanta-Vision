@@ -1551,7 +1551,7 @@ extension vedanta_profile: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 0, left: 00, bottom: 0, right: 10)
     }
     
 }
@@ -1561,13 +1561,17 @@ class vedanta_profile_collection_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_bhagwat_gita_list:UIImageView! {
         didSet {
-            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
-            img_bhagwat_gita_list.layer.shadowRadius = 4
-            img_bhagwat_gita_list.layer.masksToBounds = false
-            img_bhagwat_gita_list.layer.cornerRadius = 0
-            img_bhagwat_gita_list.backgroundColor = .lightGray
+//            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
+//            img_bhagwat_gita_list.layer.shadowRadius = 4
+//            img_bhagwat_gita_list.layer.masksToBounds = false
+//            img_bhagwat_gita_list.layer.cornerRadius = 0
+//            img_bhagwat_gita_list.backgroundColor = .lightGray
+            
+            img_bhagwat_gita_list.layer.cornerRadius = 8
+            img_bhagwat_gita_list.clipsToBounds = true
+            
         }
     }
     
@@ -1596,7 +1600,14 @@ class vedanta_profile_collection_series_1_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_latest_video:UIImageView! {
         didSet {
-            
+            let path = UIBezierPath(roundedRect:img_latest_video.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height:  8))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_latest_video.layer.mask = maskLayer
         }
     }
     
@@ -1622,7 +1633,14 @@ class vedanta_profile_collection_series_2_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_latest_audio:UIImageView! {
         didSet {
-            
+            let path = UIBezierPath(roundedRect:img_latest_audio.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height:  8))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_latest_audio.layer.mask = maskLayer
         }
     }
     
@@ -1648,7 +1666,14 @@ class vedanta_profile_collection_series_3_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_latest_article:UIImageView! {
         didSet {
-            
+            let path = UIBezierPath(roundedRect:img_latest_article.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height:  8))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_latest_article.layer.mask = maskLayer
         }
     }
     
