@@ -10,6 +10,8 @@ import FSCalendar
 import Alamofire
 import SDWebImage
 import Firebase
+import AVFoundation
+import AVKit
 
 class v_home: UIViewController {
     
@@ -66,6 +68,8 @@ class v_home: UIViewController {
     var str_image_suffix_id="1"
     
     var str_quotation:String! = "dghghgjjh"
+    
+     
     
     @IBOutlet weak var tble_view:UITableView! {
         didSet {
@@ -1833,9 +1837,19 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
             push!.hidesBottomBarWhenPushed = false
-            
+
             push!.dict_get_video_data = item as NSDictionary?
             self.navigationController?.pushViewController(push!, animated: true)
+            
+//            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+//            let player = AVPlayer(url: videoURL!)
+//            let playerLayer = AVPlayerLayer(player: player)
+//            playerLayer.frame = self.view.bounds
+//            self.view.layer.addSublayer(playerLayer)
+//            player.play()
+            
+            
+            
             
         } else if collectionView.tag == 2000 {
 
@@ -1871,6 +1885,8 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
         }
         
     }
+    
+    
     
     
 }

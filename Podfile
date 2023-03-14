@@ -41,5 +41,6 @@ pod 'RxCocoa'
 pod 'RxSwift'
 pod 'FBSDKLoginKit'
 pod 'GoogleSignIn'
+pod 'YouTubePlayer'
 
 end

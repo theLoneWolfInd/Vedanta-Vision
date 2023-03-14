@@ -21,9 +21,9 @@ class tab_bar: UITabBarController {
         tabBar.tintColor = .red
         
         let myTabBarItem2 = (self.tabBar.items?[2])! as UITabBarItem
-        myTabBarItem2.image = UIImage(named: "red_color_bg")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        myTabBarItem2.image = UIImage(named: "vedanta_red")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        myTabBarItem2.selectedImage = UIImage(named: "blue_color_bg")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        myTabBarItem2.selectedImage = UIImage(named: "vedanta_blue")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
         
         myTabBarItem2.title = ""

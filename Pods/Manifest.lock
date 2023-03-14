@@ -152,6 +152,7 @@ PODS:
   - SDWebImage/Core (5.13.4)
   - SwiftGifOrigin (1.7.0)
   - SwiftyJSON (5.0.1)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -170,6 +171,7 @@ DEPENDENCIES:
   - SDWebImage
   - SwiftGifOrigin
   - SwiftyJSON
+  - YouTubePlayer
 
 SPEC REPOS:
   trunk:
@@ -205,6 +207,7 @@ SPEC REPOS:
     - SDWebImage
     - SwiftGifOrigin
     - SwiftyJSON
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
@@ -239,7 +242,8 @@ SPEC CHECKSUMS:
   SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 78a9be1b20561eb7befcaacd12ba7c40c5855939
+PODFILE CHECKSUM: 9188c8807366960a55b7c908818f7af6830aa850
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

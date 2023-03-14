@@ -10,6 +10,12 @@
 import UIKit
 import SystemConfiguration
 
+import AVFoundation
+import AVKit
+
+// Import Swift module
+import YouTubePlayer
+
 let application_base_url = "https://app.vedantavision.org/services/index"
 
 //"https://demo4.evirtualservices.net/vedanta/services/index"
@@ -188,13 +194,57 @@ extension UIViewController {
     
     @objc func push_to_video_screen(str_video_file_link:String , str_video_title:String) {
         
-        let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
         
-        pushVC.hidesBottomBarWhenPushed = true
-        pushVC.str_video_link = String(str_video_file_link)
-        pushVC.str_video_header = String(str_video_title)
+//        let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
+//
+//        pushVC.hidesBottomBarWhenPushed = true
+//        pushVC.str_video_link = String(str_video_file_link)
+//        pushVC.str_video_header = String(str_video_title)
+//
+//        self.navigationController?.pushViewController(pushVC, animated: true)
         
-        self.navigationController?.pushViewController(pushVC, animated: true)
+        
+//        print(str_video_file_link)
+        
+        let fullNameArr = str_video_file_link.components(separatedBy: "://")
+//        print(fullNameArr)
+        
+        let first_8 = "\(fullNameArr[1])".prefix(8)
+//        print(first_8)
+        
+        if first_8 == "youtu.be" {
+            
+            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "youtube_video_id") as! youtube_video
+
+            pushVC.hidesBottomBarWhenPushed = true
+            pushVC.strVideoTitle = String(str_video_title)
+            pushVC.strVideoLink = String(str_video_file_link)
+            
+            self.navigationController?.pushViewController(pushVC, animated: true)
+            
+            
+        } else {
+            
+            let videoURL = URL(string: str_video_file_link)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
     

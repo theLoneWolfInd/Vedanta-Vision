@@ -558,6 +558,8 @@ class subscription_table_cell:UITableViewCell {
     @IBOutlet weak var view_2_2:UIView! {
         didSet {
             view_2_2.backgroundColor = UIColor.init(red: 230.0/255.0, green: 41.0/255.0, blue: 36.0/355.0, alpha: 1)
+            view_2_2.layer.cornerRadius = 8
+            view_2_2.clipsToBounds = true
         }
     }
     
@@ -569,6 +571,8 @@ class subscription_table_cell:UITableViewCell {
     @IBOutlet weak var view_3_2:UIView! {
         didSet {
             view_3_2.backgroundColor = UIColor.init(red: 230.0/255.0, green: 41.0/255.0, blue: 36.0/355.0, alpha: 1)
+            view_3_2.layer.cornerRadius = 8
+            view_3_2.clipsToBounds = true
         }
     }
     
