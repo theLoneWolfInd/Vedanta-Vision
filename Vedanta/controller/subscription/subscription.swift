@@ -566,6 +566,7 @@ class subscription_table_cell:UITableViewCell {
     @IBOutlet weak var view_3_1:UIView! {
         didSet {
             view_3_1.backgroundColor = .clear
+            
         }
     }
     @IBOutlet weak var view_3_2:UIView! {
@@ -573,6 +574,9 @@ class subscription_table_cell:UITableViewCell {
             view_3_2.backgroundColor = UIColor.init(red: 230.0/255.0, green: 41.0/255.0, blue: 36.0/355.0, alpha: 1)
             view_3_2.layer.cornerRadius = 8
             view_3_2.clipsToBounds = true
+            
+             
+            
         }
     }
     
@@ -599,7 +603,7 @@ class subscription_table_cell:UITableViewCell {
             view_2_full.layer.shadowRadius = 4
             view_2_full.layer.masksToBounds = false
             view_2_full.layer.cornerRadius = 8
-            view_2_full.backgroundColor = .white
+            view_2_full.backgroundColor = .clear
         }
     }
     

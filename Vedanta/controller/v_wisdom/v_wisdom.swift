@@ -12,6 +12,10 @@ import AVFoundation
 
 class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldDelegate {
 
+    var str_search:String!
+    
+    var str_title:String!
+    
     var str_wisdom_title:String! = "Articles"
     
     var str_which_index:String!
@@ -34,6 +38,12 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     var str_one:String!
     var str_two:String!
     
+    @IBOutlet weak var lbl_navigation_title:UILabel! {
+        didSet {
+            
+        }
+    }
+    
     @IBOutlet weak var btn_search:UIButton! {
         didSet {
             btn_search.tintColor = .black
@@ -41,11 +51,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         }
     }
     
-    @IBOutlet weak var btn_back:UIButton! {
-        didSet {
-            btn_back.tintColor = .black
-        }
-    }
+     
     
     @IBOutlet weak var view_full_view:UIView! {
         didSet {
@@ -64,6 +70,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
             txt_search.backgroundColor = .white
             txt_search.setLeftPaddingPoints(12)
             txt_search.placeholder = "search..."
+            
         }
     }
     
@@ -175,6 +182,13 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
             btn_play.isHidden = true
         }
     }
+    
+    @IBOutlet weak var btn_back:UIButton! {
+        didSet {
+            btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        }
+    }
+    
     @IBOutlet weak var indicators:UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -202,6 +216,20 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                        str_article_type: String(""))
         
         self.btn_search.addTarget(self, action: #selector(search_in_wisdom_WB), for: .touchUpInside)
+        
+        if self.str_search == "yes" {
+            
+            self.lbl_navigation_title.text = "Search"
+            self.btn_back.isHidden = false
+            self.txt_search.becomeFirstResponder()
+            
+        } else {
+            
+            self.lbl_navigation_title.text = "Wisdom"
+            self.btn_back.isHidden = true
+//            txt_search.becomeFirstResponder()
+            
+        }
         
     }
     

@@ -9,6 +9,14 @@ import UIKit
 import Alamofire
 import SDWebImage
 
+struct video_list_encodable: Encodable {
+    let action: String
+    let pageNo: Int
+    let userId: String
+    let forHomePage: String
+}
+ 
+
 class v_videos: UIViewController {
     
     var page : Int! = 1
@@ -90,7 +98,7 @@ class v_videos: UIViewController {
                         print(person as Any)
                         
                         
-                        self.video_list_WB(page_number: 1)
+                        self.video_list_WB(page_number: page)
                         
                     } else {
                         
@@ -126,17 +134,161 @@ class v_videos: UIViewController {
             let x : Int = person["userId"] as! Int
             let myString = String(x)
             
-            let parameters = [
-                "action"        : "videolist",
-                "pageNo"        : page_number,
-                "userId"        : String(myString),
-                "forHomePage"   : ""
+//            let parameters = [
+//                "action"        : "videolist",
+//                "pageNo"        : page_number,
+//                "userId"        : String(myString),
+//                "forHomePage"   : ""
+//            ]
+            
+            let params = video_list_encodable(action: "videolist", pageNo: page_number, userId: String(myString), forHomePage: "")
+            
+            print(params as Any)
+            
+            AF.request(application_base_url,
+                       method: .post,
+                       parameters: params,
+                       encoder: JSONParameterEncoder.default).responseJSON { response in
                 
-            ] as [String : Any]
+//            let parameters = [
+//                "action"        : "videolist",
+//                "pageNo"        : page_number,
+//                "userId"        : String(myString),
+//                "forHomePage"   : ""
+//
+//            ]
+//
+//            print(parameters as Any)
+//
+//            AF.request(application_base_url,
+//                       method: .post,
+//                       parameters: parameters,
+//                       encoder: JSONParameterEncoder.default).responseJSON { response in
+                // debugPrint(response.result)
+                
+                switch response.result {
+                case let .success(value):
+                    
+                    let JSON = value as! NSDictionary
+                    print(JSON as Any)
+                    
+                    var strSuccess : String!
+                    strSuccess = JSON["status"]as Any as? String
+                    
+                    var strSuccess2 : String!
+                    strSuccess2 = JSON["msg"]as Any as? String
+                    
+                    if strSuccess == String("success") {
+                        
+                        print("=====> yes")
+                        ERProgressHud.sharedInstance.hide()
+                        
+                        var ar : NSArray!
+                        ar = (JSON["data"] as! Array<Any>) as NSArray
+                        
+                        
+                        for indexx in 0..<ar.count {
+                            
+                            let item = ar[indexx] as? [String:Any]
+                            
+                            /*
+                             Link = "https://youtu.be/ro4nbpLbBa0";
+                             Type = 2;
+                             categoryId = 36;
+                             created = "Oct 7th, 2022, 1:45 pm";
+                             description = "The World You See Is a Projection, Not a Creation";
+                             homePage = 1;
+                             image = "";
+                             title = "The World You See Is a Projection, Not a Creation";
+                             videoFile = "";
+                             videoId = 1;
+                             youLiked = Yes;
+                             */
+                            
+                            
+                            if "\(item!["youLiked"]!)" == "No" {
+                                
+                                let custom_array = ["Link"      : (item!["Link"] as! String),
+                                                    "Type"      : "\(item!["Type"]!)",
+                                                    "categoryId"    : "\(item!["categoryId"]!)",
+                                                    "created"   : (item!["created"] as! String),
+                                                    "description"   : (item!["description"] as! String),
+                                                    "homePage"  : "\(item!["homePage"]!)",
+                                                    "image"     : (item!["image"] as! String),
+                                                    "videoFile" : (item!["videoFile"] as! String),
+                                                    "videoId"   : "\(item!["videoId"]!)",
+                                                    "youLiked"  : (item!["youLiked"] as! String),
+                                                    "title"     : (item!["title"] as! String),
+                                                     
+                                                    "status"    : "no",
+                                                    
+                                ]
+                                self.arr_mut_video_list.add(custom_array)
+                                
+                            } else {
+                                
+                                let custom_array = ["Link"      : (item!["Link"] as! String),
+                                                    "Type"      : "\(item!["Type"]!)",
+                                                    "categoryId"    : "\(item!["categoryId"]!)",
+                                                    "created"   : (item!["created"] as! String),
+                                                    "description"   : (item!["description"] as! String),
+                                                    "homePage"  : "\(item!["homePage"]!)",
+                                                    "image"     : (item!["image"] as! String),
+                                                    "videoFile" : (item!["videoFile"] as! String),
+                                                    "videoId"   : "\(item!["videoId"]!)",
+                                                    "youLiked"  : (item!["youLiked"] as! String),
+                                                    "title"     : (item!["title"] as! String),
+                                                     
+                                                    "status"    : "yes",
+                                                    
+                                ]
+                                self.arr_mut_video_list.add(custom_array)
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
+                        // self.arr_mut_video_list.addObjects(from: ar as! [Any])
+                        
+                        
+                        print(self.arr_mut_video_list as Any)
+                        
+                        
+                        
+                        self.tble_view.delegate = self
+                        self.tble_view.dataSource = self
+                        self.tble_view.reloadData()
+                        self.loadMore = 1
+                        
+                    } else {
+                        
+                        print("no")
+                        ERProgressHud.sharedInstance.hide()
+                        
+                        var strSuccess2 : String!
+                        strSuccess2 = JSON["msg"]as Any as? String
+                        
+                        let alert = UIAlertController(title: String(strSuccess), message: String(strSuccess2), preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    
+                case let .failure(error):
+                    print(error)
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    let alert = UIAlertController(title: String("Error!"), message: String("Server Issue"), preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+            }
             
-            print(parameters as Any)
-            
-            AF.request(application_base_url, method: .post, parameters: parameters)
+            /*AF.request(application_base_url, method: .post, parameters: parameters)
             
                 .response { response in
                     
@@ -266,7 +418,7 @@ class v_videos: UIViewController {
                         ERProgressHud.sharedInstance.hide()
                         print(response.error as Any, terminator: "")
                     }
-                }
+                }*/
         }
     }
     

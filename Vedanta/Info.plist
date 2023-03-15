@@ -20,6 +20,8 @@
 			</array>
 		</dict>
 	</array>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 	<key>FacebookAppID</key>
 	<string>495865459158427</string>
 	<key>FacebookClientToken</key>

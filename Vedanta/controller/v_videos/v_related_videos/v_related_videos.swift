@@ -206,7 +206,7 @@ class v_related_videos: UIViewController {
                                 
                                 var get_link:String!
                                 
-                                if (self.dict_get_video_data["Link"]) == nil {
+                                /*if (self.dict_get_video_data["Link"]) == nil {
                                     
                                     get_link = (self.dict_get_video_data["link"] as! String)
                                     
@@ -221,9 +221,14 @@ class v_related_videos: UIViewController {
                                 } else {
                                     print(self.dict_get_video_data["videoFile"] as! String)
                                     get_link = (self.dict_get_video_data["videoFile"] as! String)
+                                }*/
+                                
+                                
+                                if (self.dict_get_video_data["Link"]) as! String == "" {
+                                    get_link = (self.dict_get_video_data["videoFile"] as! String)
+                                } else {
+                                    get_link = (self.dict_get_video_data["Link"] as! String)
                                 }
-                                
-                                
                                 print(get_link as Any)
                                     
                                 

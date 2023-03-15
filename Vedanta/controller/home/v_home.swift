@@ -22,7 +22,7 @@ class v_home: UIViewController {
     var cell_height_subscribe:CGFloat = 100
     var cell_height_bhagwat_gita:CGFloat = 160
     var cell_height_knowledge:CGFloat = 200
-    var cell_height_social_media:CGFloat = 1000
+    var cell_height_social_media:CGFloat = 914//1000
     var cell_height_feeds:CGFloat = 0 // 340
     
     /*============================= CALENDAR =====================================*/
@@ -111,10 +111,26 @@ class v_home: UIViewController {
     }
     
     @objc func search_v_home_click_method_2() {
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tab_bar_id") as? tab_bar
+//        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tab_bar_id") as? tab_bar
+//
+//        push!.hidesBottomBarWhenPushed = true
+//        push!.selectedIndex = 1
+//
+////        push!.str_title = "search"
+//
+//        self.navigationController?.pushViewController(push!, animated: true)
+        
+        
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_wisdom_id") as? v_wisdom
+        
+        push!.str_search = "yes"
         push!.hidesBottomBarWhenPushed = true
-        push!.selectedIndex = 1
+//        push!.selectedIndex = 1
+        
+//        push!.str_title = "search"
+        
         self.navigationController?.pushViewController(push!, animated: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -795,14 +811,7 @@ class v_home: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.right:
                 print("Swiped right")
-//                print(self.adv_gesture_index as Any)
-                
-                
-//                self.str_image_suffix_id = String(self.adv_gesture_index)
-                
-                
-                
-                
+
                 if self.adv_gesture_index_stop_right == "0" {
                     
                     self.adv_gesture_index -= 1
@@ -818,37 +827,19 @@ class v_home: UIViewController {
                     } else {
 
                         self.adv_gesture_index_stop_left = "0"
-                        
-//                        let item = self.arr_quotation_list[self.gesture_index-1] as? [String:Any]
-//                        print(item!["description"] as! String)
-//                        self.str_quotation = (item!["description"] as! String)
-//                        print("Swipe left")
-//                        self.tble_view.reloadData()
+ 
                         
                     }
                     
                 }
-                
-//                print("dishant")
-//                print(self.str_image_suffix_id as Any)
-//                print("dishant")
-                
-                
-//                print("dishant")
-//                print(self.str_image_suffix_id as Any)
-//                print("dishant")
+ 
                 self.tble_view.reloadData()
                 
             case UISwipeGestureRecognizer.Direction.down:
                 print("Swiped down")
             case UISwipeGestureRecognizer.Direction.left:
                 print("Swiped left")
-//                print(self.adv_gesture_index as Any)
-                
-//                print("dishant")
-                
-                
-                
+ 
                 if self.adv_gesture_index_stop_left == "0" {
                     
                     self.adv_gesture_index += 1
@@ -864,20 +855,12 @@ class v_home: UIViewController {
 
                         self.adv_gesture_index_stop_right = "0"
                         
-//                        let item = self.arr_quotation_list[self.gesture_index-1] as? [String:Any]
-//                        print(item!["description"] as! String)
-//                        self.str_quotation = (item!["description"] as! String)
-//                        print("Swipe left")
-//                        self.tble_view.reloadData()
+ 
                         
                     }
                     
                 }
-                
-//                print("dishant")
-//                print(self.adv_gesture_index as Any)
-//                print(self.str_image_suffix_id as Any)
-//                print("dishant")
+ 
                 
                 self.tble_view.reloadData()
                 
@@ -959,6 +942,15 @@ class v_home: UIViewController {
     }
     
     
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        if let url = URL(string: "https://vedantavision.org/courses-olc1/") {
+            UIApplication.shared.open(url)
+        }
+        // Your action
+    }
+    
     @objc func read_more_advertisement_click() {
         
         if let url = URL(string: "https://vedantavision.org/courses-olc1/") {
@@ -974,18 +966,25 @@ class v_home: UIViewController {
     }
     
     
-    @objc
-    func tappedMe(_ sender:AnyObject) {
-        print(sender.view.tag)
-        print("Tapped on Image")
+     
+    @objc func advertisement_tapped(tapGestureRecognizer: UITapGestureRecognizer) {
+//        print(self.str_image_suffix_id as Any)
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
+//        print(tappedImage.tag)
+//        print("Tapped on Image")
         
-        let item = self.arr_advertisement[sender.view!.tag] as? [String:Any]
+        let int_1 = (str_image_suffix_id as NSString).integerValue
         
+        let item = self.arr_advertisement[int_1-1] as? [String:Any]
+
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "advertisement_details_id") as? advertisement_details
-        
+
+        push!.hidesBottomBarWhenPushed = true
+        push!.str_start_date = (item!["startDate"] as! String)
+        push!.str_end_date = (item!["endDate"] as! String)
         push!.str_description = (item!["description"] as! String)
         push!.str_img_advertisement = (item!["image"] as! String)
-        
+
         self.navigationController?.pushViewController(push!, animated: true)
         
         
@@ -1000,6 +999,36 @@ class v_home: UIViewController {
         push!.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(push!, animated: true)
         
+    }
+    
+    @objc func instagram_click_method() {
+        if let url = URL(string: "https://www.instagram.com/vedanta_vision/?hl=en") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func facebook_click_method() {
+        if let url = URL(string: "https://www.facebook.com/jayarowvedanta") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func youtube_click_method() {
+        if let url = URL(string: "https://www.youtube.com/user/vedantavision") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func linked_in_click_method() {
+        if let url = URL(string: "https://www.linkedin.com/in/vedanta-vision-546160ab/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func spotify_click_method() {
+        if let url = URL(string: "https://open.spotify.com/show/7maqOtQsacT6Upja7ND0Kk") {
+            UIApplication.shared.open(url)
+        }
     }
     
 }
@@ -1077,20 +1106,43 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             
             // img_scroll_advertisement
             // lbl_scroll_count
-            let create_image_path = "banner"+String(self.str_image_suffix_id)
-            cell.img_scroll_advertisement.image = UIImage(named: create_image_path)
             
+            print(str_image_suffix_id);
+ 
+            let int_1 = (str_image_suffix_id as NSString).integerValue
+//
+            let item = self.arr_advertisement[int_1-1] as? [String:Any]
+            
+            cell.img_scroll_advertisement.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            cell.img_scroll_advertisement.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(advertisement_tapped(tapGestureRecognizer:)))
+            cell.img_scroll_advertisement.tag = indexPath.row
+            cell.img_scroll_advertisement.isUserInteractionEnabled = true
+            cell.img_scroll_advertisement.addGestureRecognizer(tapGestureRecognizer)
+            
+            
+           
+            let int = (str_image_suffix_id as NSString).integerValue
+            cell.page_control.currentPage = int-1
+            
+            
+             
             cell.lbl_scroll_count.text = String(self.str_image_suffix_id)+"/3"
+ 
+            
+            
             
             let swipe_left = UISwipeGestureRecognizer(target: self, action: #selector(self.gesture_to_swipe_gesture(gesture:)))
             swipe_left.direction = .left
-             cell.img_scroll_advertisement.isUserInteractionEnabled = true
+            cell.img_scroll_advertisement.isUserInteractionEnabled = true
             cell.img_scroll_advertisement.addGestureRecognizer(swipe_left)
             
             // right
             let swipe_right = UISwipeGestureRecognizer(target: self, action: #selector(self.gesture_to_swipe_gesture(gesture:)))
             swipe_right.direction = .right
-             cell.img_scroll_advertisement.isUserInteractionEnabled = true
+            cell.img_scroll_advertisement.isUserInteractionEnabled = true
             cell.img_scroll_advertisement.addGestureRecognizer(swipe_right)
 
             return cell
@@ -1106,6 +1158,16 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.selectedBackgroundView = backgroundView
             
             cell.btn_subscribe.addTarget(self, action: #selector(subscribe_click_method_2), for: .touchUpInside)
+            
+            let stringValue = "Already Subscribed ? Login"
+            
+            let attText = NSMutableAttributedString(string: stringValue)
+            attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: NSRange(
+                location:21,
+                length:5))
+//                 attributedText = attText
+            
+            cell.lbl_already_subscribe.attributedText = attText
             
             return cell
             
@@ -1138,8 +1200,8 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.selectedBackgroundView = backgroundView
             
             // social media
-            cell.cl_view_social_media.delegate = self
-            cell.cl_view_social_media.dataSource = self
+//            cell.cl_view_social_media.delegate = self
+//            cell.cl_view_social_media.dataSource = self
             
             // latest video
             cell.cl_view_latest_video.delegate = self
@@ -1165,6 +1227,11 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             
             cell.calendar.scope = .month
             
+            cell.btn_instagram.addTarget(self, action: #selector(instagram_click_method), for: .touchUpInside)
+            cell.btn_facebook.addTarget(self, action: #selector(facebook_click_method), for: .touchUpInside)
+            cell.btn_youtube.addTarget(self, action: #selector(youtube_click_method), for: .touchUpInside)
+            cell.btn_linked_in.addTarget(self, action: #selector(linked_in_click_method), for: .touchUpInside)
+            cell.btn_spotify.addTarget(self, action: #selector(spotify_click_method), for: .touchUpInside)
             
             return cell
             
@@ -1254,7 +1321,10 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             let create_image_path = "banner"+String("3")
             cell.img_scroll_banner.image = UIImage(named: create_image_path)
             
-             
+//            cell.img_scroll_banner.addtar
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            cell.img_scroll_banner.isUserInteractionEnabled = true
+            cell.img_scroll_banner.addGestureRecognizer(tapGestureRecognizer)
             
             
             
@@ -1356,7 +1426,7 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             return UITableView.automaticDimension
         } else {
             
-            return 214
+            return 200
             
         }
         
@@ -1386,6 +1456,12 @@ class v_home_table_cell:UITableViewCell {
         didSet {
             lbl_quotes.text = "Dishant rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput rajput"
             lbl_quotes.textColor = UIColor.init(red: 62.0/255.0, green: 62.0/255.0, blue: 62.0/255.0, alpha: 1)
+        }
+    }
+    
+    @IBOutlet weak var page_control:UIPageControl! {
+        didSet {
+             page_control.currentPage = 1
         }
     }
     
@@ -1473,7 +1549,7 @@ class v_home_table_cell:UITableViewCell {
     
     @IBOutlet weak var btn_subscribe:UIButton! {
         didSet {
-            btn_subscribe.layer.cornerRadius = 6
+            btn_subscribe.layer.cornerRadius = 15
             btn_subscribe.clipsToBounds = true
             
         }
@@ -1482,6 +1558,9 @@ class v_home_table_cell:UITableViewCell {
     @IBOutlet weak var lbl_already_subscribe:UILabel! {
         didSet {
             lbl_already_subscribe.textColor = .white
+            
+            
+            
         }
     }
     
@@ -1611,7 +1690,23 @@ class v_home_table_cell:UITableViewCell {
     // calendar
     @IBOutlet weak var calendar: FSCalendar! {
         didSet {
-            calendar.backgroundColor = .clear
+            /*calendar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            calendar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            calendar.layer.shadowOpacity = 1.0
+            calendar.layer.shadowRadius = 4
+            calendar.layer.masksToBounds = false
+            calendar.layer.cornerRadius = 22
+            calendar.backgroundColor = .white*/
+            // calendar.backgroundColor = .white
+            
+            calendar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            calendar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            calendar.layer.shadowOpacity = 1.0
+            calendar.layer.shadowRadius = 8
+            calendar.layer.masksToBounds = false
+            calendar.layer.cornerRadius = 8
+            calendar.backgroundColor = .white
+            
             calendar.scope = .month
         }
     }
@@ -1631,6 +1726,33 @@ class v_home_table_cell:UITableViewCell {
     
     @IBOutlet weak var btn_read_more:UIButton!
     
+    @IBOutlet weak var btn_instagram:UIButton! {
+        didSet {
+            
+        }
+    }
+    @IBOutlet weak var btn_facebook:UIButton! {
+        didSet {
+            
+            
+        }
+    }
+    @IBOutlet weak var btn_youtube:UIButton! {
+        didSet {
+            
+        }
+    }
+    @IBOutlet weak var btn_linked_in:UIButton! {
+        didSet {
+            
+        }
+    }
+    @IBOutlet weak var btn_spotify:UIButton! {
+        didSet {
+            
+        }
+    }
+    
 }
 
 // collection view
@@ -1646,6 +1768,14 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             return self.arr_mut_category.count
         }
         
+    }
+    
+    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+        let totalWidth = cellWidth * numberOfItems
+        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -1718,14 +1848,26 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             cell.backgroundColor = app_BG_color
             
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 8
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 8
+//            cell.backgroundColor = .white
+            
+//            cell.backgroundColor = UIColor(red: 171/255, green: 178/255, blue: 186/255, alpha: 1.0)
+            // Shadow Color and Radius
             cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 8
+            cell.layer.shadowRadius = 3.0
             cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 8
-            cell.backgroundColor = .white
+            cell.layer.cornerRadius = 12.0
             
+//            cell.layer.cornerRadius = 12
+//            cell.clipsToBounds = true
+//            cell.backgroundColor = .clear
             // print(self.arr_mut_video_list as Any)
             
             let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
@@ -1757,13 +1899,22 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             cell.backgroundColor = app_BG_color
             
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 8
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 8
+//            cell.backgroundColor = .white
+            
+            
             cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 8
+            cell.layer.shadowRadius = 3.0
             cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 8
-            cell.backgroundColor = .white
+            cell.layer.cornerRadius = 12.0
+            
             
             let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
             
@@ -1780,13 +1931,20 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             cell.backgroundColor = app_BG_color
             
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 8
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 8
+//            cell.backgroundColor = .white
+            
             cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 8
+            cell.layer.shadowRadius = 3.0
             cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 8
-            cell.backgroundColor = .white
+            cell.layer.cornerRadius = 12.0
             
             let item = self.arr_article_list[indexPath.row] as? [String:Any]
 
@@ -1898,7 +2056,7 @@ extension v_home: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView.tag == 1000 {
-            return CGSize(width: 90,height: 154)
+            return CGSize(width: 80,height: 126)
         } else if collectionView.tag == 2000 {
             return CGSize(width: 50,height: 80)
         } else {
@@ -1915,7 +2073,7 @@ extension v_home: UICollectionViewDelegateFlowLayout {
         
         
          
-            return 10
+            return 40
          
         
         
@@ -1930,16 +2088,16 @@ extension v_home: UICollectionViewDelegateFlowLayout {
         } else if collectionView.tag == 2000 {
             return 20
         } else {
-            return 10
+            return 20
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if collectionView.tag == 1000 {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            return UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 10)
         } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            return UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 10)
         }
         
     }
@@ -1951,13 +2109,13 @@ class v_home_collection_view_cell: UICollectionViewCell {
     
     @IBOutlet weak var img_bhagwat_gita_list:UIImageView! {
         didSet {
-//            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-//            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
-//            img_bhagwat_gita_list.layer.shadowRadius = 8
-//            img_bhagwat_gita_list.layer.masksToBounds = false
-//            img_bhagwat_gita_list.layer.cornerRadius = 8
-//            img_bhagwat_gita_list.backgroundColor = .white
+            img_bhagwat_gita_list.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            img_bhagwat_gita_list.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            img_bhagwat_gita_list.layer.shadowOpacity = 1.0
+            img_bhagwat_gita_list.layer.shadowRadius = 8
+            img_bhagwat_gita_list.layer.masksToBounds = false
+            img_bhagwat_gita_list.layer.cornerRadius = 8
+            img_bhagwat_gita_list.backgroundColor = .white
             
             img_bhagwat_gita_list.layer.cornerRadius = 8
             img_bhagwat_gita_list.clipsToBounds = true
@@ -1990,6 +2148,14 @@ class v_home_collection_latest_video_view_cell: UICollectionViewCell {
     @IBOutlet weak var img_social_media:UIImageView! {
         didSet {
             
+            let path = UIBezierPath(roundedRect:img_social_media.bounds,
+                                    byRoundingCorners:[.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 14, height:  14))
+
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.path = path.cgPath
+            img_social_media.layer.mask = maskLayer
         }
     }
     
@@ -2011,7 +2177,7 @@ class v_home_collection_latest_audio_view_cell: UICollectionViewCell {
             
             let path = UIBezierPath(roundedRect:img_latest_audio.bounds,
                                     byRoundingCorners:[.topRight, .topLeft],
-                                    cornerRadii: CGSize(width: 8, height:  8))
+                                    cornerRadii: CGSize(width: 12, height:  12))
 
             let maskLayer = CAShapeLayer()
 
@@ -2038,7 +2204,7 @@ class v_home_collection_latest_article_view_cell: UICollectionViewCell {
         didSet {
             let path = UIBezierPath(roundedRect:img_latest_article.bounds,
                                     byRoundingCorners:[.topRight, .topLeft],
-                                    cornerRadii: CGSize(width: 8, height:  8))
+                                    cornerRadii: CGSize(width: 12, height:  12))
 
             let maskLayer = CAShapeLayer()
 
@@ -2052,6 +2218,10 @@ class v_home_collection_latest_article_view_cell: UICollectionViewCell {
             lbl_latest_article.textColor = .black
         }
     }
+    
+    
+    
+    
 }
 
 

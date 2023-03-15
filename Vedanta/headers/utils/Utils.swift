@@ -82,7 +82,7 @@ extension UIViewController {
             
         } else {
             
-            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to use this feature."), style: .alert)
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to check your all notifications."), style: .alert)
             
             let login = NewYorkButton(title: "login", style: .default) {
                 _ in

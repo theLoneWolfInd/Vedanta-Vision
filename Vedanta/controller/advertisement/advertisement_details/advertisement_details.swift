@@ -13,6 +13,8 @@ class advertisement_details: UIViewController {
     
     var str_img_advertisement:String!
     var str_description:String!
+    var str_start_date:String!
+    var str_end_date:String!
     
     var str_navigation_title:String!
     
@@ -47,7 +49,13 @@ class advertisement_details: UIViewController {
         self.img_advertisement.sd_setImage(with: URL(string: String(self.str_img_advertisement)), placeholderImage: UIImage(named: "logo"))
         
         // self.img_advertisement.image = UIImage(named: String(self.str_img_advertisement))
-        self.view_article.text = String(self.str_description)
+        
+        let date_description =
+ 
+        "Start Date : \n"+String(self.str_start_date)+"\n\nEnd Date : \n"+String(self.str_end_date)//+"\n\nEnd Date : "+String(self.str_end_date)
+        
+        
+        self.view_article.text = String(date_description)+"\n\n"+String(self.str_description)
          
     }
 
