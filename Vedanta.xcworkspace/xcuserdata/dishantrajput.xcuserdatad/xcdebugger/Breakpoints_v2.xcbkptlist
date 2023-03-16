@@ -270,8 +270,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "976"
+            endingLineNumber = "976"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "change(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "901"
-            endingLineNumber = "901"
+            startingLineNumber = "1064"
+            endingLineNumber = "1064"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -397,8 +397,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "home_bhagwat_gita_categories_WB()"
             landmarkType = "7">
          </BreakpointContent>
@@ -637,8 +637,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
+            startingLineNumber = "743"
+            endingLineNumber = "743"
             landmarkName = "video_list_WB()"
             landmarkType = "7">
          </BreakpointContent>
@@ -685,13 +685,13 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "877"
-            endingLineNumber = "877"
+            startingLineNumber = "1057"
+            endingLineNumber = "1057"
             landmarkName = "respondToSwipeGesture(gesture:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4F0022D1-75AC-4CE3-86AB-B09D5C13750F - 477af605680edaab"
+                  uuid = "4F0022D1-75AC-4CE3-86AB-B09D5C13750F - 477af605680eadff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -701,12 +701,12 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "877"
-                  endingLineNumber = "877"
+                  startingLineNumber = "1057"
+                  endingLineNumber = "1057"
                   offsetFromSymbolStart = "168">
                </Location>
                <Location
-                  uuid = "4F0022D1-75AC-4CE3-86AB-B09D5C13750F - 477af605680edaab"
+                  uuid = "4F0022D1-75AC-4CE3-86AB-B09D5C13750F - 477af605680eadff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -716,8 +716,8 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "877"
-                  endingLineNumber = "877"
+                  startingLineNumber = "1057"
+                  endingLineNumber = "1057"
                   offsetFromSymbolStart = "280">
                </Location>
             </Locations>
@@ -733,8 +733,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1774"
-            endingLineNumber = "1774"
+            startingLineNumber = "1956"
+            endingLineNumber = "1956"
             landmarkName = "centerItemsInCollectionView(cellWidth:numberOfItems:spaceBetweenCell:collectionView:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -749,8 +749,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1773"
-            endingLineNumber = "1773"
+            startingLineNumber = "1955"
+            endingLineNumber = "1955"
             landmarkName = "centerItemsInCollectionView(cellWidth:numberOfItems:spaceBetweenCell:collectionView:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -765,9 +765,169 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "836"
-            endingLineNumber = "836"
+            startingLineNumber = "1016"
+            endingLineNumber = "1016"
             landmarkName = "gesture_to_swipe_gesture(gesture:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB16BB0F-4B7E-4203-90F9-91199DF65B9C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/home/v_home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "661"
+            endingLineNumber = "661"
+            landmarkName = "all_events_list()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E03D8285-3A84-42B2-BF18-4AB3A3A3D5E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/home/v_home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "668"
+            endingLineNumber = "668"
+            landmarkName = "all_events_list()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "770BDE7B-712C-41EF-8034-B3C24BA042DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/home/v_home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
+            landmarkName = "all_events_list()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4988600C-B8DC-41AD-AD7D-62D8F1CEDA02"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/home/v_home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
+            landmarkName = "all_events_list()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6157B28-35AE-4096-B141-50BE13EBE619"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/home/v_home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "calendar(_:didSelect:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A418BD9F-1B37-407E-8549-E216BF671A13"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
+            landmarkName = "scrollViewDidScroll(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DADD50B3-D77D-4D9B-B997-20C06B713F7C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "516"
+            endingLineNumber = "516"
+            landmarkName = "wisdom_WB(str_type:str_article_type:page_number:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9438003E-EBD8-4776-AF97-858D9635C6F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "listen_click_method()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E213F1B-BF63-458C-A73F-1B8DC48CD76E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "read_click_method()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "670E2F9D-E923-49B2-B320-A5B4E9A8CB3D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "change(to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

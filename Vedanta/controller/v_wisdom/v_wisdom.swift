@@ -10,8 +10,19 @@ import Alamofire
 import SDWebImage
 import AVFoundation
 
+struct wisdom_list_new: Encodable {
+    let action: String
+    let type:String
+    let articleType:String
+    let keyword:String
+    let pageNo:Int
+}
+
 class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldDelegate {
 
+    var page : Int! = 1
+    var loadMore : Int! = 1;
+    
     var str_search:String!
     
     var str_title:String!
@@ -38,6 +49,8 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     var str_one:String!
     var str_two:String!
     
+    var str_click_panel = "1"
+    
     @IBOutlet weak var lbl_navigation_title:UILabel! {
         didSet {
             
@@ -61,16 +74,24 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     
     @IBOutlet weak var txt_search:UITextField! {
         didSet {
+//            txt_search.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            txt_search.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            txt_search.layer.shadowOpacity = 1.0
+//            txt_search.layer.shadowRadius = 8
+//            txt_search.layer.masksToBounds = false
+//            txt_search.layer.cornerRadius = 8
+//            txt_search.backgroundColor = .white
+//            txt_search.setLeftPaddingPoints(12)
+//            txt_search.placeholder = "search..."
+            
             txt_search.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             txt_search.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             txt_search.layer.shadowOpacity = 1.0
-            txt_search.layer.shadowRadius = 8
+            txt_search.layer.shadowRadius = 3.0
             txt_search.layer.masksToBounds = false
-            txt_search.layer.cornerRadius = 8
+            txt_search.layer.cornerRadius = 4
             txt_search.backgroundColor = .white
             txt_search.setLeftPaddingPoints(12)
-            txt_search.placeholder = "search..."
-            
         }
     }
     
@@ -206,14 +227,14 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         
         self.txt_search.delegate = self
         
-        self.tble_view.frame =  CGRect(x: 0, y: 98, width:self.view.frame.size.width-26, height: self.view.frame.size.height-98)
+        self.tble_view.frame =  CGRect(x: 0, y: 114, width:self.view.frame.size.width, height: self.view.frame.size.height-240)
         self.view_full_view.addSubview(self.tble_view)
          
         self.str_one = "1"
         self.str_two = ""
         
         self.wisdom_WB(str_type: String(self.str_wisdom_click_status),
-                       str_article_type: String(""))
+                       str_article_type: String(""), page_number: 0)
         
         self.btn_search.addTarget(self, action: #selector(search_in_wisdom_WB), for: .touchUpInside)
         
@@ -234,6 +255,16 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     }
     
     @objc func watch_click_method() {
+        
+        //
+        self.page = 1
+        self.str_click_panel = "1"
+        self.arr_wisdom_list.removeAllObjects()
+        //
+        
+        
+        
+        
         self.view_music_player.isHidden = true
         self.player?.replaceCurrentItem(with: nil)
         
@@ -251,7 +282,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 
-            self.tble_view.frame =  CGRect(x: 0, y: 98, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-98)
+            self.tble_view.frame =  CGRect(x: 0, y: 114, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-114)
             
         }, completion: nil)
         
@@ -260,10 +291,17 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         self.str_one = "1"
         self.str_two = ""
         
-        self.wisdom_WB(str_type: "1", str_article_type: "")
+        self.wisdom_WB(str_type: "1", str_article_type: "", page_number: 0)
     }
     
     @objc func listen_click_method() {
+        
+        //
+        self.page = 1
+        self.str_click_panel = "2"
+        self.arr_wisdom_list.removeAllObjects()
+        //
+        
         
         self.cell_height_when_clicked = "0"
         
@@ -295,10 +333,20 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         self.str_one = "2"
         self.str_two = "1"
         
-        self.wisdom_WB(str_type: "2", str_article_type: "1")
+        self.wisdom_WB(str_type: "2", str_article_type: "1", page_number: 0)
     }
     
     @objc func read_click_method() {
+        
+        //
+        self.page = 1
+        self.str_click_panel = "3"
+        self.arr_wisdom_list.removeAllObjects()
+        //
+        
+        
+        
+        
         self.view_music_player.isHidden = true
         self.player?.replaceCurrentItem(with: nil)
         
@@ -329,35 +377,50 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         self.str_one = "3"
         self.str_two = "1"
         
-        self.wisdom_WB(str_type: "3", str_article_type: "1")
+        self.wisdom_WB(str_type: "3", str_article_type: "1", page_number: 0)
         
     }
     
     func change(to index:Int) {
+        
+        
+        
         print("segmentedControl index changed to \(index)")
         
         print(self.str_wisdom_click_status as Any)
         
         if String(self.str_wisdom_click_status) == "2" {
             
+            //
+            self.page = 1
+            self.str_click_panel = "2"
+            self.arr_wisdom_list.removeAllObjects()
+            //
+            
             if "\(index)" == "0" {
                 
                 self.str_one = "2"
                 self.str_two = "1"
                 
-                self.wisdom_WB(str_type: "2", str_article_type: "1")
+                self.wisdom_WB(str_type: "2", str_article_type: "1", page_number: 0)
                 
             } else {
                 
                 self.str_one = "2"
                 self.str_two = "2"
                 
-                self.wisdom_WB(str_type: "2", str_article_type: "2")
+                self.wisdom_WB(str_type: "2", str_article_type: "2", page_number: 0)
                 
             }
             
             
         } else if String(self.str_wisdom_click_status) == "3" {
+            
+            //
+            self.page = 1
+            self.str_click_panel = "3"
+            self.arr_wisdom_list.removeAllObjects()
+            //
             
             if "\(index)" == "0" {
                 
@@ -365,7 +428,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                 self.str_two = "1"
                 
                 self.str_wisdom_title = "Articles"
-                self.wisdom_WB(str_type: "3", str_article_type: "1")
+                self.wisdom_WB(str_type: "3", str_article_type: "1", page_number: 0)
                 
             } else if "\(index)" == "1" {
                 
@@ -373,7 +436,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                 self.str_two = "2"
                 
                 self.str_wisdom_title = "Stories"
-                self.wisdom_WB(str_type: "3", str_article_type: "2")
+                self.wisdom_WB(str_type: "3", str_article_type: "2", page_number: 0)
                 
             } else {
                 
@@ -381,7 +444,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                 self.str_two = "3"
                 
                 self.str_wisdom_title = "Poems"
-                self.wisdom_WB(str_type: "3", str_article_type: "3")
+                self.wisdom_WB(str_type: "3", str_article_type: "3", page_number: 0)
                 
             }
             
@@ -400,29 +463,112 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         return true
     }
     
-    @objc func wisdom_WB(str_type:String , str_article_type:String) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView == self.tble_view {
+            let isReachingEnd = scrollView.contentOffset.y >= 0
+            && scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
+            if(isReachingEnd) {
+                if(loadMore == 1) {
+                    loadMore = 0
+                    page += 1
+                    print(page as Any)
+                    
+                    if (self.str_click_panel=="1") {
+                        
+                        self.wisdom_WB(str_type: String(self.str_wisdom_click_status),
+                                       str_article_type: String(""),
+                                       page_number: page)
+                        
+                    } else if (self.str_click_panel == "2") {
+                        
+                        self.wisdom_WB(str_type: "2",
+                                       str_article_type: "1",
+                                       page_number: page)
+                        
+                    }
+                     
+                    
+                }
+            }
+        }
+    }
+    
+    @objc func wisdom_WB(str_type:String , str_article_type:String,page_number:Int) {
         self.view.endEditing(true)
         
-        self.arr_wisdom_list.removeAllObjects()
+//        self.arr_wisdom_list.removeAllObjects()
         
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        if page == 1 {
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        }
+        
         
         if IsInternetAvailable() == false {
             self.please_check_your_internet_connection()
             return
         }
         
-        let parameters = [
-            "action"        : "wisdomist",
-            "type"          : String(str_type),
-            "articleType"   : String(str_article_type),
-            "keyword"       : ""
-            
-        ] as [String : Any]
+        
+        let parameters = wisdom_list_new(action: "wisdomist", type: String(str_type), articleType: String(str_article_type), keyword: "", pageNo: page_number)
+         
         
         print(parameters as Any)
         
-        AF.request(application_base_url, method: .post, parameters: parameters)
+        AF.request(application_base_url,
+                   method: .post,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default).responseJSON { response in
+            // debugPrint(response.result)
+            
+            switch response.result {
+            case let .success(value):
+                
+                let JSON = value as! NSDictionary
+                print(JSON as Any)
+                
+                var strSuccess : String!
+                strSuccess = JSON["status"]as Any as? String
+                
+                var strSuccess2 : String!
+                strSuccess2 = JSON["msg"]as Any as? String
+                
+                if strSuccess == String("success") {
+                    print("yes")
+                    print("=====> yes")
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    var ar : NSArray!
+                    ar = (JSON["data"] as! Array<Any>) as NSArray
+                    self.arr_wisdom_list.addObjects(from: ar as! [Any])
+                    
+                    self.tble_view.delegate = self
+                    self.tble_view.dataSource = self
+                    self.tble_view.reloadData()
+                     self.loadMore = 1
+                    
+                } else {
+                    
+                    print("=====> no")
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    let alert = NewYorkAlertController(title: String(strSuccess), message: String(strSuccess2), style: .alert)
+                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    alert.addButtons([cancel])
+                    self.present(alert, animated: true)
+                    
+                }
+                
+            case let .failure(error):
+                print(error)
+                ERProgressHud.sharedInstance.hide()
+                
+                self.please_check_your_internet_connection()
+                
+            }
+        }
+        
+        /*AF.request(application_base_url, method: .post, parameters: parameters)
         
             .response { response in
                 
@@ -431,7 +577,10 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                         print(response.error as Any, terminator: "")
                     }
                     
-                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                    AF.request(application_base_url,
+                               method: .post,
+                               parameters: parameters,
+                               encoder: JSONParameterEncoder.default).responseJSON { response in
                         
                         print(jsonDict as Any, terminator: "")
                         
@@ -455,7 +604,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                             self.tble_view.delegate = self
                             self.tble_view.dataSource = self
                             self.tble_view.reloadData()
-                            // self.loadMore = 1
+                             self.loadMore = 1
                             
                         } else {
                             
@@ -481,7 +630,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                     ERProgressHud.sharedInstance.hide()
                     print(response.error as Any, terminator: "")
                 }
-            }
+            }*/
     }
     
     @objc func search_in_wisdom_WB() {
@@ -668,26 +817,40 @@ extension v_wisdom : UITableViewDelegate , UITableViewDataSource {
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
         
+        cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowRadius = 3.0
+        cell.layer.masksToBounds = false
+        cell.layer.cornerRadius = 12.0
+        
         // print(self.arr_wisdom_list as Any)
         
         let item = self.arr_wisdom_list[indexPath.row] as? [String:Any]
         print(item as Any)
         
-        cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+        if (item!["image"] as! String) == ""  {
+            cell.img_view.image = UIImage(named: "logo")
+            cell.img_view.contentMode = .scaleAspectFit
+        } else {
+            cell.img_view.contentMode = .scaleToFill
+            cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+            cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+        }
+        
         
         // let int_1 = (item!["question"] as! String).count
         // print(int_1)
         
-        let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 12.0)!]
+//        let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 18.0)!]
         
-        let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+        //let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
         let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
         
         let combination = NSMutableAttributedString()
         
-        combination.append(partOne)
+//        combination.append(partOne)
         combination.append(partTwo)
         
         cell.lbl_description.attributedText = combination

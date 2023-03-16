@@ -69,7 +69,8 @@ class v_home: UIViewController {
     
     var str_quotation:String! = "dghghgjjh"
     
-     
+    var arr_dates:NSMutableArray! = []
+    var datesWithEvent:NSMutableArray! = []
     
     @IBOutlet weak var tble_view:UITableView! {
         didSet {
@@ -88,6 +89,14 @@ class v_home: UIViewController {
             btn_search.isUserInteractionEnabled = true
         }
     }
+    
+    fileprivate lazy var dateFormatter2: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +117,42 @@ class v_home: UIViewController {
         
         // self.subscribe_click_method()
         
+        
+//        let server_date = "Oct 20st, 2022"
+//
+//        // remove comma from date
+//        let removed_comma = server_date.replacingOccurrences(of: ",", with: "")
+//        print(removed_comma as Any)
+//
+//        // 2
+//        var myStringArr = removed_comma.components(separatedBy: " ")
+//        print(myStringArr)
+        
+        //
+//        print(myStringArr[1].suffix(2))
+//
+//        if (myStringArr[1].suffix(2) == "st") {
+//            print("i am st")
+//
+//        let removed_st = server_date.replacingOccurrences(of: "\(myStringArr[1])", with: "")
+//            print(removed_st)
+//
+//        } else if (myStringArr[1].suffix(2) == "nd") {
+//            print("i am nd")
+//        } else if (myStringArr[1].suffix(2) == "rd") {
+//            print("i am rd")
+//        } else {
+//            print("i am th")
+//        }
+        
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        let date = dateFormatter.date(from: "Oct 20, 2022")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let resultString = dateFormatter.string(from: date!)
+        print(resultString)
     }
     
     @objc func search_v_home_click_method_2() {
@@ -269,8 +314,44 @@ class v_home: UIViewController {
         
         print("Selected Date: " + resultString)
         
-        self.get_calendar_date_WB(str_date: resultString)
+        
+        if self.datesWithEvent.contains(resultString) {
+            print("yes")
+            
+            for i in 0..<self.arr_dates.count {
+                let item = self.arr_dates[i] as? [String:Any]
+                print(item as Any)
+                
+                if (resultString == item!["eventDate"] as! String) {
+                    print("yes open browser")
+                    
+                    if let url = URL(string: item!["URL"] as! String) {
+                        UIApplication.shared.open(url)
+                    }
+                    return
+                }
+                
+                
+                
+                
+            }
+        } else {
+            print("no")
+        }
+        
+        
+        // self.get_calendar_date_WB(str_date: resultString)
     }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateString = self.dateFormatter2.string(from: date)
+        if self.datesWithEvent.contains(dateString) {
+            return 1
+        }
+
+        return 0
+    }
+    
     
     /*
      "action: eventlist
@@ -496,13 +577,112 @@ class v_home: UIViewController {
                             self.arr_article_list.addObjects(from: ar_article as! [Any])
                              
                             
+                            self.all_events_list()
+                            
+                            
+                            // self.video_list_WB()
+                            
+                            
+                        } else {
+                            
+                            print("=====> no")
                             ERProgressHud.sharedInstance.hide()
                             
+                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
+                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            alert.addButtons([cancel])
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                    } else {
+                        
+                        self.please_check_your_internet_connection()
+                        
+                        return
+                    }
+                    
+                } catch _ {
+                    print("Exception!")
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    print(response.error?.localizedDescription as Any, terminator: "<==== I AM ERROR")
+                    
+                    self.something_went_wrong_with_WB()
+                    
+                }
+            }
+    }
+    
+    @objc func all_events_list() {
+        self.view.endEditing(true)
+        
+         
+        
+        if IsInternetAvailable() == false {
+            self.please_check_your_internet_connection()
+            return
+        }
+        
+        let parameters = [
+            "action"    : "eventlist",
+             
+        ]
+        
+        print(parameters as Any)
+        
+        AF.request(application_base_url, method: .post, parameters: parameters)
+        
+            .response { response in
+                
+                do {
+                    if response.error != nil{
+                        print(response.error as Any, terminator: "")
+                    }
+                    
+                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                        
+                        print(jsonDict as Any, terminator: "")
+                        
+                        // for status alert
+                        var status_alert : String!
+                        status_alert = (jsonDict["status"] as? String)
+                        
+                        // for message alert
+                        var str_data_message : String!
+                        str_data_message = jsonDict["msg"] as? String
+                        
+                        if status_alert.lowercased() == "success" {
+                            
+                            print("=====> yes")
+                            
+                            var ar : NSArray!
+                            ar = (jsonDict["data"] as! Array<Any>) as NSArray
+                            print(ar as Any)
+                            
+                            self.arr_dates.addObjects(from: ar as! [Any])
+//                            let arr:NSArray!
+                            
+                            
+                            for i in 0..<ar.count{
+//                                print(i)
+//                                print(indexx["eventDate"] as! String)
+                                
+                                let item = ar[i] as? [String:Any]
+                                print(item!["eventDate"] as! String)
+                                
+                                self.datesWithEvent.add(item!["eventDate"] as! String)
+//                                var datesWithEvent = ["2023-03-17", "2015-10-06", "2015-10-12", "2015-10-25"]
+                            }
+                            
+//                            print(datesWithEvent)
+                            
+                            ERProgressHud.sharedInstance.hide()
+                            
+ 
                             self.tble_view.delegate = self
                             self.tble_view.dataSource = self
                             self.tble_view.reloadData()
-                            
-                            // self.video_list_WB()
                             
                             
                         } else {
@@ -1030,6 +1210,8 @@ class v_home: UIViewController {
             UIApplication.shared.open(url)
         }
     }
+    
+     
     
 }
 
