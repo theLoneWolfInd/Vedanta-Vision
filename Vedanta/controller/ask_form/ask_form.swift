@@ -294,13 +294,13 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var view_bg:UIView! {
         didSet {
-            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            view_bg.layer.shadowOpacity = 1.0
-            view_bg.layer.shadowRadius = 4
-            view_bg.layer.masksToBounds = false
-            view_bg.layer.cornerRadius = 8
-            view_bg.backgroundColor = .white
+//            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            view_bg.layer.shadowOpacity = 1.0
+//            view_bg.layer.shadowRadius = 4
+//            view_bg.layer.masksToBounds = false
+//            view_bg.layer.cornerRadius = 8
+            view_bg.backgroundColor = .clear
         }
     }
     

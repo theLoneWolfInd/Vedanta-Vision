@@ -60,7 +60,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     @IBOutlet weak var btn_search:UIButton! {
         didSet {
             btn_search.tintColor = .black
-            btn_search.isHidden = true
+            btn_search.isHidden = false
         }
     }
     
@@ -136,10 +136,11 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl! {
         didSet {
             interfaceSegmented.backgroundColor = .clear
-            self.interfaceSegmented.setButtonTitles(buttonTitles: ["Music","Podcast"])
+            self.interfaceSegmented.setButtonTitles(buttonTitles: ["Music","Broadcast"])
             interfaceSegmented.selectorViewColor = UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
             interfaceSegmented.selectorTextColor = UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
             interfaceSegmented.isHidden = true
+//            interfaceSegmented
         }
     }
     
@@ -317,13 +318,14 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         self.lbl_line.isHidden = false
         
         self.interfaceSegmented.backgroundColor = .white
-        self.interfaceSegmented.setButtonTitles(buttonTitles: ["Music","Podcast"])
+        self.interfaceSegmented.setButtonTitles(buttonTitles: ["Music","Broadcast"])
         self.interfaceSegmented.delegate = self
+//        self.interfaceSegmented.font = UIFont(name: "Poppins.Regular", size: 16.0)
         
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 
-            self.tble_view.frame =  CGRect(x: 0, y: 166, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-166)
+            self.tble_view.frame =  CGRect(x: 0, y: 174, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-174)
             
         }, completion: nil)
         
@@ -865,7 +867,7 @@ extension v_wisdom : UITableViewDelegate , UITableViewDataSource {
         } else if "\(item!["Type"]!)" == "2" {
             
             // show audio
-            cell.btn_play.isHidden = true
+            cell.btn_play.isHidden = false
             
 //            print(self.str_which_index as Any)
             

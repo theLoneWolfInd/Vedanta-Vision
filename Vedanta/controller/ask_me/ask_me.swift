@@ -49,7 +49,7 @@ class ask_me: UIViewController {
         
         // self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
-        self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
+//        self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
         
         self.ask_me_anything(page_number: 1)
         
@@ -421,23 +421,38 @@ class ask_me_table_cell:UITableViewCell {
     
     @IBOutlet weak var view_bg:UIView! {
         didSet {
-            /*view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            view_bg.layer.shadowOpacity = 1.0
-            view_bg.layer.shadowRadius = 4
-            view_bg.layer.masksToBounds = false
-            view_bg.layer.cornerRadius = 15
-            view_bg.backgroundColor = .white*/
-            view_bg.backgroundColor = .white
-            view_bg.layer.borderWidth = 1
-            view_bg.layer.borderColor = UIColor.gray.cgColor
+//            view_bg.createDottedLine(width: 5.0, color: UIColor.cyan.cgColor)
+//            /*view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            view_bg.layer.shadowOpacity = 1.0
+//            view_bg.layer.shadowRadius = 4
+//            view_bg.layer.masksToBounds = false
+//            view_bg.layer.cornerRadius = 15
+//            view_bg.backgroundColor = .white*/
+//            view_bg.backgroundColor = .white
+//            view_bg.layer.borderWidth = 1
+//            view_bg.layer.borderColor = UIColor.gray.cgColor
+            
+//            let yourViewBorder = CAShapeLayer()
+//            yourViewBorder.strokeColor = UIColor.black.cgColor
+//            yourViewBorder.lineDashPattern = [2, 2]
+////            yourViewBorder.frame = view_bg.bounds
+//            yourViewBorder.fillColor = nil
+//            yourViewBorder.path = UIBezierPath(rect: view_bg.bounds).cgPath
+//            view_bg.layer.addSublayer(yourViewBorder)
+            
+//            view_bg.addDashedBorder()
+            view_bg.backgroundColor = .clear
+//            view_bg.layer.cornerRadius = 14
+//            view_bg.clipsToBounds = true
         }
     }
     
     @IBOutlet weak var lbl_header_message:UILabel! {
         didSet {
             lbl_header_message.text = "Dealing with an issue and need guidance ? \nPost your question here."
-            lbl_header_message.textColor = .systemOrange
+//            lbl_header_message.textColor = .systemOrange
+            lbl_header_message.textColor = UIColor.init(red: 237.0/255.0, green: 123.0/255.0, blue: 116.0/255.0, alpha: 1)
         }
     }
     
@@ -446,7 +461,7 @@ class ask_me_table_cell:UITableViewCell {
             btn_ask_me.backgroundColor = UIColor.init(red: 230.0/255.0, green: 40.0/255.0, blue: 36.0/255.0, alpha: 1)
             btn_ask_me.setTitle("Ask", for: .normal)
             btn_ask_me.setTitleColor(.white, for: .normal)
-            btn_ask_me.layer.cornerRadius = 10
+            btn_ask_me.layer.cornerRadius = 20
             btn_ask_me.clipsToBounds = true
         }
     }
@@ -485,4 +500,37 @@ class ask_me_table_cell:UITableViewCell {
     
     @IBOutlet weak var lbl_list_answer:UILabel!
     
+}
+
+
+extension UIView {
+    func addDashedBorder() {
+        let color = UIColor.red.cgColor
+
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let frameSize = self.frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+
+        shapeLayer.bounds = shapeRect
+        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = color
+        shapeLayer.lineWidth = 2
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.lineDashPattern = [6,3]
+        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
+
+        self.layer.addSublayer(shapeLayer)
+        }
+//   func createDottedLine(width: CGFloat, color: CGColor) {
+//      let caShapeLayer = CAShapeLayer()
+//      caShapeLayer.strokeColor = color
+//      caShapeLayer.lineWidth = width
+//      caShapeLayer.lineDashPattern = [2,3]
+//      let cgPath = CGMutablePath()
+//      let cgPoint = [CGPoint(x: 0, y: 0), CGPoint(x: self.frame.width, y: 0)]
+//      cgPath.addLines(between: cgPoint)
+//      caShapeLayer.path = cgPath
+//      layer.addSublayer(caShapeLayer)
+//   }
 }

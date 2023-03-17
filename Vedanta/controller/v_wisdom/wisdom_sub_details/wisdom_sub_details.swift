@@ -108,7 +108,7 @@ class wisdom_sub_details: UIViewController {
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
-        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-110)
+        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-120)
         self.view_full_view.addSubview(self.tble_view)
         
         self.tble_view.separatorColor = .clear
@@ -475,15 +475,15 @@ extension wisdom_sub_details : UITableViewDelegate , UITableViewDataSource {
         // let int_1 = (item!["question"] as! String).count
         // print(int_1)
         
-        let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 14.0)!]
-        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Avenir Next", size: 12.0)!]
+//        let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 14.0)!]
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
         
-        let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n\n", attributes: yourAttributes)
+//        let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n\n", attributes: yourAttributes)
         let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
         
         let combination = NSMutableAttributedString()
         
-        combination.append(partOne)
+//        combination.append(partOne)
         combination.append(partTwo)
         
         cell.lbl_list_description.attributedText = combination

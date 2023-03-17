@@ -95,7 +95,7 @@ class v_home_notification: UIViewController {
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
-        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-110)
+        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width, height: self.view.frame.size.height-120)
         self.view_full_view.addSubview(self.tble_view)
         
         self.tble_view.separatorColor = .clear
@@ -544,8 +544,17 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_title.text = (item!["title"] as! String)
             cell.lbl_list_description.text = (item!["message"] as! String)
             
-            cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            if (item!["image"] as! String) == ""  {
+                cell.img_view_list.image = UIImage(named: "logo")
+                cell.img_view_list.contentMode = .scaleAspectFit
+            } else {
+                cell.img_view_list.contentMode = .scaleToFill
+                cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            }
+            
+//            cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//            cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
             
             
             if "\(item!["type"]!)" == "3" {
@@ -999,10 +1008,10 @@ class v_home_notification_table_cell:UITableViewCell {
     @IBOutlet weak var btn_play:UIButton! {
         didSet {
             btn_play.isUserInteractionEnabled = false
-            btn_play.backgroundColor = .lightGray
-            btn_play.tintColor = .white
-            btn_play.layer.cornerRadius = 15
-            btn_play.clipsToBounds = true
+//            btn_play.backgroundColor = .lightGray
+//            btn_play.tintColor = .white
+//            btn_play.layer.cornerRadius = 15
+//            btn_play.clipsToBounds = true
         }
     }
     

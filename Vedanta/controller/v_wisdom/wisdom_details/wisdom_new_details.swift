@@ -10,6 +10,9 @@ import Alamofire
 import SDWebImage
 import AVFoundation
 
+import YouTubePlayer
+import AVKit
+
 struct wisdom_list: Encodable {
     let action: String
     let wisdomId:String
@@ -32,11 +35,12 @@ class wisdom_new_details: UIViewController {
     
     var dict_wisdom_details:NSDictionary!
     var arr_mut_video_list:NSMutableArray! = []
-    
-    var player:AVPlayer!
-    
+
     var str_one_one:String!
     var str_one_two:String!
+    
+    var player: AVPlayer!
+    var playerViewController: AVPlayerViewController!
     
     @IBOutlet weak var view_music_player:UIView! {
         didSet {
@@ -125,7 +129,7 @@ class wisdom_new_details: UIViewController {
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-110)
+        self.tble_view.frame =  CGRect(x: 0, y: 0, width:self.view.frame.size.width, height: self.view.frame.size.height-130)
         self.view_full_view.addSubview(self.tble_view)
         
          print(self.str_one_one as Any)
@@ -158,6 +162,8 @@ class wisdom_new_details: UIViewController {
         self.btn_back.addTarget(self, action: #selector(back_click_method_2), for: .touchUpInside)
         self.btn_share.addTarget(self, action: #selector(share_some_data), for: .touchUpInside)
         
+        self.create_custom_array()
+        
     }
     
     @objc func back_click_method_2() {
@@ -168,7 +174,7 @@ class wisdom_new_details: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.create_custom_array()
+//        self.create_custom_array()
         
     }
     
@@ -233,7 +239,8 @@ class wisdom_new_details: UIViewController {
         /*let x : Int = (dictGetCanabbiesItemDetails["id"] as! Int)
         let myString = String(x)*/
         
-        let parameters = wisdom_list(action: "wisdomdetail", wisdomId: "\(self.dict_wisdom_details["wisdomId"]!)")
+        let parameters = wisdom_list(action: "wisdomdetail",
+                                     wisdomId: "\(self.dict_wisdom_details["wisdomId"]!)")
         
         print(parameters as Any)
         
@@ -1029,7 +1036,10 @@ class wisdom_new_details: UIViewController {
         let push = self.storyboard?.instantiateViewController(withIdentifier: "wisdom_sub_details_id") as! wisdom_sub_details
             
         push.hidesBottomBarWhenPushed = false
-            
+
+        print(self.str_one_one)
+        print(self.str_one_two)
+        
         push.str_one = String(self.str_one_one)
         push.str_two = String(self.str_one_two)
             
@@ -1095,8 +1105,14 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             
             
             
-            cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            if (item!["image"] as! String) == ""  {
+                cell.img_view.image = UIImage(named: "logo")
+                cell.img_view.contentMode = .scaleAspectFit
+            } else {
+                cell.img_view.contentMode = .scaleToFill
+                cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            }
             
             cell.lbl_header_video_title.text = (item!["title"] as! String)
             cell.lbl_header_description.text = (item!["description"] as! String)
@@ -1104,7 +1120,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.sizeToFit()
             
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+//            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
             let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
 //            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
@@ -1147,6 +1163,43 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 
             }
             
+            
+            print(item as Any)
+            print(item!["Link"] as! String)
+            
+            if (item!["Type"] as! String) == "3" {
+            
+                cell.videoPlayer.isHidden = true
+                cell.custom_video_player.isHidden = true
+                
+            } else {
+                
+                if (item!["Link"] as! String) == "" {
+                    
+                    // cell.custom_video_player
+                    cell.custom_video_player.isHidden = false
+                    let videoURL = URL(string: (item!["audioFile"] as! String))
+                    self.player = AVPlayer(url: videoURL!)
+                    self.playerViewController = AVPlayerViewController()
+                    playerViewController.player = self.player
+                    playerViewController.view.frame = cell.custom_video_player.frame
+                    playerViewController.player?.pause()
+                    cell.custom_video_player.addSubview(playerViewController.view)
+                    
+                } else {
+                
+                    cell.custom_video_player.isHidden = true
+                    // youtube
+                    let myVideoURL = NSURL(string: (item!["Link"] as! String))
+                    cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
+                    cell.videoPlayer.play()
+                    
+                }
+                
+            }
+            
+            
+            
             // btn_play
             
             self.btn_like.tag = indexPath.row
@@ -1166,19 +1219,19 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             
             
             if "\(self.dict_wisdom_details["Type"]!)" == "1" {
-                cell.lbl_related_mid.text = "More Video"
+                cell.lbl_related_mid.text = "Related Video"
             } else if "\(self.dict_wisdom_details["Type"]!)" == "2" {
-                cell.lbl_related_mid.text = "More Audio"
+                cell.lbl_related_mid.text = "Related Audio"
             } else {
                 if String(self.str_one_two) == "1" {
                     // self.lbl_navigation_title.text = "Articles"
-                    cell.lbl_related_mid.text = "More Articles"
+                    cell.lbl_related_mid.text = "Related Articles"
                 } else if String(self.str_one_two) == "2" {
                     // self.lbl_navigation_title.text = "Stories"
-                    cell.lbl_related_mid.text = "More Stories"
+                    cell.lbl_related_mid.text = "Related Stories"
                 } else {
                     // self.lbl_navigation_title.text = "Poems"
-                    cell.lbl_related_mid.text = "More Poems"
+                    cell.lbl_related_mid.text = "Related Poems"
                 }
                 
                 
@@ -1201,23 +1254,29 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             cell.selectedBackgroundView = backgroundView
             
             
-            
-            cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+//            print(item!["image"] as! String)
+            if (item!["image"] as! String) == ""  {
+                cell.img_view_list.image = UIImage(named: "logo")
+                cell.img_view_list.contentMode = .scaleAspectFit
+            } else {
+                cell.img_view_list.contentMode = .scaleToFill
+                cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            }
             
             // cell.lbl_header_video_title.text = (item!["title"] as! String)
 //            cell.lbl_list_description.text = (item!["description"] as! String)
             
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
+//            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
-            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+//            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
             let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
             
             let combination = NSMutableAttributedString()
             
-            combination.append(partOne)
+//            combination.append(partOne)
             combination.append(partTwo)
             
             cell.lbl_list_description.attributedText = combination
@@ -1323,6 +1382,9 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 
                 let push = self.storyboard?.instantiateViewController(withIdentifier: "wisdom_new_details_id") as! wisdom_new_details
                 
+                push.str_one_one = String(self.str_one_one)
+                push.str_one_two = String(self.str_one_two)
+                
                 push.hidesBottomBarWhenPushed = false
                 push.dict_wisdom_details = item as NSDictionary?
                 
@@ -1348,8 +1410,15 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                     
                 } else {
                     
-                    self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
-                                                          str_video_title: (item!["title"] as! String))
+                    /*let indexPath = IndexPath.init(row: 0, section: 0)
+                    let cell = self.tble_view.cellForRow(at: indexPath) as! wisdom_new_details_table_cell
+                    
+                    let myVideoURL = NSURL(string: (item!["Link"] as! String))
+                    cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
+                    cell.videoPlayer.play()*/
+                    
+//                    self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
+//                                                          str_video_title: (item!["title"] as! String))
                     
                 }
                 
@@ -1361,6 +1430,8 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 
                 let push = self.storyboard?.instantiateViewController(withIdentifier: "wisdom_new_details_id") as! wisdom_new_details
                 
+                push.str_one_one = String(self.str_one_one)
+                push.str_one_two = String(self.str_one_two)
                 push.hidesBottomBarWhenPushed = false
                 push.dict_wisdom_details = item as NSDictionary?
                 
@@ -1448,15 +1519,63 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
 
 class wisdom_new_details_table_cell:UITableViewCell {
     
+    @IBOutlet weak var custom_video_player:UIView! {
+        didSet {
+            custom_video_player.backgroundColor = .clear
+//            let path = UIBezierPath(roundedRect:custom_video_player.bounds,
+//                                    byRoundingCorners:[.topRight, .topLeft],
+//                                    cornerRadii: CGSize(width: 12, height:  12))
+//
+//            let maskLayer = CAShapeLayer()
+//
+//            maskLayer.path = path.cgPath
+//            custom_video_player.layer.mask = maskLayer
+            
+//            custom_video_player.roundCorners(corners: [.topLeft, .topRight])
+            
+        }
+    }
+    @IBOutlet var videoPlayer: YouTubePlayerView! {
+        didSet {
+            videoPlayer.backgroundColor = .clear
+//            let path = UIBezierPath(roundedRect:videoPlayer.bounds,
+//                                    byRoundingCorners:[.topRight, .topLeft],
+//                                    cornerRadii: CGSize(width: 12, height:  12))
+//
+//            let maskLayer = CAShapeLayer()
+//
+//            maskLayer.path = path.cgPath
+//            videoPlayer.layer.mask = maskLayer
+            
+//            videoPlayer.roundCorners(corners: [.topLeft, .topRight])
+            
+        }
+    }
+   
+    
     @IBOutlet weak var view_bg:UIView! {
         didSet {
+//            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            view_bg.layer.shadowOpacity = 1.0
+//            view_bg.layer.shadowRadius = 4
+//            view_bg.layer.masksToBounds = false
+//            view_bg.layer.cornerRadius = 8
+            view_bg.backgroundColor = .white
+            
             view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             view_bg.layer.shadowOpacity = 1.0
-            view_bg.layer.shadowRadius = 4
+            view_bg.layer.shadowRadius = 3.0
             view_bg.layer.masksToBounds = false
-            view_bg.layer.cornerRadius = 8
-            view_bg.backgroundColor = .white
+            view_bg.layer.cornerRadius = 12.0
+            
+        }
+    }
+    
+    @IBOutlet weak var view_bg1:UIView! {
+        didSet {
+            view_bg1.backgroundColor = .clear
         }
     }
     
