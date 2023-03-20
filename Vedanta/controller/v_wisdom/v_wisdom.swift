@@ -137,8 +137,11 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         didSet {
             interfaceSegmented.backgroundColor = .clear
             self.interfaceSegmented.setButtonTitles(buttonTitles: ["Music","Broadcast"])
+            
             interfaceSegmented.selectorViewColor = UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
+            
             interfaceSegmented.selectorTextColor = UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
+            
             interfaceSegmented.isHidden = true
 //            interfaceSegmented
         }

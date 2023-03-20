@@ -10,7 +10,12 @@ import Alamofire
 import SDWebImage
 import AVFoundation
 
+import AVKit
+
 class v_related_audio: UIViewController {
+    
+    var player: AVPlayer!
+    var playerViewController: AVPlayerViewController!
     
     var dict_get_audio_data:NSDictionary!
     
@@ -21,7 +26,7 @@ class v_related_audio: UIViewController {
     
     var str_check_related_auidos:String! = "0"
     
-    var player:AVPlayer!
+     
     
     @IBOutlet weak var btn_share:UIButton!
     
@@ -107,7 +112,7 @@ class v_related_audio: UIViewController {
         self.view_full_view.backgroundColor = app_BG_color
         
         self.tble_view.separatorColor = .clear
-        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-110)
+        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width, height: self.view.frame.size.height-110)
         self.view_full_view.addSubview(self.tble_view)
         
         self.btn_back.addTarget(self, action: #selector(back_click_method_22), for: .touchUpInside)
@@ -116,6 +121,12 @@ class v_related_audio: UIViewController {
         self.btn_like.addTarget(self, action: #selector(like_click_method), for: .touchUpInside)
         
         self.btn_share.addTarget(self, action: #selector(share_some_data), for: .touchUpInside)
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         self.create_custom_array()
     }
@@ -267,7 +278,9 @@ class v_related_audio: UIViewController {
                                                         "created"   : (self.dict_get_audio_data["created"] as! String),
                                                         "image"     : (self.dict_get_audio_data["image"] as! String),
                                                         "title"     : (self.dict_get_audio_data["title"] as! String),
-                                                        "description"   : (self.dict_get_audio_data["description"] as! String),
+                            "description"   : (self.dict_get_audio_data["description"] as! String),
+                            "youLiked"   : (self.dict_get_audio_data["youLiked"] as! String),
+                            "audioId"   : "\(self.dict_get_audio_data["audioId"]!)",
                                     ]
                                     self.arr_mut_audio_list.add(custom_array)
                                     
@@ -280,6 +293,8 @@ class v_related_audio: UIViewController {
                                                         "image"     : "",
                                                         "title"     : "",
                                                         "description"   : "",
+                                                        "youLiked"   : "",
+                                                        "audioId"   : ""
                                     ]
                                     self.arr_mut_audio_list.add(custom_array)
                                     
@@ -300,6 +315,8 @@ class v_related_audio: UIViewController {
                                                     "image"     : (item!["image"] as! String),
                                                     "title"     : (item!["title"] as! String),
                                                     "description"   : (item!["description"] as! String),
+                                                    "youLiked"   : (item!["youLiked"] as! String),
+                                                    "audioId"   : "\(item!["audioId"]!)",
                                 ]
                                 self.arr_mut_audio_list.add(custom_array)
                                 
@@ -683,6 +700,15 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.text = (item!["description"] as! String)
             cell.lbl_header_video_title.text = (item!["title"] as! String)
             
+            cell.custom_video_player.isHidden = false
+            let videoURL = URL(string: (item!["audioFile"] as! String))
+            self.player = AVPlayer(url: videoURL!)
+            self.playerViewController = AVPlayerViewController()
+            playerViewController.player = self.player
+            playerViewController.view.frame = cell.custom_video_player.frame
+            playerViewController.player?.pause()
+            cell.custom_video_player.addSubview(playerViewController.view)
+            
             return cell
             
         } else if indexPath.row == 1 {
@@ -840,6 +866,9 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
                         _ in
+                        
+                        self.subscribe_click_method()
+                        
                     }
                     let cancel = NewYorkButton(title: "dismiss", style: .cancel)
                     
@@ -850,7 +879,17 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                     
                 } else {
                     
-                    // Subscribe DONE , Play Video
+                    let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
+                    print(item as Any)
+                    
+                    let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
+                    
+                    push.hidesBottomBarWhenPushed = false
+                    push.dict_get_audio_data = item as NSDictionary?
+                    
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
+                    /*// Subscribe DONE , Play Video
                     self.player?.replaceCurrentItem(with: nil)
                     
                     UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
@@ -885,7 +924,7 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                         
                         self.setup_voice_functionality(get_url: url! as NSURL)
                         
-                    })
+                    })*/
                     
                 }
                 
@@ -901,6 +940,17 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
         
         else {
             
+            let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
+            print(item as Any)
+            
+            let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
+            
+            push.hidesBottomBarWhenPushed = false
+            push.dict_get_audio_data = item as NSDictionary?
+            
+            self.navigationController?.pushViewController(push, animated: true)
+            
+            /*
             self.player?.replaceCurrentItem(with: nil)
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
@@ -935,7 +985,7 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                 
                 self.setup_voice_functionality(get_url: url! as NSURL)
                 
-            })
+            })*/
             
             
         }
@@ -966,17 +1016,6 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
 
 class v_related_audio_table_cell:UITableViewCell {
     
-    @IBOutlet weak var view_bg:UIView! {
-        didSet {
-            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            view_bg.layer.shadowOpacity = 1.0
-            view_bg.layer.shadowRadius = 4
-            view_bg.layer.masksToBounds = false
-            view_bg.layer.cornerRadius = 8
-            view_bg.backgroundColor = .white
-        }
-    }
     
     @IBOutlet weak var img_view:UIImageView! {
         didSet {
@@ -1013,6 +1052,38 @@ class v_related_audio_table_cell:UITableViewCell {
             btn_play.tintColor = .white
             btn_play.layer.cornerRadius = 15
             btn_play.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var custom_video_player:UIView! {
+        didSet {
+            custom_video_player.backgroundColor = .clear
+        }
+    }
+    
+    
+    @IBOutlet weak var view_bg1:UIView! {
+        didSet {
+            /*view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            view_bg.layer.shadowOpacity = 1.0
+            view_bg.layer.shadowRadius = 4
+            view_bg.layer.masksToBounds = false
+            view_bg.layer.cornerRadius = 8*/
+            view_bg1.backgroundColor = .clear
+        }
+    }
+    
+    @IBOutlet weak var view_bg:UIView! {
+        didSet {
+            view_bg.backgroundColor = .white
+            
+            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            view_bg.layer.shadowOpacity = 1.0
+            view_bg.layer.shadowRadius = 3.0
+            view_bg.layer.masksToBounds = false
+            view_bg.layer.cornerRadius = 12.0
         }
     }
     

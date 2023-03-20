@@ -11,12 +11,18 @@ import SDWebImage
 import AVFoundation
 //"action"    : "videodetails",
 //"videoId"   : String(self.str_and_my_id_is)
+import YouTubePlayer
+import AVKit
+
 struct video_list: Encodable {
     let action: String
     let videoId:String
 }
 
 class v_related_videos: UIViewController {
+    
+    var player: AVPlayer!
+    var playerViewController: AVPlayerViewController!
     
     var dict_get_video_data:NSDictionary!
     
@@ -663,6 +669,56 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.text = (item!["description"] as! String)
             cell.lbl_header_video_title.text = (item!["title"] as! String)
             
+            print(item!["link"] as! String)
+            
+            print((item!["link"] as! String).prefix(16))
+             
+            if (item!["link"] as! String).prefix(16) == "https://youtu.be" {
+                
+                cell.custom_video_player.isHidden = true
+                
+                let myVideoURL = NSURL(string: (item!["link"] as! String))
+                cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
+                cell.videoPlayer.play()
+                
+            } else {
+                print("normal")
+                
+                cell.custom_video_player.isHidden = false
+                
+                let videoURL = URL(string: (item!["link"] as! String))
+                self.player = AVPlayer(url: videoURL!)
+                self.playerViewController = AVPlayerViewController()
+                playerViewController.player = self.player
+                playerViewController.view.frame = cell.custom_video_player.frame
+                playerViewController.player?.pause()
+                cell.custom_video_player.addSubview(playerViewController.view)
+            }
+                
+//                if (item!["link"] as! String) == "" {
+//
+//                    // cell.custom_video_player
+////                    cell.custom_video_player.isHidden = false
+////                    let videoURL = URL(string: (item!["audioFile"] as! String))
+////                    self.player = AVPlayer(url: videoURL!)
+////                    self.playerViewController = AVPlayerViewController()
+////                    playerViewController.player = self.player
+////                    playerViewController.view.frame = cell.custom_video_player.frame
+////                    playerViewController.player?.pause()
+////                    cell.custom_video_player.addSubview(playerViewController.view)
+//
+//                } else {
+//
+//
+////                    cell.custom_video_player.isHidden = true
+//                    // youtube
+//                    let myVideoURL = NSURL(string: (item!["link"] as! String))
+//                    cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
+//                    cell.videoPlayer.play()
+//
+//                }
+                
+//            }
             
             
             return cell
@@ -696,15 +752,15 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
+//            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
-            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+//            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
             let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
             
             let combination = NSMutableAttributedString()
             
-            combination.append(partOne)
+//            combination.append(partOne)
             combination.append(partTwo)
             
             cell.lbl_list_description.attributedText = combination
@@ -799,6 +855,15 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                 
             }
             
+            
+//            print(item as Any)
+            
+            
+            
+            
+            
+            
+            
             return cell
             
         }
@@ -824,6 +889,8 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
                         _ in
+                        
+                        self.subscribe_click_method()
                     }
                     let cancel = NewYorkButton(title: "dismiss", style: .cancel)
                     
@@ -914,17 +981,31 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
 
 class v_related_videos_table_cell:UITableViewCell {
     
-    @IBOutlet weak var view_bg:UIView! {
+    @IBOutlet weak var view_bg1:UIView! {
         didSet {
-            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            /*view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             view_bg.layer.shadowOpacity = 1.0
             view_bg.layer.shadowRadius = 4
             view_bg.layer.masksToBounds = false
-            view_bg.layer.cornerRadius = 8
-            view_bg.backgroundColor = .white
+            view_bg.layer.cornerRadius = 8*/
+            view_bg1.backgroundColor = .clear
         }
     }
+    
+    @IBOutlet weak var view_bg:UIView! {
+        didSet {
+            view_bg.backgroundColor = .white
+            
+            view_bg.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            view_bg.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            view_bg.layer.shadowOpacity = 1.0
+            view_bg.layer.shadowRadius = 3.0
+            view_bg.layer.masksToBounds = false
+            view_bg.layer.cornerRadius = 12.0
+        }
+    }
+    
     
     @IBOutlet weak var img_view:UIImageView! {
         didSet {
@@ -962,6 +1043,18 @@ class v_related_videos_table_cell:UITableViewCell {
             btn_play.tintColor = .white
             btn_play.layer.cornerRadius = 15
             btn_play.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var custom_video_player:UIView! {
+        didSet {
+            custom_video_player.backgroundColor = .clear
+        }
+    }
+    @IBOutlet var videoPlayer: YouTubePlayerView! {
+        didSet {
+            videoPlayer.backgroundColor = .black
+
         }
     }
     

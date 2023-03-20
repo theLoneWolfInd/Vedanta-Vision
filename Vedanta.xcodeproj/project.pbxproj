@@ -10,6 +10,7 @@
 		9948C998B7BF2B8B46AC2D7B /* Pods_Vedanta_VedantaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2847757ED6060690524FD7 /* Pods_Vedanta_VedantaUITests.framework */; };
 		B904DAC128F98DD400940506 /* category_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B904DAC028F98DD400940506 /* category_list.swift */; };
 		B90AF80E28F582840012333D /* read_article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90AF80D28F582840012333D /* read_article.swift */; };
+		B912918729C493750077390B /* forgot_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B912918629C493750077390B /* forgot_password.swift */; };
 		B91E63E028F6A6D30026C7F7 /* related_article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E63DF28F6A6D30026C7F7 /* related_article.swift */; };
 		B91E63E328F6AEE90026C7F7 /* v_advertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E63E228F6AEE90026C7F7 /* v_advertisement.swift */; };
 		B922D45B2902A7B8000CDFB5 /* reset_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B922D45A2902A7B7000CDFB5 /* reset_password.swift */; };
@@ -123,6 +124,7 @@
 		B904DAC028F98DD400940506 /* category_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = category_list.swift; sourceTree = "<group>"; };
 		B90AF80D28F582840012333D /* read_article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = read_article.swift; sourceTree = "<group>"; };
 		B911F73329000D9900348449 /* Vedanta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vedanta.entitlements; sourceTree = "<group>"; };
+		B912918629C493750077390B /* forgot_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgot_password.swift; sourceTree = "<group>"; };
 		B91E63DF28F6A6D30026C7F7 /* related_article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = related_article.swift; sourceTree = "<group>"; };
 		B91E63E228F6AEE90026C7F7 /* v_advertisement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = v_advertisement.swift; sourceTree = "<group>"; };
 		B922D45A2902A7B7000CDFB5 /* reset_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reset_password.swift; sourceTree = "<group>"; };
@@ -262,6 +264,14 @@
 				B90AF80D28F582840012333D /* read_article.swift */,
 			);
 			path = read_article;
+			sourceTree = "<group>";
+		};
+		B912918529C493650077390B /* forgot_password */ = {
+			isa = PBXGroup;
+			children = (
+				B912918629C493750077390B /* forgot_password.swift */,
+			);
+			path = forgot_password;
 			sourceTree = "<group>";
 		};
 		B91E63DE28F6A6C50026C7F7 /* related_article */ = {
@@ -665,6 +675,7 @@
 		B9DF1D2A28D05E33000425F4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				B912918529C493650077390B /* forgot_password */,
 				B9EBD45429C04D23003210BE /* youtube_video */,
 				B9648A8A2907B78200DE914F /* subscription */,
 				B922D4592902A7A2000CDFB5 /* reset_password */,
@@ -1069,6 +1080,7 @@
 				B939F26928F4277700E028B3 /* ActionSheetView.swift in Sources */,
 				B91E63E328F6AEE90026C7F7 /* v_advertisement.swift in Sources */,
 				B939F26328F4277700E028B3 /* NewYorkButton.swift in Sources */,
+				B912918729C493750077390B /* forgot_password.swift in Sources */,
 				B95A97CB28FED9BF00893072 /* ask_me_faq_cat.swift in Sources */,
 				B94049742902875B00D80C6F /* explore_more.swift in Sources */,
 				B93A3A7428D200E0008CD1AC /* CustomSegmentedControl.swift in Sources */,

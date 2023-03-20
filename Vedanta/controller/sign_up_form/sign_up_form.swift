@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class sign_up_form: UIViewController {
+class sign_up_form: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
@@ -33,6 +33,9 @@ class sign_up_form: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard_2))
+        view.addGestureRecognizer(tap)
+        
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
@@ -40,6 +43,11 @@ class sign_up_form: UIViewController {
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
+    }
+    
+    @objc func dismissKeyboard_2() {
+        self.tble_view.setContentOffset(CGPointZero, animated:true)
+        self.view.endEditing(true)
     }
 
     @objc func validation_before_sign_up() {
@@ -49,15 +57,47 @@ class sign_up_form: UIViewController {
         
         if cell.txt_full_name.text! == "" {
              
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Name should not be empty"), style: .alert)
+            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
         } else if cell.txt_email.text! == "" {
             
+           let alert = NewYorkAlertController(title: String("Alert"), message: String("Email should not be empty"), style: .alert)
+           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           alert.addButtons([cancel])
+           self.present(alert, animated: true)
+           
         } else if cell.txt_phone.text! == "" {
             
+           let alert = NewYorkAlertController(title: String("Alert"), message: String("Phone should not be empty"), style: .alert)
+           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           alert.addButtons([cancel])
+           self.present(alert, animated: true)
+           
         } else if cell.txt_password.text! == "" {
             
+           let alert = NewYorkAlertController(title: String("Alert"), message: String("Password should not be empty"), style: .alert)
+           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           alert.addButtons([cancel])
+           self.present(alert, animated: true)
+           
         } else if cell.txt_confirm_password.text! == "" {
             
+           let alert = NewYorkAlertController(title: String("Alert"), message: String("Confirm Password should not be empty"), style: .alert)
+           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           alert.addButtons([cancel])
+           self.present(alert, animated: true)
+           
         } else if cell.txt_password.text! != cell.txt_confirm_password.text! {
+            
+            
+           let alert = NewYorkAlertController(title: String("Alert"), message: String("Password not matched. Please try again"), style: .alert)
+           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           alert.addButtons([cancel])
+           self.present(alert, animated: true)
+           
             
         } else {
         
@@ -162,6 +202,12 @@ class sign_up_form: UIViewController {
             }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.tble_view.setContentOffset(CGPointZero, animated:true)
+        self.view.endEditing(true)
+        return true
+    }
+    
 }
 
 extension sign_up_form : UITableViewDelegate , UITableViewDataSource {
@@ -184,6 +230,12 @@ extension sign_up_form : UITableViewDelegate , UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
+        
+        cell.txt_email.delegate = self
+        cell.txt_password.delegate = self
+        cell.txt_phone.delegate = self
+        cell.txt_full_name.delegate = self
+        cell.txt_confirm_password.delegate = self
         
         cell.btn_sign_up.addTarget(self, action: #selector(validation_before_sign_up), for: .touchUpInside)
         
@@ -222,6 +274,7 @@ class sign_up_form_table_cell:UITableViewCell {
             txt_email.layer.borderWidth = 0.8
             txt_email.layer.cornerRadius = 8
             txt_email.clipsToBounds = true
+            txt_email.keyboardType = .emailAddress
         }
     }
     
@@ -243,6 +296,7 @@ class sign_up_form_table_cell:UITableViewCell {
             txt_phone.layer.borderWidth = 0.8
             txt_phone.layer.cornerRadius = 8
             txt_phone.clipsToBounds = true
+            txt_phone.keyboardType = .numberPad
         }
     }
     
@@ -263,5 +317,7 @@ class sign_up_form_table_cell:UITableViewCell {
             btn_sign_up.clipsToBounds = true
         }
     }
+    
+    
     
 }

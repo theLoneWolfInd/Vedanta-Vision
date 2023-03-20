@@ -42,7 +42,15 @@ class ask_form: UIViewController , UITextViewDelegate {
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
+        
+    }
+    
+    @objc override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +137,14 @@ class ask_form: UIViewController , UITextViewDelegate {
             
         } else if cell.txt_view.text == "" {
             
-            let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Enter comment"), style: .alert)
+            let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
+            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
+        }  else if cell.txt_view.text == " Write Your question here..." {
+            
+            let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
             let cancel = NewYorkButton(title: "dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
@@ -285,7 +300,7 @@ extension ask_form : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 430
     }
     
 }
@@ -314,13 +329,22 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var txt_your_name:UITextField! {
         didSet {
+//            txt_your_name.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            txt_your_name.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            txt_your_name.layer.shadowOpacity = 1.0
+//            txt_your_name.layer.shadowRadius = 8
+//            txt_your_name.layer.masksToBounds = false
+//            txt_your_name.layer.cornerRadius = 8
+//            txt_your_name.backgroundColor = .white
+//            txt_your_name.setLeftPaddingPoints(24)
+//            txt_your_name.isUserInteractionEnabled = false
+            
             txt_your_name.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             txt_your_name.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             txt_your_name.layer.shadowOpacity = 1.0
-            txt_your_name.layer.shadowRadius = 8
+            txt_your_name.layer.shadowRadius = 3.0
             txt_your_name.layer.masksToBounds = false
-            txt_your_name.layer.cornerRadius = 8
-            txt_your_name.backgroundColor = .white
+            txt_your_name.layer.cornerRadius = 12.0
             txt_your_name.setLeftPaddingPoints(24)
             txt_your_name.isUserInteractionEnabled = false
         }
@@ -328,13 +352,22 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var txt_your_email:UITextField! {
         didSet {
+//            txt_your_email.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            txt_your_email.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            txt_your_email.layer.shadowOpacity = 1.0
+//            txt_your_email.layer.shadowRadius = 8
+//            txt_your_email.layer.masksToBounds = false
+//            txt_your_email.layer.cornerRadius = 8
+//            txt_your_email.backgroundColor = .white
+//            txt_your_email.setLeftPaddingPoints(24)
+//            txt_your_email.isUserInteractionEnabled = false
+            
             txt_your_email.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             txt_your_email.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             txt_your_email.layer.shadowOpacity = 1.0
-            txt_your_email.layer.shadowRadius = 8
+            txt_your_email.layer.shadowRadius = 3.0
             txt_your_email.layer.masksToBounds = false
-            txt_your_email.layer.cornerRadius = 8
-            txt_your_email.backgroundColor = .white
+            txt_your_email.layer.cornerRadius = 12.0
             txt_your_email.setLeftPaddingPoints(24)
             txt_your_email.isUserInteractionEnabled = false
         }
@@ -345,11 +378,11 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
             txt_choose_category.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             txt_choose_category.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             txt_choose_category.layer.shadowOpacity = 1.0
-            txt_choose_category.layer.shadowRadius = 8
+            txt_choose_category.layer.shadowRadius = 3.0
             txt_choose_category.layer.masksToBounds = false
-            txt_choose_category.layer.cornerRadius = 8
-            txt_choose_category.backgroundColor = .white
+            txt_choose_category.layer.cornerRadius = 12.0
             txt_choose_category.setLeftPaddingPoints(24)
+            txt_choose_category.isUserInteractionEnabled = false
         }
     }
     
@@ -358,14 +391,15 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
             txt_view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             txt_view.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             txt_view.layer.shadowOpacity = 1.0
-            txt_view.layer.shadowRadius = 8
+            txt_view.layer.shadowRadius = 3.0
             txt_view.layer.masksToBounds = false
-            txt_view.layer.cornerRadius = 8
-            txt_view.backgroundColor = .white
+            txt_view.layer.cornerRadius = 12.0
+//            txt_view.setLeftPaddingPoints(24)
+            txt_view.isUserInteractionEnabled = true
             // txt_view.setLeftPaddingPoints(24)
             
             
-            txt_view.text = "Write Your question here..."
+            txt_view.text = " Write Your question here..."
             txt_view.textColor = UIColor.lightGray
             
         }

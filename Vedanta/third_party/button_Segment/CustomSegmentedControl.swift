@@ -104,7 +104,7 @@ extension CustomSegmentedControl {
             button.setTitle(buttonTitle, for: .normal)
             button.addTarget(self, action:#selector(CustomSegmentedControl.buttonAction(sender:)), for: .touchUpInside)
             button.setTitleColor(textColor, for: .normal)
-            button.titleLabel?.font =  UIFont(name: "Poppins-Regular", size: 18)
+            button.titleLabel?.font =  UIFont(name: "Poppins-SemiBold", size: 18)
             buttons.append(button)
         }
         buttons[0].setTitleColor(selectorTextColor, for: .normal)

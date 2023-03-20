@@ -485,15 +485,15 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
 //            cell.lbl_list_description.text = (item!["description"] as! String)
             
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
+//            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
-            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+//            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
             let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
             
             let combination = NSMutableAttributedString()
             
-            combination.append(partOne)
+//            combination.append(partOne)
             combination.append(partTwo)
             
             cell.lbl_list_description.attributedText = combination
@@ -612,6 +612,9 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
                         _ in
+                        
+                        self.subscribe_click_method()
+                        
                     }
                     let cancel = NewYorkButton(title: "dismiss", style: .cancel)
                     

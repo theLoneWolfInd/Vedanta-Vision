@@ -43,7 +43,7 @@ extension UIViewController {
     
     @objc func please_login_to_continue() {
         
-        let alert = NewYorkAlertController(title: String("Login"), message: String("Please login to use this feature."), style: .alert)
+        let alert = NewYorkAlertController(title: String("Login"), message: String("Please login to update your App Setting."), style: .alert)
         
         let login = NewYorkButton(title: "Login", style: .default) {
             _ in
@@ -378,7 +378,7 @@ extension UIViewController {
             
         } else {
             
-            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to use this feature."), style: .alert)
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to Edit your profile."), style: .alert)
             
             let login = NewYorkButton(title: "login", style: .default) {
                 _ in

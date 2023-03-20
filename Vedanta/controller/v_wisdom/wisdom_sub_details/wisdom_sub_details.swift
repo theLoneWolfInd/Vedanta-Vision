@@ -498,7 +498,7 @@ extension wisdom_sub_details : UITableViewDelegate , UITableViewDataSource {
         } else if "\(item!["Type"]!)" == "2" {
             
             // show audio
-            cell.btn_play.isHidden = true
+            cell.btn_play.isHidden = false
             
             // print(self.str_which_index as Any)
             

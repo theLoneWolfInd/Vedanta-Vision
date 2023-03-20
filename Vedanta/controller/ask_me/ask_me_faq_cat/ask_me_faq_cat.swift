@@ -151,9 +151,12 @@ class ask_me_faq_cat: UIViewController {
     @objc func ask_me_anything(page_number:Int) {
         self.view.endEditing(true)
         
-        self.arr_mut_ask_me.removeAllObjects()
+//        self.arr_mut_ask_me.removeAllObjects()
         
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        if (page_number == 1) {
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        }
+        
         
         if IsInternetAvailable() == false {
             self.please_check_your_internet_connection()
@@ -199,26 +202,33 @@ class ask_me_faq_cat: UIViewController {
                             ar = (jsonDict["data"] as! Array<Any>) as NSArray
                             self.arr_mut_ask_me.addObjects(from: ar as! [Any])
                             
-                            if self.arr_mut_ask_me.count == 0 {
-                                
-                                /*let alert = NewYorkAlertController(title: String("Alert"), message: String("No data found."), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel) {
-                                    _ in
-                                    self.back_click_method()
-                                }
-                                alert.addButtons([cancel])
-                                self.present(alert, animated: true)*/
-                                
-                                
-                            } else {
-                                
-                                print(self.arr_mut_ask_me as Any)
-                                
-                                self.tble_view.delegate = self
-                                self.tble_view.dataSource = self
-                                self.tble_view.reloadData()
-                                
-                            }
+                            
+                            self.tble_view.delegate = self
+                            self.tble_view.dataSource = self
+                            self.tble_view.reloadData()
+                            self.loadMore = 1
+                            
+                            
+//                            if self.arr_mut_ask_me.count == 0 {
+//                                print("no data")
+//                                /*let alert = NewYorkAlertController(title: String("Alert"), message: String("No data found."), style: .alert)
+//                                let cancel = NewYorkButton(title: "dismiss", style: .cancel) {
+//                                    _ in
+//                                    self.back_click_method()
+//                                }
+//                                alert.addButtons([cancel])
+//                                self.present(alert, animated: true)*/
+//
+//
+//                            } else {
+//
+//                                print(self.arr_mut_ask_me as Any)
+//
+//                                self.tble_view.delegate = self
+//                                self.tble_view.dataSource = self
+//                                self.tble_view.reloadData()
+//                                self.loadMore = 1
+//                            }
                             
                             
                             // self.loadMore = 1
@@ -262,7 +272,10 @@ class ask_me_faq_cat: UIViewController {
         
         // self.arr_mut_ask_me.removeAllObjects()
         
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        if page_number == 1 {
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        }
+        
         
         if IsInternetAvailable() == false {
             self.please_check_your_internet_connection()
@@ -276,7 +289,7 @@ class ask_me_faq_cat: UIViewController {
         let parameters = [
             "action"    : "faqlist",
             "pageNo"    : page_number,
-             "categoryId"    : String(""),
+            "categoryId"    : String(""),
             
         ] as [String : Any]
         
@@ -508,7 +521,7 @@ extension ask_me_faq_cat : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let item = self.arr_mut_ask_me[indexPath.row] as? [String:Any]
+//        let item = self.arr_mut_ask_me[indexPath.row] as? [String:Any]
         
         /*if (item!["status"] as! String) == "header" {
          return 198

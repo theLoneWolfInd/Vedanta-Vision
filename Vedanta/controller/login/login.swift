@@ -48,11 +48,6 @@ class login: UIViewController , UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var img_view:UIImageView! {
-        didSet {
-            img_view.backgroundColor = .clear
-        }
-    }
     
     @IBOutlet weak var view_full_view:UIView! {
         didSet {
@@ -60,65 +55,13 @@ class login: UIViewController , UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var txt_email:UITextField! {
-        didSet {
-            txt_email.setLeftPaddingPoints(24)
-            txt_email.layer.borderColor = UIColor.lightGray.cgColor
-            txt_email.layer.borderWidth = 0.8
-            txt_email.layer.cornerRadius = 8
-            txt_email.clipsToBounds = true
-        }
-    }
     
-    @IBOutlet weak var txt_password:UITextField! {
-        didSet {
-            txt_password.setLeftPaddingPoints(24)
-            txt_password.layer.borderColor = UIColor.lightGray.cgColor
-            txt_password.layer.borderWidth = 0.8
-            txt_password.layer.cornerRadius = 8
-            txt_password.clipsToBounds = true
-            txt_password.isSecureTextEntry = true
-        }
-    }
     
-    @IBOutlet weak var btn_forgot_password:UIButton! {
+    @IBOutlet weak var tble_view:UITableView! {
         didSet {
-            
-        }
-    }
-    
-    @IBOutlet weak var btn_sign_up:UIButton! {
-        didSet {
-            
-        }
-    }
-    
-    @IBOutlet weak var btn_sign_in:UIButton! {
-        didSet {
-            btn_sign_in.layer.cornerRadius = 8
-            btn_sign_in.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var btn_continue_with_facebook:UIButton! {
-        didSet {
-            btn_continue_with_facebook.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            btn_continue_with_facebook.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            btn_continue_with_facebook.layer.shadowOpacity = 1.0
-            btn_continue_with_facebook.layer.shadowRadius = 4
-            btn_continue_with_facebook.layer.masksToBounds = false
-            btn_continue_with_facebook.layer.cornerRadius = 12
-        }
-    }
-    
-    @IBOutlet weak var btn_continue_with_google:UIButton! {
-        didSet {
-            btn_continue_with_google.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            btn_continue_with_google.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            btn_continue_with_google.layer.shadowOpacity = 1.0
-            btn_continue_with_google.layer.shadowRadius = 4
-            btn_continue_with_google.layer.masksToBounds = false
-            btn_continue_with_google.layer.cornerRadius = 12
+            tble_view.delegate = self
+            tble_view.dataSource = self
+            tble_view.backgroundColor = .clear
         }
     }
     
@@ -130,18 +73,14 @@ class login: UIViewController , UITextFieldDelegate {
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
-        self.btn_sign_in.addTarget(self, action: #selector(login_in_vedanta_WB), for: .touchUpInside)
+   
         
-        self.btn_sign_up.addTarget(self, action: #selector(sign_up_click_method), for: .touchUpInside)
         
-        self.btn_forgot_password.addTarget(self, action: #selector(forgot_password_click_method), for: .touchUpInside)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.tble_view.separatorColor = .clear
         
-        self.txt_email.delegate = self
-        self.txt_password.delegate = self
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         /*if let token = AccessToken.current,
                 !token.isExpired {
@@ -157,11 +96,7 @@ class login: UIViewController , UITextFieldDelegate {
         facebookLogin()
         
         
-        // social buttons
-        btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
-            guard let strongSelf = self else {return}
-            RRFBLogin.shared.fbLogin(viewController: strongSelf)
-        }.disposed(by: rxbag)
+        
         
         // google old
 //        btn_continue_with_google.rx.tap.bind{ [weak self] _ in
@@ -185,14 +120,18 @@ class login: UIViewController , UITextFieldDelegate {
 //        btn_continue_with_facebook.permissions = ["public_profile", "email"]
 //        btn_continue_with_facebook.addTarget(self, action: #selector(continue_with_facebook_click_method), for: .touchUpInside)
         
-        // google
-        btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
+        
         
 //        let loginButton = FBLoginButton()
 //        loginButton.delegate = self
 //        loginButton.center = view.center
 //                        view.addSubview(loginButton)
         
+    }
+    
+    @objc override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func loginButton(_ loginButton: FBLoginButton!, didCompleteWith result: LoginManagerLoginResult!, error: Error!) {
@@ -394,9 +333,11 @@ class login: UIViewController , UITextFieldDelegate {
     }
     
     @objc func facebook_login_setup() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! login_table_cell
         
         // social buttons
-        self.btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
+        cell.btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
             guard let strongSelf = self else {return}
             RRFBLogin.shared.fbLogin(viewController: strongSelf)
         }.disposed(by: rxbag)
@@ -481,32 +422,39 @@ class login: UIViewController , UITextFieldDelegate {
     
     @objc func forgot_password_click_method() {
         
-        let alert = UIAlertController(title:"Forgot password", message: "Please Enter your Registered Email address.", preferredStyle:UIAlertController.Style.alert)
+        let push = self.storyboard?.instantiateViewController(withIdentifier: "forgot_password_id") as! forgot_password
+        self.navigationController?.pushViewController(push, animated: true)
         
-        //ADD TEXT FIELD (YOU CAN ADD MULTIPLE TEXTFILED AS WELL)
-        alert.addTextField { (textField : UITextField!) in
-            textField.placeholder = "email address..."
-            textField.delegate = self
-        }
-        
-        // SAVE BUTTON
-        let save = UIAlertAction(title: "Submit", style: .default, handler: { saveAction -> Void in
-            
-            let textField = alert.textFields![0] as UITextField
-            print("\(textField.text!)")
-            
-            self.forgot_password_click_method_WB(str_email_address: "\(textField.text!)")
-            
-        })
-        // CANCEL BUTTON
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {
-            (action : UIAlertAction!) -> Void in })
-        
-        
-        alert.addAction(save)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true)
+//        let alert = UIAlertController(title:"Forgot password", message: "Please Enter your Registered Email address.", preferredStyle:UIAlertController.Style.alert)
+//
+//        //ADD TEXT FIELD (YOU CAN ADD MULTIPLE TEXTFILED AS WELL)
+//        alert.addTextField { (textField : UITextField!) in
+//            textField.placeholder = "email address..."
+//            textField.delegate = self
+//        }
+//
+//        // SAVE BUTTON
+//        let save = UIAlertAction(title: "Submit", style: .default, handler: { saveAction -> Void in
+//
+//            let textField = alert.textFields![0] as UITextField
+//            print("\(textField.text!)")
+//
+//            // push to forgot password screen
+//            let push = self.storyboard?.instantiateViewController(withIdentifier: "forgot_password_id") as! forgot_password
+//
+//            self.navigationController?.pushViewController(push, animated: true)
+////            self.forgot_password_click_method_WB(str_email_address: "\(textField.text!)")
+//
+//        })
+//        // CANCEL BUTTON
+//        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {
+//            (action : UIAlertAction!) -> Void in })
+//
+//
+//        alert.addAction(save)
+//        alert.addAction(cancel)
+//
+//        present(alert, animated: true)
         
     }
     
@@ -514,90 +462,38 @@ class login: UIViewController , UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    // MARK: - WEBSERVICE ( LOGIN ) -
-    @objc func forgot_password_click_method_WB(str_email_address:String) {
-        self.view.endEditing(true)
-        
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
-        
-        if IsInternetAvailable() == false {
-            self.please_check_your_internet_connection()
-            return
-        }
-        
-        let parameters = [
-            "action"    : "forgotpassword",
-            "email"     : String(str_email_address)
-        ]
-        
-        print(parameters as Any)
-        
-        AF.request(application_base_url, method: .post, parameters: parameters)
-        
-            .response { response in
-                
-                do {
-                    if response.error != nil{
-                        print(response.error as Any, terminator: "")
-                    }
-                    
-                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
-                        
-                        print(jsonDict as Any, terminator: "")
-                        
-                        // for status alert
-                        var status_alert : String!
-                        status_alert = (jsonDict["status"] as? String)
-                        
-                        // for message alert
-                        var str_data_message : String!
-                        str_data_message = jsonDict["msg"] as? String
-                        
-                        if status_alert.lowercased() == "success" {
-                            
-                            print("=====> yes")
-                            ERProgressHud.sharedInstance.hide()
-                            
-                            
-                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "reset_password_id")
-                            self.navigationController?.pushViewController(push, animated: true)
-                            
-                            
-                            let alert = NewYorkAlertController(title: String("Alert"), message: String(str_data_message), style: .alert)
-                            
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
-                            
-                            alert.addButtons([cancel])
-                            self.present(alert, animated: true)
-                            
-                        } else {
-                            
-                            print("=====> no")
-                            ERProgressHud.sharedInstance.hide()
-                            
-                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
-                            alert.addButtons([cancel])
-                            self.present(alert, animated: true)
-                            
-                        }
-                        
-                    } else {
-                        
-                        self.please_check_your_internet_connection()
-                        
-                        return
-                    }
-                    
-                } catch _ {
-                    print("Exception!")
-                }
-            }
-    }
+    
     
     // MARK: - WEBSERVICE ( LOGIN ) -
     @objc func login_in_vedanta_WB() {
         self.view.endEditing(true)
+        
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! login_table_cell
+        
+        
+        if (cell.txt_email.text == "") {
+            
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Email should not be empty"), style: .alert)
+            
+             
+            
+            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
+        } else if (cell.txt_password.text == "") {
+            
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Password should not be empty"), style: .alert)
+            
+             
+            
+            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
+        } else {
+            
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
@@ -615,8 +511,8 @@ class login: UIViewController , UITextFieldDelegate {
         
         let parameters = [
             "action"    : "login",
-            "email"     : String(self.txt_email.text!),
-            "password"  : String(self.txt_password.text!),
+            "email"     : String(cell.txt_email.text!),
+            "password"  : String(cell.txt_password.text!),
             "deviceToken" : String(device_token)
             
         ]
@@ -682,6 +578,7 @@ class login: UIViewController , UITextFieldDelegate {
                 }
             }
     }
+    }
     
 }
 
@@ -740,4 +637,137 @@ extension login {
         }))
         self.present(alertController, animated: true, completion: nil)
     }
+}
+
+extension login : UITableViewDelegate , UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell:login_table_cell = tableView.dequeueReusableCell(withIdentifier: "login_table_cell") as! login_table_cell
+        
+        cell.backgroundColor = .clear
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        cell.selectedBackgroundView = backgroundView
+        
+        cell.btn_sign_in.addTarget(self, action: #selector(login_in_vedanta_WB), for: .touchUpInside)
+        
+        cell.btn_sign_up.addTarget(self, action: #selector(sign_up_click_method), for: .touchUpInside)
+        
+        cell.btn_forgot_password.addTarget(self, action: #selector(forgot_password_click_method), for: .touchUpInside)
+        cell.txt_email.delegate = self
+        cell.txt_password.delegate = self
+        
+        // social buttons
+        cell.btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
+            guard let strongSelf = self else {return}
+            RRFBLogin.shared.fbLogin(viewController: strongSelf)
+        }.disposed(by: rxbag)
+        
+        // google
+        cell.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
+        
+        let stringValue = "Don't have an acount - Sign Up"
+        
+        // 230 40 36
+        let attText = NSMutableAttributedString(string: stringValue)
+        attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(red: 230.0/255.0, green: 40.0/255.0, blue: 36.0/255.0, alpha: 1), range: NSRange(
+            location:23,
+            length:7))
+//                 attributedText = attText
+        
+//        cell.btn_sign_up.attributedText = attText
+        cell.btn_sign_up.setAttributedTitle(attText, for: .normal)
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 900
+    }
+    
+}
+
+class login_table_cell:UITableViewCell {
+    
+    @IBOutlet weak var img_view:UIImageView! {
+        didSet {
+            img_view.backgroundColor = .clear
+        }
+    }
+    @IBOutlet weak var txt_email:UITextField! {
+        didSet {
+            txt_email.setLeftPaddingPoints(24)
+            txt_email.layer.borderColor = UIColor.lightGray.cgColor
+            txt_email.layer.borderWidth = 0.8
+            txt_email.layer.cornerRadius = 8
+            txt_email.clipsToBounds = true
+            txt_email.keyboardType = .emailAddress
+        }
+    }
+    
+    @IBOutlet weak var txt_password:UITextField! {
+        didSet {
+            txt_password.setLeftPaddingPoints(24)
+            txt_password.layer.borderColor = UIColor.lightGray.cgColor
+            txt_password.layer.borderWidth = 0.8
+            txt_password.layer.cornerRadius = 8
+            txt_password.clipsToBounds = true
+            txt_password.isSecureTextEntry = true
+        }
+    }
+    
+    @IBOutlet weak var btn_forgot_password:UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var btn_sign_up:UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var btn_sign_in:UIButton! {
+        didSet {
+            btn_sign_in.layer.cornerRadius = 8
+            btn_sign_in.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var btn_continue_with_facebook:UIButton! {
+        didSet {
+            btn_continue_with_facebook.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_facebook.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_facebook.layer.shadowOpacity = 1.0
+            btn_continue_with_facebook.layer.shadowRadius = 4
+            btn_continue_with_facebook.layer.masksToBounds = false
+            btn_continue_with_facebook.layer.cornerRadius = 12
+        }
+    }
+    
+    @IBOutlet weak var btn_continue_with_google:UIButton! {
+        didSet {
+            btn_continue_with_google.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_google.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_google.layer.shadowOpacity = 1.0
+            btn_continue_with_google.layer.shadowRadius = 4
+            btn_continue_with_google.layer.masksToBounds = false
+            btn_continue_with_google.layer.cornerRadius = 12
+        }
+    }
+
+    
 }

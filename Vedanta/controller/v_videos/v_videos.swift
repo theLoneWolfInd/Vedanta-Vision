@@ -877,13 +877,13 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
         
         // btn_play
         
-        if (item!["Type"] as! String) == "1" {
-            
-            cell.btn_play.isHidden = true
-            cell.btn_play.tintColor = .white
-            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
-            
-        } else {
+//        if (item!["Type"] as! String) == "1" {
+//
+//            cell.btn_play.isHidden = true
+//            cell.btn_play.tintColor = .white
+//            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+//
+//        } else {
             
             if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
                 // let str:String = person["role"] as! String
@@ -953,6 +953,20 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
                     
                 }
                 
+            } else {
+                
+                if (item!["Type"] as! String) == "1" {
+                    
+                    cell.btn_play.tintColor = .white
+                    cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
+                    
+                } else {
+                    
+                    cell.btn_play.tintColor = .systemRed
+                    cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
+                    
+                }
+                
             }
             
             
@@ -966,7 +980,7 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
 //            cell.btn_play.tintColor = .systemRed
 //            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
             
-        }
+//        }
         
         cell.btn_like.tag = indexPath.row
         cell.btn_like.addTarget(self, action: #selector(like_click_method), for: .touchUpInside)
