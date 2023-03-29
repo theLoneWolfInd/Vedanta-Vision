@@ -574,9 +574,14 @@ extension v_article : UITableViewDelegate , UITableViewDataSource {
         cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
         
-        cell.lbl_title.text = (item!["title"] as! String)
-        cell.lbl_list_description.text = (item!["description"] as! String)
+        // cell.lbl_title.text = (item!["title"] as! String)
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
+          let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
+         let combination = NSMutableAttributedString()
+        combination.append(partTwo)
         
+        cell.lbl_list_description.attributedText = combination
+ 
         if (item!["status"] as! String) == "no" {
             
             cell.btn_like.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -696,12 +701,25 @@ extension v_article : UITableViewDelegate , UITableViewDataSource {
         
         if (item!["Type"] as! String) == "1" {
             
-            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//
+//            pushVC.hidesBottomBarWhenPushed = false
+//            pushVC.str_description = (item!["description"] as! String)
+//
+//            self.navigationController?.pushViewController(pushVC, animated: true)
             
-            pushVC.hidesBottomBarWhenPushed = false
-            pushVC.str_description = (item!["description"] as! String)
+//            +91 98219 50822
             
-            self.navigationController?.pushViewController(pushVC, animated: true)
+            
+            let item = self.arr_mut_article_list[indexPath.row] as? [String:Any]
+            print(item as Any)
+            
+            let push = self.storyboard?.instantiateViewController(withIdentifier: "related_article_id") as! related_article
+            
+            push.hidesBottomBarWhenPushed = false
+            push.dict_get_article_data = item as NSDictionary?
+            
+            self.navigationController?.pushViewController(push, animated: true)
             
         } else {
             

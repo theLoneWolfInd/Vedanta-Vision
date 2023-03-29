@@ -1070,6 +1070,24 @@ class wisdom_new_details: UIViewController {
         
     }
     
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! wisdom_new_details_table_cell
+        
+        cell.custom_video_player.isHidden = false
+        let videoURL = URL(string: "https://app.vedantavision.org/img/uploads/wisdom/22_videoFile.mp4")
+        self.player = AVPlayer(url: videoURL!)
+        self.playerViewController = AVPlayerViewController()
+        playerViewController.player = self.player
+        playerViewController.view.frame = cell.custom_video_player.frame
+        playerViewController.player?.pause()
+        cell.custom_video_player.addSubview(playerViewController.view)
+        
+        
+    }
+    
 }
 
 
@@ -1104,6 +1122,8 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             cell.selectedBackgroundView = backgroundView
             
             
+//            cell.custom_video_player.isHidden = true
+//            cell.videoPlayer.isHidden = true
             
             if (item!["image"] as! String) == ""  {
                 cell.img_view.image = UIImage(named: "logo")
@@ -1164,20 +1184,46 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             }
             
             
-            print(item as Any)
-            print(item!["Link"] as! String)
+            // print(item as Any)
+            // print(item!["Link"] as! String)
+            
+            // cell.view_indicator.isHidden = false
+            // cell.view_indicator.startAnimating()
             
             if (item!["Type"] as! String) == "3" {
             
                 cell.videoPlayer.isHidden = true
                 cell.custom_video_player.isHidden = true
                 
+                cell.btn_play.isHidden = true
+//                cell.view_indicator.isHidden = true
+//                cell.view_indicator.startAnimating()
+                
             } else {
+                
+                
                 
                 if (item!["Link"] as! String) == "" {
                     
-                    // cell.custom_video_player
-                    cell.custom_video_player.isHidden = false
+                    cell.videoPlayer.isHidden = true
+                    cell.custom_video_player.isHidden = true
+                    
+                    // cell.img_view.image = thumbnail
+                    // cell.img_view.contentMode = .scaleAspectFill
+                    cell.img_view.image = UIImage(named: "logo")
+                    cell.img_view.contentMode = .scaleAspectFit
+                    
+                    
+                    _ = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { timer in
+                        print("Timer fired!")
+                        
+                        cell.btn_play.isHidden = true
+//                        cell.view_indicator.isHidden = true
+//                        cell.view_indicator.startAnimating()
+                        cell.custom_video_player.isHidden = false
+                        timer.invalidate()
+                    }
+                    
                     let videoURL = URL(string: (item!["audioFile"] as! String))
                     self.player = AVPlayer(url: videoURL!)
                     self.playerViewController = AVPlayerViewController()
@@ -1186,8 +1232,13 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                     playerViewController.player?.pause()
                     cell.custom_video_player.addSubview(playerViewController.view)
                     
+                    
                 } else {
-                
+                    
+                    cell.btn_play.isHidden = true
+//                    cell.view_indicator.isHidden = true
+//                    cell.view_indicator.startAnimating()
+                    
                     cell.custom_video_player.isHidden = true
                     // youtube
                     let myVideoURL = NSURL(string: (item!["Link"] as! String))
@@ -1201,7 +1252,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             
             
             // btn_play
-            
+            self.btn_like.isHidden = true
             self.btn_like.tag = indexPath.row
             self.btn_like.addTarget(self, action: #selector(like_click_method), for: .touchUpInside)
             
@@ -1259,6 +1310,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 cell.img_view_list.image = UIImage(named: "logo")
                 cell.img_view_list.contentMode = .scaleAspectFit
             } else {
+               
                 cell.img_view_list.contentMode = .scaleToFill
                 cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
                 cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
@@ -1321,6 +1373,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
        
         
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -1498,13 +1551,15 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
             
         } else if (item!["status"] as! String) == "2" {
             
-            print(item as Any)
+            return 34
             
-            if ((item!["description"] as! String).count) >= 150 {
-                return UITableView.automaticDimension
-            } else {
-                return 50
-            }
+//            print(item as Any)
+//
+//            if ((item!["description"] as! String).count) >= 150 {
+//                return UITableView.automaticDimension
+//            } else {
+//                return 50
+//            }
             
             
             
@@ -1518,6 +1573,14 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
 }
 
 class wisdom_new_details_table_cell:UITableViewCell {
+    
+    @IBOutlet weak var view_indicator:UIActivityIndicatorView! {
+        didSet {
+//            view_indicator.lar
+            view_indicator.startAnimating()
+            view_indicator.isHidden = false
+        }
+    }
     
     @IBOutlet weak var custom_video_player:UIView! {
         didSet {
@@ -1615,6 +1678,7 @@ class wisdom_new_details_table_cell:UITableViewCell {
             btn_play.tintColor = .white
             btn_play.layer.cornerRadius = 15
             btn_play.clipsToBounds = true
+            btn_play.isHidden = true
         }
     }
     

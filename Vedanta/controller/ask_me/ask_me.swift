@@ -407,7 +407,7 @@ extension ask_me : UITableViewDelegate , UITableViewDataSource {
         let item = self.arr_mut_ask_me[indexPath.row] as? [String:Any]
         
         if (item!["status"] as! String) == "header" {
-            return 198
+            return 240
         } else {
             
             return 60
@@ -450,7 +450,7 @@ class ask_me_table_cell:UITableViewCell {
     
     @IBOutlet weak var lbl_header_message:UILabel! {
         didSet {
-            lbl_header_message.text = "Dealing with an issue and need guidance ? \nPost your question here."
+            lbl_header_message.text = "Dealing with an issue and need guidance ? Post your question here."
 //            lbl_header_message.textColor = .systemOrange
             lbl_header_message.textColor = UIColor.init(red: 237.0/255.0, green: 123.0/255.0, blue: 116.0/255.0, alpha: 1)
         }

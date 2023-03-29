@@ -215,7 +215,36 @@ class category_list: UIViewController , UITextViewDelegate {
                             
                             var ar : NSArray!
                             ar = (jsonDict["data"] as! Array<Any>) as NSArray
-                            self.arr_mut_add_all_categories.addObjects(from: ar as! [Any])
+                            
+                            
+                            for index in 0..<ar.count {
+                                let item = ar[index] as? [String:Any]
+                                
+                                if (item!["name"] as! String) == "All" {
+                                    
+                                } else {
+                                    
+                                    let custom_array = [
+                                        "id":"\(item!["id"]!)",
+                                        "image":(item!["image"] as! String),
+                                        "name":(item!["name"] as! String),
+                                        "type":"Faq",
+                                    ]
+                                    
+                                    self.arr_mut_add_all_categories.add(custom_array)
+                                    
+                                }
+
+                                
+                                
+                                
+                                
+                            }
+                            print(self.arr_mut_add_all_categories as Any)
+                            
+                            
+                            
+//                            self.arr_mut_add_all_categories.addObjects(from: ar as! [Any])
                             
                             self.tble_view.delegate = self
                             self.tble_view.dataSource = self

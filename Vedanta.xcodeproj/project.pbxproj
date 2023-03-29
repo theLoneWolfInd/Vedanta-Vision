@@ -71,6 +71,7 @@
 		B96BF473291A6B2A0044000F /* RRFBLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96BF470291A6B2A0044000F /* RRFBLogin.swift */; };
 		B96BF474291A6B2A0044000F /* RRGoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96BF471291A6B2A0044000F /* RRGoogleLogin.swift */; };
 		B96BF475291A6B2A0044000F /* SocialStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96BF472291A6B2A0044000F /* SocialStruct.swift */; };
+		B9726C7B29D4625F00EAEEC8 /* update_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9726C7A29D4625F00EAEEC8 /* update_password.swift */; };
 		B9B031742918FD7400D4E45F /* wisdom_sub_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B031732918FD7400D4E45F /* wisdom_sub_details.swift */; };
 		B9C2D7F928F6CF220017BB08 /* advertisement_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2D7F828F6CF220017BB08 /* advertisement_details.swift */; };
 		B9DAB2B529129121005FD8D3 /* wisdom_new_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAB2B429129121005FD8D3 /* wisdom_new_details.swift */; };
@@ -185,6 +186,7 @@
 		B96BF470291A6B2A0044000F /* RRFBLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RRFBLogin.swift; sourceTree = "<group>"; };
 		B96BF471291A6B2A0044000F /* RRGoogleLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RRGoogleLogin.swift; sourceTree = "<group>"; };
 		B96BF472291A6B2A0044000F /* SocialStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialStruct.swift; sourceTree = "<group>"; };
+		B9726C7A29D4625F00EAEEC8 /* update_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_password.swift; sourceTree = "<group>"; };
 		B9B031732918FD7400D4E45F /* wisdom_sub_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wisdom_sub_details.swift; sourceTree = "<group>"; };
 		B9C2D7F828F6CF220017BB08 /* advertisement_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advertisement_details.swift; sourceTree = "<group>"; };
 		B9DAB2B429129121005FD8D3 /* wisdom_new_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wisdom_new_details.swift; sourceTree = "<group>"; };
@@ -582,6 +584,14 @@
 			path = notification_center;
 			sourceTree = "<group>";
 		};
+		B9726C7929D4625100EAEEC8 /* update_password */ = {
+			isa = PBXGroup;
+			children = (
+				B9726C7A29D4625F00EAEEC8 /* update_password.swift */,
+			);
+			path = update_password;
+			sourceTree = "<group>";
+		};
 		B9B031722918FD6300D4E45F /* wisdom_sub_details */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +685,7 @@
 		B9DF1D2A28D05E33000425F4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				B9726C7929D4625100EAEEC8 /* update_password */,
 				B912918529C493650077390B /* forgot_password */,
 				B9EBD45429C04D23003210BE /* youtube_video */,
 				B9648A8A2907B78200DE914F /* subscription */,
@@ -1086,6 +1097,7 @@
 				B93A3A7428D200E0008CD1AC /* CustomSegmentedControl.swift in Sources */,
 				B90AF80E28F582840012333D /* read_article.swift in Sources */,
 				B939F26628F4277700E028B3 /* Color.swift in Sources */,
+				B9726C7B29D4625F00EAEEC8 /* update_password.swift in Sources */,
 				B9648A8C2907B78F00DE914F /* subscription.swift in Sources */,
 				B9DF1CFF28D05D42000425F4 /* ViewController.swift in Sources */,
 				B939F26728F4277700E028B3 /* NewYorkAlertViewType.swift in Sources */,
@@ -1312,6 +1324,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1350,6 +1363,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

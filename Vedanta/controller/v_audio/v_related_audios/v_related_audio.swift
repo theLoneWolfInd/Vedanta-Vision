@@ -122,6 +122,14 @@ class v_related_audio: UIViewController {
         
         self.btn_share.addTarget(self, action: #selector(share_some_data), for: .touchUpInside)
         
+//        do {
+//            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+//            print("Playback OK")
+//            try AVAudioSession.sharedInstance().setActive(true)
+//            print("Session is Active")
+//        } catch {
+//            print(error)
+//        }
         
     }
     
@@ -133,7 +141,7 @@ class v_related_audio: UIViewController {
     
     @objc func back_click_method_22() {
         self.navigationController?.popViewController(animated: true)
-        self.player?.replaceCurrentItem(with: nil)
+        // self.player?.replaceCurrentItem(with: nil)
     }
     
     @objc func create_custom_array() {
@@ -700,7 +708,18 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.text = (item!["description"] as! String)
             cell.lbl_header_video_title.text = (item!["title"] as! String)
             
-            cell.custom_video_player.isHidden = false
+            cell.custom_video_player.isHidden = true
+            
+            
+            
+            _ = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { timer in
+                print("Timer fired!")
+
+                cell.custom_video_player.isHidden = false
+                timer.invalidate()
+                
+            }
+            
             let videoURL = URL(string: (item!["audioFile"] as! String))
             self.player = AVPlayer(url: videoURL!)
             self.playerViewController = AVPlayerViewController()
@@ -738,17 +757,14 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
             cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 16.0)!]
-            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 14.0)!]
-            
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
+ 
             let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
-            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
-            
+ 
             let combination = NSMutableAttributedString()
             
             combination.append(partOne)
-            combination.append(partTwo)
-            
+ 
             cell.lbl_list_description.attributedText = combination
             
             if (item!["Type"] as! String) == "2" {
@@ -878,7 +894,9 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                     self.present(alert, animated: true)
                     
                 } else {
-                    
+                    //
+                    self.player?.replaceCurrentItem(with: nil)
+                    //
                     let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
                     print(item as Any)
                     
@@ -929,7 +947,9 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
                 }
                 
             } else {
-                
+                //
+                self.player?.replaceCurrentItem(with: nil)
+                //
                 self.please_login_to_continue()
                 
             }
@@ -940,15 +960,27 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
         
         else {
             
-            let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
-            print(item as Any)
             
-            let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
+            if (indexPath.row == 0) {
+                
+            } else if (indexPath.row == 1) {
+                
+            } else {
+                
+                self.player?.replaceCurrentItem(with: nil)
+                //
+                let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
+                print(item as Any)
+                
+                let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
+                
+                push.hidesBottomBarWhenPushed = false
+                push.dict_get_audio_data = item as NSDictionary?
+                
+                self.navigationController?.pushViewController(push, animated: true)
+                
+            }
             
-            push.hidesBottomBarWhenPushed = false
-            push.dict_get_audio_data = item as NSDictionary?
-            
-            self.navigationController?.pushViewController(push, animated: true)
             
             /*
             self.player?.replaceCurrentItem(with: nil)
@@ -999,12 +1031,12 @@ extension v_related_audio : UITableViewDelegate , UITableViewDataSource {
         if (item!["status"] as! String) == "header" {
             return UITableView.automaticDimension
         } else if (item!["status"] as! String) == "title" {
-            
-            if self.str_check_related_auidos == "0" {
-                return 0
-            } else {
-                return 50
-            }
+            return 34
+//            if self.str_check_related_auidos == "0" {
+//                return 0
+//            } else {
+//                return 50
+//            }
             
         } else {
             return 130
@@ -1084,6 +1116,14 @@ class v_related_audio_table_cell:UITableViewCell {
             view_bg.layer.shadowRadius = 3.0
             view_bg.layer.masksToBounds = false
             view_bg.layer.cornerRadius = 12.0
+        }
+    }
+    
+    @IBOutlet weak var view_indicator:UIActivityIndicatorView! {
+        didSet {
+//            view_indicator.lar
+            view_indicator.startAnimating()
+            view_indicator.isHidden = false
         }
     }
     

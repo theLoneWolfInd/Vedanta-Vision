@@ -12,6 +12,9 @@ import AVFoundation
 
 class v_home_notification: UIViewController {
     
+    var page : Int! = 1
+    var loadMore : Int! = 1;
+    
     var player:AVPlayer!
     
     var arr_notification_list:NSMutableArray! = []
@@ -103,6 +106,7 @@ class v_home_notification: UIViewController {
         self.btn_back.addTarget(self, action: #selector(back_click_method_2), for: .touchUpInside)
         
         
+        self.validate_before_notification()
         
     }
     
@@ -116,7 +120,7 @@ class v_home_notification: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.validate_before_notification()
+        
         
     }
     
@@ -181,15 +185,7 @@ class v_home_notification: UIViewController {
                                       str_get_video: String(str_video),
                                       str_get_article: String(str_article),
                                       str_get_quot: String(str_quot),
-                                      str_events: String(str_event))
-            
-            
-            
-            
-            
-            
-            
-            
+                                      str_events: String(str_event), page_number: 1)
             
         } else {
             
@@ -197,21 +193,108 @@ class v_home_notification: UIViewController {
                                       str_get_video: "2",
                                       str_get_article: "3",
                                       str_get_quot: "4",
-                                      str_events: "5")
+                                      str_events: "5", page_number: 1)
             
         }
         
     }
     
         
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView == self.tble_view {
+            let isReachingEnd = scrollView.contentOffset.y >= 0
+            && scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
+            if(isReachingEnd) {
+                if(loadMore == 1) {
+                    loadMore = 0
+                    page += 1
+                    print(page as Any)
+                    
+                    if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                        
+                        print(person as Any)
+                        
+                        
+                        // notification_Setting_event
+                        // notification_Setting_article
+                        // notification_Setting_quotes
+                        // notification_Setting_video
+                        // notification_Setting_audio
+                        
+                        var str_audio:String! = ""
+                        
+                        if "\(person["notification_Setting_audio"]!)" == "1" {
+                            str_audio = "1,"
+                        } else {
+                            str_audio = ""
+                        }
+                        
+                        // video
+                        var str_video:String! = ""
+                        
+                        if "\(person["notification_Setting_video"]!)" == "1" {
+                            str_video = "2,"
+                        } else {
+                            str_video = ""
+                        }
+                        
+                        // article
+                        var str_article:String! = ""
+                        
+                        if "\(person["notification_Setting_article"]!)" == "1" {
+                            str_article = "3,"
+                        } else {
+                            str_article = ""
+                        }
+                        
+                        // quotes
+                        var str_quot:String! = ""
+                        
+                        if "\(person["notification_Setting_quotes"]!)" == "1" {
+                            str_quot = "4,"
+                        } else {
+                            str_quot = ""
+                        }
+                        
+                        // events
+                        var str_event:String! = ""
+                        
+                        if "\(person["notification_Setting_quotes"]!)" == "1" {
+                            str_event = "5"
+                        } else {
+                            str_event = ""
+                        }
+                        
+                        self.notification_list_WB(str_get_audio: String(str_audio),
+                                                  str_get_video: String(str_video),
+                                                  str_get_article: String(str_article),
+                                                  str_get_quot: String(str_quot),
+                                                  str_events: String(str_event), page_number: page)
+                        
+                    } else {
+                        
+                        self.notification_list_WB(str_get_audio: "1",
+                                                  str_get_video: "2",
+                                                  str_get_article: "3",
+                                                  str_get_quot: "4",
+                                                  str_events: "5", page_number: page)
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     @objc func notification_list_WB(str_get_audio:String,
                                     str_get_video:String,
                                     str_get_article:String,
                                     str_get_quot:String,
-                                    str_events:String) {
+                                    str_events:String,page_number:Int) {
         self.view.endEditing(true)
         
-        self.arr_notification_list.removeAllObjects()
+//        self.arr_notification_list.removeAllObjects()
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
@@ -227,9 +310,10 @@ class v_home_notification: UIViewController {
             
             "action"            : "notificationlist",
             "notificationType"  : str_get_audio+str_get_video+str_get_article+str_get_quot+str_events,
-            "created"           : (person["created"] as! String)
+            "created"           : (person["created"] as! String),
+            "pageNo"            : page_number,
             
-        ]
+        ] as [String : Any]
         
         print(parameters as Any)
         
@@ -265,6 +349,7 @@ class v_home_notification: UIViewController {
                             self.tble_view.delegate = self
                             self.tble_view.dataSource = self
                             self.tble_view.reloadData()
+                            self.loadMore = 1
                             
                         } else {
                             
@@ -477,7 +562,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
         
         let item = self.arr_notification_list[indexPath.row] as? [String:Any]
         
-        if "\(item!["type"]!)" == "4" {
+        /*if "\(item!["type"]!)" == "4" {
             
             let cell:v_home_notification_table_cell = tableView.dequeueReusableCell(withIdentifier: "two") as! v_home_notification_table_cell
             
@@ -493,7 +578,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             
             return cell
             
-        } else if "\(item!["type"]!)" == "5" {
+        } else */if "\(item!["type"]!)" == "5" {
             
             let cell:v_home_notification_table_cell = tableView.dequeueReusableCell(withIdentifier: "two") as! v_home_notification_table_cell
             
@@ -503,16 +588,27 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             backgroundView.backgroundColor = .clear
             cell.selectedBackgroundView = backgroundView
             
-            
-            cell.btn_notification_event_quot.setImage(UIImage(named: "calendar"), for: .normal)
+            if (item!["image"] as! String) == ""  {
+                
+                cell.img_view_event.image = UIImage(named: "logo")
+                cell.img_view_event.contentMode = .scaleAspectFit
+                
+            } else {
+                
+                cell.img_view_event.contentMode = .scaleAspectFill
+                cell.img_view_event.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                cell.img_view_event.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                
+            }
+            // cell.btn_notification_event_quot.setImage(UIImage(named: "calendar"), for: .normal)
             
             // cell.lbl_notification_quotation.text = "New Event"
             // cell.lbl_list_description.text = (item!["created"] as! String)
             // cell.btn_play.isHidden = true
             
-            let yourAttributes_1 = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 18.0)!]
+            /*let yourAttributes_1 = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 18.0)!]
             
-            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont(name: "Avenir Next Demi Bold", size: 14.0)!]
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont(name: "Avenir Next Demi Bold", size: 16.0)!]
             
             
             let partOne_1 = NSMutableAttributedString(string: "New Event"+"\n", attributes: yourAttributes_1)
@@ -525,7 +621,22 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             combination.append(partOne_1)
             combination.append(partOne_2)
             
-            cell.lbl_notification_quotation.attributedText = combination
+            cell.lbl_notification_quotation.attributedText = combination*/
+            
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 18.0)!]
+            
+//            let partOne_1 = NSMutableAttributedString(string: "New Event"+"\n", attributes: yourAttributes_1)
+            
+            let partOne_2 = NSMutableAttributedString(string: (item!["description"] as! String)+"\n\n", attributes: yourAttributes)
+            
+            
+            let combination = NSMutableAttributedString()
+            
+//            combination.append(partOne_1)
+            combination.append(partOne_2)
+            
+//            cell.lbl_list_description.text = (item!["message"] as! String)
+            cell.lbl_list_description.attributedText = combination
             
             return cell
             
@@ -541,8 +652,25 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             
             
             
-            cell.lbl_title.text = (item!["title"] as! String)
-            cell.lbl_list_description.text = (item!["message"] as! String)
+//            cell.lbl_title.text = (item!["title"] as! String)
+            
+            
+//            let yourAttributes_1 = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Avenir Next Bold", size: 18.0)!]
+            
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 18.0)!]
+            
+//            let partOne_1 = NSMutableAttributedString(string: "New Event"+"\n", attributes: yourAttributes_1)
+            
+            let partOne_2 = NSMutableAttributedString(string: (item!["message"] as! String)+"\n\n", attributes: yourAttributes)
+            
+            
+            let combination = NSMutableAttributedString()
+            
+//            combination.append(partOne_1)
+            combination.append(partOne_2)
+            
+//            cell.lbl_list_description.text = (item!["message"] as! String)
+            cell.lbl_list_description.attributedText = combination
             
             if (item!["image"] as! String) == ""  {
                 cell.img_view_list.image = UIImage(named: "logo")
@@ -952,8 +1080,10 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
         
         let item = self.arr_notification_list[indexPath.row] as? [String:Any]
         
-        if "\(item!["type"]!)" == "4" || "\(item!["type"]!)" == "5" {
-            return UITableView.automaticDimension
+        if "\(item!["type"]!)" == "4" {
+            return 0
+        } else if "\(item!["type"]!)" == "5" {
+            return 130//UITableView.automaticDimension
         } else {
             return 130
         }
@@ -976,11 +1106,11 @@ class v_home_notification_table_cell:UITableViewCell {
         }
     }
     
-    @IBOutlet weak var img_view:UIImageView! {
+    @IBOutlet weak var img_view_event:UIImageView! {
         didSet {
-            img_view.layer.cornerRadius = 8
-            img_view.clipsToBounds = true
-            img_view.backgroundColor = UIColor.init(red: 208.0/255.0, green: 208.0/255.0, blue: 208.0/255.0, alpha: 1)
+            img_view_event.layer.cornerRadius = 8
+            img_view_event.clipsToBounds = true
+            img_view_event.backgroundColor = UIColor.init(red: 208.0/255.0, green: 208.0/255.0, blue: 208.0/255.0, alpha: 1)
         }
     }
     

@@ -115,13 +115,13 @@ class v_related_videos: UIViewController {
             if "\(self.dict_get_video_data["youLiked"]!)" == "No" {
                 
                 self.btn_like.tag = 0
-                self.btn_like.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.btn_like.setImage(UIImage(named: "heart"), for: .normal)
                 self.btn_like.tintColor = .black
                 
             } else {
                 
                 self.btn_like.tag = 1
-                self.btn_like.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self.btn_like.setImage(UIImage(named: "heart.fill"), for: .normal)
                 self.btn_like.tintColor = .systemPink
                 
             }
@@ -250,7 +250,7 @@ class v_related_videos: UIViewController {
                                         let custom_array = [
                                             "status"    : "header",
                                             "Type":"",
-                                            "link"      : String(get_link),//String(get_link),
+                                            "Link"      : String(get_link),//String(get_link),
                                             "created"   : (self.dict_get_video_data["created"] as! String),
                                             "image"     : (self.dict_get_video_data["image"] as! String),
                                             "title"     : (self.dict_get_video_data["title"] as! String),
@@ -264,7 +264,7 @@ class v_related_videos: UIViewController {
                                         
                                         let custom_array = ["status"    : "title",
                                                             "Type":"",
-                                                            "link"      : "",
+                                                            "Link"      : "",
                                                             "created"   : "",
                                                             "image"     : "",
                                                             "title"     : "",
@@ -285,7 +285,7 @@ class v_related_videos: UIViewController {
                                     
                                     let custom_array = ["status"    : "list",
                                                         "Type":"\(item!["Type"]!)",
-                                                        "link"      : (item!["Link"] as! String),
+                                                        "Link"      : (item!["Link"] as! String),
                                                         "created"   : (item!["created"] as! String),
                                                         "image"     : (item!["image"] as! String),
                                                         "title"     : (item!["title"] as! String),
@@ -501,7 +501,7 @@ class v_related_videos: UIViewController {
             if self.btn_like.tag == 0 {
                 
                 self.btn_like.tag = 1
-                self.btn_like.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self.btn_like.setImage(UIImage(named: "heart.fill"), for: .normal)
                 self.btn_like.tintColor = .systemPink
                 
                 self.like_unlike_status(str_user_id: String(myString),
@@ -510,7 +510,7 @@ class v_related_videos: UIViewController {
             } else {
                 
                 self.btn_like.tag = 0
-                self.btn_like.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.btn_like.setImage(UIImage(named: "heart"), for: .normal)
                 self.btn_like.tintColor = .black
                 
                 self.like_unlike_status(str_user_id: String(myString),
@@ -650,6 +650,7 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
         
         
         let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
+        print(item as Any)
         
         if (item!["status"] as! String) == "header" {
             
@@ -661,6 +662,10 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             backgroundView.backgroundColor = .clear
             cell.selectedBackgroundView = backgroundView
             
+            //
+            cell.custom_video_player.isHidden = true
+            cell.videoPlayer.isHidden = true
+            //
             
             cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
             cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
@@ -669,57 +674,45 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_header_description.text = (item!["description"] as! String)
             cell.lbl_header_video_title.text = (item!["title"] as! String)
             
-            print(item!["link"] as! String)
-            
-            print((item!["link"] as! String).prefix(16))
-             
-            if (item!["link"] as! String).prefix(16) == "https://youtu.be" {
-                
-                cell.custom_video_player.isHidden = true
-                
-                let myVideoURL = NSURL(string: (item!["link"] as! String))
+            if (item!["Link"] as! String).prefix(16) == "https://youtu.be" {
+          
+                cell.videoPlayer.isHidden = false
+                let myVideoURL = NSURL(string: (item!["Link"] as! String))
                 cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
                 cell.videoPlayer.play()
                 
             } else {
+                
                 print("normal")
                 
-                cell.custom_video_player.isHidden = false
+                cell.custom_video_player.isHidden = true
+                cell.videoPlayer.isHidden = true
                 
-                let videoURL = URL(string: (item!["link"] as! String))
+                // cell.custom_video_player.isHidden = false
+                
+                cell.img_view.image = UIImage(named: "logo")
+                cell.img_view.contentMode = .scaleAspectFit
+                
+                _ = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { timer in
+                    print("Timer fired!")
+                    
+                    // cell.btn_play.isHidden = true
+//                        cell.view_indicator.isHidden = true
+//                        cell.view_indicator.startAnimating()
+                    cell.custom_video_player.isHidden = false
+                    timer.invalidate()
+                    
+                }
+                
+                let videoURL = URL(string: (item!["Link"] as! String))
                 self.player = AVPlayer(url: videoURL!)
                 self.playerViewController = AVPlayerViewController()
                 playerViewController.player = self.player
                 playerViewController.view.frame = cell.custom_video_player.frame
                 playerViewController.player?.pause()
                 cell.custom_video_player.addSubview(playerViewController.view)
+                
             }
-                
-//                if (item!["link"] as! String) == "" {
-//
-//                    // cell.custom_video_player
-////                    cell.custom_video_player.isHidden = false
-////                    let videoURL = URL(string: (item!["audioFile"] as! String))
-////                    self.player = AVPlayer(url: videoURL!)
-////                    self.playerViewController = AVPlayerViewController()
-////                    playerViewController.player = self.player
-////                    playerViewController.view.frame = cell.custom_video_player.frame
-////                    playerViewController.player?.pause()
-////                    cell.custom_video_player.addSubview(playerViewController.view)
-//
-//                } else {
-//
-//
-////                    cell.custom_video_player.isHidden = true
-//                    // youtube
-//                    let myVideoURL = NSURL(string: (item!["link"] as! String))
-//                    cell.videoPlayer.loadVideoURL(myVideoURL! as URL)
-//                    cell.videoPlayer.play()
-//
-//                }
-                
-//            }
-            
             
             return cell
             
@@ -756,7 +749,7 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
 //            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
-            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+            let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
             
             let combination = NSMutableAttributedString()
             
@@ -837,33 +830,13 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                     
                 }
                 
-                
-                
-                
-                
-                
-                
-                
-    //            cell.btn_play.isHidden = false
-    //            cell.btn_play.tintColor = .systemRed
-    //            cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
-                
             } else {
                 
                 cell.btn_play.tintColor = .white
                 cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
                 
             }
-            
-            
-//            print(item as Any)
-            
-            
-            
-            
-            
-            
-            
+           
             return cell
             
         }
@@ -873,13 +846,10 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
         let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
         
         if (item!["Type"] as! String) == "2" {
-            
-            
-            
+
             if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
                 
                 if (person["subscriptionDate"] as! String) == "" {
@@ -901,23 +871,30 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                     
                 } else {
                     
-//                    print(item)
+                    let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
+                    print(item as Any)
                     
-                    if (item!["Link"]) == nil {
-                        self.push_to_video_screen(str_video_file_link: (item!["link"] as! String),
-                                                  str_video_title: (item!["title"] as! String))
-                    } else {
-                        self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
-                                                  str_video_title: (item!["title"] as! String))
-                    }
-                    // Subscribe DONE , Play Video
-                    
-                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
+                    push!.hidesBottomBarWhenPushed = false
+
+                    push!.dict_get_video_data = item as NSDictionary?
+                    self.navigationController?.pushViewController(push!, animated: true)
+                       
                 }
                 
             } else {
                 
-                self.please_login_to_continue()
+                let alert = NewYorkAlertController(title: String("Login"), message: String("Please login to watch videos."), style: .alert)
+                
+                let login = NewYorkButton(title: "Login", style: .default) {
+                    _ in
+                    
+                    self.sign_in_click_method()
+                }
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                
+                alert.addButtons([login , cancel])
+                self.present(alert, animated: true)
                 
             }
             
@@ -928,32 +905,16 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
         else {
             
             print(item as Any)
+            let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
+            print(item as Any)
             
-            
-                
-                if (item!["link"] as! String) == "" {
-                    
-                    self.push_to_video_screen(str_video_file_link: (item!["videoFile"] as! String),
-                                              str_video_title: (item!["title"] as! String))
-                    
-                } else {
-                    
-    
-                    self.push_to_video_screen(str_video_file_link: (item!["link"] as! String),
-                                              str_video_title: (item!["title"] as! String))
-                    
-                }
-                
-            
-            
-            
-            
+            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
+            push!.hidesBottomBarWhenPushed = false
+
+            push!.dict_get_video_data = item as NSDictionary?
+            self.navigationController?.pushViewController(push!, animated: true)
+              
         }
-        
-        
-        
-        
-        
         
     }
     
@@ -965,11 +926,12 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
             return UITableView.automaticDimension
         } else if (item!["status"] as! String) == "title" {
             
-            if self.str_check_related_videos == "0" {
-                return 0
-            } else {
-                return 50
-            }
+            return 34
+//            if self.str_check_related_videos == "0" {
+//                return 0
+//            } else {
+//                return 50
+//            }
             
         } else {
             return 130
@@ -980,6 +942,14 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
 }
 
 class v_related_videos_table_cell:UITableViewCell {
+    
+    @IBOutlet weak var view_indicator:UIActivityIndicatorView! {
+        didSet {
+//            view_indicator.lar
+            view_indicator.startAnimating()
+            view_indicator.isHidden = false
+        }
+    }
     
     @IBOutlet weak var view_bg1:UIView! {
         didSet {
@@ -1053,7 +1023,7 @@ class v_related_videos_table_cell:UITableViewCell {
     }
     @IBOutlet var videoPlayer: YouTubePlayerView! {
         didSet {
-            videoPlayer.backgroundColor = .black
+            videoPlayer.backgroundColor = .clear
 
         }
     }

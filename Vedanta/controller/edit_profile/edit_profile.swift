@@ -12,7 +12,11 @@ class edit_profile: UIViewController , UITextFieldDelegate {
     
     
     @IBOutlet weak var viewNavigationbar:UIView!
-    @IBOutlet weak var btnDashboardMenu:UIButton!
+    @IBOutlet weak var btnDashboardMenu:UIButton! {
+        didSet {
+            btnDashboardMenu.tintColor = .black
+        }
+    }
     @IBOutlet weak var lblNavationbar:UILabel!{
         didSet {
             

@@ -41,6 +41,8 @@ class v_advertisement: UIViewController {
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
+        self.navigationController?.isNavigationBarHidden = false
+        
         self.tble_view.separatorColor = .clear
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)

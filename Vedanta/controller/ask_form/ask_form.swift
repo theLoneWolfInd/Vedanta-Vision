@@ -375,14 +375,17 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var txt_choose_category:UITextField! {
         didSet {
-            txt_choose_category.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            txt_choose_category.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            txt_choose_category.layer.shadowOpacity = 1.0
-            txt_choose_category.layer.shadowRadius = 3.0
-            txt_choose_category.layer.masksToBounds = false
-            txt_choose_category.layer.cornerRadius = 12.0
+//            txt_choose_category.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            txt_choose_category.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            txt_choose_category.layer.shadowOpacity = 1.0
+//            txt_choose_category.layer.shadowRadius = 3.0
+//            txt_choose_category.layer.masksToBounds = false
+//            txt_choose_category.layer.cornerRadius = 12.0
+            
+            txt_choose_category.dropShadow()
             txt_choose_category.setLeftPaddingPoints(24)
             txt_choose_category.isUserInteractionEnabled = false
+            
         }
     }
     

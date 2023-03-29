@@ -1,42 +1,21 @@
 //
-//  reset_password.swift
+//  update_password.swift
 //  Vedanta
 //
-//  Created by Dishant Rajput on 21/10/22.
+//  Created by Dishant Rajput on 29/03/23.
 //
 
 import UIKit
 import Alamofire
 
-class reset_password: UIViewController , UITextFieldDelegate {
-    
-    var str_email:String!
+class update_password: UIViewController , UITextFieldDelegate {
+
+    var str_get_email:String!
+    var str_get_OTP:String!
     
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .black
-        }
-    }
-    
-    @IBOutlet weak var txt_email:UITextField! {
-        didSet {
-            txt_email.setLeftPaddingPoints(24)
-            txt_email.layer.borderColor = UIColor.lightGray.cgColor
-            txt_email.layer.borderWidth = 0.8
-            txt_email.layer.cornerRadius = 8
-            txt_email.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var txt_opt:UITextField! {
-        didSet {
-            txt_opt.setLeftPaddingPoints(24)
-            txt_opt.layer.borderColor = UIColor.lightGray.cgColor
-            txt_opt.layer.borderWidth = 0.8
-            txt_opt.layer.cornerRadius = 8
-            txt_opt.clipsToBounds = true
-            txt_opt.isSecureTextEntry = true
-            txt_opt.placeholder = "OTP"
         }
     }
     
@@ -48,6 +27,7 @@ class reset_password: UIViewController , UITextFieldDelegate {
             txt_password.layer.cornerRadius = 8
             txt_password.clipsToBounds = true
             txt_password.isSecureTextEntry = true
+            txt_password.placeholder = "Password"
         }
     }
     
@@ -59,11 +39,9 @@ class reset_password: UIViewController , UITextFieldDelegate {
             txt_confirm_password.layer.cornerRadius = 8
             txt_confirm_password.clipsToBounds = true
             txt_confirm_password.isSecureTextEntry = true
+            txt_confirm_password.placeholder = "Confirm Password"
         }
     }
-    
-    @IBOutlet weak var btn_eye_pass:UIButton!
-    @IBOutlet weak var btn_eye_confirm_pass:UIButton!
     
     @IBOutlet weak var btnUpdatePassword:UIButton! {
         didSet {
@@ -88,49 +66,10 @@ class reset_password: UIViewController , UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        self.txt_opt.delegate = self
+        self.txt_password.delegate = self
+        self.txt_confirm_password.delegate = self
         
         self.btnUpdatePassword.addTarget(self, action: #selector(validationBeforeChangePassword), for: .touchUpInside)
-        
-        // self.btn_eye_pass.addTarget(self, action: #selector(pass_eye_click_method), for: .touchUpInside)
-        
-        // self.btn_eye_confirm_pass.addTarget(self, action: #selector(pass_confirm_eye_click_method), for: .touchUpInside)
-        
-    }
-    
-    @objc func pass_eye_click_method() {
-        
-        if self.btn_eye_pass.tag == 0 {
-            
-            self.btn_eye_pass.tag = 1
-            self.txt_password.isSecureTextEntry = false
-            self.btn_eye_pass.setImage(UIImage(systemName: "eye.slash"), for: .normal)
-            
-        } else {
-            
-            self.btn_eye_pass.tag = 0
-            self.txt_password.isSecureTextEntry = true
-            self.btn_eye_pass.setImage(UIImage(systemName: "eye"), for: .normal)
-            
-        }
-        
-    }
-    
-    @objc func pass_confirm_eye_click_method() {
-        
-        if self.btn_eye_confirm_pass.tag == 0 {
-            
-            self.btn_eye_confirm_pass.tag = 1
-            self.txt_confirm_password.isSecureTextEntry = false
-            self.btn_eye_confirm_pass.setImage(UIImage(systemName: "eye.slash"), for: .normal)
-            
-        } else {
-            
-            self.btn_eye_confirm_pass.tag = 0
-            self.txt_confirm_password.isSecureTextEntry = true
-            self.btn_eye_confirm_pass.setImage(UIImage(systemName: "eye"), for: .normal)
-            
-        }
         
     }
     
@@ -138,12 +77,28 @@ class reset_password: UIViewController , UITextFieldDelegate {
         
         self.view.endEditing(true)
     }
-    
+
     @objc func validationBeforeChangePassword() {
         
-        if self.txt_opt.text == "" {
+        if self.txt_password.text == "" {
             
-            let alert = UIAlertController(title: String("Error!"), message: String("OTP should not be Empty."), preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: String("Error!"), message: String("Password should not be Empty."), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
+        } else if self.txt_confirm_password.text == "" {
+            
+            let alert = UIAlertController(title: String("Error!"), message: String("Confirm Password should not be Empty."), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
+        }  else if self.txt_confirm_password.text != self.txt_confirm_password.text {
+            
+            let alert = UIAlertController(title: String("Error!"), message: String("Password not matched."), preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
                 
             }))
@@ -157,23 +112,18 @@ class reset_password: UIViewController , UITextFieldDelegate {
         
     }
     
-    
     @objc func changePasswordWB() {
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
         self.view.endEditing(true)
         
-        
-        
         let parameters = [
-//            "action"    : "resetpassword",
-//            "email"     : String(self.txt_email.text!),
-//            "OTP"       : String(self.txt_opt.text!),
-//            "password"  : String(self.txt_password.text!),
             
-            "action"    : "otpverify",
-            "email"     : String(str_email),
-            "OTP"       : String(self.txt_opt.text!),
+            "action"    : "resetpassword",
+            "email"     : String(self.str_get_email),
+            "OTP"       : String(self.str_get_OTP),
+            "password"  : String(self.txt_password.text!),
+                        
         ]
         
         print(parameters as Any)
@@ -201,21 +151,15 @@ class reset_password: UIViewController , UITextFieldDelegate {
                     ERProgressHud.sharedInstance.hide()
                     
                     let alert = NewYorkAlertController(title: String("Success"), message: String(strSuccess2), style: .alert)
-                    let cancel = NewYorkButton(title: "Ok", style: .cancel) {
+                    let cancel = NewYorkButton(title: "Done", style: .cancel) {
                         _ in
+                        // self.navigationController?.popViewController(animated: true)
                         
                         
-                        let push = self.storyboard?.instantiateViewController(withIdentifier: "update_password_id") as? update_password
-                        
-                        push!.str_get_OTP = JSON["OTP"]as Any as? String
-                        push!.str_get_email = JSON["email"]as Any as? String
-                        // push.hidesBottomBarWhenPushed = false
-                        // push.dict_get_article_data = item as NSDictionary?
-                        
+                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tab_bar_id") as? tab_bar
+                        push!.hidesBottomBarWhenPushed = true
+                        push!.selectedIndex = 0
                         self.navigationController?.pushViewController(push!, animated: true)
-                        
-                        
-                        
                         
                         
                     }
@@ -248,7 +192,5 @@ class reset_password: UIViewController , UITextFieldDelegate {
         }
         
     }
-    
-    
     
 }

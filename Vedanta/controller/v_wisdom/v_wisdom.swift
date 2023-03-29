@@ -51,6 +51,11 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     
     var str_click_panel = "1"
     
+    
+//    var check_watch = "0"
+//    var check_listen_music = "0"
+//    var check_listen_music = "0"
+    
     @IBOutlet weak var lbl_navigation_title:UILabel! {
         didSet {
             
@@ -64,7 +69,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         }
     }
     
-     
+    // ["articleType": "1", "keyword": "ok", "action": "wisdomist", "type": "2"]
     
     @IBOutlet weak var view_full_view:UIView! {
         didSet {
@@ -90,8 +95,11 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
             txt_search.layer.shadowRadius = 3.0
             txt_search.layer.masksToBounds = false
             txt_search.layer.cornerRadius = 4
+            
+//            txt_search.addBottomShadow()
             txt_search.backgroundColor = .white
-            txt_search.setLeftPaddingPoints(12)
+            txt_search.setLeftPaddingPoints(40)
+            txt_search.clearButtonMode = .whileEditing
         }
     }
     
@@ -225,6 +233,8 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         
         self.tble_view.separatorColor = .clear
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         self.btn_watch.addTarget(self, action: #selector(watch_click_method), for: .touchUpInside)
         self.btn_listen.addTarget(self, action: #selector(listen_click_method), for: .touchUpInside)
         self.btn_read.addTarget(self, action: #selector(read_click_method), for: .touchUpInside)
@@ -261,6 +271,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     @objc func watch_click_method() {
         
         //
+        self.txt_search.text = ""
         self.page = 1
         self.str_click_panel = "1"
         self.arr_wisdom_list.removeAllObjects()
@@ -301,6 +312,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     @objc func listen_click_method() {
         
         //
+        self.txt_search.text = ""
         self.page = 1
         self.str_click_panel = "2"
         self.arr_wisdom_list.removeAllObjects()
@@ -344,6 +356,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
     @objc func read_click_method() {
         
         //
+        self.txt_search.text = ""
         self.page = 1
         self.str_click_panel = "3"
         self.arr_wisdom_list.removeAllObjects()
@@ -479,7 +492,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                     page += 1
                     print(page as Any)
                     
-                    if (self.str_click_panel=="1") {
+                    if (self.str_click_panel == "1") {
                         
                         self.wisdom_WB(str_type: String(self.str_wisdom_click_status),
                                        str_article_type: String(""),
@@ -488,6 +501,12 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                     } else if (self.str_click_panel == "2") {
                         
                         self.wisdom_WB(str_type: "2",
+                                       str_article_type: "1",
+                                       page_number: page)
+                        
+                    } else if (self.str_click_panel == "3") {
+                        
+                        self.wisdom_WB(str_type: "3",
                                        str_article_type: "1",
                                        page_number: page)
                         
@@ -797,7 +816,14 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
         
     }
     
-    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        print("yes i am clear")
+        
+        self.txt_search.text = ""
+        self.search_in_wisdom_WB()
+        
+        return true
+    }
     
 }
 
@@ -851,7 +877,7 @@ extension v_wisdom : UITableViewDelegate , UITableViewDataSource {
         let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 18.0)!]
         
         //let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
-        let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+        let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
         
         let combination = NSMutableAttributedString()
         

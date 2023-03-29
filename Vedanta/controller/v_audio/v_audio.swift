@@ -104,14 +104,14 @@ class v_audio: UIViewController {
         self.view_full_view.backgroundColor = app_BG_color
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
         
-        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width-20, height: self.view.frame.size.height-110)
+        self.tble_view.frame =  CGRect(x: 0, y: 8, width:self.view.frame.size.width, height: self.view.frame.size.height-110)
+        
         self.view_full_view.addSubview(self.tble_view)
         
         self.tble_view.separatorColor = .clear
         
         self.btn_back.addTarget(self, action: #selector(back_click_method_2), for: .touchUpInside)
         self.btn_dismiss_music_player.addTarget(self, action: #selector(music_player_close_click_method), for: .touchUpInside)
-        
         
     }
     
@@ -637,6 +637,7 @@ class v_audio: UIViewController {
                                         str_status: "1")
                 
             } else {
+                
                 self.arr_mut_audio_list.removeObject(at: sender.tag)
                 
                 let custom_array = ["audioFile"      : (item!["audioFile"] as! String),
@@ -788,8 +789,16 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
         cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
         
-        cell.lbl_title.text = (item!["title"] as! String)
-        cell.lbl_list_description.text = (item!["description"] as! String)
+         
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
+        
+        let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
+        
+        let combination = NSMutableAttributedString()
+        
+        combination.append(partTwo)
+        
+        cell.lbl_list_description.attributedText = combination
         
         if (item!["status"] as! String) == "no" {
             
@@ -802,7 +811,6 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
             cell.btn_like.tintColor = .systemPink
             
         }
-        
         
         /*if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             // let str:String = person["role"] as! String
@@ -980,6 +988,18 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
         if (item!["Type"] as! String) == "1" {
             
             self.player?.replaceCurrentItem(with: nil)
+            //
+            let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
+            print(item as Any)
+            
+            let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
+            
+            push.hidesBottomBarWhenPushed = false
+            push.dict_get_audio_data = item as NSDictionary?
+            
+            self.navigationController?.pushViewController(push, animated: true)
+            
+            /*self.player?.replaceCurrentItem(with: nil)
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
                 
@@ -1013,7 +1033,7 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
                 
                 self.setup_voice_functionality(get_url: url! as NSURL)
                 
-            })
+            })*/
             
             
         } else {
@@ -1039,40 +1059,16 @@ extension v_audio : UITableViewDelegate , UITableViewDataSource {
                     
                     // Subscribe DONE , Play Video
                     self.player?.replaceCurrentItem(with: nil)
+                    //
+                    let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
+                    print(item as Any)
                     
-                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                        
-                        self.tble_view.frame =  CGRect(x: 0, y: 120, width:self.view_full_view.frame.size.width, height: self.view_full_view.frame.size.height-114)
-                        
-                        self.view_music_player.isHidden = false
-                        
-                    }, completion: nil)
+                    let push = self.storyboard?.instantiateViewController(withIdentifier: "v_related_audio_id") as! v_related_audio
                     
+                    push.hidesBottomBarWhenPushed = false
+                    push.dict_get_audio_data = item as NSDictionary?
                     
-                    self.view_full_view.addSubview(self.tble_view)
-                    
-                    
-                    
-                    
-                    
-                    
-                    self.img_music_thumbnail.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                    self.img_music_thumbnail.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
-                    
-                    self.lbl_music_title.text = (item!["title"] as! String)
-                    
-                    
-                    self.clear_audio_player_controller()
-                    
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        let url = URL(string: (item!["audioFile"] as! String))
-                        print(url as Any)
-                        
-                        self.setup_voice_functionality(get_url: url! as NSURL)
-                        
-                    })
+                    self.navigationController?.pushViewController(push, animated: true)
                     
                 }
                 

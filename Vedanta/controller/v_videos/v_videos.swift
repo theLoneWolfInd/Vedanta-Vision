@@ -788,8 +788,17 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
         cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
         
-        cell.lbl_title.text = (item!["title"] as! String)
-        cell.lbl_list_description.text = (item!["description"] as! String)
+        // cell.lbl_title.text = (item!["title"] as! String)
+//        cell.lbl_list_description.text = (item!["description"] as! String)
+        
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
+        
+        let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
+        
+        let combination = NSMutableAttributedString()
+        combination.append(partTwo)
+        
+        cell.lbl_list_description.attributedText = combination
         
         if (item!["status"] as! String) == "no" {
             
@@ -999,7 +1008,16 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
             
             print(item as Any)
             
-            if (item!["Link"] as! String) == "" {
+            let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
+            print(item as Any)
+            
+            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
+            push!.hidesBottomBarWhenPushed = false
+
+            push!.dict_get_video_data = item as NSDictionary?
+            self.navigationController?.pushViewController(push!, animated: true)
+            
+            /*if (item!["Link"] as! String) == "" {
                 
                 self.push_to_video_screen(str_video_file_link: (item!["videoFile"] as! String),
                                           str_video_title: (item!["title"] as! String))
@@ -1010,7 +1028,7 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
                 self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
                                           str_video_title: (item!["title"] as! String))
                 
-            }
+            }*/
             
             
         } else {
@@ -1037,8 +1055,19 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
                 } else {
                     
                     // Subscribe DONE , Play Video
-                    self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
-                                              str_video_title: (item!["title"] as! String))
+//                    self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
+//                                              str_video_title: (item!["title"] as! String))
+                    
+                    
+                    let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
+                    print(item as Any)
+                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "v_related_videos_id") as? v_related_videos
+                    push!.hidesBottomBarWhenPushed = false
+
+                    push!.dict_get_video_data = item as NSDictionary?
+                    self.navigationController?.pushViewController(push!, animated: true)
+                    
                     
                 }
                 

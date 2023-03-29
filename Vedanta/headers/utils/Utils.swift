@@ -33,6 +33,9 @@ let notification_subscription_for_audio = "notification_subscription_audio"
 let notification_subscription_for_video = "notification_subscription_video"
 let notification_subscription_for_article = "notification_subscription_article"
 
+let app_red_orange_mix_color = UIColor.init(red: 231.0/255.0, green: 37.0/255.0, blue: 36.0/255.0, alpha: 1)
+//231 37 36
+
 class Utils: NSObject {
     
     
@@ -84,12 +87,12 @@ extension UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to check your all notifications."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -378,14 +381,14 @@ extension UIViewController {
             
         } else {
             
-            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to Edit your profile."), style: .alert)
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to edit your profile."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -548,5 +551,28 @@ extension Date {
         dateComponents.year = dYears
         
         return Calendar.current.date(byAdding: dateComponents, to: self)!
+    }
+}
+
+
+extension UIView {
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.cornerRadius = 12
+        layer.shadowColor = UIColor.init(red: 164.0/255.0, green: 164.0/255.0, blue: 164.0/255.0, alpha: 1).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width: 0 , height: 2)
+        layer.shadowRadius = 3
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+
+extension String {
+    func isValidEmail() -> Bool {
+        // here, `try!` will always succeed because the pattern is valid
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
 }

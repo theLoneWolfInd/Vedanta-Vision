@@ -326,13 +326,13 @@ class more: UIViewController {
         
         let alert = NewYorkAlertController(title: String("Logout").uppercased(), message: String("Are you sure you want to logout ?"), style: .alert)
         
-        let yes_logout = NewYorkButton(title: "yes, logout", style: .default) {
+        let yes_logout = NewYorkButton(title: "Logout", style: .default) {
             _ in
             
             self.check_login_status()
             
         }
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         
         alert.addButtons([yes_logout , cancel])
         self.present(alert, animated: true)
@@ -408,6 +408,15 @@ extension more : UITableViewDelegate , UITableViewDataSource {
         cell.btn_favourite.addTarget(self, action: #selector(favourite_click_method), for: .touchUpInside)
         
         cell.btn_edit_profile.addTarget(self, action: #selector(edit_profile_click_method), for: .touchUpInside)
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            // let str:String = person["role"] as! String
+            print(person as Any)
+            
+            cell.lbl_app_edit_profile.text = "Edit profile"
+        } else {
+            cell.lbl_app_edit_profile.text = "Login"
+        }
         
 //        cell.btn_change_password.addTarget(self, action: #selector(change_password_click_method), for: .touchUpInside)
         
@@ -509,6 +518,12 @@ class more_table_cell:UITableViewCell {
     @IBOutlet weak var lbl_app_setting:UILabel! {
         didSet {
             lbl_app_setting.textColor = .black
+        }
+    }
+    
+    @IBOutlet weak var lbl_app_edit_profile:UILabel! {
+        didSet {
+            lbl_app_edit_profile.textColor = .black
         }
     }
     

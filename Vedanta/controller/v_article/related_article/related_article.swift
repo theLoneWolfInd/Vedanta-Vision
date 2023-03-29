@@ -175,6 +175,7 @@ class related_article: UIViewController {
                             
                             var ar : NSArray!
                             ar = (jsonDict["relatedData"] as! Array<Any>) as NSArray
+                             print(ar)
                             // self.related_arr_mut_article_list.addObjects(from: ar as! [Any])
                             
                             /*
@@ -195,23 +196,26 @@ class related_article: UIViewController {
                                 if indexx == 0 {
                                     print(self.dict_get_article_data as Any)
                                     let custom_array = ["status"    : "header",
+                                                        "articleId"   : "\(self.dict_get_article_data["articleId"]!)",
                                                         "Type":"",
                                                         "created"   : (self.dict_get_article_data["created"] as! String),
                                                         "image"     : (self.dict_get_article_data["image"] as! String),
                                                         "title"     : (self.dict_get_article_data["title"] as! String),
                                                         "description"   : (self.dict_get_article_data["description"] as! String),
+                                                        "youLiked"   : (self.dict_get_article_data["youLiked"] as! String),
                                     ]
                                     self.arr_mut_article_list.add(custom_array)
                                     
                                 } else if indexx == 1 {
                                     
                                     let custom_array = ["status"    : "title",
-                                                        //"audioFile"      : "",
+                                                        "articleId"      : "",
                                                         "Type":"",
                                                         "created"   : "",
                                                         "image"     : "",
                                                         "title"     : "",
                                                         "description"   : "",
+                                                        "youLiked"   : "",
                                     ]
                                     self.arr_mut_article_list.add(custom_array)
                                     
@@ -224,15 +228,19 @@ class related_article: UIViewController {
                                 // self.str_check_related_article = "1"
                                 
                                 let item = ar[indexx] as? [String:Any]
+                                print(item as Any)
                                 
                                 let custom_array = ["status"    : "list",
                                                     //"audioFile"      : (item!["audioFile"] as! String),
+                                                    "articleId"   : "\(item!["articleId"]!)",
                                                     "Type":"\(item!["Type"]!)",
                                                     "created"   : (item!["created"] as! String),
                                                     "image"     : (item!["image"] as! String),
                                                     "title"     : (item!["title"] as! String),
                                                     "description"   : (item!["description"] as! String),
+                                                    "youLiked"   : (item!["youLiked"] as! String),
                                 ]
+                                
                                 self.arr_mut_article_list.add(custom_array)
                                 
                                 
@@ -489,7 +497,7 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
             let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 16.0)!]
             
 //            let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
-            let partTwo = NSMutableAttributedString(string: (item!["description"] as! String), attributes: yourOtherAttributes)
+            let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
             
             let combination = NSMutableAttributedString()
             
@@ -626,12 +634,24 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
                 } else {
 //                    print(item)
                     // Subscribe DONE , Play Video
-                    let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//                    let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//
+//                    pushVC.hidesBottomBarWhenPushed = false
+//                    pushVC.str_description = (item!["description"] as! String)
+//
+//                    self.navigationController?.pushViewController(pushVC, animated: true)
                     
-                    pushVC.hidesBottomBarWhenPushed = false
-                    pushVC.str_description = (item!["description"] as! String)
                     
-                    self.navigationController?.pushViewController(pushVC, animated: true)
+                    let item = self.arr_mut_article_list[indexPath.row] as? [String:Any]
+                    print(item as Any)
+                    
+                    let push = self.storyboard?.instantiateViewController(withIdentifier: "related_article_id") as! related_article
+                    
+                    push.hidesBottomBarWhenPushed = false
+                    push.dict_get_article_data = item as NSDictionary?
+                    
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
                     
                 }
                 
@@ -644,12 +664,23 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
 
         } else {
         
-            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "read_article_id") as! read_article
+//
+//            pushVC.hidesBottomBarWhenPushed = false
+//            pushVC.str_description = (item!["description"] as! String)
+//
+//            self.navigationController?.pushViewController(pushVC, animated: true)
             
-            pushVC.hidesBottomBarWhenPushed = false
-            pushVC.str_description = (item!["description"] as! String)
             
-            self.navigationController?.pushViewController(pushVC, animated: true)
+            let item = self.arr_mut_article_list[indexPath.row] as? [String:Any]
+            print(item as Any)
+            
+            let push = self.storyboard?.instantiateViewController(withIdentifier: "related_article_id") as! related_article
+            
+            push.hidesBottomBarWhenPushed = false
+            push.dict_get_article_data = item as NSDictionary?
+            
+            self.navigationController?.pushViewController(push, animated: true)
             
         }
         
@@ -662,9 +693,9 @@ extension related_article : UITableViewDelegate , UITableViewDataSource {
         let item = self.arr_mut_article_list[indexPath.row] as? [String:Any]
         
         if (item!["status"] as! String) == "header" {
-            return 300 //UITableView.automaticDimension
+            return UITableView.automaticDimension
         } else if (item!["status"] as! String) == "title" {
-            return 50
+            return 34
         } else {
             return 130
         }

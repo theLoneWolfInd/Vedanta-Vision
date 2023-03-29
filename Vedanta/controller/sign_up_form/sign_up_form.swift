@@ -22,11 +22,80 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var tble_view:UITableView! {
+//    @IBOutlet weak var tble_view:UITableView! {
+//        didSet {
+//            tble_view.delegate = self
+//            tble_view.dataSource = self
+//            tble_view.backgroundColor = .clear
+//        }
+//    }
+    
+    @IBOutlet weak var img_view:UIImageView! {
         didSet {
-            tble_view.delegate = self
-            tble_view.dataSource = self
-            tble_view.backgroundColor = .clear
+            img_view.backgroundColor = .clear
+        }
+    }
+    
+    @IBOutlet weak var txt_full_name:UITextField! {
+        didSet {
+            txt_full_name.setLeftPaddingPoints(24)
+            txt_full_name.layer.borderColor = UIColor.lightGray.cgColor
+            txt_full_name.layer.borderWidth = 0.8
+            txt_full_name.layer.cornerRadius = 8
+            txt_full_name.clipsToBounds = true
+            txt_full_name.spellCheckingType = .no
+        }
+        
+    }
+    
+    @IBOutlet weak var txt_email:UITextField! {
+        didSet {
+            txt_email.setLeftPaddingPoints(24)
+            txt_email.layer.borderColor = UIColor.lightGray.cgColor
+            txt_email.layer.borderWidth = 0.8
+            txt_email.layer.cornerRadius = 8
+            txt_email.clipsToBounds = true
+            txt_email.keyboardType = .emailAddress
+        }
+    }
+    
+    @IBOutlet weak var txt_password:UITextField! {
+        didSet {
+            txt_password.setLeftPaddingPoints(24)
+            txt_password.layer.borderColor = UIColor.lightGray.cgColor
+            txt_password.layer.borderWidth = 0.8
+            txt_password.layer.cornerRadius = 8
+            txt_password.clipsToBounds = true
+            txt_password.isSecureTextEntry = true
+        }
+    }
+    
+    @IBOutlet weak var txt_phone:UITextField! {
+        didSet {
+            txt_phone.setLeftPaddingPoints(24)
+            txt_phone.layer.borderColor = UIColor.lightGray.cgColor
+            txt_phone.layer.borderWidth = 0.8
+            txt_phone.layer.cornerRadius = 8
+            txt_phone.clipsToBounds = true
+            txt_phone.keyboardType = .numberPad
+        }
+    }
+    
+    @IBOutlet weak var txt_confirm_password:UITextField! {
+        didSet {
+            txt_confirm_password.setLeftPaddingPoints(24)
+            txt_confirm_password.layer.borderColor = UIColor.lightGray.cgColor
+            txt_confirm_password.layer.borderWidth = 0.8
+            txt_confirm_password.layer.cornerRadius = 8
+            txt_confirm_password.clipsToBounds = true
+            txt_confirm_password.isSecureTextEntry = true
+        }
+    }
+    
+    @IBOutlet weak var btn_sign_up:UIButton! {
+        didSet {
+            btn_sign_up.layer.cornerRadius = 8
+            btn_sign_up.clipsToBounds = true
         }
     }
     
@@ -39,69 +108,106 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
         
-        self.tble_view.separatorColor = .clear
+        self.txt_email.delegate = self
+        self.txt_password.delegate = self
+        self.txt_phone.delegate = self
+        self.txt_full_name.delegate = self
+        self.txt_confirm_password.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+//        self.tble_view.separatorColor = .clear
+        
+        self.btn_sign_up.addTarget(self, action: #selector(validation_before_sign_up), for: .touchUpInside)
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
     }
     
     @objc func dismissKeyboard_2() {
-        self.tble_view.setContentOffset(CGPointZero, animated:true)
+//        self.tble_view.setContentOffset(CGPointZero, animated:true)
         self.view.endEditing(true)
     }
 
     @objc func validation_before_sign_up() {
         
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! sign_up_form_table_cell
+//        let indexPath = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tble_view.cellForRow(at: indexPath) as! sign_up_form_table_cell
         
-        if cell.txt_full_name.text! == "" {
+        if self.txt_full_name.text! == "" {
              
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Name should not be empty"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
-        } else if cell.txt_email.text! == "" {
+        } else if self.txt_email.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Email should not be empty"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
-        } else if cell.txt_phone.text! == "" {
+        } else if self.txt_phone.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Phone should not be empty"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
-        } else if cell.txt_password.text! == "" {
+        } else if self.txt_password.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Password should not be empty"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
-        } else if cell.txt_confirm_password.text! == "" {
+        } else if self.txt_confirm_password.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Confirm Password should not be empty"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
-        } else if cell.txt_password.text! != cell.txt_confirm_password.text! {
+        } else if self.txt_password.text! != self.txt_confirm_password.text! {
             
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Password not matched. Please try again"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
             
         } else {
-        
-            self.registeration_in_vedanta_WB()
+//            print( as Any)
+            
+            
+            if isValidEmail(testStr: self.txt_email.text!) {
+                print("Validate EmailID")
+                
+                if (self.txt_phone.text?.count == 10) {
+                    //
+                    self.registeration_in_vedanta_WB()
+                    //
+                } else {
+                    let alert = NewYorkAlertController(title: String("Alert"), message: String("Please enter valid phone number"), style: .alert)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                    alert.addButtons([cancel])
+                    self.present(alert, animated: true)
+                }
+                
+            }
+            else {
+                
+                print("invalide EmailID")
+                let alert = NewYorkAlertController(title: String("Alert"), message: String("Please enter valid email address"), style: .alert)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                alert.addButtons([cancel])
+                self.present(alert, animated: true)
+            }
+            
+            //
             
         }
         
@@ -112,8 +218,8 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
     @objc func registeration_in_vedanta_WB() {
         self.view.endEditing(true)
         
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! sign_up_form_table_cell
+//        let indexPath = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tble_view.cellForRow(at: indexPath) as! sign_up_form_table_cell
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
@@ -124,10 +230,10 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
     
         let parameters = [
             "action"            : "registration",
-            "email"             : String(cell.txt_email.text!),
-            "password"          : String(cell.txt_password.text!),
-            "fullName"          : String(cell.txt_full_name.text!),
-            "contactNumber"     : String(cell.txt_phone.text!),
+            "email"             : String(self.txt_email.text!),
+            "password"          : String(self.txt_password.text!),
+            "fullName"          : String(self.txt_full_name.text!),
+            "contactNumber"     : String(self.txt_phone.text!),
             "role"              : "Member"
         ]
         
@@ -203,9 +309,36 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.tble_view.setContentOffset(CGPointZero, animated:true)
+        // self.tble_view.setContentOffset(CGPointZero, animated:true)
         self.view.endEditing(true)
         return true
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+
+    // println("validate emilId: \(testStr)")
+
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+
+        let result = emailTest.evaluate(with: testStr)
+
+        return result
+
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == self.txt_phone {
+            let maxLength = 10
+            let currentString = (textField.text ?? "") as NSString
+            let newString = currentString.replacingCharacters(in: range, with: string)
+
+            return newString.count <= maxLength
+        }
+        return true
+        
     }
     
 }

@@ -9,7 +9,8 @@ import UIKit
 
 class tab_bar: UITabBarController {
 
-    let selectedColor   = UIColor.red//UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
+    let selectedColor   = app_red_orange_mix_color
+    
     let unselectedColor = UIColor.init(red: 22.0/255.0, green: 12.0/255.0, blue: 86.0/255.0, alpha: 1)
     
     override func viewDidLoad() {
@@ -18,13 +19,15 @@ class tab_bar: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: unselectedColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
         
-        tabBar.tintColor = .red
+        tabBar.tintColor = app_red_orange_mix_color
         
         let myTabBarItem2 = (self.tabBar.items?[2])! as UITabBarItem
         myTabBarItem2.image = UIImage(named: "vedanta_red")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
         myTabBarItem2.selectedImage = UIImage(named: "vedanta_blue")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
+        // Are You Like a Bee Chasing a Pineapple? by Jaya Row
+        // https://youtu.be/0IiGLuL3gL4
         
         myTabBarItem2.title = ""
         

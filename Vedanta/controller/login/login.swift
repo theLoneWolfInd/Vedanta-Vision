@@ -65,6 +65,75 @@ class login: UIViewController , UITextFieldDelegate {
         }
     }
     
+    @IBOutlet weak var img_view:UIImageView! {
+        didSet {
+            img_view.backgroundColor = .clear
+        }
+    }
+    @IBOutlet weak var txt_email:UITextField! {
+        didSet {
+            txt_email.setLeftPaddingPoints(24)
+            txt_email.layer.borderColor = UIColor.lightGray.cgColor
+            txt_email.layer.borderWidth = 0.8
+            txt_email.layer.cornerRadius = 8
+            txt_email.clipsToBounds = true
+            txt_email.keyboardType = .emailAddress
+        }
+    }
+    
+    @IBOutlet weak var txt_password:UITextField! {
+        didSet {
+            txt_password.setLeftPaddingPoints(24)
+            txt_password.layer.borderColor = UIColor.lightGray.cgColor
+            txt_password.layer.borderWidth = 0.8
+            txt_password.layer.cornerRadius = 8
+            txt_password.clipsToBounds = true
+            txt_password.isSecureTextEntry = true
+        }
+    }
+    
+    @IBOutlet weak var btn_forgot_password:UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var btn_sign_up:UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var btn_sign_in:UIButton! {
+        didSet {
+            btn_sign_in.layer.cornerRadius = 8
+            btn_sign_in.clipsToBounds = true
+            btn_sign_in.dropShadow()
+        }
+    }
+    
+    @IBOutlet weak var btn_continue_with_facebook:UIButton! {
+        didSet {
+            btn_continue_with_facebook.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_facebook.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_facebook.layer.shadowOpacity = 1.0
+            btn_continue_with_facebook.layer.shadowRadius = 4
+            btn_continue_with_facebook.layer.masksToBounds = false
+            btn_continue_with_facebook.layer.cornerRadius = 12
+        }
+    }
+    
+    @IBOutlet weak var btn_continue_with_google:UIButton! {
+        didSet {
+            btn_continue_with_google.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_google.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_google.layer.shadowOpacity = 1.0
+            btn_continue_with_google.layer.shadowRadius = 4
+            btn_continue_with_google.layer.masksToBounds = false
+            btn_continue_with_google.layer.cornerRadius = 12
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,60 +141,49 @@ class login: UIViewController , UITextFieldDelegate {
         self.view_full_view.backgroundColor = app_BG_color
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+
+//        self.tble_view.separatorColor = .clear
         
-   
-        
-        
-        
-        self.tble_view.separatorColor = .clear
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        /*if let token = AccessToken.current,
-                !token.isExpired {
-                // User is logged in, do work such as go to next view controller.
-        }*/
+        let stringValue = "Don't have an account - Sign Up"
         
-        // self.sign_up_with_google_init()
+        // 230 40 36
+        let attText = NSMutableAttributedString(string: stringValue)
+        attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 59.0/255.0, alpha: 1), range: NSRange(
+            location:24,
+            length:7))
+ 
+        self.btn_sign_up.setAttributedTitle(attText, for: .normal)
         
-        // google call
-//        googleLogin()
+        self.btn_sign_in.addTarget(self, action: #selector(login_in_vedanta_WB), for: .touchUpInside)
         
-        // facebook call
-        facebookLogin()
+        self.btn_sign_up.addTarget(self, action: #selector(sign_up_click_method), for: .touchUpInside)
+        
+        self.btn_forgot_password.addTarget(self, action: #selector(forgot_password_click_method), for: .touchUpInside)
+        self.txt_email.delegate = self
+        self.txt_password.delegate = self
+        
+        // social buttons
+        self.btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
+            guard let strongSelf = self else {return}
+            RRFBLogin.shared.fbLogin(viewController: strongSelf)
+        }.disposed(by: rxbag)
+        
+        // google
+        self.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
         
         
-        
-        
-        // google old
-//        btn_continue_with_google.rx.tap.bind{ [weak self] _ in
-//            guard let strongSelf = self else {return}
-//            RRGoogleLogin.shared.googleSignIn(viewController: strongSelf)
-//        }.disposed(by: rxbag)
-        
-        
-//        let loginButton = FBLoginButton()
-//                loginButton.center = view.center
-//                view.addSubview(loginButton)
-
+        self.facebookLogin()
+      
         NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
 
             debugPrint("Facebook Access Token: \(String(describing: AccessToken.current?.tokenString))")
         }
-        
-        
-        // facebook
-//        btn_continue_with_facebook.delegate = self
-//        btn_continue_with_facebook.permissions = ["public_profile", "email"]
-//        btn_continue_with_facebook.addTarget(self, action: #selector(continue_with_facebook_click_method), for: .touchUpInside)
-        
-        
-        
-//        let loginButton = FBLoginButton()
-//        loginButton.delegate = self
-//        loginButton.center = view.center
-//                        view.addSubview(loginButton)
         
     }
     
@@ -468,25 +526,21 @@ class login: UIViewController , UITextFieldDelegate {
     @objc func login_in_vedanta_WB() {
         self.view.endEditing(true)
         
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! login_table_cell
+//        let indexPath = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tble_view.cellForRow(at: indexPath) as! login_table_cell
         
         
-        if (cell.txt_email.text == "") {
+        if (self.txt_email.text == "") {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Email should not be empty"), style: .alert)
-            
-             
             
             let cancel = NewYorkButton(title: "dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
-        } else if (cell.txt_password.text == "") {
+        } else if (self.txt_password.text == "") {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Password should not be empty"), style: .alert)
-            
-             
             
             let cancel = NewYorkButton(title: "dismiss", style: .cancel)
             alert.addButtons([cancel])
@@ -494,7 +548,26 @@ class login: UIViewController , UITextFieldDelegate {
             
         } else {
             
+            if isValidEmail(testStr: self.txt_email.text!) {
+                print("Validate EmailID")
+                
+                self.login_WB()
+                
+            } else {
+                
+                let alert = NewYorkAlertController(title: String("Alert"), message: String("Please enter valid email address"), style: .alert)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                alert.addButtons([cancel])
+                self.present(alert, animated: true)
+                
+            }
+            
         
+        }
+    }
+    
+    
+    func login_WB() {
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
         if IsInternetAvailable() == false {
@@ -511,8 +584,8 @@ class login: UIViewController , UITextFieldDelegate {
         
         let parameters = [
             "action"    : "login",
-            "email"     : String(cell.txt_email.text!),
-            "password"  : String(cell.txt_password.text!),
+            "email"     : String(self.txt_email.text!),
+            "password"  : String(self.txt_password.text!),
             "deviceToken" : String(device_token)
             
         ]
@@ -578,6 +651,19 @@ class login: UIViewController , UITextFieldDelegate {
                 }
             }
     }
+    
+    func isValidEmail(testStr:String) -> Bool {
+
+    // println("validate emilId: \(testStr)")
+
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+
+        let result = emailTest.evaluate(with: testStr)
+
+        return result
+
     }
     
 }
@@ -677,16 +763,14 @@ extension login : UITableViewDelegate , UITableViewDataSource {
         // google
         cell.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
         
-        let stringValue = "Don't have an acount - Sign Up"
+        let stringValue = "Don't have an account - Sign Up"
         
         // 230 40 36
         let attText = NSMutableAttributedString(string: stringValue)
-        attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(red: 230.0/255.0, green: 40.0/255.0, blue: 36.0/255.0, alpha: 1), range: NSRange(
-            location:23,
+        attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 59.0/255.0, alpha: 1), range: NSRange(
+            location:24,
             length:7))
-//                 attributedText = attText
-        
-//        cell.btn_sign_up.attributedText = attText
+ 
         cell.btn_sign_up.setAttributedTitle(attText, for: .normal)
         
         return cell
@@ -769,5 +853,6 @@ class login_table_cell:UITableViewCell {
         }
     }
 
+    
     
 }

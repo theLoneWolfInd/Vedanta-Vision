@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+
 class forgot_password: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var btn_back:UIButton! {
@@ -126,8 +127,11 @@ class forgot_password: UIViewController , UITextFieldDelegate {
                             ERProgressHud.sharedInstance.hide()
                             
                             
-                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "reset_password_id")
-                            self.navigationController?.pushViewController(push, animated: true)
+                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "reset_password_id") as? reset_password
+                            
+                            push!.str_email = String(self.txt_email_address.text!)
+                            
+                            self.navigationController?.pushViewController(push!, animated: true)
                             
                             
                             let alert = NewYorkAlertController(title: String("Alert"), message: String(str_data_message), style: .alert)

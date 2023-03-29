@@ -24,7 +24,11 @@ class advertisement_details: UIViewController {
         }
     }
     
-    @IBOutlet weak var btn_back:UIButton!
+    @IBOutlet weak var btn_back:UIButton! {
+        didSet {
+            btn_back.tintColor = .black
+        }
+    }
     
     
     @IBOutlet weak var img_advertisement:UIImageView!
@@ -41,7 +45,8 @@ class advertisement_details: UIViewController {
         
         self.view.backgroundColor = .white
         self.view_full_view.backgroundColor = app_BG_color
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.navigationBar.barTintColor = UIColor.green
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         

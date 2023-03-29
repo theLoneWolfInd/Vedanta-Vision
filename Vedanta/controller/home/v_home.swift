@@ -13,6 +13,7 @@ import Firebase
 import AVFoundation
 import AVKit
 
+
 class v_home: UIViewController {
     
     var str_name:String!
@@ -22,7 +23,7 @@ class v_home: UIViewController {
     var cell_height_subscribe:CGFloat = 100
     var cell_height_bhagwat_gita:CGFloat = 160
     var cell_height_knowledge:CGFloat = 200
-    var cell_height_social_media:CGFloat = 914//1000
+    var cell_height_social_media:CGFloat = 930//1000
     var cell_height_feeds:CGFloat = 0 // 340
     
     /*============================= CALENDAR =====================================*/
@@ -96,7 +97,20 @@ class v_home: UIViewController {
         return formatter
     }()
     
+    fileprivate lazy var dateFormatter1: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        return formatter
+    }()
     
+//    let fillSelectionColors = ["2023/03/24": UIColor.brown, "2015/10/06": UIColor.purple, "2015/10/17": UIColor.gray, "2015/10/21": UIColor.cyan, "2015/11/08": UIColor.green, "2015/11/06": UIColor.purple, "2015/11/17": UIColor.gray, "2015/11/21": UIColor.cyan, "2015/12/08": UIColor.green, "2015/12/06": UIColor.purple, "2015/12/17": UIColor.gray, "2015/12/21": UIColor.cyan]
+    
+    let borderDefaultColors = ["2015/10/17": UIColor.red]
+    
+    var _lastContentOffset: CGPoint!
+    var panGesture : UIPanGestureRecognizer!
+    
+    var strIndex:Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +119,7 @@ class v_home: UIViewController {
         
         self.tble_view.separatorColor = .clear
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
+        self.tble_view.alwaysBounceVertical = false
         
         self.screenSize = UIScreen.main.bounds
         self.screenWidth = screenSize.width
@@ -352,6 +367,21 @@ class v_home: UIViewController {
         return 0
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter2.string(from: date)
+        if self.datesWithEvent != nil {
+            return UIColor.black
+        }
+        return appearance.selectionColor
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter1.string(from: date)
+        if let color = self.borderDefaultColors[key] {
+            return color
+        }
+        return appearance.borderDefaultColor
+    }
     
     /*
      "action: eventlist
@@ -991,11 +1021,14 @@ class v_home: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizer.Direction.right:
                 print("Swiped right")
-
+                
+                //                swipeGesture.ani
+                
+                UIView.animate(withDuration: 2, animations: {
                 if self.adv_gesture_index_stop_right == "0" {
                     
                     self.adv_gesture_index -= 1
-//                     print(self.adv_gesture_index as Any)
+                    //                     print(self.adv_gesture_index as Any)
                     
                     self.str_image_suffix_id = String(self.adv_gesture_index)
                     
@@ -1005,13 +1038,14 @@ class v_home: UIViewController {
                         self.adv_gesture_index_stop_right = "1"
                         
                     } else {
-
+                        
                         self.adv_gesture_index_stop_left = "0"
- 
+                        
                         
                     }
                     
                 }
+            })
  
                 self.tble_view.reloadData()
                 
@@ -1153,9 +1187,12 @@ class v_home: UIViewController {
 //        print(tappedImage.tag)
 //        print("Tapped on Image")
         
-        let int_1 = (str_image_suffix_id as NSString).integerValue
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        print(tappedImage.tag)
         
-        let item = self.arr_advertisement[int_1-1] as? [String:Any]
+//        let int_1 = (str_image_suffix_id as NSString).integerValue
+        
+        let item = self.arr_advertisement[tappedImage.tag] as? [String:Any]
 
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "advertisement_details_id") as? advertisement_details
 
@@ -1212,6 +1249,75 @@ class v_home: UIViewController {
     }
     
      
+    //
+    // MARK : TO CHANGE WHILE CLICKING ON PAGE CONTROL
+//    func changePage(sender: AnyObject) -> () {
+//        let indexPath = IndexPath.init(row: 2, section: 0)
+//        let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+//        
+//        print("one 1.1")
+////        let x = CGFloat(cell.page_control.currentPage) * view.frame.size.width
+////        view.setContentOffset(CGPoint(x:x, y:0), animated: true)
+//    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+         _lastContentOffset = scrollView.contentOffset
+      }
+//
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        var str_count = "0"
+        
+        if _lastContentOffset.y < scrollView.contentOffset.y {
+              NSLog("Scrolled Down")
+            str_count = "1"
+        }
+
+        else if _lastContentOffset.y > scrollView.contentOffset.y {
+            NSLog("Scrolled Up")
+            
+            str_count = "1"
+        } else {
+//
+//
+//            let indexPath = IndexPath.init(row: 4, section: 0)
+//            let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+//
+            let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+            print(pageNumber)
+
+//            print(Int(pageNumber))
+//            cell.page_control.currentPage = Int(pageNumber)
+            self.strIndex = Int(pageNumber)
+            self.tble_view.reloadData()
+        }
+        
+//        if str_count == "0" {
+//
+//
+//        }
+//
+
+//        print("one 2.1")
+
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var isLoading: Bool = false
+        
+//        if scrollView == self.tble_view {
+            let contentOffsetX = scrollView.contentOffset.x
+            if contentOffsetX >= (scrollView.contentSize.width - scrollView.bounds.width) - 20 /* Needed offset */ {
+     //           guard !self.isLoading else { return }
+     //           self.isLoading = true
+                // load more data
+                // than set self.isLoading to false when new data is loaded
+//                print("hello")
+            }
+//        }
+       
+   }
     
 }
 
@@ -1289,9 +1395,9 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             // img_scroll_advertisement
             // lbl_scroll_count
             
-            print(str_image_suffix_id);
+//            print(str_image_suffix_id);
  
-            let int_1 = (str_image_suffix_id as NSString).integerValue
+            /*let int_1 = (str_image_suffix_id as NSString).integerValue
 //
             let item = self.arr_advertisement[int_1-1] as? [String:Any]
             
@@ -1304,6 +1410,10 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.img_scroll_advertisement.isUserInteractionEnabled = true
             cell.img_scroll_advertisement.addGestureRecognizer(tapGestureRecognizer)
             
+//            panGesture.isLeft(theViewYouArePassing: cell.view_img_scroll_advertisement)
+            
+            
+            // view_img_scroll_advertisement
             
            
             let int = (str_image_suffix_id as NSString).integerValue
@@ -1318,6 +1428,7 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             
             let swipe_left = UISwipeGestureRecognizer(target: self, action: #selector(self.gesture_to_swipe_gesture(gesture:)))
             swipe_left.direction = .left
+            
             cell.img_scroll_advertisement.isUserInteractionEnabled = true
             cell.img_scroll_advertisement.addGestureRecognizer(swipe_left)
             
@@ -1327,6 +1438,161 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.img_scroll_advertisement.isUserInteractionEnabled = true
             cell.img_scroll_advertisement.addGestureRecognizer(swipe_right)
 
+            cell.img_scroll_advertisement.isHidden = true
+            
+            var imgArray :NSMutableArray!=[];
+            imgArray = ["logo.png", "logo.png"]
+            
+            let scroll_view_advertisement = UIScrollView()
+            
+               for i in 0..<2 {
+
+                   let imageView = UIImageView()
+                   imageView.image = UIImage(name)//(imgArray[i] as! UIImage)
+                   let xPosition = self.view.frame.width * CGFloat(i)
+                   imageView.frame = CGRect(x: xPosition, y: 0, width:
+                                        scroll_view_advertisement.frame.width + 50, height: scroll_view_advertisement.frame.height)
+                   
+                   scroll_view_advertisement.contentSize.width = scroll_view_advertisement.frame.width * CGFloat(i + 1)
+                   scroll_view_advertisement.addSubview(imageView)
+
+                   // 20 , 8  377 , 108
+             }*/
+            
+//            cell.img_scroll_advertisement.isHidden = true
+            
+//            let scroll_view_advertisement_2 = UIScrollView()
+//            scroll_view_advertisement.backgroundColor = .clear
+//
+//            scroll_view_advertisement.frame =  CGRect(x: 20, y: 0, width:cell.frame.size.width-20, height: cell.frame.size.height-30)
+//
+//            scroll_view_advertisement.isPagingEnabled = true
+//            scroll_view_advertisement.showsHorizontalScrollIndicator = true
+//
+//            cell.addSubview(scroll_view_advertisement)
+//
+//            let arr_adv_image = ["logo","logo","logo"]
+//
+//            for index in 0..<arr_adv_image.count {
+//
+//                let imageView = UIImageView()
+//                if index == 1 {
+//                    imageView.image = UIImage(named: "logo")
+//                } else {
+//                    imageView.image = UIImage(named: "logo")
+//                }
+////                imageView.image = UIImage(named: arr_adv_image[index])
+//
+//                imageView.frame =  CGRect(x: 0, y: 0, width:scroll_view_advertisement.frame.size.width, height: scroll_view_advertisement.frame.size.height)
+//
+//                imageView.backgroundColor = .systemPink
+//                imageView.contentMode = .scaleToFill
+//
+//                scroll_view_advertisement.contentSize.width = scroll_view_advertisement.frame.width * CGFloat(index + 1)
+//
+//                scroll_view_advertisement.addSubview(imageView)
+//            }
+//
+//            scroll_view_advertisement.delegate = self
+            
+            ///
+            ///
+//            scroll_view_advertisement_2.translatesAutoresizingMaskIntoConstraints = false
+//            print(UIScreen.main.bounds.width)
+            
+            /*if (UIScreen.main.bounds.width == 375.0) {
+                scroll_view_advertisement_2.frame =  CGRect(x: 20, y: 34, width:cell.frame.size.width-40, height: cell.frame.size.height-30-34)
+            } else {
+                scroll_view_advertisement_2.frame =  CGRect(x: 20, y: 34, width:cell.frame.size.width-40, height: cell.frame.size.height-30-34)
+            }
+            
+            
+            scroll_view_advertisement_2.backgroundColor = .clear
+            scroll_view_advertisement_2.showsHorizontalScrollIndicator = false
+            scroll_view_advertisement_2.isPagingEnabled = true
+            cell.addSubview(scroll_view_advertisement_2)
+            
+            // print(self.dummy_image_knowledge);
+            
+            let arr_adv_image = ["banner1","banner2","banner3"]
+            
+            for index in 0..<arr_adv_image.count {
+
+                frame.origin.x = scroll_view_advertisement_2.frame.size.width * CGFloat(index)    
+                frame.size = scroll_view_advertisement_2.frame.size
+                
+                let imageView = UIImageView()
+                imageView.image = UIImage(named: arr_adv_image[index])
+                imageView.layer.cornerRadius = 12
+                imageView.clipsToBounds = true
+                imageView.frame = frame
+                
+                imageView.contentMode = .scaleToFill
+                imageView.backgroundColor = .clear
+                
+                scroll_view_advertisement_2.contentSize.width = imageView.frame.width * CGFloat(index + 1)
+                scroll_view_advertisement_2.addSubview(imageView)
+                
+            }
+            
+            scroll_view_advertisement_2.delegate = self*/
+            
+            // from storyboard
+            // # 1
+//            cell.scroll_view_advertisement_2.isPagingEnabled = true
+//            cell.scroll_view_advertisement_2.showsHorizontalScrollIndicator = true
+//
+//            let arr_adv_image = ["banner1","banner2","banner3"]
+//            for index in 0..<arr_adv_image.count {
+//
+//                frame.origin.x = cell.scroll_view_advertisement_2.frame.size.width * CGFloat(index)
+//                frame.size = cell.scroll_view_advertisement_2.frame.size
+//
+//                cell.img_view_scroll_2.image = UIImage(named: arr_adv_image[index])
+//                cell.img_view_scroll_2.contentMode = .scaleToFill
+//
+//                cell.scroll_view_advertisement_2.contentSize.width = cell.img_view_scroll_2.frame.width * CGFloat(index + 1)
+//            }
+//
+//            cell.scroll_view_advertisement_2.delegate = self
+            
+            
+            /*cell.scroll_view_advertisement_2.backgroundColor = .clear
+            cell.scroll_view_advertisement_2.showsHorizontalScrollIndicator = false
+            cell.scroll_view_advertisement_2.isPagingEnabled = true
+            // cell.addSubview(cell.scroll_view_advertisement_2)
+            
+            // print(self.dummy_image_knowledge);
+            
+            let arr_adv_image = ["banner1","banner2","banner3"]
+            
+            for index in 0..<arr_adv_image.count {
+
+                frame.origin.x = cell.scroll_view_advertisement_2.frame.size.width * CGFloat(index)
+                frame.size = cell.scroll_view_advertisement_2.frame.size
+                
+//                let imageView = UIImageView()
+                cell.img_view_scroll_2.image = UIImage(named: arr_adv_image[index])
+                cell.img_view_scroll_2.layer.cornerRadius = 12
+                cell.img_view_scroll_2.clipsToBounds = true
+                cell.img_view_scroll_2.frame = frame
+                
+                cell.img_view_scroll_2.contentMode = .scaleToFill
+                cell.img_view_scroll_2.backgroundColor = .clear
+                
+                cell.scroll_view_advertisement_2.contentSize.width = cell.img_view_scroll_2.frame.width * CGFloat(index + 1)
+//                cell.scroll_view_advertisement_2.addSubview(imageView)
+                
+            }
+            
+            cell.scroll_view_advertisement_2.delegate = self*/
+            
+            
+            cell.cl_view_adv.delegate = self
+            cell.cl_view_adv.dataSource = self
+            
+            cell.page_control.currentPage = self.strIndex
+            
             return cell
             
         } else if (item!["status"] as! String) == "subscribe" {
@@ -1344,7 +1610,7 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             let stringValue = "Already Subscribed ? Login"
             
             let attText = NSMutableAttributedString(string: stringValue)
-            attText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: NSRange(
+            attText.addAttribute(NSAttributedString.Key.foregroundColor, value: app_red_orange_mix_color, range: NSRange(
                 location:21,
                 length:5))
 //                 attributedText = attText
@@ -1406,6 +1672,8 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             // calendar
             cell.calendar.delegate = self
             cell.calendar.dataSource = self
+            
+//            cell.calendar.selectionColor = UIColor.brown
             
             cell.calendar.scope = .month
             
@@ -1643,7 +1911,7 @@ class v_home_table_cell:UITableViewCell {
     
     @IBOutlet weak var page_control:UIPageControl! {
         didSet {
-             page_control.currentPage = 1
+             page_control.currentPage = 0
         }
     }
     
@@ -1733,16 +2001,13 @@ class v_home_table_cell:UITableViewCell {
         didSet {
             btn_subscribe.layer.cornerRadius = 15
             btn_subscribe.clipsToBounds = true
-            
+            btn_subscribe.backgroundColor = app_red_orange_mix_color
         }
     }
     
     @IBOutlet weak var lbl_already_subscribe:UILabel! {
         didSet {
             lbl_already_subscribe.textColor = .white
-            
-            
-            
         }
     }
     
@@ -1786,6 +2051,28 @@ class v_home_table_cell:UITableViewCell {
         }
     }
     
+    @IBOutlet weak var img_view_scroll_2:UIImageView! {
+        didSet {
+            img_view_scroll_2.backgroundColor = .clear
+//            img_view_scroll_2.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var cl_view_adv:UICollectionView! {
+        didSet {
+            cl_view_adv.backgroundColor = .clear
+            cl_view_adv.tag = 1212
+            cl_view_adv.isScrollEnabled = true
+            cl_view_adv.isPagingEnabled = true
+            cl_view_adv.showsHorizontalScrollIndicator = false
+        }
+    }
+    
+    @IBOutlet weak var scroll_view_advertisement_2:UIScrollView! {
+        didSet {
+            scroll_view_advertisement_2.backgroundColor = .clear
+        }
+    }
     @IBOutlet weak var scroll_view_advertisement:UIScrollView! {
         didSet {
             scroll_view_advertisement.backgroundColor = .clear
@@ -1807,6 +2094,15 @@ class v_home_table_cell:UITableViewCell {
     @IBOutlet weak var lbl_scroll_count:UILabel! {
         didSet {
             lbl_scroll_count.textColor = .white
+        }
+    }
+    
+    @IBOutlet weak var view_img_scroll_advertisement:UIView! {
+        didSet {
+            view_img_scroll_advertisement.isHidden = true
+//            img_scroll_advertisement.layer.cornerRadius = 12
+//            img_scroll_advertisement.clipsToBounds = true
+//            scroll_view_advertisement.backgroundColor = .clear
         }
     }
     
@@ -1881,13 +2177,26 @@ class v_home_table_cell:UITableViewCell {
             calendar.backgroundColor = .white*/
             // calendar.backgroundColor = .white
             
-            calendar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            calendar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            calendar.layer.shadowOpacity = 1.0
-            calendar.layer.shadowRadius = 8
-            calendar.layer.masksToBounds = false
-            calendar.layer.cornerRadius = 8
-            calendar.backgroundColor = .white
+//            calendar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            calendar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            calendar.layer.shadowOpacity = 1.0
+//            calendar.layer.shadowRadius = 8
+//            calendar.layer.masksToBounds = false
+//            calendar.layer.cornerRadius = 8
+//            calendar.backgroundColor = .white
+            
+            calendar.dropShadow()
+            
+            calendar.appearance.headerTitleFont = UIFont(name: "Poppins-SemiBold", size: 18)
+            // 38 33 107
+            calendar.appearance.weekdayFont = UIFont(name: "Poppins-Regular", size: 14)
+            calendar.appearance.weekdayTextColor = UIColor.init(red: 38.0/255.0, green: 34.0/255.0, blue: 108.0/255.0, alpha: 1)
+            
+            calendar.appearance.todayColor = app_red_orange_mix_color
+             
+            
+            calendar.appearance.eventDefaultColor = app_red_orange_mix_color
+//            calendar.appearance.borderColors = ["":UIColor.purple]
             
             calendar.scope = .month
         }
@@ -1946,19 +2255,21 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             return self.arr_mut_video_list.count
         } else if collectionView.tag == 2000 {
             return self.arr_social_list.count
+        } else if collectionView.tag == 1212 {
+            return 3
         } else {
             return self.arr_mut_category.count
         }
         
     }
     
-    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        let totalWidth = cellWidth * numberOfItems
-        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
-        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
-        let rightInset = leftInset
-        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-    }
+//    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+//        let totalWidth = cellWidth * numberOfItems
+//        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+//        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+//        let rightInset = leftInset
+//        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -2040,12 +2351,17 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
 //            cell.backgroundColor = UIColor(red: 171/255, green: 178/255, blue: 186/255, alpha: 1.0)
             // Shadow Color and Radius
-            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 3.0
-            cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 12.0
+            
+            
+//            cell.layer.shadowColor = UIColor.lightGray.cgColor//UIColor(red: 226.0/255.0, green: 226.0/255.0, blue: 226.0/255.0, alpha: 1).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 3.0
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 12.0
+            
+            // cell.addBottomShadow()
+            cell.dropShadow()
             
 //            cell.layer.cornerRadius = 12
 //            cell.clipsToBounds = true
@@ -2090,12 +2406,15 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
 //            cell.backgroundColor = .white
             
             
-            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 3.0
-            cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 12.0
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 3.0
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 12.0
+            
+            
+            cell.dropShadow()
             
             
             let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
@@ -2121,12 +2440,16 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
 //            cell.layer.cornerRadius = 8
 //            cell.backgroundColor = .white
             
-            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            cell.layer.shadowOpacity = 1.0
-            cell.layer.shadowRadius = 3.0
-            cell.layer.masksToBounds = false
-            cell.layer.cornerRadius = 12.0
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 3.0
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 12.0
+            
+            
+            cell.dropShadow()
+            
             
             let item = self.arr_article_list[indexPath.row] as? [String:Any]
 
@@ -2134,6 +2457,70 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             cell.img_latest_article.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
 
             cell.lbl_latest_article.text = (item!["title"] as! String)
+            
+            return cell
+            
+        } else if collectionView.tag == 1212 {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "v_home_adv_cell", for: indexPath as IndexPath) as! v_home_adv_cell
+            
+            cell.backgroundColor = app_BG_color
+            
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 8
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 8
+//            cell.backgroundColor = .white
+            
+//            cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//            cell.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//            cell.layer.shadowOpacity = 1.0
+//            cell.layer.shadowRadius = 3.0
+//            cell.layer.masksToBounds = false
+//            cell.layer.cornerRadius = 12.0
+            
+            
+            cell.dropShadow()
+            
+//            let item = self.arr_article_list[indexPath.row] as? [String:Any]
+            
+            let imageView = UIImageView()
+            
+            if (indexPath.row == 0) {
+                imageView.image = UIImage(named: "banner1")
+            } else if (indexPath.row == 1) {
+                imageView.image = UIImage(named: "banner2")
+            } else {
+                imageView.image = UIImage(named: "banner3")
+            }
+            
+            imageView.layer.cornerRadius = 12
+            imageView.clipsToBounds = true
+            
+//            imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+//            imageView.contentMode = UIView.ContentMode.scaleAspectFit
+            
+            imageView.backgroundColor = .clear
+            imageView.frame = CGRect(x: 0, y: 0, width:
+                                        cell.frame.width, height: cell.frame.height)
+            
+            
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(advertisement_tapped(tapGestureRecognizer:)))
+            imageView.tag = indexPath.row
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(tapGestureRecognizer)
+
+            cell.addSubview(imageView)
+            
+            
+
+//            cell.img_latest_article.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//            cell.img_latest_article.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+//
+//            cell.lbl_latest_article.text = (item!["title"] as! String)
             
             return cell
             
@@ -2241,6 +2628,8 @@ extension v_home: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 80,height: 126)
         } else if collectionView.tag == 2000 {
             return CGSize(width: 50,height: 80)
+        } else if collectionView.tag == 1212 {
+            return CGSize(width: collectionView.frame.width,height: collectionView.frame.height)
         } else {
             return CGSize(width: 160,height: 120)
         }
@@ -2253,11 +2642,11 @@ extension v_home: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        
-         
-            return 40
-         
-        
+        if collectionView.tag == 1212 {
+            return 0
+        } else {
+            return 20
+        }
         
     }
     
@@ -2269,6 +2658,8 @@ extension v_home: UICollectionViewDelegateFlowLayout {
             return 10
         } else if collectionView.tag == 2000 {
             return 20
+        } else if collectionView.tag == 1212 {
+            return 0
         } else {
             return 20
         }
@@ -2277,7 +2668,9 @@ extension v_home: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if collectionView.tag == 1000 {
-            return UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 10)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        } else if collectionView.tag == 1212 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         } else {
             return UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 10)
         }
@@ -2379,6 +2772,31 @@ class v_home_collection_latest_audio_view_cell: UICollectionViewCell {
     
 }
 
+//
+class v_home_adv_cell: UICollectionViewCell {
+    
+    @IBOutlet weak var img_adv:UIImageView! {
+        didSet {
+//            let path = UIBezierPath(roundedRect:img_latest_article.bounds,
+//                                    byRoundingCorners:[.topRight, .topLeft],
+//                                    cornerRadii: CGSize(width: 12, height:  12))
+//
+//            let maskLayer = CAShapeLayer()
+//
+//            maskLayer.path = path.cgPath
+//            img_latest_article.layer.mask = maskLayer
+        }
+    }
+    
+   
+    
+    
+    
+    
+}
+
+
+
 // MARK: - COLLECTION CELL ( LATEST ARTICLES ) -
 class v_home_collection_latest_article_view_cell: UICollectionViewCell {
     
@@ -2407,3 +2825,34 @@ class v_home_collection_latest_article_view_cell: UICollectionViewCell {
 }
 
 
+
+extension UIPanGestureRecognizer {
+
+    func isLeft(theViewYouArePassing: UIView) -> Bool {
+        let detectionLimit: CGFloat = 50
+        var velocity : CGPoint = velocity(in: theViewYouArePassing)
+        if velocity.x > detectionLimit {
+            print("Gesture went right")
+            return false
+        } else if velocity.x < -detectionLimit {
+            print("Gesture went left")
+            return true
+        }
+        return true
+    }
+}
+
+//extension UIView {
+//func addBottomShadow() {
+//    layer.masksToBounds = false
+//    layer.shadowRadius = 4
+//    layer.shadowOpacity = 1
+//    layer.cornerRadius = 12
+//    layer.shadowColor = UIColor.init(red: 164.0/255.0, green: 164.0/255.0, blue: 164.0/255.0, alpha: 1).cgColor
+//    layer.shadowOffset = CGSize(width: 0 , height: 2)
+//    layer.shadowPath = UIBezierPath(rect: CGRect(x: 0,
+//                                                 y: bounds.maxY - layer.shadowRadius,
+//                                                 width: bounds.width,
+//                                                 height: layer.shadowRadius)).cgPath
+//}
+//}

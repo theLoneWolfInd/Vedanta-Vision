@@ -519,9 +519,25 @@ extension wisdom_sub_details : UITableViewDelegate , UITableViewDataSource {
         
         if "\(item!["Type"]!)" == "1" { // video
             
+            
+            let item = self.arr_wisdom_list[indexPath.row] as? [String:Any]
+            
+            let push = self.storyboard?.instantiateViewController(withIdentifier: "wisdom_new_details_id") as! wisdom_new_details
+            
+            push.hidesBottomBarWhenPushed = false
+            push.dict_wisdom_details = item as NSDictionary?
+            
+            push.str_one_one = String(self.str_one)
+            push.str_one_two = String(self.str_two)
+            
+            self.navigationController?.pushViewController(push, animated: true)
+            
+            
+            
+            
             // video
-            self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
-                                      str_video_title: (item!["title"] as! String))
+//            self.push_to_video_screen(str_video_file_link: (item!["Link"] as! String),
+//                                      str_video_title: (item!["title"] as! String))
             
         } else if "\(item!["Type"]!)" == "2" { // audio
             
