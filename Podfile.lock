@@ -1,42 +1,40 @@
 PODS:
-  - Alamofire (5.6.2)
-  - AppAuth (1.6.0):
-    - AppAuth/Core (= 1.6.0)
-    - AppAuth/ExternalUserAgent (= 1.6.0)
-  - AppAuth/Core (1.6.0)
-  - AppAuth/ExternalUserAgent (1.6.0):
+  - Alamofire (5.6.4)
+  - AppAuth (1.6.1):
+    - AppAuth/Core (= 1.6.1)
+    - AppAuth/ExternalUserAgent (= 1.6.1)
+  - AppAuth/Core (1.6.1)
+  - AppAuth/ExternalUserAgent (1.6.1):
     - AppAuth/Core
-  - ChameleonFramework (2.1.0):
-    - ChameleonFramework/Default (= 2.1.0)
-  - ChameleonFramework/Default (2.1.0)
-  - FBAEMKit (15.1.0):
-    - FBSDKCoreKit_Basics (= 15.1.0)
-  - FBSDKCoreKit (15.1.0):
-    - FBAEMKit (= 15.1.0)
-    - FBSDKCoreKit_Basics (= 15.1.0)
-  - FBSDKCoreKit_Basics (15.1.0)
-  - FBSDKLoginKit (15.1.0):
-    - FBSDKCoreKit (= 15.1.0)
-  - Firebase (10.0.0):
-    - Firebase/Core (= 10.0.0)
-  - Firebase/Analytics (10.0.0):
+  - CountryList (1.1)
+  - FBAEMKit (16.0.1):
+    - FBSDKCoreKit_Basics (= 16.0.1)
+  - FBSDKCoreKit (16.0.1):
+    - FBAEMKit (= 16.0.1)
+    - FBSDKCoreKit_Basics (= 16.0.1)
+  - FBSDKCoreKit_Basics (16.0.1)
+  - FBSDKLoginKit (16.0.1):
+    - FBSDKCoreKit (= 16.0.1)
+  - Firebase (10.8.0):
+    - Firebase/Core (= 10.8.0)
+  - Firebase/Analytics (10.8.0):
     - Firebase/Core
-  - Firebase/Auth (10.0.0):
+  - Firebase/Auth (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.0.0)
-  - Firebase/Core (10.0.0):
+    - FirebaseAuth (~> 10.8.0)
+  - Firebase/Core (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 10.0.0)
-  - Firebase/CoreOnly (10.0.0):
-    - FirebaseCore (= 10.0.0)
-  - Firebase/Database (10.0.0):
+    - FirebaseAnalytics (~> 10.8.0)
+  - Firebase/CoreOnly (10.8.0):
+    - FirebaseCore (= 10.8.0)
+  - Firebase/Database (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 10.0.0)
-  - Firebase/Messaging (10.0.0):
+    - FirebaseDatabase (~> 10.8.0)
+  - Firebase/Messaging (10.8.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 10.0.0)
-  - FirebaseAnalytics (10.0.0):
-    - FirebaseAnalytics/AdIdSupport (= 10.0.0)
+    - FirebaseMessaging (~> 10.8.0)
+  - FirebaseAnalytics (10.8.0):
+    - FirebaseAnalytics/AdIdSupport (= 10.8.0)
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
@@ -44,35 +42,37 @@ PODS:
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (10.0.0):
+  - FirebaseAnalytics/AdIdSupport (10.8.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
-    - GoogleAppMeasurement (= 10.0.0)
+    - GoogleAppMeasurement (= 10.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/MethodSwizzler (~> 7.8)
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAuth (10.0.0):
+  - FirebaseAppCheckInterop (10.7.0)
+  - FirebaseAuth (10.8.0):
+    - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
-    - GTMSessionFetcher/Core (~> 2.1)
-  - FirebaseCore (10.0.0):
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - FirebaseCore (10.8.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.0.0):
+  - FirebaseCoreInternal (10.8.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDatabase (10.0.0):
+  - FirebaseDatabase (10.8.0):
     - FirebaseCore (~> 10.0)
     - leveldb-library (~> 1.22)
-  - FirebaseInstallations (10.0.0):
+  - FirebaseInstallations (10.8.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseMessaging (10.0.0):
+  - FirebaseMessaging (10.8.0):
     - FirebaseCore (~> 10.0)
     - FirebaseInstallations (~> 10.0)
     - GoogleDataTransport (~> 9.2)
@@ -82,81 +82,84 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FSCalendar (2.8.4)
-  - GoogleAppMeasurement (10.0.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.0.0)
+  - GoogleAppMeasurement (10.8.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/MethodSwizzler (~> 7.8)
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.0.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.0.0)
+  - GoogleAppMeasurement/AdIdSupport (10.8.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/MethodSwizzler (~> 7.8)
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.0.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/MethodSwizzler (~> 7.8)
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleDataTransport (9.2.0):
+  - GoogleDataTransport (9.2.2):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleSignIn (6.2.4):
+  - GoogleSignIn (7.0.0):
     - AppAuth (~> 1.5)
-    - GTMAppAuth (~> 1.3)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
+    - GTMAppAuth (< 3.0, >= 1.3)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.1)
+  - GoogleUtilities/AppDelegateSwizzler (7.11.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.8.0):
+  - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.8.0):
+  - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.8.0):
+  - GoogleUtilities/MethodSwizzler (7.11.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.8.0):
+  - GoogleUtilities/Network (7.11.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.8.0)"
-  - GoogleUtilities/Reachability (7.8.0):
+  - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - GoogleUtilities/Reachability (7.11.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.8.0):
+  - GoogleUtilities/UserDefaults (7.11.1):
     - GoogleUtilities/Logger
-  - GTMAppAuth (1.3.1):
+  - GTMAppAuth (2.0.0):
     - AppAuth/Core (~> 1.6)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
-  - GTMSessionFetcher/Core (2.1.0)
-  - leveldb-library (1.22.1)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.5)
+  - GTMSessionFetcher/Core (3.1.0)
+  - JNPhoneNumberView (1.1.1):
+    - libPhoneNumber-iOS
+  - leveldb-library (1.22.2)
+  - libPhoneNumber-iOS (0.9.15)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
-  - PromisesObjC (2.1.1)
-  - razorpay-pod (1.3.0)
+  - PromisesObjC (2.2.0)
+  - razorpay-pod (1.3.1)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
-  - SDWebImage (5.13.4):
-    - SDWebImage/Core (= 5.13.4)
-  - SDWebImage/Core (5.13.4)
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
   - SwiftGifOrigin (1.7.0)
   - SwiftyJSON (5.0.1)
   - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - Alamofire
-  - ChameleonFramework
+  - CountryList
   - FBSDKLoginKit
   - Firebase
   - Firebase/Analytics
@@ -165,6 +168,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - FSCalendar
   - GoogleSignIn
+  - JNPhoneNumberView
   - razorpay-pod
   - RxCocoa
   - RxSwift
@@ -177,13 +181,14 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
-    - ChameleonFramework
+    - CountryList
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreInternal
@@ -197,7 +202,9 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - JNPhoneNumberView
     - leveldb-library
+    - libPhoneNumber-iOS
     - nanopb
     - PromisesObjC
     - razorpay-pod
@@ -210,40 +217,43 @@ SPEC REPOS:
     - YouTubePlayer
 
 SPEC CHECKSUMS:
-  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
-  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  FBAEMKit: c7f82b5145d446bcbbcd50485c032689032fc6a2
-  FBSDKCoreKit: 7542746fc63a2a38dd6a865eeb54268341f37b83
-  FBSDKCoreKit_Basics: 92d6b26c0bed30ab09bbdd96dccaa26e6c9978d1
-  FBSDKLoginKit: 4e275d30cf90e92bdf3a7c82857a8642abf23037
-  Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
-  FirebaseAnalytics: 9921a52739f4ab66099da31b6e0243db78a3ac0a
-  FirebaseAuth: 493382cf533cc45e2862b00e9aa4cfe4c98daf71
-  FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
-  FirebaseCoreInternal: 5eb3960335da5ea30115d57d39db6988c4ad06f3
-  FirebaseDatabase: b210f8a811d6eb80dc565d9570e8486af06e331b
-  FirebaseInstallations: 7f1c9ae6bd9df6abe9c74124b38fa8740aba5df4
-  FirebaseMessaging: 8916bf5edb1dbfac74665a181e4d1ab3a78a08a2
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  AppAuth: e48b432bb4ba88b10cb2bcc50d7f3af21e78b9c2
+  CountryList: ad58cd670c4ecab6bb014abebc12e63f619174b2
+  FBAEMKit: daac7466b918752f020345be5c7d9787f98cfc07
+  FBSDKCoreKit: 2cb033464b2134af0138f87d20b859eb3f9be359
+  FBSDKCoreKit_Basics: d37280da2e65872f0e931d15f45d97ea324fec37
+  FBSDKLoginKit: c47a3b90920702487b10b647c63520dc2676dad9
+  Firebase: b49ef44e5ec9a3d0c1f6450f410337e97872279c
+  FirebaseAnalytics: e1fc758bd5d71823bba970c076abee4b2450a5f4
+  FirebaseAppCheckInterop: 8e907eea79958960a8bd2058e067f31e03a7914b
+  FirebaseAuth: 28e6fff787467cd15ab51c8c7aa904003b2f57aa
+  FirebaseCore: e78636a990b54be427ce300aa09a0e359f4e0e87
+  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
+  FirebaseDatabase: e9415a93447361b65e312186b169812acfb75acc
+  FirebaseInstallations: b2a05a3fe707df764345d68685534d07d0664af3
+  FirebaseMessaging: 16c395d01ecd269357c5b86abe662851fff98236
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
-  GoogleAppMeasurement: 7e48a3249792ac35d6f18f107f63f199a7e9d0ce
-  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
-  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
-  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
-  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
-  GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
-  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  GoogleAppMeasurement: 0ba93018e916f7badf915c2337d43cc1fa96b3f9
+  GoogleDataTransport: 8378d1fa8ac49753ea6ce70d65a7cb70ce5f66e6
+  GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
+  GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
+  GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
+  JNPhoneNumberView: 79624eaab10a0a59fe80f737424c67dbfe380e36
+  leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
+  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  razorpay-pod: ebc78907f756ace307e3fa4270ff684ebb9e291b
+  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  razorpay-pod: 1ca021af16022084c1b368be9f030a4931f1e5f8
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
-  SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 9188c8807366960a55b7c908818f7af6830aa850
+PODFILE CHECKSUM: e8f707b0fd483f91ac9f9ed760c0ca478c4e9712
 
 COCOAPODS: 1.12.0

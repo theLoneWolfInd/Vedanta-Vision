@@ -577,7 +577,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                     ERProgressHud.sharedInstance.hide()
                     
                     let alert = NewYorkAlertController(title: String(strSuccess), message: String(strSuccess2), style: .alert)
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     alert.addButtons([cancel])
                     self.present(alert, animated: true)
                     
@@ -636,7 +636,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -720,7 +720,7 @@ class v_wisdom: UIViewController, CustomSegmentedControlDelegate  , UITextFieldD
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -864,9 +864,27 @@ extension v_wisdom : UITableViewDelegate , UITableViewDataSource {
             cell.img_view.image = UIImage(named: "logo")
             cell.img_view.contentMode = .scaleAspectFit
         } else {
-            cell.img_view.contentMode = .scaleToFill
+//            cell.img_view.contentMode = .scaleToFill
+//            cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//            cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            
+            
             cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            cell.img_view.contentMode = .scaleAspectFit
+            
+            cell.img_view.sd_setImage(
+                 with: URL(string: (item!["image"] as! String)),
+                 placeholderImage: UIImage(named: "logo"),
+                 options: SDWebImageOptions(rawValue: 0),
+                 completed: { [] image, error, cacheType, imageURL in
+//                              guard let selfNotNil = self else { return }
+                              // your rest code
+                     print("load")
+                     cell.img_view.contentMode = .scaleToFill
+                    }
+            )
+            
+            
         }
         
         
@@ -1149,3 +1167,4 @@ class v_wisdom_table_cell:UITableViewCell {
     
     
 }
+

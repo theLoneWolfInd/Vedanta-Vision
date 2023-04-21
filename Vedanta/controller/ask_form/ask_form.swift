@@ -12,6 +12,8 @@ class ask_form: UIViewController , UITextViewDelegate {
 
     var str_category_id:String!
     
+    var strDigit = "0"
+    
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .black
@@ -44,6 +46,7 @@ class ask_form: UIViewController , UITextViewDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
         
         
     }
@@ -117,50 +120,101 @@ class ask_form: UIViewController , UITextViewDelegate {
         if cell.txt_your_name.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Name should not be empty"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_your_email.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Email should not be empty"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_choose_category.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please choose category"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_view.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
+        }  else if cell.txt_view.text.count == 0 {
+            
+            let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         }  else if cell.txt_view.text == " Write Your question here..." {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else {
             
-            self.add_ask_WB()
+            let string = cell.txt_view.text
+            
+            let ar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+            
+            for indexx in 0..<ar.count {
+                let character: String = ar[indexx]
+                
+                if string!.contains(character) {
+                    // print("\(string) contains \(character).")
+                    
+                    self.add_ask_WB()
+                    return
+                    
+                } else {
+                    // print("\(string) doesn't contain \(character).")
+                }
+            }
+
+//            if strDigit == "0" {
+//
+//                let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please write your question"), style: .alert)
+//                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+//                alert.addButtons([cancel])
+//                self.present(alert, animated: true)
+//
+//                return
+//            }
+            
+            
+            
+            
+            
+             
+             
+            
+            
+            
             
         }
         
     }
     
+    var containsSpecialCharacter: Bool {
+          let regex = ".*[^A-Za-z0-9].*"
+          let testString = NSPredicate(format:"SELF MATCHES %@", regex)
+          return testString.evaluate(with: self)
+       }
+    
     @objc func add_ask_WB() {
         self.view.endEditing(true)
         let indexPath = IndexPath.init(row: 0, section: 0)
         let cell = self.tble_view.cellForRow(at: indexPath) as! ask_form_table_cell
+        
+        self.strDigit = "1"
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
@@ -215,7 +269,7 @@ class ask_form: UIViewController , UITextViewDelegate {
                                 
                                 let alert = NewYorkAlertController(title: String("Success").uppercased(), message: String(str_data_message), style: .alert)
                                 
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel) {
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel) {
                                     _ in
                                     self.navigationController?.popViewController(animated: true)
                                 }
@@ -231,7 +285,7 @@ class ask_form: UIViewController , UITextViewDelegate {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -422,4 +476,11 @@ class ask_form_table_cell:UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var btn_category:UIButton!
     @IBOutlet weak var btn_push_to_category:UIButton!
     
+}
+extension String {
+   var containsSpecialCharacter: Bool {
+      let regex = "abcdefghijklmnopqrstuvwxyz"
+      let testString = NSPredicate(format:"SELF MATCHES %@", regex)
+      return testString.evaluate(with: self)
+   }
 }

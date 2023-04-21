@@ -357,7 +357,7 @@ class v_home_notification: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -588,18 +588,41 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
             backgroundView.backgroundColor = .clear
             cell.selectedBackgroundView = backgroundView
             
-            if (item!["image"] as! String) == ""  {
+             
                 
-                cell.img_view_event.image = UIImage(named: "logo")
-                cell.img_view_event.contentMode = .scaleAspectFit
+//                cell.img_view_event.contentMode = .scaleAspectFill
+//                cell.img_view_event.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//                cell.img_view_event.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
                 
-            } else {
                 
-                cell.img_view_event.contentMode = .scaleAspectFill
-                cell.img_view_event.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                cell.img_view_event.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                if (item!["image"] as! String) == ""  {
+                    cell.img_view_event.image = UIImage(named: "logo")
+                    cell.img_view_event.contentMode = .scaleAspectFit
+                } else {
+    //                cell.img_view.contentMode = .scaleToFill
+    //                cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+    //                cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                    
+                    
+                    cell.img_view_event.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+                    cell.img_view_event.contentMode = .scaleAspectFit
+                    
+                    cell.img_view_event.sd_setImage(
+                         with: URL(string: (item!["image"] as! String)),
+                         placeholderImage: UIImage(named: "logo"),
+                         options: SDWebImageOptions(rawValue: 0),
+                         completed: { [] image, error, cacheType, imageURL in
+        //                              guard let selfNotNil = self else { return }
+                                      // your rest code
+                             print("load")
+                             cell.img_view_event.contentMode = .scaleToFill
+                            }
+                    )
+                    
+                }
                 
-            }
+                
+            
             // cell.btn_notification_event_quot.setImage(UIImage(named: "calendar"), for: .normal)
             
             // cell.lbl_notification_quotation.text = "New Event"
@@ -672,13 +695,39 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
 //            cell.lbl_list_description.text = (item!["message"] as! String)
             cell.lbl_list_description.attributedText = combination
             
+//            if (item!["image"] as! String) == ""  {
+//                cell.img_view_list.image = UIImage(named: "logo")
+//                cell.img_view_list.contentMode = .scaleAspectFit
+//            } else {
+//                cell.img_view_list.contentMode = .scaleToFill
+//                cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//                cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+//            }
+            
             if (item!["image"] as! String) == ""  {
                 cell.img_view_list.image = UIImage(named: "logo")
                 cell.img_view_list.contentMode = .scaleAspectFit
             } else {
-                cell.img_view_list.contentMode = .scaleToFill
+//                cell.img_view.contentMode = .scaleToFill
+//                cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//                cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                
+                
                 cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                cell.img_view_list.contentMode = .scaleAspectFit
+                
+                cell.img_view_list.sd_setImage(
+                     with: URL(string: (item!["image"] as! String)),
+                     placeholderImage: UIImage(named: "logo"),
+                     options: SDWebImageOptions(rawValue: 0),
+                     completed: { [] image, error, cacheType, imageURL in
+    //                              guard let selfNotNil = self else { return }
+                                  // your rest code
+                         print("load")
+                         cell.img_view_list.contentMode = .scaleToFill
+                        }
+                )
+                
             }
             
 //            cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
@@ -706,7 +755,6 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
         
         if "\(item!["type"]!)" == "1" {
             
-            
             if "\(item!["paidType"]!)" == "1" {
                 
                 if (item!["audioFile"] as! String) == "" {
@@ -714,7 +762,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                     let alert = NewYorkAlertController(title: String("Invalid Link"), message: String("This Link is not valid. Please check and try again"), style: .alert)
                     
                     
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     alert.addButtons([cancel])
                     self.present(alert, animated: true)
@@ -807,7 +855,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                                 
 //                                let yes_subscribe = NewYorkButton(title: "Dismiss", style: .default)
                                 
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 
 //                                yes_subscribe.setDynamicColor(.pink)
                                 
@@ -856,7 +904,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                         } else {
                             
                             
-                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please subscribe to get access"), style: .alert)
                             
                             
                             let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -866,7 +914,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                                 
                             }
                             
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             
                             yes_subscribe.setDynamicColor(.pink)
                             
@@ -946,7 +994,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                         } else {
                             
                             
-                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please subscribe to get access"), style: .alert)
                             
                             
                             let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -956,7 +1004,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                                 
                             }
                             
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             
                             yes_subscribe.setDynamicColor(.pink)
                             
@@ -1034,7 +1082,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                         } else {
                             
                             
-                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                            let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please subscribe to get access"), style: .alert)
                             
                             
                             let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1044,7 +1092,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
                                 
                             }
                             
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             
                             yes_subscribe.setDynamicColor(.pink)
                             
@@ -1083,7 +1131,7 @@ extension v_home_notification : UITableViewDelegate , UITableViewDataSource {
         if "\(item!["type"]!)" == "4" {
             return 0
         } else if "\(item!["type"]!)" == "5" {
-            return 130//UITableView.automaticDimension
+            return 130 // UITableView.automaticDimension
         } else {
             return 130
         }

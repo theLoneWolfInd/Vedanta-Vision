@@ -12,6 +12,7 @@ import SDWebImage
 import Firebase
 import AVFoundation
 import AVKit
+import WebKit
 
 
 class v_home: UIViewController {
@@ -23,7 +24,7 @@ class v_home: UIViewController {
     var cell_height_subscribe:CGFloat = 100
     var cell_height_bhagwat_gita:CGFloat = 160
     var cell_height_knowledge:CGFloat = 200
-    var cell_height_social_media:CGFloat = 930//1000
+    var cell_height_social_media:CGFloat = 1450//930//1000
     var cell_height_feeds:CGFloat = 0 // 340
     
     /*============================= CALENDAR =====================================*/
@@ -441,7 +442,7 @@ class v_home: UIViewController {
                             if ar.count == 0 {
                               
                                 let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("No event found on this date."), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -477,7 +478,7 @@ class v_home: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -619,7 +620,7 @@ class v_home: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -721,7 +722,7 @@ class v_home: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -813,7 +814,7 @@ class v_home: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -902,7 +903,7 @@ class v_home: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -992,7 +993,7 @@ class v_home: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -1648,8 +1649,20 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             cell.selectedBackgroundView = backgroundView
             
             // social media
-//            cell.cl_view_social_media.delegate = self
-//            cell.cl_view_social_media.dataSource = self
+
+            let youtubeURL = URL(string: "https://www.instagram.com/reel/CenFI1LjP6A/?utm_source=ig_embed&ig_rid=603de0c2-5f0d-46f1-9ea7-eab345741915")
+            cell.wv_webview.load( URLRequest(url: youtubeURL!) )
+            cell.wv_webview.navigationDelegate = self
+            
+            cell.mywkwebviewConfig.allowsInlineMediaPlayback = true
+
+            cell.btn_feeds_click.isHidden = true
+            cell.btn_feeds_click.addTarget(self, action: #selector(feeds_click_method), for: .touchUpInside)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            cell.wv_webview.addGestureRecognizer(tap)
+            
+            
             
             // latest video
             cell.cl_view_latest_video.delegate = self
@@ -1828,6 +1841,21 @@ extension v_home : UITableViewDelegate , UITableViewDataSource, FSCalendarDelega
             
             return cell
             
+        }
+        
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        // handling code
+        if let url = URL(string: "https://www.instagram.com/vedanta_vision/?hl=en") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func feeds_click_method() {
+        
+        if let url = URL(string: "https://www.instagram.com/vedanta_vision/?hl=en") {
+            UIApplication.shared.open(url)
         }
         
     }
@@ -2128,6 +2156,20 @@ class v_home_table_cell:UITableViewCell {
         }
     }
     
+    @IBOutlet weak var wv_webview: WKWebView!
+    @IBOutlet weak var indicator_webview:UIActivityIndicatorView! {
+        didSet {
+            indicator_webview.isHidden = false
+            indicator_webview.startAnimating()
+            indicator_webview.color = app_red_orange_mix_color
+        }
+    }
+    
+    @IBOutlet weak var btn_feeds_click:UIButton!
+    
+    var mywkwebview: WKWebView?
+    let mywkwebviewConfig = WKWebViewConfiguration()
+    
     
     // collection view social media
     @IBOutlet weak var cl_view_social_media:UICollectionView! {
@@ -2372,7 +2414,23 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             print(item as Any)
             
             cell.img_social_media.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_social_media.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            cell.img_social_media.contentMode = .scaleAspectFit
+            
+            cell.img_social_media.sd_setImage(
+                 with: URL(string: (item!["image"] as! String)),
+                 placeholderImage: UIImage(named: "logo"),
+                 options: SDWebImageOptions(rawValue: 0),
+                 completed: { [] image, error, cacheType, imageURL in
+//                              guard let selfNotNil = self else { return }
+                              // your rest code
+                     print("load")
+                     cell.img_social_media.contentMode = .scaleToFill
+                    }
+            )
+            
+
+            
+            
             
             cell.lbl_latest_video.text = (item!["title"] as! String)
             
@@ -2419,8 +2477,27 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             let item = self.arr_mut_audio_list[indexPath.row] as? [String:Any]
             
+//            cell.img_latest_audio.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//            cell.img_latest_audio.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            
+            
+            
             cell.img_latest_audio.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_latest_audio.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            cell.img_latest_audio.contentMode = .scaleAspectFit
+            
+            cell.img_latest_audio.sd_setImage(
+                 with: URL(string: (item!["image"] as! String)),
+                 placeholderImage: UIImage(named: "logo"),
+                 options: SDWebImageOptions(rawValue: 0),
+                 completed: { [] image, error, cacheType, imageURL in
+//                              guard let selfNotNil = self else { return }
+                              // your rest code
+                     print("load")
+                     cell.img_latest_audio.contentMode = .scaleToFill
+                    }
+            )
+            
+            
             
             cell.lbl_latest_audio.text = (item!["title"] as! String)
             
@@ -2453,8 +2530,28 @@ extension v_home: UICollectionViewDataSource , UICollectionViewDelegate {
             
             let item = self.arr_article_list[indexPath.row] as? [String:Any]
 
+//            cell.img_latest_article.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//            cell.img_latest_article.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            
+            
+            
             cell.img_latest_article.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-            cell.img_latest_article.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+            cell.img_latest_article.contentMode = .scaleAspectFit
+            
+            cell.img_latest_article.sd_setImage(
+                 with: URL(string: (item!["image"] as! String)),
+                 placeholderImage: UIImage(named: "logo"),
+                 options: SDWebImageOptions(rawValue: 0),
+                 completed: { [] image, error, cacheType, imageURL in
+//                              guard let selfNotNil = self else { return }
+                              // your rest code
+                     print("load")
+                     cell.img_latest_article.contentMode = .scaleToFill
+                    }
+            )
+            
+            
+            
 
             cell.lbl_latest_article.text = (item!["title"] as! String)
             
@@ -2856,3 +2953,28 @@ extension UIPanGestureRecognizer {
 //                                                 height: layer.shadowRadius)).cgPath
 //}
 //}
+
+extension v_home: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("Start loading")
+        
+        let indexPath = IndexPath.init(row: 6, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+        
+        cell.indicator_webview.isHidden = false
+        cell.indicator_webview.startAnimating()
+        
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("End loading")
+        
+        let indexPath = IndexPath.init(row: 6, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+        
+        cell.indicator_webview.isHidden = true
+        cell.indicator_webview.stopAnimating()
+        
+    }
+}

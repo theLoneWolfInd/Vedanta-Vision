@@ -10,6 +10,8 @@ import Alamofire
 import SDWebImage
 import GoogleSignIn
 
+import FBSDKLoginKit
+
 class more: UIViewController {
     
     var arr_social_list:NSMutableArray! = []
@@ -29,7 +31,7 @@ class more: UIViewController {
         }
     }
     
-    @IBOutlet weak var btn_sign_out:UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +42,16 @@ class more: UIViewController {
         self.tble_view.separatorColor = .clear
         
         
-        if UserDefaults.standard.value(forKey: str_save_login_user_data) is [String:Any] {
-         
-            self.btn_sign_out.isHidden = false
-            
-        } else {
-            self.btn_sign_out.isHidden = true
-        }
-        
-        self.btn_sign_out.addTarget(self, action: #selector(sign_out_click_method), for: .touchUpInside)
-        
+//        if UserDefaults.standard.value(forKey: str_save_login_user_data) is [String:Any] {
+//
+//            self.btn_sign_out.isHidden = false
+//
+//        } else {
+//            self.btn_sign_out.isHidden = true
+//        }
+//
+//        self.btn_sign_out.addTarget(self, action: #selector(sign_out_click_method), for: .touchUpInside)
+//
         self.home_bhagwat_gita_categories_WB()
         
     }
@@ -57,24 +59,49 @@ class more: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+//        self.tble_view.delegate = self
+//        self.tble_view.dataSource = self
+        self.tble_view.reloadData()
+        
+//        let indexPath = IndexPath.init(row: 0, section: 0)
+//        let cell = self.tble_view.cellForRow(at: indexPath) as! more_table_cell
+//
+//
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 250.0/255.0, green: 250.0/255.0, blue: 255.0/255.0, alpha: 1)
         
-        if UserDefaults.standard.value(forKey: str_save_login_user_data) is [String:Any] {
-         
-            self.btn_sign_out.isHidden = false
-            
-        } else {
-            self.btn_sign_out.isHidden = true
-        }
+       
+        
+//        self.home_bhagwat_gita_categories_WB()
         
     }
     
+    // notification click
     @objc
     func tap_app_details(sender:UITapGestureRecognizer) {
         print("tap working")
-        
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "more_app_settings_id")
-        self.navigationController?.pushViewController(push, animated: true)
+            
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            // let str:String = person["role"] as! String
+            print(person as Any)
+            
+            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "more_app_settings_id")
+            self.navigationController?.pushViewController(push, animated: true)
+            
+        } else {
+         
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to check notification settings."), style: .alert)
+            
+            let login = NewYorkButton(title: "Login", style: .default) {
+                _ in
+                
+                self.sign_in_click_method()
+            }
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+            
+            alert.addButtons([login , cancel])
+            self.present(alert, animated: true)
+            
+        }
         
     }
     
@@ -147,7 +174,7 @@ class more: UIViewController {
             
         }
         
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         
         alert.addButtons([india,international,cancel])
         self.present(alert, animated: true)
@@ -223,12 +250,12 @@ class more: UIViewController {
          
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to check all favourites."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -297,7 +324,7 @@ class more: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -340,6 +367,9 @@ class more: UIViewController {
     }
     
     func check_login_status() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! more_table_cell
+        
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             // let str:String = person["role"] as! String
             print(person as Any)
@@ -355,7 +385,23 @@ class more: UIViewController {
                 defaults.setValue(nil, forKey: str_save_login_user_data)
                 
                 // adjust local UI
-                self.btn_sign_out.isHidden = true
+                cell.btn_sign_out.isHidden = true
+                self.tble_view.reloadData()
+                
+            } else if (person["socialType"] as! String) == "F" {
+                
+                // sign out via FACEBOOK
+                LoginManager().logOut()
+//                FBSession.activeSession().closeAndClearTokenInformation()
+//                LoginManager()
+                
+                // clear all default values
+                let defaults = UserDefaults.standard
+                defaults.setValue("", forKey: str_save_login_user_data)
+                defaults.setValue(nil, forKey: str_save_login_user_data)
+                
+                // adjust local UI
+                cell.btn_sign_out.isHidden = true
                 self.tble_view.reloadData()
                 
             } else {
@@ -366,7 +412,7 @@ class more: UIViewController {
                 defaults.setValue(nil, forKey: str_save_login_user_data)
                 
                 // adjust local UI
-                self.btn_sign_out.isHidden = true
+                cell.btn_sign_out.isHidden = true
                 self.tble_view.reloadData()
                 
             }
@@ -414,9 +460,16 @@ extension more : UITableViewDelegate , UITableViewDataSource {
             print(person as Any)
             
             cell.lbl_app_edit_profile.text = "Edit profile"
+            cell.btn_sign_out.isHidden = false
+            
         } else {
+            
             cell.lbl_app_edit_profile.text = "Login"
+            cell.btn_sign_out.isHidden = true
+            
         }
+        
+        cell.btn_sign_out.addTarget(self, action: #selector(sign_out_click_method), for: .touchUpInside)
         
 //        cell.btn_change_password.addTarget(self, action: #selector(change_password_click_method), for: .touchUpInside)
         
@@ -444,12 +497,26 @@ extension more : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 1047
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            
+            print(person as Any)
+            
+            return 1160
+            
+        } else {
+            
+            return 1100
+            
+        }
+        
     }
     
 }
 
 class more_table_cell:UITableViewCell {
+    
+    @IBOutlet weak var btn_sign_out:UIButton!
     
     @IBOutlet weak var view_bg:UIView! {
         didSet {
@@ -544,6 +611,8 @@ class more_table_cell:UITableViewCell {
     @IBOutlet weak var btn_change_password:UIButton!
     
     @IBOutlet weak var btn_edit_profile:UIButton!
+    
+    @IBOutlet weak var btn_logout:UIButton!
     
 }
 

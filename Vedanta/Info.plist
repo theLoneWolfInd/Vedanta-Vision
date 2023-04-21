@@ -7,7 +7,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb495865459158427</string>
+				<string>fb5183785258394289</string>
 				<string>fbauth2</string>
 			</array>
 		</dict>
@@ -16,16 +16,27 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.857008698478-6bhro43tnihn0n9i80g012o3712fohfd</string>
+				<string>com.googleusercontent.apps.497708519079-rpocn606cvf6ha0ft5ipetm4c263f3t4</string>
 			</array>
 		</dict>
 	</array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 	<key>FacebookAppID</key>
-	<string>495865459158427</string>
+	<string>5183785258394289</string>
 	<key>FacebookClientToken</key>
-	<string>de8553b1a99ec3ca10ec19f2bf342830</string>
+	<string>8e04aba20d545838bd7245677e9650af</string>
 	<key>FacebookDisplayName</key>
 	<string>Vedanta Vision</string>
+	<key>GIDClientID</key>
+	<string>497708519079-rpocn606cvf6ha0ft5ipetm4c263f3t4.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -33,6 +44,7 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>

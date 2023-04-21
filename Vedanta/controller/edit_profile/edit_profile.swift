@@ -8,8 +8,13 @@
 import UIKit
 import Alamofire
 
-class edit_profile: UIViewController , UITextFieldDelegate {
+import CountryList
+
+class edit_profile: UIViewController , UITextFieldDelegate, CountryListDelegate {
     
+    var countryList = CountryList()
+    
+    var save_country_phone_code:String!
     
     @IBOutlet weak var viewNavigationbar:UIView!
     @IBOutlet weak var btnDashboardMenu:UIButton! {
@@ -27,6 +32,20 @@ class edit_profile: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var btn_eye_old_pass:UIButton!
     @IBOutlet weak var btn_eye_pass:UIButton!
     @IBOutlet weak var btn_eye_confirm_pass:UIButton!
+    
+    @IBOutlet weak var txt_phone_country_code:UITextField! {
+        didSet {
+//            txt_phone_country_code.setLeftPaddingPoints(24)
+            txt_phone_country_code.layer.borderColor = UIColor.lightGray.cgColor
+            txt_phone_country_code.layer.borderWidth = 0.8
+            txt_phone_country_code.layer.cornerRadius = 8
+            txt_phone_country_code.clipsToBounds = true
+            txt_phone_country_code.keyboardType = .numberPad
+            txt_phone_country_code.textAlignment = .center
+            txt_phone_country_code.text = ""
+            txt_phone_country_code.placeholder = "+1"
+        }
+    }
     
     @IBOutlet weak var txt_full_name:UITextField! {
         didSet {
@@ -92,7 +111,7 @@ class edit_profile: UIViewController , UITextFieldDelegate {
             btn_change_password.layer.cornerRadius = 12
             btn_change_password.clipsToBounds = true
             btn_change_password.setTitle("Change Password", for: .normal)
-            btn_change_password.backgroundColor = .systemOrange
+            btn_change_password.backgroundColor = app_red_orange_mix_color
         }
     }
     
@@ -117,7 +136,7 @@ class edit_profile: UIViewController , UITextFieldDelegate {
         self.btnDashboardMenu.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
         
-        
+        countryList.delegate = self
         
     }
     
@@ -126,11 +145,18 @@ class edit_profile: UIViewController , UITextFieldDelegate {
         
         if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
             
+            print(person)
+            
             self.txt_phone.text         = (person["contactNumber"] as! String)
             self.txt_full_name.text     = (person["fullName"] as! String)
             self.txt_email_address.text = (person["email"] as! String)
+            self.txt_phone_country_code.text = "+"+(person["country_code"] as! String)
+            
+            self.save_country_phone_code = (person["country_code"] as! String)
             
             if (person["socialType"] as! String) == "G" {
+                self.btn_change_password.backgroundColor = .darkGray
+            } else if (person["socialType"] as! String) == "F" {
                 self.btn_change_password.backgroundColor = .darkGray
             } else {
                 self.btn_change_password.isHidden = false
@@ -196,6 +222,7 @@ class edit_profile: UIViewController , UITextFieldDelegate {
                 "userId"            : String(myString),
                 "fullName"          : String(self.txt_full_name.text!),
                 "contactNumber"     : String(self.txt_phone.text!),
+                "country_code"      : String(self.save_country_phone_code),
             ]
             
             AF.request(application_base_url,
@@ -257,6 +284,25 @@ class edit_profile: UIViewController , UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    
+    //
+    @IBAction func handleCountryList(_ sender: Any) {
+        let navController = UINavigationController(rootViewController: countryList)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    func selectedCountry(country: Country) {
+        
+        print("\(country.flag!) \(country.name!), \(country.countryCode), \(country.phoneExtension)")
+        // self.selectedCountryLabel.text = "\(country.flag!) \(country.name!), \(country.countryCode), \(country.phoneExtension)"
+        
+        self.txt_phone_country_code.text = "+\(country.phoneExtension)"
+        self.save_country_phone_code = "\(country.phoneExtension)"
+        
+        // self.btn_flag.setTitle("\(country.flag!)", for: .normal)
+        
     }
     
 }

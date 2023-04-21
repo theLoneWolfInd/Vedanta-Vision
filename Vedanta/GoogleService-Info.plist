@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>857008698478-6bhro43tnihn0n9i80g012o3712fohfd.apps.googleusercontent.com</string>
+	<string>70327184795-qc7iq3gcc7dlds0g6rmqcck5uhd6srst.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.857008698478-6bhro43tnihn0n9i80g012o3712fohfd</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>857008698478-cif3vrp4ki0kr34g6m9q6urspvre2qc6.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.70327184795-qc7iq3gcc7dlds0g6rmqcck5uhd6srst</string>
 	<key>API_KEY</key>
-	<string>AIzaSyACmgTwhPWgbrJWxsOK9m_qTgyoXHq5VfA</string>
+	<string>AIzaSyA9nUDOK3HMd76OazB9809kVLKhfZMgijM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>857008698478</string>
+	<string>70327184795</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.evs.app.ios.vedanta</string>
+	<string>com.vedanta-vision.prod</string>
 	<key>PROJECT_ID</key>
-	<string>vedantavision-b7643</string>
+	<string>vedanta-vision</string>
 	<key>STORAGE_BUCKET</key>
-	<string>vedantavision-b7643.appspot.com</string>
+	<string>vedanta-vision.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:857008698478:ios:aab78d918e4f2800fee27f</string>
+	<string>1:70327184795:ios:271c7d703e25e2de6ac53e</string>
 </dict>
 </plist>

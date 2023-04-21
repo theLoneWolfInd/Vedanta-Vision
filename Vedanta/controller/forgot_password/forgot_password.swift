@@ -31,6 +31,7 @@ class forgot_password: UIViewController , UITextFieldDelegate {
             txt_email_address.clipsToBounds = true
             txt_email_address.isSecureTextEntry = false
             txt_email_address.placeholder = "Email address"
+            txt_email_address.keyboardType = .emailAddress
         }
     }
     
@@ -68,7 +69,7 @@ class forgot_password: UIViewController , UITextFieldDelegate {
         if self.txt_email_address.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Email should not be empty"), style: .alert)
-           let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+           let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
@@ -136,7 +137,7 @@ class forgot_password: UIViewController , UITextFieldDelegate {
                             
                             let alert = NewYorkAlertController(title: String("Alert"), message: String(str_data_message), style: .alert)
                             
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
@@ -147,7 +148,7 @@ class forgot_password: UIViewController , UITextFieldDelegate {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             

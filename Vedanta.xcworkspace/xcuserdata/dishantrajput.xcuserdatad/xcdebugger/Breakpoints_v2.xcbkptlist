@@ -14,8 +14,8 @@
             filePath = "Vedanta/controller/sign_up_form/sign_up_form.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "registeration_in_vedanta_WB()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,25 +78,9 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "subscriptions_list_WB()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CBA74ACE-0B4D-4B09-98D4-FB62703DC3D7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/subscription/subscription.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "update_payment_WB(str_transaction_id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,8 +94,8 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "get_profile_data(str_message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +222,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1513"
-            endingLineNumber = "1513"
+            startingLineNumber = "1530"
+            endingLineNumber = "1530"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -301,8 +285,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1518"
-            endingLineNumber = "1518"
+            startingLineNumber = "1535"
+            endingLineNumber = "1535"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -317,42 +301,10 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "593"
+            endingLineNumber = "593"
             landmarkName = "home_bhagwat_gita_categories_WB()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "43794B5B-3D1B-442A-9C72-0AC691DA0D78"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/SceneDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "scene(_:openURLContexts:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8849F233-5BDF-44C2-BF1A-15FDFEC2D690"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "AppDelegate"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -461,8 +413,8 @@
             filePath = "Vedanta/controller/v_videos/v_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "899"
-            endingLineNumber = "899"
+            startingLineNumber = "840"
+            endingLineNumber = "840"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -477,25 +429,9 @@
             filePath = "Vedanta/controller/v_videos/v_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "922"
-            endingLineNumber = "922"
+            startingLineNumber = "863"
+            endingLineNumber = "863"
             landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50EA3AC2-12ED-4C6D-986B-CCAFAB3375DE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/headers/utils/Utils.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "push_to_video_screen(str_video_file_link:str_video_title:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -509,8 +445,8 @@
             filePath = "Vedanta/headers/utils/Utils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "push_to_video_screen(str_video_file_link:str_video_title:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -541,26 +477,42 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "773"
-            endingLineNumber = "773"
+            startingLineNumber = "774"
+            endingLineNumber = "774"
             landmarkName = "video_list_WB()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99997D69-A287-4958-9BA8-C3B88D25821F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_videos/v_videos.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
-            landmarkName = "video_list_without_like_WB(page_number:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AFBF7FEF-8E5A-4475-8088-B829BAB0B79C - dda0f4f4535057e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.video_list_WB() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "776"
+                  endingLineNumber = "776"
+                  offsetFromSymbolStart = "1888">
+               </Location>
+               <Location
+                  uuid = "AFBF7FEF-8E5A-4475-8088-B829BAB0B79C - dda0f4f453505720"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.video_list_WB() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "774"
+                  endingLineNumber = "774"
+                  offsetFromSymbolStart = "1760">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -573,8 +525,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1050"
-            endingLineNumber = "1050"
+            startingLineNumber = "1051"
+            endingLineNumber = "1051"
             landmarkName = "gesture_to_swipe_gesture(gesture:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -589,8 +541,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "all_events_list()"
             landmarkType = "7">
          </BreakpointContent>
@@ -605,8 +557,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "all_events_list()"
             landmarkType = "7">
          </BreakpointContent>
@@ -621,8 +573,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "708"
-            endingLineNumber = "708"
+            startingLineNumber = "709"
+            endingLineNumber = "709"
             landmarkName = "all_events_list()"
             landmarkType = "7">
          </BreakpointContent>
@@ -637,8 +589,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "704"
-            endingLineNumber = "704"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
             landmarkName = "all_events_list()"
             landmarkType = "7">
          </BreakpointContent>
@@ -653,8 +605,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "calendar(_:didSelect:at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -717,8 +669,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1007"
-            endingLineNumber = "1007"
+            startingLineNumber = "1025"
+            endingLineNumber = "1025"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -733,8 +685,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1461"
-            endingLineNumber = "1461"
+            startingLineNumber = "1478"
+            endingLineNumber = "1478"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -749,8 +701,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1455"
-            endingLineNumber = "1455"
+            startingLineNumber = "1472"
+            endingLineNumber = "1472"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -765,8 +717,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1088"
-            endingLineNumber = "1088"
+            startingLineNumber = "1106"
+            endingLineNumber = "1106"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -781,8 +733,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -797,8 +749,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1308"
-            endingLineNumber = "1308"
+            startingLineNumber = "1325"
+            endingLineNumber = "1325"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -829,13 +781,13 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc127f4"
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -845,12 +797,12 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "577"
-                  endingLineNumber = "577"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
                   offsetFromSymbolStart = "6396">
                </Location>
                <Location
-                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc127f4"
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -860,12 +812,12 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "577"
-                  endingLineNumber = "577"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
                   offsetFromSymbolStart = "6492">
                </Location>
                <Location
-                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc127f4"
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -875,9 +827,99 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "577"
-                  endingLineNumber = "577"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
                   offsetFromSymbolStart = "7264">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "6576">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "6680">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "7476">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "6708">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "6812">
+               </Location>
+               <Location
+                  uuid = "FE03B59A-2FF1-4FF4-A65C-313310757618 - ee9232461dc128cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "600"
+                  endingLineNumber = "600"
+                  offsetFromSymbolStart = "7608">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -892,8 +934,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1482"
-            endingLineNumber = "1482"
+            startingLineNumber = "1499"
+            endingLineNumber = "1499"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -917,22 +959,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "568814BF-695C-4CD7-9800-B2EF355B0D09"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_videos/v_videos.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "778"
-            endingLineNumber = "778"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9A0FD028-ED18-4867-89F0-231B79DCFBCC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -940,10 +966,42 @@
             filePath = "Vedanta/headers/utils/Utils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "subscribe_click_method()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A0FD028-ED18-4867-89F0-231B79DCFBCC - 405730ecc2089c99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.subscribe_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "1468">
+               </Location>
+               <Location
+                  uuid = "9A0FD028-ED18-4867-89F0-231B79DCFBCC - 405730ecc2088305"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.subscribe_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "1468">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -956,26 +1014,42 @@
             filePath = "Vedanta/headers/utils/Utils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "change_password_click_method()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08B6885A-3E2E-4A6D-BDB4-58476E72321A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_videos/v_videos.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "967"
-            endingLineNumber = "967"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CFDD3B02-C9D8-4284-B1DE-CCE7E6B2DA6F - 1c5628ad15a5ab9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.change_password_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "338"
+                  endingLineNumber = "338"
+                  offsetFromSymbolStart = "1828">
+               </Location>
+               <Location
+                  uuid = "CFDD3B02-C9D8-4284-B1DE-CCE7E6B2DA6F - 1c5628ad15a5a3d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.change_password_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "334"
+                  endingLineNumber = "334"
+                  offsetFromSymbolStart = "1828">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -988,10 +1062,42 @@
             filePath = "Vedanta/controller/ask_form/ask_form.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "add_ask_WB()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BD7945D6-4975-4CE5-ABCB-98458FCD7C13 - 761726847f75ea6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.ask_form.add_ask_WB() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/ask_form/ask_form.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "4252">
+               </Location>
+               <Location
+                  uuid = "BD7945D6-4975-4CE5-ABCB-98458FCD7C13 - 761726847f75ea6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.ask_form.add_ask_WB() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/ask_form/ask_form.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "4292">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1024,6 +1130,38 @@
             endingLineNumber = "213"
             landmarkName = "ask_me_anything(page_number:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1945261C-1BE2-45F7-93DC-81DBFCC6B79E - 9e7182a2778dc87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.ask_me_faq_cat.ask_me_anything(page_number: Swift.Int) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/ask_me/ask_me_faq_cat/ask_me_faq_cat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
+                  offsetFromSymbolStart = "3988">
+               </Location>
+               <Location
+                  uuid = "1945261C-1BE2-45F7-93DC-81DBFCC6B79E - 9e7182a2778dc87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.ask_me_faq_cat.ask_me_anything(page_number: Swift.Int) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/ask_me/ask_me_faq_cat/ask_me_faq_cat.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
+                  offsetFromSymbolStart = "4068">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1036,10 +1174,57 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "get_calendar_date_WB(str_date:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "07CA71B8-158A-45C5-AE82-61AFF2D98979 - b495f6d66ad873a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.v_home.get_calendar_date_WB(str_date: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "425"
+                  endingLineNumber = "425"
+                  offsetFromSymbolStart = "1648">
+               </Location>
+               <Location
+                  uuid = "07CA71B8-158A-45C5-AE82-61AFF2D98979 - b495f6d66ad87001"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.v_home.get_calendar_date_WB(str_date: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "1484">
+               </Location>
+               <Location
+                  uuid = "07CA71B8-158A-45C5-AE82-61AFF2D98979 - b495f6d66ad87001"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.v_home.get_calendar_date_WB(str_date: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "1624">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1052,28 +1237,13 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1027"
-            endingLineNumber = "1027"
+            startingLineNumber = "1028"
+            endingLineNumber = "1028"
             landmarkName = "gesture_to_swipe_gesture(gesture:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F44CFA3B-94B9-477E-9786-AF75015E60AB - 15afe89dfac10659"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.v_home.gesture_to_swipe_gesture(gesture: __C.UIGestureRecognizer) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1027"
-                  endingLineNumber = "1027"
-                  offsetFromSymbolStart = "532">
-               </Location>
-               <Location
-                  uuid = "F44CFA3B-94B9-477E-9786-AF75015E60AB - e807a9e0924c875c"
+                  uuid = "F44CFA3B-94B9-477E-9786-AF75015E60AB - e807a9e0924c877d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1083,9 +1253,24 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1029"
+                  endingLineNumber = "1029"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "F44CFA3B-94B9-477E-9786-AF75015E60AB - 15afe89dfac101a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.gesture_to_swipe_gesture(gesture: __C.UIGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1028"
                   endingLineNumber = "1028"
-                  offsetFromSymbolStart = "100">
+                  offsetFromSymbolStart = "544">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1100,8 +1285,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1450"
-            endingLineNumber = "1450"
+            startingLineNumber = "1451"
+            endingLineNumber = "1451"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1116,8 +1301,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1478"
-            endingLineNumber = "1478"
+            startingLineNumber = "1479"
+            endingLineNumber = "1479"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1132,10 +1317,72 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "calendar(_:appearance:fillSelectionColorFor:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1C808007-59E8-4055-ADED-AA4AB40B5A2A - a86ab2f39cebe73e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "373"
+                  endingLineNumber = "373"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "1C808007-59E8-4055-ADED-AA4AB40B5A2A - a86ab2f39cebe75d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "374"
+                  endingLineNumber = "374"
+                  offsetFromSymbolStart = "428">
+               </Location>
+               <Location
+                  uuid = "1C808007-59E8-4055-ADED-AA4AB40B5A2A - a86ab2f39cebe71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "1C808007-59E8-4055-ADED-AA4AB40B5A2A - a86ab2f39cebe71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1148,10 +1395,57 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "calendar(_:appearance:borderDefaultColorFor:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "31AFD468-9CD3-4CA9-93D6-5A99503BD77C - c6aed80aea94e77e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, borderDefaultColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "380"
+                  endingLineNumber = "380"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "31AFD468-9CD3-4CA9-93D6-5A99503BD77C - c6aed80aea94e75f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, borderDefaultColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "381"
+                  endingLineNumber = "381"
+                  offsetFromSymbolStart = "316">
+               </Location>
+               <Location
+                  uuid = "31AFD468-9CD3-4CA9-93D6-5A99503BD77C - c6aed80aea94e77e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, borderDefaultColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "380"
+                  endingLineNumber = "380"
+                  offsetFromSymbolStart = "172">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1164,10 +1458,57 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "calendar(_:appearance:fillSelectionColorFor:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A24FAD0E-7D89-4427-877D-A8350DFD80B2 - a86ab2f39cebe73e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "373"
+                  endingLineNumber = "373"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "A24FAD0E-7D89-4427-877D-A8350DFD80B2 - a86ab2f39cebe71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "A24FAD0E-7D89-4427-877D-A8350DFD80B2 - a86ab2f39cebe71f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_home.calendar(_: __C.FSCalendar, appearance: __C.FSCalendarAppearance, fillSelectionColorFor: Foundation.Date) -&gt; Swift.Optional&lt;__C.UIColor&gt;"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/home/v_home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1180,8 +1521,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1272"
-            endingLineNumber = "1272"
+            startingLineNumber = "1273"
+            endingLineNumber = "1273"
             landmarkName = "scrollViewDidEndDecelerating(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1196,8 +1537,8 @@
             filePath = "Vedanta/controller/home/v_home.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1277"
-            endingLineNumber = "1277"
+            startingLineNumber = "1278"
+            endingLineNumber = "1278"
             landmarkName = "scrollViewDidEndDecelerating(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1228,8 +1569,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1453"
-            endingLineNumber = "1453"
+            startingLineNumber = "1470"
+            endingLineNumber = "1470"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1244,8 +1585,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "918"
-            endingLineNumber = "918"
+            startingLineNumber = "936"
+            endingLineNumber = "936"
             landmarkName = "play_audio_file()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1260,8 +1601,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1299"
-            endingLineNumber = "1299"
+            startingLineNumber = "1316"
+            endingLineNumber = "1316"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1276,8 +1617,8 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_details/wisdom_new_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1187"
-            endingLineNumber = "1187"
+            startingLineNumber = "1204"
+            endingLineNumber = "1204"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1404,10 +1745,42 @@
             filePath = "Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1BEF8690-5E41-4653-9FED-F30661EB4F64 - ee9232461dc12012"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "543"
+                  endingLineNumber = "543"
+                  offsetFromSymbolStart = "1108">
+               </Location>
+               <Location
+                  uuid = "1BEF8690-5E41-4653-9FED-F30661EB4F64 - ee9232461dc12012"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.wisdom_sub_details.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_wisdom/wisdom_sub_details/wisdom_sub_details.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "543"
+                  endingLineNumber = "543"
+                  offsetFromSymbolStart = "1240">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1420,8 +1793,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "967"
-            endingLineNumber = "967"
+            startingLineNumber = "985"
+            endingLineNumber = "985"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1436,8 +1809,8 @@
             filePath = "Vedanta/controller/v_wisdom/v_wisdom.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "965"
-            endingLineNumber = "965"
+            startingLineNumber = "983"
+            endingLineNumber = "983"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1500,8 +1873,8 @@
             filePath = "Vedanta/controller/v_videos/v_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1005"
-            endingLineNumber = "1005"
+            startingLineNumber = "946"
+            endingLineNumber = "946"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1516,26 +1889,42 @@
             filePath = "Vedanta/controller/v_videos/v_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1062"
-            endingLineNumber = "1062"
+            startingLineNumber = "1003"
+            endingLineNumber = "1003"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DF7D1E87-E07E-42E9-A794-BB5312868B7D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_videos/v_related_videos/v_related_videos.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "851"
-            endingLineNumber = "851"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7BD5989F-99B4-4476-AAB9-4371936868AC - 3624f9762c91ac1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_videos.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_videos/v_videos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1003"
+                  endingLineNumber = "1003"
+                  offsetFromSymbolStart = "4228">
+               </Location>
+               <Location
+                  uuid = "7BD5989F-99B4-4476-AAB9-4371936868AC - 3624f9762c91ac1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_videos.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_videos/v_videos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1003"
+                  endingLineNumber = "1003"
+                  offsetFromSymbolStart = "4324">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1580,8 +1969,8 @@
             filePath = "Vedanta/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "application(_:willFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1596,8 +1985,8 @@
             filePath = "Vedanta/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "application(_:willFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1612,25 +2001,9 @@
             filePath = "Vedanta/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "application(_:willFinishLaunchingWithOptions:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "00653A04-1321-49C2-8335-288501F69E9D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_videos/v_related_videos/v_related_videos.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "849"
-            endingLineNumber = "849"
-            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1648,6 +2021,38 @@
             endingLineNumber = "871"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0DA9A986-800C-4053-8B8B-0DC6C0C37859 - e2091ff0e51b45e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_related_audio.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_audio/v_related_audios/v_related_audio.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "871"
+                  endingLineNumber = "871"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "0DA9A986-800C-4053-8B8B-0DC6C0C37859 - e2091ff0e51b45e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_related_audio.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_audio/v_related_audios/v_related_audio.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "871"
+                  endingLineNumber = "871"
+                  offsetFromSymbolStart = "556">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1664,6 +2069,38 @@
             endingLineNumber = "986"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1960941A-3F82-4A4C-98D1-7AC7005E4055 - 94d56d05e285f39d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_audio.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_audio/v_audio.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "986"
+                  endingLineNumber = "986"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "1960941A-3F82-4A4C-98D1-7AC7005E4055 - 94d56d05e285f39d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_audio.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_audio/v_audio.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "986"
+                  endingLineNumber = "986"
+                  offsetFromSymbolStart = "556">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1680,6 +2117,38 @@
             endingLineNumber = "676"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DC577E29-8214-4CCE-9406-FBDA6BB7FC31 - 1edad7321d1eebdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "676"
+                  endingLineNumber = "676"
+                  offsetFromSymbolStart = "4044">
+               </Location>
+               <Location
+                  uuid = "DC577E29-8214-4CCE-9406-FBDA6BB7FC31 - 1edad7321d1eebdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "676"
+                  endingLineNumber = "676"
+                  offsetFromSymbolStart = "4140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1696,6 +2165,38 @@
             endingLineNumber = "646"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F72A92B7-CC14-4A7C-9816-E4E2DE69128B - 1edad7321d1ee7fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "646"
+                  endingLineNumber = "646"
+                  offsetFromSymbolStart = "2920">
+               </Location>
+               <Location
+                  uuid = "F72A92B7-CC14-4A7C-9816-E4E2DE69128B - 1edad7321d1ee7fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "646"
+                  endingLineNumber = "646"
+                  offsetFromSymbolStart = "3016">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1760,54 +2261,747 @@
             endingLineNumber = "610"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4886B5EA-05F9-4725-9F33-06CC60847BD3 - 1edad7321d1ee25e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "610"
+                  endingLineNumber = "610"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "4886B5EA-05F9-4725-9F33-06CC60847BD3 - 1edad7321d1ee25e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.related_article.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_article/related_article/related_article.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "610"
+                  endingLineNumber = "610"
+                  offsetFromSymbolStart = "920">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F9978423-40E4-4774-8297-BB2F10A3746C"
+            uuid = "8040F096-FBF0-455E-A1B5-D6E75664FB8F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/v_article/v_article.swift"
+            filePath = "Vedanta/controller/v_videos/v_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "702"
-            endingLineNumber = "702"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "792"
+            endingLineNumber = "792"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8040F096-FBF0-455E-A1B5-D6E75664FB8F - 79f32df8e14b4efc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_videos.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_videos/v_videos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "792"
+                  endingLineNumber = "792"
+                  offsetFromSymbolStart = "2144">
+               </Location>
+               <Location
+                  uuid = "8040F096-FBF0-455E-A1B5-D6E75664FB8F - 79f32df8e14b4efc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.v_videos.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/v_videos/v_videos.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "792"
+                  endingLineNumber = "792"
+                  offsetFromSymbolStart = "2404">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BD0463A-6C6A-45E8-97D2-5574A8522AF5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "tapFunction_monthly_oc(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6BD0463A-6C6A-45E8-97D2-5574A8522AF5 - f2cb220da8e8ea87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tapFunction_yearly_oc(sender: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "1080">
+               </Location>
+               <Location
+                  uuid = "6BD0463A-6C6A-45E8-97D2-5574A8522AF5 - c110e12d5c9c98ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tapFunction_monthly_oc(sender: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "tapFunction_yearly_oc(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D - 520cf6f44206dd26"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tapFunction_yearly_in(sender: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D - f2cb220da8e8e923"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tapFunction_yearly_oc(sender: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3A0AC62-079A-4E75-A8FA-3137CD0A9526"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "tapFunction_monthly_in(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3A935067-4004-422D-A609-46AE4AD8E66D"
+            uuid = "A2A1F7D0-BC4E-4DB4-9FE6-124398CBF66A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "tapFunction_yearly_in(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A2A1F7D0-BC4E-4DB4-9FE6-124398CBF66A - 9f716e0b82c130a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in Vedanta.subscription.subscriptions_list_WB() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "214"
+                  endingLineNumber = "214"
+                  offsetFromSymbolStart = "3976">
+               </Location>
+               <Location
+                  uuid = "A2A1F7D0-BC4E-4DB4-9FE6-124398CBF66A - 520cf6f44206c5fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tapFunction_yearly_in(sender: __C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/ask_form/category_list/category_list.swift"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "add_ask_WB()"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "productsRequest(_:didReceive:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - 525f39ed4a5a2cd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.productsRequest(_: __C.SKProductsRequest, didReceive: __C.SKProductsResponse) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "1468">
+               </Location>
+               <Location
+                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - 525f39ed4a5a2cf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.productsRequest(_: __C.SKProductsRequest, didReceive: __C.SKProductsResponse) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "299"
+                  endingLineNumber = "299"
+                  offsetFromSymbolStart = "1572">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "768AA3E5-A68D-4691-BF51-5C29DBD162B0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/subscription/subscription.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "update_payment_WB(str_transaction_id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D95BFFA7-B780-4643-B236-553692A2AB37"
+            uuid = "203B1A5C-8BD9-4E88-B266-7414322E4BB7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/ask_form/category_list/category_list.swift"
+            filePath = "Vedanta/controller/v_videos/v_related_videos/v_related_videos.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "add_ask_WB()"
+            startingLineNumber = "781"
+            endingLineNumber = "781"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37BB9443-C6B4-427D-9A47-F86936598F82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/v_videos/v_related_videos/v_related_videos.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "42307725-4E68-498F-8A54-9BF1F9AFE541"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/login/login.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "sign_up_with_google_init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "42307725-4E68-498F-8A54-9BF1F9AFE541 - 30ce1322fd6b9baa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.sign_up_with_google_init() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "539"
+                  endingLineNumber = "539"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "42307725-4E68-498F-8A54-9BF1F9AFE541 - 30ce1322fd6b984d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.sign_up_with_google_init() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "542"
+                  endingLineNumber = "542"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "42307725-4E68-498F-8A54-9BF1F9AFE541 - 30ce1322fd6b982e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.sign_up_with_google_init() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "543"
+                  endingLineNumber = "543"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5C77A4D-4EA5-459E-9A05-AD44DAAF212F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/login/login.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "social_login_in_vedanta_WB(str_email:str_full_name:str_image:str_social_id:type:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D5C77A4D-4EA5-459E-9A05-AD44DAAF212F - 9309dc4ca3f81c9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.social_login_in_vedanta_WB(str_email: Swift.String, str_full_name: Swift.String, str_image: Swift.String, str_social_id: Swift.String, type: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "416"
+                  endingLineNumber = "416"
+                  offsetFromSymbolStart = "2108">
+               </Location>
+               <Location
+                  uuid = "D5C77A4D-4EA5-459E-9A05-AD44DAAF212F - 9309dc4ca3f81f75"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.social_login_in_vedanta_WB(str_email: Swift.String, str_full_name: Swift.String, str_image: Swift.String, str_social_id: Swift.String, type: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "417"
+                  endingLineNumber = "417"
+                  offsetFromSymbolStart = "1964">
+               </Location>
+               <Location
+                  uuid = "D5C77A4D-4EA5-459E-9A05-AD44DAAF212F - 9309dc4ca3f81f54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.login.social_login_in_vedanta_WB(str_email: Swift.String, str_full_name: Swift.String, str_image: Swift.String, str_social_id: Swift.String, type: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "418"
+                  endingLineNumber = "418"
+                  offsetFromSymbolStart = "1964">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08815FAD-5923-49AF-B613-30889771DCF5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/headers/utils/Utils.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "push_to_video_screen(str_video_file_link:str_video_title:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08815FAD-5923-49AF-B613-30889771DCF5 - 1d0d9b127d74e472"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.push_to_video_screen(str_video_file_link: Swift.String, str_video_title: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  uuid = "08815FAD-5923-49AF-B613-30889771DCF5 - 1d0d9b127d74e430"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.push_to_video_screen(str_video_file_link: Swift.String, str_video_title: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  uuid = "08815FAD-5923-49AF-B613-30889771DCF5 - 1d0d9b127d74e430"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.push_to_video_screen(str_video_file_link: Swift.String, str_video_title: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/login/login.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "loginButtonClicked()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "228">
+               </Location>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "1DC3B930-B08B-4EBC-B0EF-F802059D4971 - aa1d725eb65eb657"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vedanta/controller/login/login.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "loginButtonClicked()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "620">
+               </Location>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "596">
+               </Location>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "704">
+               </Location>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "608">
+               </Location>
+               <Location
+                  uuid = "FFBE0D71-45E0-4CCC-87FA-5694A845D162 - aa1d725eb65eb615"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FBSDKLoginKit.LoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vedanta.login.loginButtonClicked() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/login/login.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "608">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

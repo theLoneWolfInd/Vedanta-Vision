@@ -400,7 +400,7 @@ class v_videos: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -563,7 +563,7 @@ class v_videos: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -654,12 +654,12 @@ class v_videos: UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to like this Video."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -736,7 +736,7 @@ class v_videos: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -785,8 +785,31 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
         
         let item = self.arr_mut_video_list[indexPath.row] as? [String:Any]
         
+        //        cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        //        cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+        if (item!["image"] as! String) == ""  {
+            
+            cell.img_view_list.image = UIImage(named: "logo")
+            cell.img_view_list.contentMode = .scaleAspectFit
+            
+        } else {
         cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-        cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+        cell.img_view_list.contentMode = .scaleAspectFit
+        
+        cell.img_view_list.sd_setImage(
+            with: URL(string: (item!["image"] as! String)),
+            placeholderImage: UIImage(named: "logo"),
+            options: SDWebImageOptions(rawValue: 0),
+            completed: { [] image, error, cacheType, imageURL in
+                //                              guard let selfNotNil = self else { return }
+                // your rest code
+                print("load")
+                cell.img_view_list.contentMode = .scaleToFill
+            }
+        )
+    }
+        
+//        img_view_list
         
         // cell.lbl_title.text = (item!["title"] as! String)
 //        cell.lbl_list_description.text = (item!["description"] as! String)
@@ -811,89 +834,7 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
             cell.btn_like.tintColor = .systemPink
             
         }
-        
-        
-        /*if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-            // let str:String = person["role"] as! String
-            print(person as Any)
-            
-            if (person["expiryDate"] as! String) != "" {
-                
-                // cell.btn_subscribe.isHidden = true
-                // cell.btn_login.isHidden = true
-                
-                let start = (person["expiryDate"] as! String)
-                let end = "2017-11-12"
-                let dateFormat = "yyyy-MM-dd"
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = dateFormat
-                
-                let startDate = dateFormatter.date(from: start)
-                let endDate = dateFormatter.date(from: end)
-                
-                let currentDate = Date()
-                
-                guard let startDate = startDate, let endDate = endDate else {
-                    fatalError("Date Format does not match ⚠️")
-                }
-                
-                print(startDate)
-                print(currentDate)
-                print(endDate)
-                
-                if startDate > currentDate {
-                    print("✅")
-                    
-                    cell.btn_play.tintColor = .white
-                    cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
-                    
-                } else {
-                    
-                    print("❌")
-                    if (item!["Type"] as! String) == "1" {
-                        
-                        cell.btn_play.tintColor = .white
-                        cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
-                        
-                    } else {
-                        
-                        cell.btn_play.tintColor = .systemRed
-                        cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        } else {
-            
-            if (item!["Type"] as! String) == "1" {
-                
-                cell.btn_play.tintColor = .white
-                cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
-                
-            } else {
-                
-                cell.btn_play.tintColor = .systemRed
-                cell.btn_play.setImage(UIImage(systemName: "lock"), for: .normal)
-                
-            }
-            
-        }*/
-        
-        
-        // btn_play
-        
-//        if (item!["Type"] as! String) == "1" {
-//
-//            cell.btn_play.isHidden = true
-//            cell.btn_play.tintColor = .white
-//            cell.btn_play.setImage(UIImage(systemName: "play"), for: .normal)
-//
-//        } else {
-            
+   
             if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
                 // let str:String = person["role"] as! String
                 print(person as Any)
@@ -1039,13 +980,13 @@ extension v_videos : UITableViewDelegate , UITableViewDataSource {
                 
                 if (person["subscriptionDate"] as! String) == "" {
                     
-                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please subscribe to get access"), style: .alert)
                     
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
                         _ in
                     }
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     yes_subscribe.setDynamicColor(.pink)
                     

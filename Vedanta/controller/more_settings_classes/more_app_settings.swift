@@ -14,7 +14,8 @@ class more_app_settings: UIViewController {
     
     var str_notification_click:String! = "na"
     
-    var arr_app_setting_title = ["Notifications" , "Feedback" , "Share this App"]
+    // var arr_app_setting_title = ["Notifications" , "Feedback" , "Share this App"]
+    var arr_app_setting_title = ["Notifications"]
     
     @IBOutlet weak var btn_back:UIButton! {
         didSet {

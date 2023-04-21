@@ -355,7 +355,7 @@ class vedanta_profile: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -562,7 +562,7 @@ class vedanta_profile: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -655,7 +655,7 @@ class vedanta_profile: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -698,7 +698,7 @@ class vedanta_profile: UIViewController {
             
             if (person["subscriptionDate"] as! String) == "" {
                 
-                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                 
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -708,7 +708,7 @@ class vedanta_profile: UIViewController {
                     
                 }
                 
-                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                 
                 yes_subscribe.setDynamicColor(.pink)
                 
@@ -744,7 +744,7 @@ class vedanta_profile: UIViewController {
             
             if (person["subscriptionDate"] as! String) == "" {
                 
-                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                 
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -754,7 +754,7 @@ class vedanta_profile: UIViewController {
                     
                 }
                 
-                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                 
                 yes_subscribe.setDynamicColor(.pink)
                 
@@ -790,7 +790,7 @@ class vedanta_profile: UIViewController {
             
             if (person["subscriptionDate"] as! String) == "" {
                 
-                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                 
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -799,7 +799,7 @@ class vedanta_profile: UIViewController {
                     self.subscribe_click_method()
                     
                 }
-                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                 
                 yes_subscribe.setDynamicColor(.pink)
                 
@@ -835,7 +835,7 @@ class vedanta_profile: UIViewController {
             
             if (person["subscriptionDate"] as! String) == "" {
                 
-                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                 
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -844,7 +844,7 @@ class vedanta_profile: UIViewController {
                     self.subscribe_click_method()
                     
                 }
-                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                 
                 yes_subscribe.setDynamicColor(.pink)
                 
@@ -1324,7 +1324,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
     }
     
     @objc func subscribe_click_method_2() {
-        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
         
         
         let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1335,7 +1335,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
             self.navigationController?.pushViewController(push!, animated: true)
             
         }
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         
         yes_subscribe.setDynamicColor(.pink)
         
@@ -1360,7 +1360,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                     
                     if (person["subscriptionDate"] as! String) == "" {
                         
-                        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                         
                         
                         let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1369,7 +1369,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                             self.subscribe_click_method()
                             
                         }
-                        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                         
                         yes_subscribe.setDynamicColor(.pink)
                         
@@ -1400,7 +1400,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                 
                 if (person["subscriptionDate"] as! String) == "" {
                     
-                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                     
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1409,7 +1409,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                         self.subscribe_click_method()
                         
                     }
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     yes_subscribe.setDynamicColor(.pink)
                     
@@ -1440,7 +1440,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                 
                 if (person["subscriptionDate"] as! String) == "" {
                     
-                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                     
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1449,7 +1449,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                         self.subscribe_click_method()
                         
                     }
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     yes_subscribe.setDynamicColor(.pink)
                     
@@ -1480,7 +1480,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                 
                 if (person["subscriptionDate"] as! String) == "" {
                     
-                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                    let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                     
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -1489,7 +1489,7 @@ extension vedanta_profile: UICollectionViewDataSource , UICollectionViewDelegate
                         self.subscribe_click_method()
                         
                     }
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     yes_subscribe.setDynamicColor(.pink)
                     

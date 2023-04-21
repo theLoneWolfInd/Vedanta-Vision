@@ -515,7 +515,7 @@ class wisdom_new_details: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -677,7 +677,7 @@ class wisdom_new_details: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -768,12 +768,12 @@ class wisdom_new_details: UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to like this Video."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -849,7 +849,7 @@ class wisdom_new_details: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -1129,9 +1129,26 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 cell.img_view.image = UIImage(named: "logo")
                 cell.img_view.contentMode = .scaleAspectFit
             } else {
-                cell.img_view.contentMode = .scaleToFill
+//                cell.img_view.contentMode = .scaleToFill
+//                cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+//                cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                
+                
                 cell.img_view.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
-                cell.img_view.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
+                cell.img_view.contentMode = .scaleAspectFit
+                
+                cell.img_view.sd_setImage(
+                     with: URL(string: (item!["image"] as! String)),
+                     placeholderImage: UIImage(named: "logo"),
+                     options: SDWebImageOptions(rawValue: 0),
+                     completed: { [] image, error, cacheType, imageURL in
+    //                              guard let selfNotNil = self else { return }
+                                  // your rest code
+                         print("load")
+                         cell.img_view.contentMode = .scaleToFill
+                        }
+                )
+                
             }
             
             cell.lbl_header_video_title.text = (item!["title"] as! String)
@@ -1388,7 +1405,7 @@ extension wisdom_new_details : UITableViewDelegate , UITableViewDataSource {
                 if (item!["audioFile"] as! String) == "" {
                     
                     let alert = NewYorkAlertController(title: String("Invalid Link"), message: String("Link is invalid. Please check and try again."), style: .alert)
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     alert.addButtons([cancel])
                     self.present(alert, animated: true)
                     

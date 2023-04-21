@@ -26,7 +26,7 @@ pod 'SwiftyJSON'
 pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
-pod 'ChameleonFramework'
+#pod 'ChameleonFramework'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 
@@ -36,11 +36,14 @@ pod 'FSCalendar'
 
 pod 'razorpay-pod'
 
-#social login
+
 pod 'RxCocoa'
 pod 'RxSwift'
 pod 'FBSDKLoginKit'
 pod 'GoogleSignIn'
 pod 'YouTubePlayer'
+
+pod 'JNPhoneNumberView'
+pod 'CountryList'
 
 end

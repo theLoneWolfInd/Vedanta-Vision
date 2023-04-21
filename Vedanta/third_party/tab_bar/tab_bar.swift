@@ -33,28 +33,6 @@ class tab_bar: UITabBarController {
         
         myTabBarItem2.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-//        UITabBar.appearance().barTintColor = UIColor.black // your color
-        
-//        tabBar.items?.index(before: 2)
-        
-//        tabBar.selectedItem
-//        tabBar.barTintColor = .red
-        
-//        if
-        
-//        self.tabBar[0].bac
-        
-//        let numberOfItems = CGFloat(tabBar.items!.count)
-//        let tabBarItemSize = CGSize(width: tabBar.frame.width / numberOfItems, height: tabBar.frame.height)
-//        tabBar.selectionIndicatorImage = UIImage.imageWithColor(color: UIColor.red, size: tabBarItemSize).resizableImage(withCapInsets: UIEdgeInsets.zero)
-//
-//        // remove default border
-//        tabBar.frame.size.width = self.view.frame.width + 4
-//        tabBar.frame.origin.x = 0
-//        
-//        var tab1 : UITabBarItem = self.tabBar.items![0] as UITabBarItem
-//        tab1.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for: .normal)
-        
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: (UITabBarItem?)) {

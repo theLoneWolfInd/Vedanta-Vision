@@ -210,20 +210,38 @@ class favourite_list: UIViewController {
                                 ar = (jsonDict["data"] as! Array<Any>) as NSArray
                                 self.arr_mut_video_list.addObjects(from: ar as! [Any])
                                 
-                                
+                                if self.arr_mut_video_list.count == 0 {
+                                    
+                                    self.tble_view.isHidden = true
+                                    
+                                    var noDataLbl : UILabel!
+                                    noDataLbl = UILabel(frame: CGRect(x: 0, y: self.view.center.y, width: 290, height: 70))
+                                    noDataLbl?.textAlignment = .center
+                                    noDataLbl?.font = UIFont(name: "Poppins-Semibold", size: 18.0)
+                                    noDataLbl?.numberOfLines = 0
+                                    noDataLbl?.text = "No data found."
+                                    noDataLbl?.lineBreakMode = .byTruncatingTail
+                                    noDataLbl?.center = self.view.center
+                                    self.view.addSubview(noDataLbl!)
+                                    
+                                } else {
+                                   
+                                    // print(self.arr_mut_video_list as Any)
+                                    
+                                    self.tble_view.isHidden = false
+                                    
+                                    self.tble_view.delegate = self
+                                    self.tble_view.dataSource = self
+                                    self.tble_view.reloadData()
+                                    self.loadMore = 1
+                                    
+                                }
                                 
                                 
                                 // self.arr_mut_video_list.addObjects(from: ar as! [Any])
                                 
                                 
-                                print(self.arr_mut_video_list as Any)
                                 
-                                
-                                
-                                self.tble_view.delegate = self
-                                self.tble_view.dataSource = self
-                                self.tble_view.reloadData()
-                                self.loadMore = 1
                                 
                             } else {
                                 
@@ -231,7 +249,7 @@ class favourite_list: UIViewController {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 
@@ -318,12 +336,12 @@ class favourite_list: UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to like this video."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -389,6 +407,9 @@ class favourite_list: UIViewController {
                             // self.tble_view.reloadData()
                             // self.video_list_WB(page_number: 1)
                             
+                             
+                          
+                            
                             self.arr_mut_video_list.removeAllObjects()
                             self.video_list_WB(page_number: 1)
                             
@@ -398,7 +419,7 @@ class favourite_list: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -612,8 +633,17 @@ extension favourite_list : UITableViewDelegate , UITableViewDataSource {
         cell.img_view_list.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
         cell.img_view_list.sd_setImage(with: URL(string: (item!["image"] as! String)), placeholderImage: UIImage(named: "logo"))
         
-        cell.lbl_title.text = (item!["title"] as! String)
-        cell.lbl_list_description.text = (item!["description"] as! String)
+        let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 18.0)!]
+        
+        //let partOne = NSMutableAttributedString(string: (item!["title"] as! String)+"\n", attributes: yourAttributes)
+        let partTwo = NSMutableAttributedString(string: (item!["title"] as! String), attributes: yourOtherAttributes)
+        
+        let combination = NSMutableAttributedString()
+        
+//        combination.append(partOne)
+        combination.append(partTwo)
+        
+        cell.lbl_list_description.attributedText = combination
         
         cell.btn_like.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         cell.btn_like.tintColor = .systemPink

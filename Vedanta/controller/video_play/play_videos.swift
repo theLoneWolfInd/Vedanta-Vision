@@ -12,12 +12,13 @@ import WebKit
 class play_videos: UIViewController {
     
     @IBOutlet weak var wv: WKWebView!
+    var mywkwebview: WKWebView?
+    let mywkwebviewConfig = WKWebViewConfiguration()
     
     var str_video_link:String!
     var str_video_header:String!
     
-    var mywkwebview: WKWebView?
-    let mywkwebviewConfig = WKWebViewConfiguration()
+    
     
     @IBOutlet weak var btn_back:UIButton! {
         didSet {

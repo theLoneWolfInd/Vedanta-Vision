@@ -53,7 +53,7 @@ extension UIViewController {
             
             self.sign_in_click_method()
         }
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         
         alert.addButtons([login , cancel])
         self.present(alert, animated: true)
@@ -98,10 +98,6 @@ extension UIViewController {
             self.present(alert, animated: true)
             
         }
-        
-        
-        
-        
     }
     
     @objc func search_v_home_click_method() {
@@ -140,7 +136,7 @@ extension UIViewController {
     
     @objc func explore_click_method() {
         
-//        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+//        let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
 //
 //
 //        let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -149,7 +145,7 @@ extension UIViewController {
 //            self.subscribe_click_method()
 //
 //        }
-//        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+//        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
 //
 //        yes_subscribe.setDynamicColor(.pink)
 //
@@ -161,7 +157,7 @@ extension UIViewController {
             
             if (person["subscriptionDate"] as! String) == "" {
                 
-                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please Subscribe to get access."), style: .alert)
+                let alert = NewYorkAlertController(title: String("Vedanta Unlimited"), message: String("Please subscribe to get access"), style: .alert)
                 
                 
                 let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -171,7 +167,7 @@ extension UIViewController {
                     
                 }
                 
-                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                 
                 yes_subscribe.setDynamicColor(.pink)
                 
@@ -210,7 +206,7 @@ extension UIViewController {
 //        print(str_video_file_link)
         
         let fullNameArr = str_video_file_link.components(separatedBy: "://")
-//        print(fullNameArr)
+        print(fullNameArr)
         
         let first_8 = "\(fullNameArr[1])".prefix(8)
 //        print(first_8)
@@ -277,12 +273,12 @@ extension UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to use this feature."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -337,12 +333,12 @@ extension UIViewController {
         
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to use this feature."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -357,12 +353,12 @@ extension UIViewController {
         
         let alert = NewYorkAlertController(title: String(str_title), message: String(str_message), style: .alert)
         
-        let login = NewYorkButton(title: "login", style: .default) {
+        let login = NewYorkButton(title: "Login", style: .default) {
             _ in
             
             self.sign_in_click_method()
         }
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         
         alert.addButtons([login , cancel])
         self.present(alert, animated: true)
@@ -381,18 +377,20 @@ extension UIViewController {
             
         } else {
             
-            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to edit your profile."), style: .alert)
+            self.sign_in_click_method()
             
-            let login = NewYorkButton(title: "Login", style: .default) {
-                _ in
-                
-                self.sign_in_click_method()
-            }
-            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
-            
-            alert.addButtons([login , cancel])
-            self.present(alert, animated: true)
-            
+//            let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to edit your profile."), style: .alert)
+//
+//            let login = NewYorkButton(title: "Login", style: .default) {
+//                _ in
+//
+//                self.sign_in_click_method()
+//            }
+//            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+//
+//            alert.addButtons([login , cancel])
+//            self.present(alert, animated: true)
+//
         }
         
     }
@@ -415,7 +413,7 @@ extension UIViewController {
     @objc func please_check_your_internet_connection() {
         
         let alert = NewYorkAlertController(title: String("Error").uppercased(), message: String("Please check your internet connection."), style: .alert)
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         alert.addButtons([cancel])
         self.present(alert, animated: true)
         
@@ -425,7 +423,7 @@ extension UIViewController {
     @objc func something_went_wrong_with_WB() {
         
         let alert = NewYorkAlertController(title: String("Error").uppercased(), message: String("Server issue. Please wait or contact admin."), style: .alert)
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         alert.addButtons([cancel])
         self.present(alert, animated: true)
         

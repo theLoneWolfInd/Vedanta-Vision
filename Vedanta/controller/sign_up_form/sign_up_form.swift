@@ -8,8 +8,25 @@
 import UIKit
 import Alamofire
 
-class sign_up_form: UIViewController , UITextFieldDelegate {
+import CountryList
+import JNPhoneNumberView
 
+class sign_up_form: UIViewController , UITextFieldDelegate, CountryListDelegate {
+
+    var countryList = CountryList()
+    
+    @IBOutlet private weak var phoneNumberView: JNPhoneNumberView! {
+        didSet {
+            phoneNumberView.layer.borderColor = UIColor.lightGray.cgColor
+            phoneNumberView.layer.borderWidth = 0.8
+            phoneNumberView.layer.cornerRadius = 8
+            phoneNumberView.clipsToBounds = true
+            phoneNumberView.backgroundColor = .white
+            // phoneNumberView.keyboardType = .numberPad
+            // phoneNumberView.textAlignment = .center
+        }
+    }
+    
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .black
@@ -70,6 +87,19 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
         }
     }
     
+    @IBOutlet weak var txt_phone_country_code:UITextField! {
+        didSet {
+//            txt_phone_country_code.setLeftPaddingPoints(24)
+            txt_phone_country_code.layer.borderColor = UIColor.lightGray.cgColor
+            txt_phone_country_code.layer.borderWidth = 0.8
+            txt_phone_country_code.layer.cornerRadius = 8
+            txt_phone_country_code.clipsToBounds = true
+            txt_phone_country_code.keyboardType = .numberPad
+            txt_phone_country_code.textAlignment = .center
+            
+        }
+    }
+    
     @IBOutlet weak var txt_phone:UITextField! {
         didSet {
             txt_phone.setLeftPaddingPoints(24)
@@ -78,8 +108,11 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
             txt_phone.layer.cornerRadius = 8
             txt_phone.clipsToBounds = true
             txt_phone.keyboardType = .numberPad
+            txt_phone.placeholder = "Phone number"
         }
     }
+    
+    @IBOutlet weak var btn_flag:UIButton!
     
     @IBOutlet weak var txt_confirm_password:UITextField! {
         didSet {
@@ -110,19 +143,48 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
         
         self.txt_email.delegate = self
         self.txt_password.delegate = self
-        self.txt_phone.delegate = self
+         self.txt_phone.delegate = self
         self.txt_full_name.delegate = self
         self.txt_confirm_password.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_3), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_3), name: UIResponder.keyboardWillHideNotification, object: nil)
         
 //        self.tble_view.separatorColor = .clear
+        
+        //
+        countryList.delegate = self
         
         self.btn_sign_up.addTarget(self, action: #selector(validation_before_sign_up), for: .touchUpInside)
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
         
+        // Set delegate
+        /*self.phoneNumberView.delegate = self
+        self.phoneNumberView.setDefaultCountryCode("US")
+        self.phoneNumberView.backgroundColor = UIColor.gray
+        self.phoneNumberView.setViewConfiguration(self.getConfigration())
+        self.phoneNumberView.setPhoneNumber("")
+        self.phoneNumberView.layer.cornerRadius = 5.0
+        self.phoneNumberView.layer.borderColor = UIColor.lightGray.cgColor
+        self.phoneNumberView.layer.borderWidth = 1.0
+        self.phoneNumberView.backgroundColor = UIColor.lightGray
+        
+        self.phoneNumberView.layer.borderColor = UIColor.lightGray.cgColor
+        self.phoneNumberView.layer.borderWidth = 0.8
+        self.phoneNumberView.layer.cornerRadius = 8
+        self.phoneNumberView.clipsToBounds = true
+        self.phoneNumberView.backgroundColor = .clear
+        self.phoneNumberView.tintColor = .black*/
+        
+    }
+    
+    @objc func keyboardWillShow_3(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide_3(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
     }
     
     @objc func dismissKeyboard_2() {
@@ -149,7 +211,14 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
            alert.addButtons([cancel])
            self.present(alert, animated: true)
            
-        } else if self.txt_phone.text! == "" {
+        } else if self.txt_phone_country_code.text! == "" {
+            
+            let alert = NewYorkAlertController(title: String("Alert"), message: String("Country code should not be empty"), style: .alert)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+            alert.addButtons([cancel])
+            self.present(alert, animated: true)
+            
+         } else if self.txt_phone.text! == "" {
             
            let alert = NewYorkAlertController(title: String("Alert"), message: String("Phone should not be empty"), style: .alert)
            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
@@ -188,7 +257,17 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
                 
                 if (self.txt_phone.text?.count == 10) {
                     //
-                    self.registeration_in_vedanta_WB()
+                    if (self.txt_password.text!.count < 6) {
+                        
+                        let alert = NewYorkAlertController(title: String("Alert"), message: String("Password should be greater then 6 characters."), style: .alert)
+                        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                        alert.addButtons([cancel])
+                        self.present(alert, animated: true)
+                        
+                    } else {
+                        self.registeration_in_vedanta_WB()
+                    }
+                    
                     //
                 } else {
                     let alert = NewYorkAlertController(title: String("Alert"), message: String("Please enter valid phone number"), style: .alert)
@@ -233,7 +312,7 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
             "email"             : String(self.txt_email.text!),
             "password"          : String(self.txt_password.text!),
             "fullName"          : String(self.txt_full_name.text!),
-            "contactNumber"     : String(self.txt_phone.text!),
+            "contactNumber"     : String(self.txt_phone.text!)+String(self.txt_phone.text!),
             "role"              : "Member"
         ]
         
@@ -283,7 +362,7 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -338,6 +417,30 @@ class sign_up_form: UIViewController , UITextFieldDelegate {
             return newString.count <= maxLength
         }
         return true
+        
+    }
+    
+    func isPasswordHasNumberAndCharacter(password: String) -> Bool {
+        let passRegEx = "(?=[^a-z]*[a-z])[^0-9]*[0-9].*"
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passRegEx)
+        return passwordTest.evaluate(with: password)
+    }
+    
+    
+    //
+    @IBAction func handleCountryList(_ sender: Any) {
+        let navController = UINavigationController(rootViewController: countryList)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    func selectedCountry(country: Country) {
+        
+        print("\(country.flag!) \(country.name!), \(country.countryCode), \(country.phoneExtension)")
+        // self.selectedCountryLabel.text = "\(country.flag!) \(country.name!), \(country.countryCode), \(country.phoneExtension)"
+        
+        self.txt_phone_country_code.text = "+\(country.phoneExtension)"
+        
+        self.btn_flag.setTitle("\(country.flag!)", for: .normal)
         
     }
     
@@ -422,6 +525,17 @@ class sign_up_form_table_cell:UITableViewCell {
         }
     }
     
+    @IBOutlet weak var txt_phone_country_code:UITextField! {
+        didSet {
+            txt_phone_country_code.setLeftPaddingPoints(24)
+            txt_phone_country_code.layer.borderColor = UIColor.lightGray.cgColor
+            txt_phone_country_code.layer.borderWidth = 0.8
+            txt_phone_country_code.layer.cornerRadius = 8
+            txt_phone_country_code.clipsToBounds = true
+            txt_phone_country_code.keyboardType = .numberPad
+        }
+    }
+    
     @IBOutlet weak var txt_phone:UITextField! {
         didSet {
             txt_phone.setLeftPaddingPoints(24)
@@ -452,5 +566,94 @@ class sign_up_form_table_cell:UITableViewCell {
     }
     
     
+    
+}
+
+
+extension sign_up_form: JNPhoneNumberViewDelegate {
+    
+    /**
+     Get presenter view controller
+     - Parameter phoneNumberView: Phone number view
+     - Returns: presenter view controller
+     */
+    func phoneNumberView(getPresenterViewControllerFor phoneNumberView: JNPhoneNumberView) -> UIViewController {
+        return self
+    }
+    
+    /**
+     Get country code picker attributes
+     - Parameter phoneNumberView: Phone number view
+     */
+    func phoneNumberView(getCountryPickerAttributesFor phoneNumberView: JNPhoneNumberView) -> JNCountryPickerConfiguration {
+        let configuration = JNCountryPickerConfiguration()
+        configuration.pickerLanguage = .en
+        configuration.tableCellInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        configuration.viewBackgroundColor = UIColor.lightGray
+        configuration.tableCellBackgroundColor = UIColor.white
+        
+        return configuration
+    }
+    
+    /**
+     Did change text
+     - Parameter nationalNumber: National phone number
+     - Parameter country: Number country info
+     - Parameter phoneNumberView: Phone number view
+     */
+    func phoneNumberView(didChangeText nationalNumber: String, country: JNCountry, forPhoneNumberView phoneNumberView: JNPhoneNumberView) {
+        
+        // self.phoneNumberLabel.text = "International Phone Number: \n \(self.phoneNumberView.getDialCode() + nationalNumber)"
+    
+        print("International Phone Number: \n \(self.phoneNumberView.getDialCode() + nationalNumber)")
+        
+        self.phoneNumberView.setViewConfiguration(self.getConfigration())
+    }
+    
+    /**
+     Did end editing
+     - Parameter nationalNumber: National phone number
+     - Parameter country: Number country info
+     - Parameter isValidPhoneNumber:  Is valid phone number flag as bool
+     - Parameter phoneNumberView: Phone number view
+     */
+    func phoneNumberView(didEndEditing nationalNumber: String, country: JNCountry, isValidPhoneNumber: Bool, forPhoneNumberView phoneNumberView: JNPhoneNumberView) {
+        let validationMessage = isValidPhoneNumber ? "Valid Phone Number" : "Invalid Phone Number"
+        
+        print("International Phone Number: \n \(self.phoneNumberView.getPhoneNumber()) \n \(validationMessage)")
+        
+        /*self.phoneNumberLabel.text = "International Phone Number: \n \(self.phoneNumberView.getDialCode() + nationalNumber) \n \(validationMessage)"
+        
+        self.phoneNumberLabel.textColor = isValidPhoneNumber ? UIColor.blue : UIColor.red*/
+    }
+    
+    /**
+     Country Did Changed
+     - Parameter country: New Selected Country
+     - Parameter isValidPhoneNumber: Is valid phone number flag as bool
+     - Parameter phoneNumberView: Phone number view
+     */
+    func phoneNumberView(countryDidChanged country: JNCountry, isValidPhoneNumber: Bool, forPhoneNumberView phoneNumberView: JNPhoneNumberView) {
+        let validationMessage = isValidPhoneNumber ? "Valid Phone Number" : "Invalid Phone Number"
+        
+        /*self.phoneNumberLabel.text = "International Phone Number: \n \(self.phoneNumberView.getPhoneNumber()) \n \(validationMessage)"
+        
+        self.phoneNumberLabel.textColor = isValidPhoneNumber ? UIColor.blue : UIColor.red*/
+        
+        print("International Phone Number: \n \(self.phoneNumberView.getPhoneNumber()) \n \(validationMessage)")
+
+    }
+    
+    private func getConfigration() -> JNPhoneNumberViewConfiguration {
+        
+        let configrartion = JNPhoneNumberViewConfiguration()
+        configrartion.phoneNumberTitleColor = UIColor.black
+        configrartion.countryDialCodeTitleColor = UIColor.black
+        configrartion.phoneNumberTitleFont = UIFont.systemFont(ofSize: 18.0)
+        configrartion.countryDialCodeTitleFont = UIFont.systemFont(ofSize: 20.0)
+        
+        return configrartion
+        
+    }
     
 }

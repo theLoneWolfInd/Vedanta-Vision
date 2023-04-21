@@ -135,28 +135,28 @@ class category_list: UIViewController , UITextViewDelegate {
         if cell.txt_your_name.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Name should not be empty"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_your_email.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Email should not be empty"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_choose_category.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Please choose category"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
         } else if cell.txt_view.text == "" {
             
             let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("Enter comment"), style: .alert)
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             alert.addButtons([cancel])
             self.present(alert, animated: true)
             
@@ -258,7 +258,7 @@ class category_list: UIViewController , UITextViewDelegate {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             

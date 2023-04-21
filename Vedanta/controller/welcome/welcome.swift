@@ -41,6 +41,17 @@ class welcome: UIViewController {
         }
     }
     
+    @IBOutlet weak var btn_terms:UIButton! {
+        didSet {
+            btn_terms.setTitleColor(UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 60.0/255.0, alpha: 1), for: .normal)
+        }
+    }
+    @IBOutlet weak var btn_privacy:UIButton! {
+        didSet {
+            btn_privacy.setTitleColor(UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 60.0/255.0, alpha: 1), for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

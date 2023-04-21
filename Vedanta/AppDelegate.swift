@@ -9,6 +9,11 @@
 
 // FacebookClientToken : 8e04aba20d545838bd7245677e9650af
 
+// client id : 497708519079-rpocn606cvf6ha0ft5ipetm4c263f3t4.apps.googleusercontent.com
+
+/*
+ UIInterfaceOrientationPortrait
+ */
 import UIKit
 import Firebase
 // import FirebaseCore
@@ -25,19 +30,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // sleep(20)
+        
         FirebaseApp.configure()
         
         // facebook
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // google
+//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+//            if error != nil || user == nil {
+//              // Show the app's signed-out state.
+//            } else {
+//              // Show the app's signed-in state.
+//            }
+//          }
+        
+        
+        // 1
+        // GIDSignIn.sharedInstance.clientID = "[OAuth_Client_ID]"
+        // 2
+        // GIDSignIn.sharedInstance.presentingViewController = self
+        // 3
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
-              // Show the app's signed-out state.
+                      // Show the app's signed-out state.
+                print("GOOGLE ACCOUNT IS SIGNED OUT")
             } else {
-              // Show the app's signed-in state.
+                      // Show the app's signed-in state.
+                print("GOOGLE ACCOUNT IS SIGNED IN")
             }
-          }
+        }
+        
+        // GIDSignIn.sharedInstance.presentingViewController = self
+        
+        
+        
+        
+        
+        
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -100,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         print(userInfo)
     }
-    
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
@@ -108,6 +139,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+    func registerForRemoteNotification() {
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        let dataDict:[String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        let defaults = UserDefaults.standard
+        // deviceToken
+//                defaults.set("\(token)", forKey: "deviceToken")
+        defaults.set("\(fcmToken!)", forKey: "key_my_device_token")
+        
+        // print("\(fcmToken!)")
+        
+        
+    }
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+    }
+    
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        print("application didRegisterForRemoteNotificationsWithDeviceToken")
+//
+//        print("\(deviceToken)")
+//
+//        Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
+//
+//    }
+
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        print("application didRegisterForRemoteNotificationsWithDeviceToken")
+//
+//        print(error)
+//    }
+    
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        print("Error = ",error.localizedDescription)
+//    }
+    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+//        print(userInfo)
+//    }
+    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+//                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        
+//        print(userInfo)
+//        
+//        completionHandler(UIBackgroundFetchResult.newData)
+//    }
     
     
     
@@ -156,34 +242,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    /*func application(
-        _ app: UIApplication,
-        open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-    ) -> Bool {
-        
-        // fb
-        ApplicationDelegate.shared.application(
-            app,
-            open: url,
-            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-        )
-        
-        // google
-        var handled: Bool
-        
-        handled = GIDSignIn.sharedInstance.handle(url)
-        if handled {
-            return true
-        }
-        
-        // Handle other custom URL types.
-        
-        // If not handled by this app, return false.
-        return false
-    }*/
-    
-    
     // new
     func application(
       _ app: UIApplication,
@@ -193,6 +251,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (GIDSignIn.sharedInstance.handle(url)) {
             return true
         } else if (ApplicationDelegate.shared.application(app, open: url, options: options)) {
+//            else if ApplicationDelegate.shared.application(
+//                app,
+//                open: url,
+//                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+//            ) {
             return true
         }
 
@@ -202,3 +266,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 }
 
 
+
+    

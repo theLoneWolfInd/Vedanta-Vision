@@ -41,7 +41,7 @@ install_framework()
 
   if [ -L "${source}" ]; then
     echo "Symlinked..."
-    source="$(readlink "${source}")"
+    source="$(readlink -f "${source}")"
   fi
 
   if [ -d "${source}/${BCSYMBOLMAP_DIR}" ]; then
@@ -178,8 +178,9 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CountryList/CountryList.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework"
@@ -191,6 +192,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JNPhoneNumberView/JNPhoneNumberView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
@@ -200,6 +202,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"
@@ -210,8 +213,9 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CountryList/CountryList.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework"
@@ -223,6 +227,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JNPhoneNumberView/JNPhoneNumberView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework"
@@ -232,6 +237,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"

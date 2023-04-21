@@ -6,17 +6,22 @@
 //
 
 import UIKit
-// import RxSwift
-// import RxCocoa
+import RxSwift
+import RxCocoa
 import Alamofire
 import GoogleSignIn
+
+import FBSDKLoginKit
 
 class sign_up: UIViewController {
 
     // MARK: - Variable -
     // let rxbag = DisposeBag()
     
+    
     var str_user_device_token:String!
+    
+    let rxbag = DisposeBag()
     
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
@@ -71,6 +76,7 @@ class sign_up: UIViewController {
     
     @IBOutlet weak var btn_sign_in:UIButton! {
         didSet {
+            btn_sign_in.setTitleColor(UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 59.0/255.0, alpha: 1), for: .normal)
             
         }
     }
@@ -86,57 +92,110 @@ class sign_up: UIViewController {
         
         self.btn_continue_with_email.addTarget(self, action: #selector(sign_up_via_email_click_method), for: .touchUpInside)
         
-        // GIDSignIn.sharedInstance.presentingViewController = self
-        
-//        NotificationCenter.default.addObserver(self,
-//                                                   selector: #selector(userDidSignInGoogle(_:)),
-//                                                   name: .signInGoogleCompleted,
-//                                                   object: nil)
-        
-        // self.set_up_social_login_init()
-        
-        // GIDSignIn.sharedInstance.signIn()
-        
-        // let signInConfig = GIDConfiguration.init(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
-        // GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self)
-        
-//        let signInConfig = GIDConfiguration(clientID: "332203884683-i7ub3lqqg9bpv4gj67i05ucfv6emnhvu.apps.googleusercontent.com")
-        
+        // FACEBOOK
+        self.btn_continue_with_facebook.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
         
         // google
-        btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
+        self.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
         
         
     }
     
-    @objc func continue_with_google_click_method() {
-        GIDSignIn.sharedInstance.signIn(with: GIDConfiguration(clientID: "857008698478-6bhro43tnihn0n9i80g012o3712fohfd.apps.googleusercontent.com"), presenting: self) { signInResult, error in
-            guard error == nil else { return }
 
-            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
-            
-            print("success google sign in")
-//            print(signInResult?.userID)
-//            print(signInResult?.profile?.email)
-//            print(signInResult?.profile?.name)
-//            print(signInResult?.profile?.givenName)
-//            print(signInResult?.profile?.familyName)
-//            print(signInResult?.profile?.hasImage)
-            let googleProfilePicURL = signInResult?.profile?.imageURL(withDimension: 150)?.absoluteString ?? ""
-            print("Google Profile Avatar URL: \(googleProfilePicURL)")
-            // If sign in succeeded, display the app's main content View.
-            
-            
-            self.social_login_in_vedanta_WB(str_email: (signInResult?.profile!.email)!,
-                                            str_full_name: (signInResult?.profile?.name)!,
-                                            str_image: "\(googleProfilePicURL)", str_social_id: (signInResult?.userID)!)
-          }
+    
+    @objc func loginButtonClicked() {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile","email"], from: self) { [self] result, error in
+            if let error = error {
+                print("Encountered Erorr: \(error)")
+            } else if let result = result, result.isCancelled {
+                print("Cancelled")
+            } else {
+                print("Logged In")
+                print("result \(result!)")
+
+                showEmail()
+                    
+            }
+        }
     }
+    
+    func showEmail()
+        {
+            GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name, picture.width(480).height(480)"]).start {
+                (connection, result, err) in
+                
+              if(err == nil) {
+//                  print(result[""] as! String)
+                  
+                  if let res = result {
+                      if let response = res as? [String: Any] {
+                          let username = response["name"]
+                          let email = response["email"]
+                          let id = response["id"]
+                          let image = response["picture"]
+                          
+                          print(username as Any)
+                          print(email as Any)
+                          print(id as Any)
+                          print(image as Any)
+//
+//                          let for_image = image as? [String: Any]
+//                          let get_data = for_image!["data"] as? [String: Any]
+//                          print(get_data as Any)
+//                          let get_url = get_data!["url"] as? [String: Any]
+//                          print(get_url as Any)
+//                          print(get_url as Any)
+//
+                          
+                          ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+                          
+                          self.social_login_in_vedanta_WB(str_email: (email as! String),
+                                                          str_full_name: (username as! String),
+                                                          str_image: "",
+                                                          str_social_id: (id as! String),
+                                                          type: "F"
+                          
+                          )
+                          
+                      }
+                  }
+
+                }
+               else {
+                    print("error \(err!)")
+                }
+            }
+
+        }
+ 
+    
+    
+    // MARK: - LOGIN VIA GOOGLE -
+    @objc func continue_with_google_click_method() {
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+           guard error == nil else { return }
+
+            let googleProfilePicURL = signInResult?.user.profile?.imageURL(withDimension: 150)?.absoluteString ?? ""
+
+            self.social_login_in_vedanta_WB(str_email: (signInResult?.user.profile!.email)!,
+                                            str_full_name: (signInResult?.user.profile?.name)!,
+                                            str_image: "\(googleProfilePicURL)",
+                                            str_social_id: (signInResult?.user.userID)!,
+                                            type: "G"
+            
+            
+            )
+            
+         }
+    
+    }
+    
     
     // MARK: - WEBSERVICE ( LOGIN ) -
     @objc func social_login_in_vedanta_WB(
-        str_email:String,str_full_name:String,str_image:String,str_social_id:String)
-    {
+        str_email:String,str_full_name:String,str_image:String,str_social_id:String,type:String) {
         self.view.endEditing(true)
         
         
@@ -168,7 +227,7 @@ class sign_up: UIViewController {
             "fullName"      : String(str_full_name),
             "image"         : String(str_image),
             "socialId"      : String(str_social_id),
-            "socialType"    : "G",
+            "socialType"    : String(type),
             "device"        : "iOS",
             "deviceToken"   : String(device_token),
             
@@ -217,7 +276,7 @@ class sign_up: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -236,208 +295,11 @@ class sign_up: UIViewController {
             }
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-            if let error = error {
-                if (error as NSError).code == GIDSignInError.hasNoAuthInKeychain.rawValue {
-                    debugPrint("The user has not signed in before or they have since signed out.")
-                } else {
-                    debugPrint("\(error.localizedDescription)")
-                }
-                return
-            }
-            debugPrint(user.profile!.email)
-            debugPrint(user.profile!.name)
-            debugPrint(user.profile!.givenName ?? "")
-            debugPrint(user.profile!.familyName ?? "")
-            // showAlert(title: "SUCCESS", message: "Thanks for signing in with google")
-              
-        }
-    
-    private func updateScreen() {
-        
-        
-        /*if let user = GIDSignIn.sharedInstance()?.currentUser {
-            // User signed in
-            
-            /*// Show greeting message
-            greetingLabel.text = "Hello \(user.profile.givenName!)! ✌️"
-            
-            // Hide sign in button
-            signInButton.isHidden = true
-            
-            // Show sign out button
-            signOutButton.isHidden = false*/
-            
-        } else {
-            // User signed out
-            
-            print("signed out")
-            
-            // Show sign in message
-             /*greetingLabel.text = "Please sign in... 🙂"
-             
-             // Show sign in button
-             signInButton.isHidden = false
-             
-             // Hide sign out button
-             signOutButton.isHidden = true*/
-        }*/
-    }
-    
-    @objc func set_up_social_login_init() {
-        
-        // google call
-        /*googleLogin()
-        
-        // facebook call
-        facebookLogin()
-        
-        
-        // social buttons
-        btn_continue_with_facebook.rx.tap.bind{ [weak self] _ in
-            guard let strongSelf = self else {return}
-            RRFBLogin.shared.fbLogin(viewController: strongSelf)
-        }.disposed(by: rxbag)
-        
-        btn_continue_with_google.rx.tap.bind{ [weak self] _ in
-            guard let strongSelf = self else {return}
-            RRGoogleLogin.shared.googleSignIn(viewController: strongSelf)
-        }.disposed(by: rxbag)*/
-        
-    }
-
-    
-    
-    @objc func loginViaFB(strEmail:String,strType:String,strName:String,strSocialId:String,strProfileImage:String) {
-          
-        // indicator.startAnimating()
-        // self.disableService()
-        // Utils.RiteVetIndicatorShow()
-           
-        let urlString = application_base_url
-               
-        // var parameters:Dictionary<AnyHashable, Any>!
-           
-        let defaults = UserDefaults.standard
-        if let myString = defaults.string(forKey: "key_my_device_token") {
-            
-            print("defaults savedString: \(myString)")
-            self.str_user_device_token = "\(myString)"
-            
-        } else {
-            
-            print("user disable notification")
-            
-        }
-        
-        let parameters = [
-            "action"        :   "socialLoginAction",
-            "email"         :   String(strEmail),
-            "socialId"      :   String(strSocialId),
-            "fullName"      :   String(strName),
-            "socialType"    :   String(strType),
-            "device"        :   String("iOS"),
-            "deviceToken"   :   String(self.str_user_device_token),
-            "image"         :   String(strProfileImage)
-        ]
-              
-                
-        print("parameters-------\(String(describing: parameters))")
-          
-        AF.request(application_base_url, method: .post, parameters: parameters)
-        
-            .response { response in
-            
-            do {
-                if response.error != nil{
-                    print(response.error as Any, terminator: "")
-                }
-                
-                if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
-                    
-                    print(jsonDict as Any, terminator: "")
-                    
-                    // for status alert
-                    var status_alert : String!
-                    status_alert = (jsonDict["status"] as? String)
-                    
-                    // for message alert
-                    var str_data_message : String!
-                    str_data_message = jsonDict["msg"] as? String
-                    
-                    if status_alert.lowercased() == "success" {
-                        
-                        print("=====> yes")
-                        
-                        var ar : NSArray!
-                        ar = (jsonDict["data"] as! Array<Any>) as NSArray
-                        // self.arr_mut_ask_me.addObjects(from: ar as! [Any])
-                        
-                        ERProgressHud.sharedInstance.hide()
-                        
-                        if ar.count == 0 {
-                          
-                            let alert = NewYorkAlertController(title: String("Alert").uppercased(), message: String("No event found on this date."), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
-                            alert.addButtons([cancel])
-                            self.present(alert, animated: true)
-                            
-                        } else {
-                            
-                            let alert = NewYorkAlertController(title: String("Event"), message: nil, style: .actionSheet)
-                            
-                            for indexx in 0..<ar.count {
-                                
-                                 let item = ar[indexx] as? [String:Any]
-                                
-                                
-                                let india = NewYorkButton(title: (item!["eventDate"] as! String), style: .default) {
-                                    _ in
-                                    
-                                    if let url = URL(string: (item!["URL"] as! String)) {
-                                        UIApplication.shared.open(url)
-                                    }
-                                    
-                                }
-
-                                alert.addButtons([india])
-                            }
-
-                            self.present(alert, animated: true)
-                            
-                        }
-                        
-                        
-                    } else {
-                        
-                        print("=====> no")
-                        ERProgressHud.sharedInstance.hide()
-                        
-                        let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
-                        alert.addButtons([cancel])
-                        self.present(alert, animated: true)
-                        
-                    }
-                    
-                } else {
-                    
-                    self.please_check_your_internet_connection()
-                    
-                    return
-                }
-                
-            } catch _ {
-                print("Exception!")
-                ERProgressHud.sharedInstance.hide()
-                
-                print(response.error?.localizedDescription as Any, terminator: "<==== I AM ERROR")
-                
-                self.something_went_wrong_with_WB()
-                
-            }
-        }
-    }
+//    @objc func phone_number() {
+//        let flags: [String: String] = [
+//          "AD": "🇦🇩", "AE": "🇦🇪", "AF": "🇦🇫", "AG": "🇦🇬", "AI": "🇦🇮", "AL": "🇦🇱", "AM": "🇦🇲", "AO": "🇦🇴", "AQ": "🇦🇶", "AR": "🇦🇷", "AS": "🇦🇸", "AT": "🇦🇹", "AU": "🇦🇺", "AW": "🇦🇼", "AX": "🇦🇽", "AZ": "🇦🇿", "BA": "🇧🇦", "BB": "🇧🇧", "BD": "🇧🇩", "BE": "🇧🇪", "BF": "🇧🇫", "BG": "🇧🇬", "BH": "🇧🇭", "BI": "🇧🇮", "BJ": "🇧🇯", "BL": "🇧🇱", "BM": "🇧🇲", "BN": "🇧🇳", "BO": "🇧🇴", "BQ": "🇧🇶", "BR": "🇧🇷", "BS": "🇧🇸", "BT": "🇧🇹", "BV": "🇧🇻", "BW": "🇧🇼", "BY": "🇧🇾", "BZ": "🇧🇿", "CA": "🇨🇦", "CC": "🇨🇨", "CD": "🇨🇩", "CF": "🇨🇫", "CG": "🇨🇬", "CH": "🇨🇭", "CI": "🇨🇮", "CK": "🇨🇰", "CL": "🇨🇱", "CM": "🇨🇲", "CN": "🇨🇳", "CO": "🇨🇴", "CR": "🇨🇷", "CU": "🇨🇺", "CV": "🇨🇻", "CW": "🇨🇼", "CX": "🇨🇽", "CY": "🇨🇾", "CZ": "🇨🇿", "DE": "🇩🇪", "DJ": "🇩🇯", "DK": "🇩🇰", "DM": "🇩🇲", "DO": "🇩🇴", "DZ": "🇩🇿", "EC": "🇪🇨", "EE": "🇪🇪", "EG": "🇪🇬", "EH": "🇪🇭", "ER": "🇪🇷", "ES": "🇪🇸", "ET": "🇪🇹", "FI": "🇫🇮", "FJ": "🇫🇯", "FK": "🇫🇰", "FM": "🇫🇲", "FO": "🇫🇴", "FR": "🇫🇷", "GA": "🇬🇦", "GB": "🇬🇧", "GD": "🇬🇩", "GE": "🇬🇪", "GF": "🇬🇫", "GG": "🇬🇬", "GH": "🇬🇭", "GI": "🇬🇮", "GL": "🇬🇱", "GM": "🇬🇲", "GN": "🇬🇳", "GP": "🇬🇵", "GQ": "🇬🇶", "GR": "🇬🇷", "GS": "🇬🇸", "GT": "🇬🇹", "GU": "🇬🇺", "GW": "🇬🇼", "GY": "🇬🇾", "HK": "🇭🇰", "HM": "🇭🇲", "HN": "🇭🇳", "HR": "🇭🇷", "HT": "🇭🇹", "HU": "🇭🇺", "ID": "🇮🇩", "IE": "🇮🇪", "IL": "🇮🇱", "IM": "🇮🇲", "IN": "🇮🇳", "IO": "🇮🇴", "IQ": "🇮🇶", "IR": "🇮🇷", "IS": "🇮🇸", "IT": "🇮🇹", "JE": "🇯🇪", "JM": "🇯🇲", "JO": "🇯🇴", "JP": "🇯🇵", "KE": "🇰🇪", "KG": "🇰🇬", "KH": "🇰🇭", "KI": "🇰🇮", "KM": "🇰🇲", "KN": "🇰🇳", "KP": "🇰🇵", "KR": "🇰🇷", "KW": "🇰🇼", "KY": "🇰🇾", "KZ": "🇰🇿", "LA": "🇱🇦", "LB": "🇱🇧", "LC": "🇱🇨", "LI": "🇱🇮", "LK": "🇱🇰", "LR": "🇱🇷", "LS": "🇱🇸", "LT": "🇱🇹", "LU": "🇱🇺", "LV": "🇱🇻", "LY": "🇱🇾", "MA": "🇲🇦", "MC": "🇲🇨", "MD": "🇲🇩", "ME": "🇲🇪", "MF": "🇲🇫", "MG": "🇲🇬", "MH": "🇲🇭", "MK": "🇲🇰", "ML": "🇲🇱", "MM": "🇲🇲", "MN": "🇲🇳", "MO": "🇲🇴", "MP": "🇲🇵", "MQ": "🇲🇶", "MR": "🇲🇷", "MS": "🇲🇸", "MT": "🇲🇹", "MU": "🇲🇺", "MV": "🇲🇻", "MW": "🇲🇼", "MX": "🇲🇽", "MY": "🇲🇾", "MZ": "🇲🇿", "NA": "🇳🇦", "NC": "🇳🇨", "NE": "🇳🇪", "NF": "🇳🇫", "NG": "🇳🇬", "NI": "🇳🇮", "NL": "🇳🇱", "NO": "🇳🇴", "NP": "🇳🇵", "NR": "🇳🇷", "NU": "🇳🇺", "NZ": "🇳🇿", "OM": "🇴🇲", "PA": "🇵🇦", "PE": "🇵🇪", "PF": "🇵🇫", "PG": "🇵🇬", "PH": "🇵🇭", "PK": "🇵🇰", "PL": "🇵🇱", "PM": "🇵🇲", "PN": "🇵🇳", "PR": "🇵🇷", "PS": "🇵🇸", "PT": "🇵🇹", "PW": "🇵🇼", "PY": "🇵🇾", "QA": "🇶🇦", "RE": "🇷🇪", "RO": "🇷🇴", "RS": "🇷🇸", "RU": "🇷🇺", "RW": "🇷🇼", "SA": "🇸🇦", "SB": "🇸🇧", "SC": "🇸🇨", "SD": "🇸🇩", "SE": "🇸🇪", "SG": "🇸🇬", "SH": "🇸🇭", "SI": "🇸🇮", "SJ": "🇸🇯", "SK": "🇸🇰", "SL": "🇸🇱", "SM": "🇸🇲", "SN": "🇸🇳", "SO": "🇸🇴", "SR": "🇸🇷", "SS": "🇸🇸", "ST": "🇸🇹", "SV": "🇸🇻", "SX": "🇸🇽", "SY": "🇸🇾", "SZ": "🇸🇿", "TC": "🇹🇨", "TD": "🇹🇩", "TF": "🇹🇫", "TG": "🇹🇬", "TH": "🇹🇭", "TJ": "🇹🇯", "TK": "🇹🇰", "TL": "🇹🇱", "TM": "🇹🇲", "TN": "🇹🇳", "TO": "🇹🇴", "TR": "🇹🇷", "TT": "🇹🇹", "TV": "🇹🇻", "TW": "🇹🇼", "TZ": "🇹🇿", "UA": "🇺🇦", "UG": "🇺🇬", "UM": "🇺🇲", "US": "🇺🇸", "UY": "🇺🇾", "UZ": "🇺🇿", "VA": "🇻🇦", "VC": "🇻🇨", "VE": "🇻🇪", "VG": "🇻🇬", "VI": "🇻🇮", "VN": "🇻🇳", "VU": "🇻🇺", "WF": "🇼🇫", "WS": "🇼🇸", "YE": "🇾🇪", "YT": "🇾🇹", "ZA": "🇿🇦", "ZM": "🇿🇲", "ZW": "🇿🇼"
+//        ]
+//    }
     
 }
 

@@ -8,13 +8,23 @@
 import UIKit
 import Alamofire
 import Razorpay
+import StoreKit
 
-class subscription: UIViewController, RazorpayProtocol {
+// subscription
+
+class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 
     var razorpayObj : RazorpayCheckout? = nil
     let defaultHeight : CGFloat = 40
     let defaultWidth : CGFloat = 120
     
+    var str_selected_product_id:String!
+    
+    var product_id_for_1_month_in_india: String!
+    var product_id_for_1_year_in_india: String!
+    
+    var product_id_for_1_month_outside_india: String!
+    var product_id_for_1_year_outside_india: String!
     
     let razorpayKey = "rzp_test_quxokCn0jdMYYD"
     // let razorpayKey = "rzp_live_sLzp2Hk7Arurvl"
@@ -52,6 +62,13 @@ class subscription: UIViewController, RazorpayProtocol {
         
         self.tble_view.separatorColor = .clear
         
+        // in-app purchase
+        SKPaymentQueue.default().add(self)
+        
+        product_id_for_1_month_in_india = "vedanta_vision_1_month_subscription_in_india"
+        product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        product_id_for_1_month_outside_india = "vedanta_vision_1_month_subscription_outside_india"
+        product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
         
         self.subscriptions_list_WB()
         
@@ -95,7 +112,7 @@ class subscription: UIViewController, RazorpayProtocol {
         }
     }
     
-    
+    // monthly outside
     @IBAction func tapFunction_monthly_oc(sender: UITapGestureRecognizer) {
         print("tap working 1")
         
@@ -107,11 +124,24 @@ class subscription: UIViewController, RazorpayProtocol {
         
         self.str_amount_to_send = "\(item!["price"]!)"
         
-        self.openRazorpayCheckout(membership_price: final_price,
+        //
+        /*
+         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
+         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+         
+         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
+         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+         */
+        
+        self.str_selected_product_id = self.product_id_for_1_month_outside_india
+        self.submit_subscription_click_method()
+        
+        /*self.openRazorpayCheckout(membership_price: final_price,
                                   membership_currency: "USD",
-                                  membership_description: "Monthly subscription")
+                                  membership_description: "Monthly subscription")*/
     }
     
+    // yearly outside country
     @IBAction func tapFunction_yearly_oc(sender: UITapGestureRecognizer) {
         print("tap working 2")
         
@@ -122,15 +152,28 @@ class subscription: UIViewController, RazorpayProtocol {
         self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
         self.str_amount_to_send = "\(item!["price"]!)"
         
-        self.openRazorpayCheckout(membership_price: final_price,
+        
+        /*
+         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
+         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+         
+         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
+         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+         */
+        
+        self.str_selected_product_id = self.product_id_for_1_year_outside_india
+        self.submit_subscription_click_method()
+        
+        /*self.openRazorpayCheckout(membership_price: final_price,
                                   membership_currency: "USD",
-                                  membership_description: "Yearly subscription")
+                                  membership_description: "Yearly subscription")*/
         
         
         
         // self.update_payment_WB()
     }
     
+    // monthly inside
     @IBAction func tapFunction_monthly_in(sender: UITapGestureRecognizer) {
         print("tap working in 1")
         
@@ -141,11 +184,24 @@ class subscription: UIViewController, RazorpayProtocol {
         self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
         self.str_amount_to_send = "\(item!["price_IND"]!)"
         
-        self.openRazorpayCheckout(membership_price: final_price,
+        
+        /*
+         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
+         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+         
+         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
+         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+         */
+        
+        self.str_selected_product_id = self.product_id_for_1_month_in_india
+        self.submit_subscription_click_method()
+        
+        /*self.openRazorpayCheckout(membership_price: final_price,
                                   membership_currency: "INR",
-                                  membership_description: "Monthly subscription")
+                                  membership_description: "Monthly subscription")*/
     }
     
+    // yearly inside
     @IBAction func tapFunction_yearly_in(sender: UITapGestureRecognizer) {
         print("tap working in 2")
         
@@ -156,11 +212,177 @@ class subscription: UIViewController, RazorpayProtocol {
         self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
         self.str_amount_to_send = "\(item!["price_IND"]!)"
         
-        self.openRazorpayCheckout(membership_price: final_price,
+        
+        
+        /*
+         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
+         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+         
+         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
+         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+         */
+        
+        self.str_selected_product_id = self.product_id_for_1_year_in_india
+        self.submit_subscription_click_method()
+        /*self.openRazorpayCheckout(membership_price: final_price,
                                   membership_currency: "INR",
-                                  membership_description: "Yearly subscription")
+                                  membership_description: "Yearly subscription")*/
         
     }
+    
+    
+    @objc func submit_subscription_click_method() {
+        
+        print(self.str_selected_product_id as Any)
+        
+        self.init_in_app_purchase()
+    }
+    
+    
+    @objc func init_in_app_purchase() {
+        
+        // print(str_selected_product_id)
+        if (SKPaymentQueue.canMakePayments()) {
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "please wait...")
+            
+            let productID:NSSet = NSSet(object: self.str_selected_product_id!);
+            print(productID)
+            
+            let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>);
+            productsRequest.delegate = self
+            productsRequest.start()
+            print("Fetching Products")
+            
+            
+            
+        } else {
+            
+            print("Can't make purchases")
+            
+        }
+        
+    }
+    
+    
+    func buyProduct(product: SKProduct) {
+        
+        print("Sending the Payment Request to Apple");
+        let payment = SKPayment(product: product)
+        SKPaymentQueue.default().add(payment);
+        
+    }
+    
+    
+    
+    // delegate method
+    func productsRequest (_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        
+        let count : Int = response.products.count
+        if (count>0) {
+            let validProduct: SKProduct = response.products[0] as SKProduct
+            if (validProduct.productIdentifier == self.str_selected_product_id) {
+                
+                print(validProduct.localizedTitle)
+                print(validProduct.localizedDescription)
+                print(validProduct.price)
+                buyProduct(product: validProduct)
+                
+            } else {
+                
+                print(validProduct.productIdentifier)
+                
+            }
+        } else {
+            
+            ERProgressHud.sharedInstance.hide()
+            print("nothing")
+            print(response)
+            print(request)
+            
+        }
+    }
+    
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Error Fetching product information");
+        
+        ERProgressHud.sharedInstance.hide()
+        
+        let alertController = UIAlertController(title: "Error", message: "Error Fetching product information. Please try again after sometime", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction!) in
+        }
+        
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue,
+                      updatedTransactions transactions: [SKPaymentTransaction])
+    
+    {
+        print("Received Payment Transaction Response from Apple");
+        
+        for transaction:AnyObject in transactions {
+            if let trans:SKPaymentTransaction = transaction as? SKPaymentTransaction{
+                switch trans.transactionState {
+                case .purchased:
+                    
+                    
+                    
+                    
+                    // if you successfully purchased an item
+                    print("Product Purchased")
+                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    // Handle the purchase
+                    UserDefaults.standard.set(true , forKey: "purchased")
+                    
+                    
+                    // UPDATE PAYMENT IN OUR SERVER
+                    self.update_payment_WB(str_transaction_id: "in-app-purchase")
+//                    self.update_payment_in_our_Server()
+                    
+                    
+                    
+                    //adView.hidden = true
+                    
+                    break;
+                case .failed:
+                    
+                    ERProgressHud.sharedInstance.hide()
+                    print("Purchased Failed");
+                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    
+                    break;
+                    
+                case .restored:
+                    
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    print("Already Purchased");
+                    SKPaymentQueue.default().restoreCompletedTransactions()
+                    
+                    
+                    // Handle the purchase
+                    UserDefaults.standard.set(true , forKey: "purchased")
+                    //adView.hidden = true
+                    
+                    
+                    
+                    break;
+                    
+                default:
+                    break;
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
     
     
     @objc func subscriptions_list_WB() {
@@ -238,7 +460,7 @@ class subscription: UIViewController, RazorpayProtocol {
     
     
     @objc func update_payment_WB(str_transaction_id:String) {
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        // ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         
         self.view.endEditing(true)
         
@@ -248,11 +470,32 @@ class subscription: UIViewController, RazorpayProtocol {
             let x : Int = person["userId"] as! Int
             let myString = String(x)
             
+            /*
+             product_id_for_1_month_in_india = "vedanta_vision_1_month_subscription_in_india"
+             product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+             product_id_for_1_month_outside_india = "vedanta_vision_1_month_subscription_outside_india"
+             product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+             */
+            
+            var str_in_app_purchase:String! = "0"
+            
+            if self.str_selected_product_id == "vedanta_vision_1_month_subscription_in_india" {
+                str_in_app_purchase = "1500"
+            } else if self.str_selected_product_id == "vedanta_vision_1_year_subscription_in_india" {
+                str_in_app_purchase = "15000"
+            } else if self.str_selected_product_id == "vedanta_vision_1_month_subscription_outside_india" {
+                str_in_app_purchase = "20"
+            } else {
+                str_in_app_purchase = "220"
+            }
+            
+            
+            
             let parameters = [
                 "action"            : "updatesubscription",
                 "userId"            : String(myString),
                 "transactionId"     : String(str_transaction_id),
-                "amount"            : String(self.str_amount_to_send),
+                "amount"            : String(str_in_app_purchase),
                 "subscriptionId"    : String(self.str_user_select_subscription),
             ]
             
@@ -389,7 +632,7 @@ class subscription: UIViewController, RazorpayProtocol {
                                 ERProgressHud.sharedInstance.hide()
                                 
                                 let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                                let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                                let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                                 alert.addButtons([cancel])
                                 self.present(alert, animated: true)
                                 

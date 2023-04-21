@@ -466,7 +466,7 @@ class v_related_videos: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -523,12 +523,12 @@ class v_related_videos: UIViewController {
             
             let alert = NewYorkAlertController(title: String("Alert"), message: String("Please login to like this video."), style: .alert)
             
-            let login = NewYorkButton(title: "login", style: .default) {
+            let login = NewYorkButton(title: "Login", style: .default) {
                 _ in
                 
                 self.sign_in_click_method()
             }
-            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
             
             alert.addButtons([login , cancel])
             self.present(alert, animated: true)
@@ -597,7 +597,7 @@ class v_related_videos: UIViewController {
                             ERProgressHud.sharedInstance.hide()
                             
                             let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
-                            let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                             alert.addButtons([cancel])
                             self.present(alert, animated: true)
                             
@@ -620,13 +620,29 @@ class v_related_videos: UIViewController {
     
     @objc func share_some_data() {
         
-        let text = (self.dict_get_video_data["title"] as! String)+"\n"+(self.dict_get_video_data["Link"] as! String)
-        // let urlss = (self.dict_get_video_data["Link"] as! String)
+        if (self.dict_get_video_data["Link"]) as! String == "" {
+            
+            let text = (self.dict_get_video_data["title"] as! String)+"\n"+(self.dict_get_video_data["videoFile"] as! String)
+            // let urlss = (self.dict_get_video_data["Link"] as! String)
+            
+            let textShare = [ text ]
+            let activityViewController = UIActivityViewController(activityItems: textShare , applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+            
+        } else {
+            
+            let text = (self.dict_get_video_data["title"] as! String)+"\n"+(self.dict_get_video_data["Link"] as! String)
+            // let urlss = (self.dict_get_video_data["Link"] as! String)
+            
+            let textShare = [ text ]
+            let activityViewController = UIActivityViewController(activityItems: textShare , applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+            
+        }
         
-        let textShare = [ text ]
-        let activityViewController = UIActivityViewController(activityItems: textShare , applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+        
         
     }
     
@@ -843,6 +859,7 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
         
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -854,7 +871,7 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                 
                 if (person["subscriptionDate"] as! String) == "" {
                     
-                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please Subscribe to get access."), style: .alert)
+                    let alert = NewYorkAlertController(title: String("Subscribe"), message: String("Please subscribe to get access"), style: .alert)
                     
                     
                     let yes_subscribe = NewYorkButton(title: "Subscribe", style: .default) {
@@ -862,7 +879,7 @@ extension v_related_videos : UITableViewDelegate , UITableViewDataSource {
                         
                         self.subscribe_click_method()
                     }
-                    let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+                    let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
                     
                     yes_subscribe.setDynamicColor(.pink)
                     
