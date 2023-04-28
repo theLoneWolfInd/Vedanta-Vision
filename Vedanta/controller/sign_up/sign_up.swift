@@ -13,7 +13,9 @@ import GoogleSignIn
 
 import FBSDKLoginKit
 
-class sign_up: UIViewController {
+import AuthenticationServices
+
+class sign_up: UIViewController , ASAuthorizationControllerDelegate {
 
     // MARK: - Variable -
     // let rxbag = DisposeBag()
@@ -74,6 +76,17 @@ class sign_up: UIViewController {
         }
     }
     
+    @IBOutlet weak var btn_continue_with_apple:ASAuthorizationAppleIDButton! {
+        didSet {
+            btn_continue_with_apple.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_apple.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_apple.layer.shadowOpacity = 1.0
+            btn_continue_with_apple.layer.shadowRadius = 4
+            btn_continue_with_apple.layer.masksToBounds = false
+            btn_continue_with_apple.layer.cornerRadius = 12
+        }
+    }
+    
     @IBOutlet weak var btn_sign_in:UIButton! {
         didSet {
             btn_sign_in.setTitleColor(UIColor.init(red: 220.0/255.0, green: 80.0/255.0, blue: 59.0/255.0, alpha: 1), for: .normal)
@@ -98,10 +111,170 @@ class sign_up: UIViewController {
         // google
         self.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
         
+        // apple
+        self.setUpSignInAppleButton()
         
     }
     
+    // MARK: - SIGN IN VIA APPLE -
+    @objc func setUpSignInAppleButton() {
 
+        let authorizationButton = ASAuthorizationAppleIDButton()
+
+        authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        authorizationButton.cornerRadius = 10
+        
+        authorizationButton.frame = CGRect(x: 0, y: 0, width: self.btn_continue_with_apple.frame.size.width-20, height: 56)
+
+        self.btn_continue_with_apple.addSubview(authorizationButton)
+        
+         
+    }
+    
+    @objc func handleAppleIdRequest() {
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [
+            .fullName,
+            .email
+        ]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+        
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+             print(userIdentifier)
+             print(fullName)
+             print(email)
+            
+            var strName:String! = ""
+            if "\(fullName!)" == "" {
+                strName = " "
+            } else {
+                strName = "\(fullName!)"
+            }
+            
+            // email
+            var email_2:String! = ""
+            
+            if (email) == nil {
+                email_2 = " "
+            } else {
+                email_2 = (email)
+            }
+            
+            //
+            // email
+            var id_2:String! = ""
+            
+            if (userIdentifier) == "" {
+                id_2 = ""
+            } else {
+                id_2 = (userIdentifier)
+            }
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+            self.social_login_in_vedanta_WB(str_email: (email_2!),
+                                            str_full_name: String(strName),
+                                            str_image: "",
+                                            str_social_id: String(id_2),
+                                            type: "A"
+            
+            )
+            
+        }
+    }
+    
+    /*@objc func actionHandleAppleSignin() {
+
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+
+    }*/
+    
+    /*@objc func actionHandleAppleSignin() {
+
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+
+        let request = appleIDProvider.createRequest()
+
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+
+        authorizationController.delegate = self
+
+        authorizationController.presentationContextProvider = self
+
+        authorizationController.performRequests()
+
+    }
+
+    
+    @objc func handleAppleIdRequest() {
+    let appleIDProvider = ASAuthorizationAppleIDProvider()
+    let request = appleIDProvider.createRequest()
+    request.requestedScopes = [.fullName, .email]
+    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+    authorizationController.delegate = self
+    authorizationController.performRequests()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+    // print(“User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))”)
+        
+            
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            appleIDProvider.getCredentialState(forUserID: appleIDCredential.user) {  (credentialState, error) in
+                 switch credentialState {
+                    case .authorized:
+                        // The Apple ID credential is valid.
+                        break
+                    case .revoked:
+                        // The Apple ID credential is revoked.
+                        break
+                 case .notFound: break
+                        // No credential was found, so show the sign-in UI.
+                    default:
+                        break
+                 }
+            }
+            
+            
+            
+        }
+    }
+    
+    // error
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    // Handle error.
+        print("error while sign in via apple")
+    }*/
+    
+    @objc func get_data_after_success_sign_in() {
+        
+       
+        
+    }
     
     @objc func loginButtonClicked() {
         let loginManager = LoginManager()
@@ -359,4 +532,58 @@ extension sign_up {
         }))
         self.present(alertController, animated: true, completion: nil)
     }
+}*/
+
+/*extension sign_up: ASAuthorizationControllerDelegate {
+
+     // ASAuthorizationControllerDelegate function for authorization failed
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+
+        print(error.localizedDescription)
+
+    }
+
+       // ASAuthorizationControllerDelegate function for successful authorization
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+
+            // Create an account as per your requirement
+
+            let appleId = appleIDCredential.user
+
+            let appleUserFirstName = appleIDCredential.fullName?.givenName
+
+            let appleUserLastName = appleIDCredential.fullName?.familyName
+
+            let appleUserEmail = appleIDCredential.email
+
+            //Write your code
+
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+
+            let appleUsername = passwordCredential.user
+
+            let applePassword = passwordCredential.password
+
+            //Write your code
+
+        }
+
+    }
+
+}
+
+extension sign_up: ASAuthorizationControllerPresentationContextProviding {
+
+    //For present window
+
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+
+        return self.view.window!
+
+    }
+
 }*/

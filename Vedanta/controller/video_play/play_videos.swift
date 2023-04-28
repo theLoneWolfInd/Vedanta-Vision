@@ -37,6 +37,15 @@ class play_videos: UIViewController {
         }
     }
     
+    
+    @IBOutlet weak var indicator_webview:UIActivityIndicatorView! {
+        didSet {
+            indicator_webview.isHidden = false
+            indicator_webview.startAnimating()
+            indicator_webview.color = app_red_orange_mix_color
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +59,10 @@ class play_videos: UIViewController {
         self.lbl_one.text = String(self.str_video_header)
         
         self.btn_back.addTarget(self, action: #selector(btn_back_click_method), for: .touchUpInside)
+        
+        //
+        self.wv.navigationDelegate = self
+        
     }
     
     @objc func btn_back_click_method() {
@@ -63,4 +76,30 @@ class play_videos: UIViewController {
         wv.load( URLRequest(url: youtubeURL) )
     }
     
+}
+
+
+extension play_videos: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("Start loading")
+        
+        // let indexPath = IndexPath.init(row: 6, section: 0)
+        // let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+        
+        self.indicator_webview.isHidden = false
+        self.indicator_webview.startAnimating()
+        
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("End loading")
+        
+        // let indexPath = IndexPath.init(row: 6, section: 0)
+        // let cell = self.tble_view.cellForRow(at: indexPath) as! v_home_table_cell
+        
+        self.indicator_webview.isHidden = true
+        self.indicator_webview.stopAnimating()
+        
+    }
 }

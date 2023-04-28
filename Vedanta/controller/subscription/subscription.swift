@@ -116,117 +116,161 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
     @IBAction func tapFunction_monthly_oc(sender: UITapGestureRecognizer) {
         print("tap working 1")
         
-        let item = self.arr_price_array[0] as? [String:Any]
+        let alert = NewYorkAlertController(title: String("Pay"), message: String("One month Subscription plan.\n\nPlan Price :- $20/-"), style: .alert)
         
-        let final_price = (item!["price"] as! Int)*100
         
-        self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
         
-        self.str_amount_to_send = "\(item!["price"]!)"
-        
-        //
-        /*
-         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
-         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        let pay = NewYorkButton(title: "Buy", style: .default) {
+            _ in
+            
+            //
+            let item = self.arr_price_array[0] as? [String:Any]
+            let final_price = (item!["price"] as! Int)*100
+            self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
+            self.str_amount_to_send = "\(item!["price"]!)"
+            self.str_selected_product_id = self.product_id_for_1_month_outside_india
+            self.submit_subscription_click_method()
+             //
+        }
          
-         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
-         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
-         */
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        alert.addButtons([pay,cancel])
+        self.present(alert, animated: true)
         
-        self.str_selected_product_id = self.product_id_for_1_month_outside_india
-        self.submit_subscription_click_method()
         
-        /*self.openRazorpayCheckout(membership_price: final_price,
-                                  membership_currency: "USD",
-                                  membership_description: "Monthly subscription")*/
+        
+        
+        
+        
+        
+        
+        
+        
+         
     }
     
     // yearly outside country
     @IBAction func tapFunction_yearly_oc(sender: UITapGestureRecognizer) {
         print("tap working 2")
         
-        let item = self.arr_price_array[1] as? [String:Any]
         
-        let final_price = (item!["price"] as! Int)*100
-        
-        self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
-        self.str_amount_to_send = "\(item!["price"]!)"
+        let alert = NewYorkAlertController(title: String("Pay"), message: String("One Year Subscription plan.\n\nPlan Price :- $219.99/-"), style: .alert)
         
         
-        /*
-         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
-         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        
+        let pay = NewYorkButton(title: "Buy", style: .default) {
+            _ in
+            
+            //
+            let item = self.arr_price_array[1] as? [String:Any]
+            let final_price = (item!["price"] as! Int)*100
+            self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
+            self.str_amount_to_send = "\(item!["price"]!)"
+            self.str_selected_product_id = self.product_id_for_1_year_outside_india
+            self.submit_subscription_click_method()
+            
+             //
+        }
          
-         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
-         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
-         */
-        
-        self.str_selected_product_id = self.product_id_for_1_year_outside_india
-        self.submit_subscription_click_method()
-        
-        /*self.openRazorpayCheckout(membership_price: final_price,
-                                  membership_currency: "USD",
-                                  membership_description: "Yearly subscription")*/
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        alert.addButtons([pay,cancel])
+        self.present(alert, animated: true)
         
         
         
-        // self.update_payment_WB()
+        
+        
+        
+        
+        
+         
     }
     
     // monthly inside
     @IBAction func tapFunction_monthly_in(sender: UITapGestureRecognizer) {
         print("tap working in 1")
         
-        let item = self.arr_price_array[0] as? [String:Any]
-        
-        let final_price = (item!["price_IND"] as! Int)*100
-        
-        self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
-        self.str_amount_to_send = "\(item!["price_IND"]!)"
+        let alert = NewYorkAlertController(title: String("Pay"), message: String("One Month Subscription plan.\n\nPlan Price :- INR:- 1,500/-"), style: .alert)
         
         
-        /*
-         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
-         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        
+        let pay = NewYorkButton(title: "Buy", style: .default) {
+            _ in
+            
+            //
+            let item = self.arr_price_array[0] as? [String:Any]
+            let final_price = (item!["price_IND"] as! Int)*100
+            self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
+            self.str_amount_to_send = "\(item!["price_IND"]!)"
+            self.str_selected_product_id = self.product_id_for_1_month_in_india
+            self.submit_subscription_click_method()
+            
+             //
+        }
          
-         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
-         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
-         */
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        alert.addButtons([pay,cancel])
+        self.present(alert, animated: true)
         
-        self.str_selected_product_id = self.product_id_for_1_month_in_india
-        self.submit_subscription_click_method()
         
-        /*self.openRazorpayCheckout(membership_price: final_price,
-                                  membership_currency: "INR",
-                                  membership_description: "Monthly subscription")*/
+        
+        
+        
+        
+        
+         
     }
     
     // yearly inside
     @IBAction func tapFunction_yearly_in(sender: UITapGestureRecognizer) {
         print("tap working in 2")
         
-        let item = self.arr_price_array[1] as? [String:Any]
         
-        let final_price = (item!["price_IND"] as! Int)*100
         
-        self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
-        self.str_amount_to_send = "\(item!["price_IND"]!)"
+        let alert = NewYorkAlertController(title: String("Pay"), message: String("One Year Subscription plan.\n\nPlan Price :- INR:- 15,000/-"), style: .alert)
         
         
         
-        /*
-         product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
-         product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        let pay = NewYorkButton(title: "Buy", style: .default) {
+            _ in
+            
+            //
+            let item = self.arr_price_array[1] as? [String:Any]
+            
+            let final_price = (item!["price_IND"] as! Int)*100
+            
+            self.str_user_select_subscription = "\(item!["subscriptionId"]!)"
+            self.str_amount_to_send = "\(item!["price_IND"]!)"
+            
+            
+            
+            /*
+             product_id_for_6_month_in_india = "vedanta_vision_6_months_subscription_in_india"
+             product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+             
+             product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
+             product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
+             */
+            
+            self.str_selected_product_id = self.product_id_for_1_year_in_india
+            self.submit_subscription_click_method()
+            /*self.openRazorpayCheckout(membership_price: final_price,
+                                      membership_currency: "INR",
+                                      membership_description: "Yearly subscription")*/
+            
+            
+        }
          
-         product_id_for_6_month_outside_india = "vedanta_vision_6_months_subscription_outside_india"
-         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
-         */
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        alert.addButtons([pay,cancel])
+        self.present(alert, animated: true)
         
-        self.str_selected_product_id = self.product_id_for_1_year_in_india
-        self.submit_subscription_click_method()
-        /*self.openRazorpayCheckout(membership_price: final_price,
-                                  membership_currency: "INR",
-                                  membership_description: "Yearly subscription")*/
+        
+        
+        
+        
+        
+        
         
     }
     
@@ -486,7 +530,7 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
             } else if self.str_selected_product_id == "vedanta_vision_1_month_subscription_outside_india" {
                 str_in_app_purchase = "20"
             } else {
-                str_in_app_purchase = "220"
+                str_in_app_purchase = "219.99"
             }
             
             
@@ -687,7 +731,7 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
         cell.lbl_annual.text = "Annualy"
         cell.lbl_monthly.text = "Monthly"
         
-        
+        cell.btn_restore_purchase.addTarget(self, action: #selector(restore_purchase_click_method), for: .touchUpInside)
         
         if "\(country!)" == "IN" {
             
@@ -758,9 +802,42 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
         return 630
     }
     
+    @objc func restore_purchase_click_method() {
+        if (SKPaymentQueue.canMakePayments()) {
+          SKPaymentQueue.default().restoreCompletedTransactions()
+        }
+    }
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        for transaction in queue.transactions {
+            let t: SKPaymentTransaction = transaction
+            let prodID = t.payment.productIdentifier as String
+
+            switch prodID {
+            case "ProductID1":
+                print("1")
+                break
+                // implement the given in-app purchase as if it were bought
+            case "ProductID2":
+                print("2")
+                break
+                // implement the given in-app purchase as if it were bought
+            default:
+                print("iap not found")
+            }
+        }
+    }
+    
+    
 }
 
 class subscription_table_cell:UITableViewCell {
+    
+    @IBOutlet weak var btn_restore_purchase:UIButton! {
+        didSet {
+            
+        }
+    }
     
     @IBOutlet weak var view_bg:UIView! {
         didSet {

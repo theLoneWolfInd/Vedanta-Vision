@@ -26,6 +26,9 @@ let app_BG_color = UIColor.init(red: 246.0/255.0, green: 246.0/255.0, blue: 246.
 
 let str_save_login_user_data = "keyLoginFullData"
 
+let XCodeBuild = "0"
+let XCodeVersion = "0.1.4"
+let iTunesAppStoreVersion = "0.1"
 
 
 // NOTIFICATION

@@ -24,7 +24,7 @@ class v_home: UIViewController {
     var cell_height_subscribe:CGFloat = 100
     var cell_height_bhagwat_gita:CGFloat = 160
     var cell_height_knowledge:CGFloat = 200
-    var cell_height_social_media:CGFloat = 1450//930//1000
+    var cell_height_social_media:CGFloat = 1450 // 930 // 1000
     var cell_height_feeds:CGFloat = 0 // 340
     
     /*============================= CALENDAR =====================================*/

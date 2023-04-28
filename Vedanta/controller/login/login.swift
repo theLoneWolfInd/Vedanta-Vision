@@ -14,7 +14,9 @@ import RxCocoa
 
 import FBSDKLoginKit
  
-class login: UIViewController , UITextFieldDelegate {
+import AuthenticationServices
+
+class login: UIViewController , UITextFieldDelegate , ASAuthorizationControllerDelegate {
     
 //    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
 //        print("logout")
@@ -135,6 +137,19 @@ class login: UIViewController , UITextFieldDelegate {
         }
     }
     
+    @IBOutlet weak var loginProviderStackView: UIStackView!
+    
+    @IBOutlet weak var btn_continue_with_apple:ASAuthorizationAppleIDButton! {
+        didSet {
+            btn_continue_with_apple.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            btn_continue_with_apple.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            btn_continue_with_apple.layer.shadowOpacity = 1.0
+            btn_continue_with_apple.layer.shadowRadius = 4
+            btn_continue_with_apple.layer.masksToBounds = false
+            btn_continue_with_apple.layer.cornerRadius = 12
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -148,8 +163,8 @@ class login: UIViewController , UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow_2), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide_2), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        view.addGestureRecognizer(tap)
         
         let stringValue = "Don't have an account - Sign Up"
         
@@ -181,12 +196,129 @@ class login: UIViewController , UITextFieldDelegate {
         // google
         self.btn_continue_with_google.addTarget(self, action: #selector(continue_with_google_click_method), for: .touchUpInside)
         
-        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
-
-            debugPrint("Facebook Access Token: \(String(describing: AccessToken.current?.tokenString))")
-        }
+//        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
+//
+//            debugPrint("Facebook Access Token: \(String(describing: AccessToken.current?.tokenString))")
+//        }
+        
+        
+        // apple
+         self.setUpSignInAppleButton()
+        // self.setupProviderLoginView()
         
     }
+    
+    
+    // MARK: - SIGN IN VIA APPLE -
+    @objc func setUpSignInAppleButton() {
+
+        let authorizationButton = ASAuthorizationAppleIDButton()
+        authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        authorizationButton.cornerRadius = 10
+        authorizationButton.frame = CGRect(x: 0, y: 0, width: self.btn_continue_with_apple.frame.size.width-20, height: 56)
+        self.btn_continue_with_apple.addSubview(authorizationButton)
+         
+    }
+    
+    @objc func handleAppleIdRequest() {
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [
+            .fullName,
+            .email
+        ]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+        
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+             print(userIdentifier)
+             print(fullName)
+             print(email)
+            
+            var strName:String! = ""
+            if "\(fullName!)" == "" {
+                strName = " "
+            } else {
+                strName = "\(fullName!)"
+            }
+            
+            // email
+            var email_2:String! = ""
+            
+            if (email) == nil {
+                email_2 = " "
+            } else {
+                email_2 = (email)
+            }
+            
+            //
+            // email
+            var id_2:String! = ""
+            
+            if (userIdentifier) == "" {
+                id_2 = ""
+            } else {
+                id_2 = (userIdentifier)
+            }
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+            self.social_login_in_vedanta_WB(str_email: (email_2!),
+                                            str_full_name: String(strName),
+                                            str_image: "",
+                                            str_social_id: String(id_2),
+                                            type: "A"
+            
+            )
+            
+        }
+    }
+    
+    
+    /*func setupProviderLoginView() {
+        let authorizationButton = ASAuthorizationAppleIDButton()
+        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        self.loginProviderStackView.addArrangedSubview(authorizationButton)
+    }
+    
+    // - Tag: perform_appleid_password_request
+    /// Prompts the user if an existing iCloud Keychain credential or Apple ID credential is found.
+    func performExistingAccountSetupFlows() {
+        // Prepare requests for both Apple ID and password providers.
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(),
+                        ASAuthorizationPasswordProvider().createRequest()]
+        
+        // Create an authorization controller with the given requests.
+        let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    /// - Tag: perform_appleid_request
+    @objc
+    func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }*/
+    
+    
     
     @objc override func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -662,6 +794,91 @@ class login: UIViewController , UITextFieldDelegate {
     }
     
 }
+
+
+/*
+extension login: ASAuthorizationControllerDelegate {
+    /// - Tag: did_complete_authorization
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
+            // self.saveUserInKeychain(userIdentifier)
+            
+            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
+            self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
+        
+        case let passwordCredential as ASPasswordCredential:
+        
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                self.showPasswordCredentialAlert(username: username, password: password)
+            }
+            
+        default:
+            break
+        }
+    }
+    
+//    private func saveUserInKeychain(_ userIdentifier: String) {
+//        do {
+//            try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
+//        } catch {
+//            print("Unable to save userIdentifier to keychain.")
+//        }
+//    }
+    
+    private func showResultViewController(userIdentifier: String, fullName: PersonNameComponents?, email: String?) {
+        guard let viewController = self.presentingViewController as? ResultViewController
+            else { return }
+        
+        DispatchQueue.main.async {
+            viewController.userIdentifierLabel.text = userIdentifier
+            if let givenName = fullName?.givenName {
+                viewController.givenNameLabel.text = givenName
+            }
+            if let familyName = fullName?.familyName {
+                viewController.familyNameLabel.text = familyName
+            }
+            if let email = email {
+                viewController.emailLabel.text = email
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func showPasswordCredentialAlert(username: String, password: String) {
+        let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+        let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    /// - Tag: did_complete_error
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+extension login: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}*/
+
 
 // MARK: - Social Login -
 extension login {

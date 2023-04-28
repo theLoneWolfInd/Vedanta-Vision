@@ -75,6 +75,7 @@
 		B9726C7B29D4625F00EAEEC8 /* update_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9726C7A29D4625F00EAEEC8 /* update_password.swift */; };
 		B9B031742918FD7400D4E45F /* wisdom_sub_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B031732918FD7400D4E45F /* wisdom_sub_details.swift */; };
 		B9C2D7F928F6CF220017BB08 /* advertisement_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2D7F828F6CF220017BB08 /* advertisement_details.swift */; };
+		B9C7654A29FBA19E00D3F136 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C7654929FBA19E00D3F136 /* ResultViewController.swift */; };
 		B9DAB2B529129121005FD8D3 /* wisdom_new_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAB2B429129121005FD8D3 /* wisdom_new_details.swift */; };
 		B9DE4C6A28FD3A9E00206EEA /* my_question_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE4C6928FD3A9E00206EEA /* my_question_list.swift */; };
 		B9DF1CFB28D05D42000425F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DF1CFA28D05D42000425F4 /* AppDelegate.swift */; };
@@ -191,6 +192,7 @@
 		B9726C7A29D4625F00EAEEC8 /* update_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_password.swift; sourceTree = "<group>"; };
 		B9B031732918FD7400D4E45F /* wisdom_sub_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wisdom_sub_details.swift; sourceTree = "<group>"; };
 		B9C2D7F828F6CF220017BB08 /* advertisement_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advertisement_details.swift; sourceTree = "<group>"; };
+		B9C7654929FBA19E00D3F136 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		B9DAB2B429129121005FD8D3 /* wisdom_new_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wisdom_new_details.swift; sourceTree = "<group>"; };
 		B9DE4C6928FD3A9E00206EEA /* my_question_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = my_question_list.swift; sourceTree = "<group>"; };
 		B9DF1CF728D05D42000425F4 /* Vedanta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vedanta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -781,6 +783,7 @@
 			isa = PBXGroup;
 			children = (
 				B9F4778528D3522400E16D5F /* login.swift */,
+				B9C7654929FBA19E00D3F136 /* ResultViewController.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				B938112128D4989600F54889 /* more.swift in Sources */,
 				B93A3A6E28D1FE66008CD1AC /* tab_bar.swift in Sources */,
 				B9DAB2B529129121005FD8D3 /* wisdom_new_details.swift in Sources */,
+				B9C7654A29FBA19E00D3F136 /* ResultViewController.swift in Sources */,
 				B946FC7328F7ED71000CEFDC /* favourite_list.swift in Sources */,
 				B91E63E028F6A6D30026C7F7 /* related_article.swift in Sources */,
 				B9B031742918FD7400D4E45F /* wisdom_sub_details.swift in Sources */,
@@ -1326,21 +1330,26 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vedanta-vision.prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1366,20 +1375,25 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vedanta-vision.prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

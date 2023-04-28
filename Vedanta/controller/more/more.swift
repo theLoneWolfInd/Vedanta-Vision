@@ -264,6 +264,96 @@ class more: UIViewController {
         
     }
     
+    // 36 + 16
+    //  7:52
+    
+    // delete account
+    @objc func delete_account_WB() {
+        self.view.endEditing(true)
+        
+        if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
+            // let str:String = person["role"] as! String
+            
+            let x : Int = person["userId"] as! Int
+            let myString = String(x)
+        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        
+        if IsInternetAvailable() == false {
+            self.please_check_your_internet_connection()
+            return
+        }
+        
+        let parameters = [
+            "action"    : "userdelete",
+            "userId"    : String(myString)
+            
+        ]
+        
+        print(parameters as Any)
+        
+        AF.request(application_base_url, method: .post, parameters: parameters)
+        
+            .response { response in
+                
+                do {
+                    if response.error != nil{
+                        print(response.error as Any, terminator: "")
+                    }
+                    
+                    if let jsonDict = try JSONSerialization.jsonObject(with: (response.data as Data?)!, options: []) as? [String: AnyObject]{
+                        
+                        print(jsonDict as Any, terminator: "")
+                        
+                        // for status alert
+                        var status_alert : String!
+                        status_alert = (jsonDict["status"] as? String)
+                        
+                        // for message alert
+                        var str_data_message : String!
+                        str_data_message = jsonDict["msg"] as? String
+                        
+                        if status_alert.lowercased() == "success" {
+                            
+                            print("=====> yes")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            self.check_login_status()
+                            
+                        } else {
+                            
+                            print("=====> no")
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            let alert = NewYorkAlertController(title: String(status_alert), message: String(str_data_message), style: .alert)
+                            let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+                            alert.addButtons([cancel])
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                    } else {
+                        
+                        self.please_check_your_internet_connection()
+                        
+                        return
+                    }
+                    
+                } catch _ {
+                    print("Exception!")
+                    ERProgressHud.sharedInstance.hide()
+                    
+                    print(response.error?.localizedDescription as Any, terminator: "<==== I AM ERROR")
+                    
+                    self.something_went_wrong_with_WB()
+                    
+                }
+            }
+    }
+    }
+    
+    
+    
+    
     
     
     @objc func home_bhagwat_gita_categories_WB() {
@@ -433,7 +523,6 @@ extension more : UITableViewDelegate , UITableViewDataSource {
         return 1
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:more_table_cell = tableView.dequeueReusableCell(withIdentifier: "more_table_cell") as! more_table_cell
@@ -453,7 +542,20 @@ extension more : UITableViewDelegate , UITableViewDataSource {
         
         cell.btn_favourite.addTarget(self, action: #selector(favourite_click_method), for: .touchUpInside)
         
-        cell.btn_edit_profile.addTarget(self, action: #selector(edit_profile_click_method), for: .touchUpInside)
+        
+        
+        
+        
+        // long gestrure
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        cell.btn_edit_profile.addGestureRecognizer(tapGestureRecognizer)
+            
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        longPressRecognizer.minimumPressDuration = 3
+        cell.btn_edit_profile.addGestureRecognizer(longPressRecognizer)
+            
+        
+         // cell.btn_edit_profile.addTarget(self, action: #selector(edit_profile_click_method), for: .touchUpInside)
         
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             // let str:String = person["role"] as! String
@@ -461,11 +563,13 @@ extension more : UITableViewDelegate , UITableViewDataSource {
             
             cell.lbl_app_edit_profile.text = "Edit profile"
             cell.btn_sign_out.isHidden = false
+            cell.btn_delete_account.isHidden = false
             
         } else {
             
             cell.lbl_app_edit_profile.text = "Login"
             cell.btn_sign_out.isHidden = true
+            cell.btn_delete_account.isHidden = true
             
         }
         
@@ -485,15 +589,53 @@ extension more : UITableViewDelegate , UITableViewDataSource {
         cell.btn_terms_condition.addTarget(self, action: #selector(terms_click_method), for: .touchUpInside)
         cell.btn_rate_app.addTarget(self, action: #selector(rate_us_click_method), for: .touchUpInside)
         
+        
+        cell.btn_delete_account.addTarget(self, action: #selector(btn_delete_Account_click_method), for: .touchUpInside)
+        
         return cell
         
     }
     
+    @objc func tapped(sender: UITapGestureRecognizer){
+        print("tapped")
+        
+        self.edit_profile_click_method()
+    }
+
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        print("longpressed")
+        
+        let alert = NewYorkAlertController(title: String("Version"), message: "iTunes / App Store Version : \(iTunesAppStoreVersion)\n\nXCode Version : \(XCodeVersion)\n\nXCode Build : \(XCodeBuild)", style: .alert)
+        
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        
+        alert.addButtons([cancel])
+        self.present(alert, animated: true)
+        
+    }
+    
+    @objc func btn_delete_Account_click_method() {
+        
+        let alert = NewYorkAlertController(title: String("Alert"), message: String("Are you sure you want to delete account ?\n\nAll information will be deleted permanently."), style: .alert)
+        
+        let login = NewYorkButton(title: "Yes, Delete", style: .default) {
+            _ in
+            
+            //
+            self.delete_account_WB()
+            //
+        }
+        let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
+        
+        alert.addButtons([login , cancel])
+        self.present(alert, animated: true)
+        
+    }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        
-        
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -502,7 +644,7 @@ extension more : UITableViewDelegate , UITableViewDataSource {
             
             print(person as Any)
             
-            return 1160
+            return 1210
             
         } else {
             
@@ -613,6 +755,8 @@ class more_table_cell:UITableViewCell {
     @IBOutlet weak var btn_edit_profile:UIButton!
     
     @IBOutlet weak var btn_logout:UIButton!
+    
+    @IBOutlet weak var btn_delete_account:UIButton!
     
 }
 
@@ -748,3 +892,6 @@ class more_collection_social_media_view_cell: UICollectionViewCell {
     }
     
 }
+
+
+
