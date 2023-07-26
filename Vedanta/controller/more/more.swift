@@ -121,13 +121,17 @@ class more: UIViewController {
     // MARK: - URL ( donate ) -
     @objc func donate_click_method() {
         
-        let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
+        if let url = URL(string: "https://vedantavision.org/donate/") {
+            UIApplication.shared.open(url)
+        }
+        
+        /*let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "play_videos_id") as! play_videos
         
         pushVC.hidesBottomBarWhenPushed = true
         pushVC.str_video_link = "https://vedantavision.org/donate/"
         pushVC.str_video_header = "Donate"
         
-        self.navigationController?.pushViewController(pushVC, animated: true)
+        self.navigationController?.pushViewController(pushVC, animated: true)*/
         
     }
     

@@ -20,8 +20,8 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
     
     var str_selected_product_id:String!
     
-    var product_id_for_1_month_in_india: String!
-    var product_id_for_1_year_in_india: String!
+    // var product_id_for_1_month_in_india: String!
+    // var product_id_for_1_year_in_india: String!
     
     var product_id_for_1_month_outside_india: String!
     var product_id_for_1_year_outside_india: String!
@@ -65,8 +65,8 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
         // in-app purchase
         SKPaymentQueue.default().add(self)
         
-        product_id_for_1_month_in_india = "vedanta_vision_1_month_subscription_in_india"
-        product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
+        // product_id_for_1_month_in_india = "vedanta_vision_1_month_subscription_in_india"
+        // product_id_for_1_year_in_india = "vedanta_vision_1_year_subscription_in_india"
         product_id_for_1_month_outside_india = "vedanta_vision_1_month_subscription_outside_india"
         product_id_for_1_year_outside_india = "vedanta_vision_1_year_subscription_outside_india"
         
@@ -187,7 +187,7 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
     }
     
     // monthly inside
-    @IBAction func tapFunction_monthly_in(sender: UITapGestureRecognizer) {
+    /*@IBAction func tapFunction_monthly_in(sender: UITapGestureRecognizer) {
         print("tap working in 1")
         
         let alert = NewYorkAlertController(title: String("Pay"), message: String("One Month Subscription plan.\n\nPlan Price :- INR:- 1,500/-"), style: .alert)
@@ -211,13 +211,6 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
         let cancel = NewYorkButton(title: "Dismiss", style: .cancel)
         alert.addButtons([pay,cancel])
         self.present(alert, animated: true)
-        
-        
-        
-        
-        
-        
-        
          
     }
     
@@ -265,14 +258,7 @@ class subscription: UIViewController, RazorpayProtocol, SKProductsRequestDelegat
         alert.addButtons([pay,cancel])
         self.present(alert, animated: true)
         
-        
-        
-        
-        
-        
-        
-        
-    }
+    }*/
     
     
     @objc func submit_subscription_click_method() {
@@ -733,7 +719,7 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
         
         cell.btn_restore_purchase.addTarget(self, action: #selector(restore_purchase_click_method), for: .touchUpInside)
         
-        if "\(country!)" == "IN" {
+        /*if "\(country!)" == "IN" {
             
             // arr_price_array
             
@@ -748,11 +734,7 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
                 }
                 
             }
-            
-            
-            
-            
-            
+             
             let tap_monthly = UITapGestureRecognizer(target: self, action: #selector(subscription.tapFunction_monthly_in))
             cell.lbl_monthly_price.isUserInteractionEnabled = true
             cell.lbl_monthly_price.addGestureRecognizer(tap_monthly)
@@ -761,7 +743,7 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_yearly_price.isUserInteractionEnabled = true
             cell.lbl_yearly_price.addGestureRecognizer(tap_yearly)
             
-        } else {
+        } else {*/
             
             // cell.lbl_yearly_price.text = "USD 220/-"
             // cell.lbl_monthly_price.text = "USD 20/-"
@@ -786,7 +768,7 @@ extension subscription : UITableViewDelegate , UITableViewDataSource {
             cell.lbl_yearly_price.isUserInteractionEnabled = true
             cell.lbl_yearly_price.addGestureRecognizer(tap_yearly)
             
-        }
+//        }
         
         return cell
         

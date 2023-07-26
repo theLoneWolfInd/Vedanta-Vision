@@ -294,53 +294,45 @@ class sign_up: UIViewController , ASAuthorizationControllerDelegate {
     }
     
     func showEmail()
-        {
-            GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name, picture.width(480).height(480)"]).start {
-                (connection, result, err) in
+    {
+        GraphRequest(graphPath: "/me", parameters: ["fields": "email, id, name, picture.width(480).height(480)"]).start {
+            (connection, result, err) in
+            
+            if(err == nil) {
+                //                  print(result[""] as! String)
                 
-              if(err == nil) {
-//                  print(result[""] as! String)
-                  
-                  if let res = result {
-                      if let response = res as? [String: Any] {
-                          let username = response["name"]
-                          let email = response["email"]
-                          let id = response["id"]
-                          let image = response["picture"]
-                          
-                          print(username as Any)
-                          print(email as Any)
-                          print(id as Any)
-                          print(image as Any)
-//
-//                          let for_image = image as? [String: Any]
-//                          let get_data = for_image!["data"] as? [String: Any]
-//                          print(get_data as Any)
-//                          let get_url = get_data!["url"] as? [String: Any]
-//                          print(get_url as Any)
-//                          print(get_url as Any)
-//
-                          
-                          ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
-                          
-                          self.social_login_in_vedanta_WB(str_email: (email as! String),
-                                                          str_full_name: (username as! String),
-                                                          str_image: "",
-                                                          str_social_id: (id as! String),
-                                                          type: "F"
-                          
-                          )
-                          
-                      }
-                  }
-
+                if let res = result {
+                    if let response = res as? [String: Any] {
+                        let username = response["name"]
+                        let email = response["email"]
+                        let id = response["id"]
+                        let image = response["picture"]
+                        
+                        print(username as Any)
+                        print(email as Any)
+                        print(id as Any)
+                        print(image as Any)
+                        
+                        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+                        
+                        self.social_login_in_vedanta_WB(str_email: (email as! String),
+                                                        str_full_name: (username as! String),
+                                                        str_image: "",
+                                                        str_social_id: (id as! String),
+                                                        type: "F"
+                                                        
+                        )
+                        
+                    }
                 }
-               else {
-                    print("error \(err!)")
-                }
+                
             }
-
+            else {
+                print("error \(err!)")
+            }
         }
+        
+    }
  
     
     

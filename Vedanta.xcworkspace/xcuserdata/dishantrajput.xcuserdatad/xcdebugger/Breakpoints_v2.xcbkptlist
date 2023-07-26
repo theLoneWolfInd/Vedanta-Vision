@@ -78,8 +78,8 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
             landmarkName = "subscriptions_list_WB()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "639"
-            endingLineNumber = "639"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
             landmarkName = "get_profile_data(str_message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2265,54 +2265,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vedanta/controller/subscription/subscription.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "tapFunction_yearly_oc(sender:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D - 520cf6f44206dd26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.subscription.tapFunction_yearly_in(sender: __C.UITapGestureRecognizer) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "153"
-                  endingLineNumber = "153"
-                  offsetFromSymbolStart = "172">
-               </Location>
-               <Location
-                  uuid = "C63B6752-27AA-4B14-B46B-2C3AF34E723D - f2cb220da8e8e923"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.subscription.tapFunction_yearly_oc(sender: __C.UITapGestureRecognizer) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "153"
-                  endingLineNumber = "153"
-                  offsetFromSymbolStart = "328">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2320,28 +2272,13 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "productsRequest(_:didReceive:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - f7cee68edf2ff5be"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.subscription.buyProduct(product: __C.SKProduct) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "322"
-                  endingLineNumber = "322"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - 525f39ed4a5a2640"
+                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - 525f39ed4a5a28f5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2351,8 +2288,23 @@
                   urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "343"
-                  endingLineNumber = "343"
+                  startingLineNumber = "330"
+                  endingLineNumber = "330"
+                  offsetFromSymbolStart = "752">
+               </Location>
+               <Location
+                  uuid = "549C54A8-9BA7-4A67-98A6-596D3B33AE18 - 525f39ed4a5a2812"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.productsRequest(_: __C.SKProductsRequest, didReceive: __C.SKProductsResponse) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
                   offsetFromSymbolStart = "1572">
                </Location>
             </Locations>
@@ -2547,6 +2499,21 @@
                   endingLineNumber = "212"
                   offsetFromSymbolStart = "492">
                </Location>
+               <Location
+                  uuid = "08815FAD-5923-49AF-B613-30889771DCF5 - 1d0d9b127d74e48d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__C.UIViewController.push_to_video_screen(str_video_file_link: Swift.String, str_video_title: Swift.String) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/headers/utils/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "452">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2560,8 +2527,8 @@
             filePath = "Vedanta/controller/more/more.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "delete_account_WB()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2576,57 +2543,10 @@
             filePath = "Vedanta/controller/more/more.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "delete_account_WB()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6E2A3F06-19BB-4745-B280-08D12833AF56 - 10db2b78cb59d144"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.more.delete_account_WB() -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/more/more.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "305"
-                  endingLineNumber = "305"
-                  offsetFromSymbolStart = "1416">
-               </Location>
-               <Location
-                  uuid = "6E2A3F06-19BB-4745-B280-08D12833AF56 - 10db2b78cb59d144"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.more.delete_account_WB() -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/more/more.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "305"
-                  endingLineNumber = "305"
-                  offsetFromSymbolStart = "1392">
-               </Location>
-               <Location
-                  uuid = "6E2A3F06-19BB-4745-B280-08D12833AF56 - 10db2b78cb59d144"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Optional&lt;Foundation.Data&gt;, Alamofire.AFError&gt;) -&gt; () in Vedanta.more.delete_account_WB() -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/more/more.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "305"
-                  endingLineNumber = "305"
-                  offsetFromSymbolStart = "1532">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2655,42 +2575,10 @@
             filePath = "Vedanta/controller/more/more.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "828"
-            endingLineNumber = "828"
+            startingLineNumber = "832"
+            endingLineNumber = "832"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AB8E0FF5-0F09-48FE-91FC-1B2CD8920644 - f0f1369fce52bbf3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.more.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/more/more.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "828"
-                  endingLineNumber = "828"
-                  offsetFromSymbolStart = "848">
-               </Location>
-               <Location
-                  uuid = "AB8E0FF5-0F09-48FE-91FC-1B2CD8920644 - f0f1369fce52bbf3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vedanta.more.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Vedanta"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/more/more.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "828"
-                  endingLineNumber = "828"
-                  offsetFromSymbolStart = "1776">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2719,10 +2607,42 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "818"
-            endingLineNumber = "818"
+            startingLineNumber = "800"
+            endingLineNumber = "800"
             landmarkName = "paymentQueueRestoreCompletedTransactionsFinished(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0EACC71D-C21F-4598-AF93-EEFA1E88CDC1 - c39ae8fea46b260c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tableView(_: __C.UITableView, heightForRowAt: Foundation.IndexPath) -&gt; CoreGraphics.CGFloat"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "802"
+                  endingLineNumber = "802"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "0EACC71D-C21F-4598-AF93-EEFA1E88CDC1 - 4d2fce063abd0e97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.paymentQueueRestoreCompletedTransactionsFinished(__C.SKPaymentQueue) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "800"
+                  endingLineNumber = "800"
+                  offsetFromSymbolStart = "516">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2735,10 +2655,42 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "822"
-            endingLineNumber = "822"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
             landmarkName = "paymentQueueRestoreCompletedTransactionsFinished(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "17FE012B-9AA5-4D0C-AD02-0510AEC210DC - bc1f9f44751508e4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.restore_purchase_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "806"
+                  endingLineNumber = "806"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "17FE012B-9AA5-4D0C-AD02-0510AEC210DC - 4d2fce063abd0e13"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.paymentQueueRestoreCompletedTransactionsFinished(__C.SKPaymentQueue) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "804"
+                  endingLineNumber = "804"
+                  offsetFromSymbolStart = "828">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2751,10 +2703,42 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "806"
-            endingLineNumber = "806"
+            startingLineNumber = "788"
+            endingLineNumber = "788"
             landmarkName = "restore_purchase_click_method()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B751A93E-00D1-4005-BD97-D4A0A641F3BC - cd720be85d854b57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "789"
+                  endingLineNumber = "789"
+                  offsetFromSymbolStart = "8928">
+               </Location>
+               <Location
+                  uuid = "B751A93E-00D1-4005-BD97-D4A0A641F3BC - bc1f9f4475150a8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.restore_purchase_click_method() -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "788"
+                  endingLineNumber = "788"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2767,10 +2751,42 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "812"
-            endingLineNumber = "812"
+            startingLineNumber = "794"
+            endingLineNumber = "794"
             landmarkName = "paymentQueueRestoreCompletedTransactionsFinished(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A131C913-1B8D-429C-B1E3-256A94D4DD74 - b756a3cdd093d9d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "796"
+                  endingLineNumber = "796"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "A131C913-1B8D-429C-B1E3-256A94D4DD74 - 4d2fce063abd0fd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.paymentQueueRestoreCompletedTransactionsFinished(__C.SKPaymentQueue) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "794"
+                  endingLineNumber = "794"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2783,10 +2799,42 @@
             filePath = "Vedanta/controller/subscription/subscription.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "814"
-            endingLineNumber = "814"
+            startingLineNumber = "796"
+            endingLineNumber = "796"
             landmarkName = "paymentQueueRestoreCompletedTransactionsFinished(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8CFCCC14-431C-4A8A-8509-247660BE357D - b756a3cdd093d9d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "796"
+                  endingLineNumber = "796"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "8CFCCC14-431C-4A8A-8509-247660BE357D - 4d2fce063abd0f1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vedanta.subscription.paymentQueueRestoreCompletedTransactionsFinished(__C.SKPaymentQueue) -&gt; ()"
+                  moduleName = "Vedanta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dishantrajput/Downloads/Vedanta/Vedanta/controller/subscription/subscription.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "796"
+                  endingLineNumber = "796"
+                  offsetFromSymbolStart = "284">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
